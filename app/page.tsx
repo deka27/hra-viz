@@ -1,65 +1,148 @@
-import Image from "next/image";
+import StatCard from "./components/StatCard";
+import ChartCard from "./components/ChartCard";
+import ToolVisitsChart from "./components/charts/ToolVisitsChart";
+import TrafficDonut from "./components/charts/TrafficDonut";
+import TotalVisitsSparkline from "./components/charts/TotalVisitsSparkline";
+import HourlyTrafficChart from "./components/charts/HourlyTrafficChart";
 
-export default function Home() {
+import totalToolVisits from "../public/data/total_tool_visits.json";
+import trafficTypes from "../public/data/traffic_types.json";
+import monthlyData from "../public/data/tool_visits_by_month.json";
+
+const totalVisits = totalToolVisits.reduce((sum, d) => sum + d.visits, 0);
+const humanCount = trafficTypes.find((d) => d.type === "Likely Human")?.count ?? 0;
+const totalRequests = trafficTypes.reduce((sum, d) => sum + d.count, 0);
+const humanPct = ((humanCount / totalRequests) * 100).toFixed(1);
+
+export default function OverviewPage() {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex min-h-screen w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
+    <div className="flex flex-col gap-8">
+      {/* Page header */}
+      <div className="flex flex-col gap-1">
+        <div className="flex items-center gap-2 text-xs font-medium text-zinc-500 uppercase tracking-wider">
+          <span>CloudFront Log Analytics</span>
+          <span>·</span>
+          <span>Indiana University</span>
+        </div>
+        <h1 className="text-2xl font-bold text-zinc-50 tracking-tight">
+          Human Reference Atlas Tools
+        </h1>
+        <p className="text-zinc-400 text-sm max-w-2xl">
+          Usage analytics for the HRA portal tools derived from Amazon CloudFront access logs.
+          Covers <span className="text-zinc-300 font-medium">Nov 2023 – Jan 2026</span> · 5 tools · 93 countries.
+        </p>
+      </div>
+
+      {/* Hero stats */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <StatCard
+          label="Total Tool Visits"
+          value={totalVisits.toLocaleString()}
+          sub="Across all 5 HRA tools"
+          accent="text-blue-400"
         />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+        <StatCard
+          label="Human Traffic"
+          value={`${humanPct}%`}
+          sub={`of ${(totalRequests / 1_000_000).toFixed(1)}M CloudFront requests`}
+          accent="text-emerald-400"
+        />
+        <StatCard
+          label="Tools Analyzed"
+          value="5"
+          sub="EUI · RUI · CDE · FTU · KG"
+        />
+        <StatCard
+          label="Countries Reached"
+          value="93"
+          sub="From US to Singapore to Ecuador"
+          accent="text-rose-400"
+        />
+      </div>
+
+      {/* Monthly sparkline */}
+      <ChartCard
+        title="Total Tool Visits by Month"
+        subtitle="Combined visits across all 5 HRA tools, Nov 2023 – Jan 2026"
+        badge="27 months"
+        badgeColor="bg-zinc-800 text-zinc-400 border-zinc-700"
+      >
+        <TotalVisitsSparkline data={monthlyData} />
+      </ChartCard>
+
+      {/* Charts row */}
+      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+        <ChartCard
+          title="Total Visits by Tool"
+          subtitle="Cumulative page visits per HRA tool, Nov 2023 – Jan 2026"
+          className="lg:col-span-3"
+        >
+          <ToolVisitsChart data={totalToolVisits} />
+        </ChartCard>
+
+        <ChartCard
+          title="Traffic Breakdown"
+          subtitle={`${totalRequests.toLocaleString()} total CloudFront requests`}
+          className="lg:col-span-2"
+        >
+          <TrafficDonut data={trafficTypes} />
+        </ChartCard>
+      </div>
+
+      {/* Hourly traffic pattern */}
+      <ChartCard
+        title="When Are Users Active?"
+        subtitle="Traffic distribution by hour of day — human CloudFront requests, all sites"
+        badge="UTC"
+        badgeColor="bg-zinc-800 text-zinc-400 border-zinc-700"
+      >
+        <HourlyTrafficChart />
+      </ChartCard>
+
+      {/* Quick callouts */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+          <div className="flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+            <span className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">Surge Event</span>
+          </div>
+          <p className="text-sm text-zinc-400 leading-relaxed">
+            EUI visits spiked from{" "}
+            <span className="text-zinc-200 font-medium">171 → 7,140</span> in March 2024 —
+            a 41× jump consistent with a university workshop.
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+          <div className="flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+            <span className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">Undiscovered Feature</span>
+          </div>
+          <p className="text-sm text-zinc-400 leading-relaxed">
+            RUI opacity controls used only{" "}
+            <span className="text-zinc-200 font-medium">196 times</span> total across 5,161 visits — a powerful but buried feature.
+          </p>
         </div>
-      </main>
+        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+          <div className="flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+            <span className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">Breakout Tool</span>
+          </div>
+          <p className="text-sm text-zinc-400 leading-relaxed">
+            KG Explorer launched Aug 2025 and hit{" "}
+            <span className="text-zinc-200 font-medium">3,891 visits/mo</span> by October — now the most-visited HRA tool.
+          </p>
+        </div>
+        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+          <div className="flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-teal-500" />
+            <span className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">Ecosystem Integration</span>
+          </div>
+          <p className="text-sm text-zinc-400 leading-relaxed">
+            GTEx Portal generates{" "}
+            <span className="text-zinc-200 font-medium">1.73M API calls</span> to HRA — the largest external consumer, ahead of HubMAP (1.38M).
+          </p>
+        </div>
+      </div>
     </div>
   );
 }

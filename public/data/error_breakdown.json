@@ -1,0 +1,80 @@
+{
+  "by_source": [
+    {
+      "app": "KG Explorer",
+      "errors": 7034,
+      "total_events": 20070,
+      "error_rate": 35.0
+    },
+    {
+      "app": "EUI",
+      "errors": 2846,
+      "total_events": 10083,
+      "error_rate": 28.2
+    },
+    {
+      "app": "Portal",
+      "errors": 2267,
+      "total_events": 15877,
+      "error_rate": 14.3
+    },
+    {
+      "app": "Organ Info Widget",
+      "errors": 1047,
+      "total_events": 723,
+      "error_rate": 100.0
+    },
+    {
+      "app": "FTU Explorer",
+      "errors": 201,
+      "total_events": 1511,
+      "error_rate": 12.0
+    },
+    {
+      "app": "CDE",
+      "errors": 29,
+      "total_events": 4132,
+      "error_rate": 0.7
+    },
+    {
+      "app": "RUI",
+      "errors": 16,
+      "total_events": 8762,
+      "error_rate": 0.2
+    }
+  ],
+  "root_causes": [
+    {
+      "cause": "API endpoint failure",
+      "detail": "apps.humanatlas.io/api/v1/technology-names returns 0 Unknown Error (CORS or endpoint down)",
+      "count": 6438,
+      "fix": "Check CORS headers on the API. The endpoint may be missing or misconfigured for cross-origin requests."
+    },
+    {
+      "cause": "KG Explorer missing icons",
+      "detail": "SVG icons for organs and products returning 0 Unknown Error from CDN",
+      "count": 6712,
+      "fix": "Verify CDN paths for kg-explorer icon assets. All-organs.svg, 3d-organ.svg, and others are not resolving."
+    },
+    {
+      "cause": "EUI null reference in 3D picker",
+      "detail": "TypeError: Cannot read properties of null (reading '0') in eR.unproject / getLastPickedObject",
+      "count": 2251,
+      "fix": "Add null check before accessing index [0] in the picking pipeline. Occurs when users click empty space before model fully loads."
+    },
+    {
+      "cause": "Organ Info widget 404s",
+      "detail": "ccf-organ-info component missing assets (e.g. lung.svg 404)",
+      "count": 371,
+      "fix": "Audit ccf-organ-info asset paths. The component is embedded in multiple tools and failing on every load."
+    },
+    {
+      "cause": "Other HTTP failures",
+      "detail": "Various network/CORS failures across tools",
+      "count": 3100,
+      "fix": "Audit API and CDN configurations."
+    }
+  ],
+  "total_errors": 21350,
+  "fixable_top3": 15401
+}
