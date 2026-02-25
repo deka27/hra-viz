@@ -7,7 +7,6 @@ const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 // Derived from cde_workflow.json
 // 163 uploads, 132 visualized, 93 came via landing page "Create a Visualization" button
 // 70 came direct (skipped landing) = 163 - 93
-// 0 downloads recorded
 const NODES = [
   { name: "Via Landing Page", itemStyle: { color: "#f59e0b" } },
   { name: "Direct / Navigation", itemStyle: { color: "#d97706" } },
@@ -25,6 +24,10 @@ const LINKS = [
   { source: "Configure & Organize",target: "Dropped Off",            value: 31 },
 ];
 
+const TOTAL_UPLOADS = LINKS.find(
+  (l) => l.source === "Upload File" && l.target === "Configure & Organize"
+)?.value ?? 0;
+
 export default function CDESankeyChart() {
   const option = {
     backgroundColor: "transparent",
@@ -40,7 +43,7 @@ export default function CDESankeyChart() {
         if (p.dataType === "node") {
           return `<div style="font-weight:600;color:#fafafa">${p.name}</div>`;
         }
-        const pct = ((p.data.value / 163) * 100).toFixed(0);
+        const pct = TOTAL_UPLOADS > 0 ? ((p.data.value / TOTAL_UPLOADS) * 100).toFixed(0) : "0";
         return `<div>
           <div style="color:#a1a1aa;margin-bottom:4px">${p.data.source} → ${p.data.target}</div>
           <div style="font-weight:700;color:#fafafa;font-size:16px">${p.data.value} users</div>
@@ -72,7 +75,6 @@ export default function CDESankeyChart() {
           fontSize: 12,
           fontWeight: "bold" as const,
           formatter: (p: { name: string }) => {
-            const link = LINKS.find((l) => l.target === p.name || l.source === p.name);
             const count = LINKS.find((l) => l.target === p.name)?.value
               ?? LINKS.filter((l) => l.source === p.name).reduce((s, l) => s + l.value, 0);
             if (p.name === "Via Landing Page") return `${p.name}\n93 users`;
@@ -106,7 +108,7 @@ export default function CDESankeyChart() {
         </div>
         <div className="flex items-center gap-2">
           <div className="w-3 h-3 rounded-sm bg-zinc-600" />
-          <span className="text-zinc-400">0 downloads (hidden feature)</span>
+          <span className="text-zinc-400">Download step is not tracked in current logs</span>
         </div>
       </div>
     </div>

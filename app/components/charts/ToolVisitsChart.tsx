@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { TOOL_COLORS } from "../../lib/chartTheme";
 
 const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
@@ -8,14 +9,6 @@ interface ToolVisit {
   tool: string;
   visits: number;
 }
-
-const TOOL_COLORS: Record<string, string> = {
-  "KG Explorer": "#f43f5e",
-  "EUI": "#3b82f6",
-  "RUI": "#8b5cf6",
-  "CDE": "#f59e0b",
-  "FTU Explorer": "#10b981",
-};
 
 export default function ToolVisitsChart({ data }: { data: ToolVisit[] }) {
   const sorted = [...data].sort((a, b) => a.visits - b.visits);

@@ -15,9 +15,8 @@ const TOOLTIP = {
 
 const total = hourlyData.reduce((s, d) => s + d.count, 0);
 
-// Convert UTC hour to ET label (Indiana / US Eastern = UTC-5 EST year-round)
-function toET(utcHour: number): string {
-  const h = (utcHour - 5 + 24) % 24;
+function toEasternHour(utcHour: number, utcOffset: number): string {
+  const h = (utcHour + utcOffset + 24) % 24;
   const period = h >= 12 ? "pm" : "am";
   const display = h === 0 ? 12 : h > 12 ? h - 12 : h;
   return `${display}${period}`;
@@ -25,10 +24,11 @@ function toET(utcHour: number): string {
 
 export default function HourlyTrafficChart() {
   const hours   = hourlyData.map((d) => `${String(d.hour).padStart(2, "0")}:00`);
-  const etLabels = hourlyData.map((d) => toET(d.hour));
+  const estLabels = hourlyData.map((d) => toEasternHour(d.hour, -5));
+  const edtLabels = hourlyData.map((d) => toEasternHour(d.hour, -4));
   const pcts    = hourlyData.map((d) => +((d.count / total) * 100).toFixed(2));
 
-  // Peak zone: 13–21 UTC (9 AM–5 PM ET)
+  // Peak zone in UTC; Eastern local-time equivalent shifts by DST.
   const isPeak = (h: number) => h >= 13 && h <= 21;
 
   const option = {
@@ -44,7 +44,7 @@ export default function HourlyTrafficChart() {
         const d = hourlyData[i];
         const pct = pcts[i];
         return `<span style="color:#a1a1aa">${p[0].name} UTC</span>
-          <span style="color:#52525b"> · ${etLabels[i]} ET</span><br/>
+          <span style="color:#52525b"> · ${estLabels[i]} EST / ${edtLabels[i]} EDT</span><br/>
           <strong>${d.count.toLocaleString()} requests</strong>
           <span style="color:#71717a"> (${pct}% of daily)</span>`;
       },
@@ -66,7 +66,7 @@ export default function HourlyTrafficChart() {
       {
         // Secondary: ET hours below
         type: "category",
-        data: etLabels,
+        data: estLabels,
         position: "bottom",
         offset: 18,
         axisLine: { show: false },
@@ -122,11 +122,11 @@ export default function HourlyTrafficChart() {
       <div className="flex items-center justify-between mt-2 px-1">
         <p className="text-xs text-zinc-600">
           <span className="inline-block w-2 h-2 rounded-sm bg-blue-500 mr-1.5 align-middle" />
-          Peak 13–21 UTC · <span className="text-zinc-500">9 AM–5 PM ET</span>
-          <span className="text-zinc-700 ml-2">(top row UTC · bottom row ET)</span>
+          Peak 13–21 UTC · <span className="text-zinc-500">8 AM–4 PM EST (9 AM–5 PM EDT)</span>
+          <span className="text-zinc-700 ml-2">(top row UTC · bottom row EST)</span>
         </p>
         <p className="text-xs text-zinc-600">
-          14:00 UTC · <span className="text-zinc-500">9 AM ET</span> = <span className="text-zinc-400 font-medium">single-hour peak</span>
+          14:00 UTC · <span className="text-zinc-500">9 AM EST (10 AM EDT)</span> = <span className="text-zinc-400 font-medium">single-hour peak</span>
         </p>
       </div>
     </div>

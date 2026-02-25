@@ -40,6 +40,10 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# python
+__pycache__/
+*.py[cod]
+
 # data files (large, not for version control)
 data/
 *.parquet

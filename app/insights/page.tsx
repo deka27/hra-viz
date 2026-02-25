@@ -1,5 +1,16 @@
 import StatCard from "../components/StatCard";
 import SessionDepthChart from "../components/charts/SessionDepthChart";
+
+import totalToolVisits from "../../public/data/total_tool_visits.json";
+import opacityData from "../../public/data/opacity_interactions.json";
+import cdeWorkflowData from "../../public/data/cde_workflow.json";
+import spatialSearch from "../../public/data/spatial_search.json";
+import geoData from "../../public/data/geo_distribution.json";
+import sessionDepth from "../../public/data/session_depth.json";
+import navClicks from "../../public/data/nav_clicks.json";
+import monthlyData from "../../public/data/tool_visits_by_month.json";
+import errorBreakdown from "../../public/data/error_breakdown.json";
+
 import {
   SpikeComparisonChart,
   AprilCoSpikeChart,
@@ -11,6 +22,91 @@ import {
   ReferrerEcosystemChart,
   NavClicksChart,
 } from "../components/charts/InsightFeatureCharts";
+
+// ── Derived values (re-computed at build from JSON, safe to add new parquet runs) ──────────────
+type MonthRow = { month_year: string; EUI: number; RUI: number; CDE: number; "FTU Explorer": number; "KG Explorer": number };
+const monthly = monthlyData as MonthRow[];
+const monthCount = monthly.length;
+function fmtMY(ym: string) {
+  const [y, m] = ym.split("-");
+  const names = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return `${names[parseInt(m) - 1]} '${y.slice(2)}`;
+}
+const dataRange = monthCount > 0 ? `${fmtMY(monthly[0].month_year)} – ${fmtMY(monthly[monthly.length - 1].month_year)}` : "";
+
+// ID 4: October seasonal pattern
+const monthTot = (r: MonthRow) => r.EUI + r.RUI + r.CDE + r["FTU Explorer"] + r["KG Explorer"];
+const octMonths = monthly.filter(d => d.month_year.endsWith("-10"));
+const octAvg = octMonths.length ? Math.round(octMonths.reduce((s, d) => s + monthTot(d), 0) / octMonths.length) : 0;
+const peakOctRow = octMonths.reduce((mx, d) => monthTot(d) > monthTot(mx) ? d : mx, octMonths[0]);
+const peakOctTotal = peakOctRow ? monthTot(peakOctRow) : 0;
+const peakOctYear = peakOctRow?.month_year?.slice(0, 4) ?? "";
+const mayMonths = monthly.filter(d => d.month_year.endsWith("-05"));
+const mayAvg = mayMonths.length ? Math.round(mayMonths.reduce((s, d) => s + monthTot(d), 0) / mayMonths.length) : 0;
+
+// ID 8: Opacity usage
+const opacityTotal = opacityData.reduce((s, d) => s + d.count, 0);
+const ruiVisitsN = (totalToolVisits as { tool: string; visits: number }[]).find(d => d.tool === "RUI")?.visits ?? 1;
+const opacityRate = ((opacityTotal / ruiVisitsN) * 100).toFixed(1);
+const topOpacity = [...opacityData].sort((a, b) => b.count - a.count)[0];
+
+// IDs 9 & 12: CDE workflow
+const cdeUploadsN = cdeWorkflowData.find(d => d.path.includes("file-upload.upload"))?.count ?? 0;
+const cdeVizN = cdeWorkflowData.find(d => d.path.includes("visualize-data.submit"))?.count ?? 0;
+const cdeLandingN = cdeWorkflowData.find(d => d.path.includes("landing-page") && d.path.includes("create-a-visualization"))?.count ?? 0;
+const cdeCompPct = cdeUploadsN > 0 ? Math.round((cdeVizN / cdeUploadsN) * 100) : 0;
+const cdeBypassPct = cdeUploadsN > 0 ? Math.round(((cdeUploadsN - cdeLandingN) / cdeUploadsN) * 100) : 0;
+
+// ID 11: Spatial search
+const spatialBtnN = (spatialSearch as { path: string; count: number }[]).find(d => d.path === "eui.body-ui.spatial-search-button")?.count ?? 0;
+const spatialSceneN = (spatialSearch as { path: string; count: number }[]).find(d => d.path === "eui.body-ui.spatial-search.scene")?.count ?? 0;
+const spatialContN = (spatialSearch as { path: string; count: number }[]).find(d => d.path.includes("continue"))?.count ?? 0;
+const spatialRatioN = spatialBtnN > 0 ? (spatialSceneN / spatialBtnN).toFixed(1) : "?";
+const spatialContRate = spatialBtnN > 0 ? Math.round((spatialContN / spatialBtnN) * 100) : 0;
+
+// IDs 15 & 16: Geography
+const APAC = new Set(["CN","HK","SG","JP","KR","TW","AU","IN","NZ","TH","MY","PH","ID","VN","MM","KH","MN","LK","NP","BD","PK"]);
+const geoArr = geoData as { c_country: string; visits: number }[];
+const geoTotVisits = geoArr.reduce((s, d) => s + d.visits, 0);
+const apacVisits = geoArr.filter(d => APAC.has(d.c_country)).reduce((s, d) => s + d.visits, 0);
+const apacPct = ((apacVisits / geoTotVisits) * 100).toFixed(1);
+const geoSorted = [...geoArr].sort((a, b) => b.visits - a.visits);
+const hkRank = geoSorted.findIndex(d => d.c_country === "HK") + 1;
+const sgRank = geoSorted.findIndex(d => d.c_country === "SG") + 1;
+const ecVisits = geoArr.find(d => d.c_country === "EC")?.visits ?? 0;
+const bgVisits = geoArr.find(d => d.c_country === "BG")?.visits ?? 0;
+const scVisits = geoArr.find(d => d.c_country === "SC")?.visits ?? 0;
+const ecRank = geoSorted.findIndex(d => d.c_country === "EC") + 1;
+
+// ID 17: Errors by source
+const errSrc = (errorBreakdown as { by_source: { tool: string; errors: number }[] }).by_source;
+const totalSrcErrors = errSrc.reduce((s, d) => s + d.errors, 0);
+const kgErrors = errSrc.find(d => d.tool === "KG Explorer")?.errors ?? 0;
+const euiErrors = errSrc.find(d => d.tool === "EUI")?.errors ?? 0;
+const ruiErrors = errSrc.find(d => d.tool === "RUI")?.errors ?? 0;
+const kgErrPct = Math.round((kgErrors / totalSrcErrors) * 100);
+const euiErrPct = Math.round((euiErrors / totalSrcErrors) * 100);
+
+// ID 19: Nav clicks
+const navArr = navClicks as { label: string; count: number }[];
+const dataClicks = navArr.find(d => d.label === "Data")?.count ?? 0;
+const appsClicks = navArr.find(d => d.label === "Apps")?.count ?? 0;
+const devClicks = navArr.find(d => d.label === "Development")?.count ?? 0;
+const totalNavClicks = navArr.reduce((s, d) => s + d.count, 0);
+const dataPct = Math.round((dataClicks / totalNavClicks) * 100);
+const appsPct = Math.round((appsClicks / totalNavClicks) * 100);
+const devPct = Math.round((devClicks / totalNavClicks) * 100);
+const dataToAppsRatio = appsClicks > 0 ? (dataClicks / appsClicks).toFixed(1) : "?";
+
+// ID 20: Session depth
+const sesArr = sessionDepth as { depth: string; sessions: number }[];
+const totalSessions = sesArr.reduce((s, d) => s + d.sessions, 0);
+const singleBounce = sesArr.find(d => d.depth === "1")?.sessions ?? 0;
+const deep11 = sesArr.filter(d => d.depth === "11–20" || d.depth === "20+").reduce((s, d) => s + d.sessions, 0);
+const deep20 = sesArr.find(d => d.depth === "20+")?.sessions ?? 0;
+const bouncePct = Math.round((singleBounce / totalSessions) * 100);
+const deep11Pct = Math.round((deep11 / totalSessions) * 100);
+const deep20Pct = Math.round((deep20 / totalSessions) * 100);
 
 // Compact charts for bento cards
 const INSIGHT_CHARTS: Record<number, React.ReactNode> = {
@@ -85,13 +181,13 @@ const insights = [
     dot: "bg-orange-500",
     tag: "Academic Pattern",
     title: "October is consistently the highest-traffic month",
-    metric: "Oct avg: 4,321 visits · Oct 2025: 4,834 (all-time peak)",
+    metric: `Oct avg: ${octAvg.toLocaleString()} visits · Oct ${peakOctYear}: ${peakOctTotal.toLocaleString()} (all-time peak)`,
     implication:
       "Plan major feature releases and outreach campaigns for September so they're polished before the October peak. Ensure server infrastructure can handle 4–5× normal traffic.",
     data: [
-      { label: "Oct avg (all years)",    value: "4,321 visits" },
-      { label: "Oct 2025 (all-time)",    value: "4,834 visits" },
-      { label: "May avg (summer lull)",  value: "410 visits"   },
+      { label: "Oct avg (all years)",              value: `${octAvg.toLocaleString()} visits`         },
+      { label: `Oct ${peakOctYear} (all-time peak)`, value: `${peakOctTotal.toLocaleString()} visits` },
+      { label: "May avg (summer lull)",            value: `${mayAvg.toLocaleString()} visits`         },
     ],
   },
 
@@ -149,28 +245,28 @@ const insights = [
     dot: "bg-violet-500",
     tag: "Hidden Feature",
     title: "RUI opacity controls are nearly invisible to users",
-    metric: "196 total opacity toggles across 5,161 RUI visits (3.8%)",
+    metric: `${opacityTotal} total opacity toggles across ${ruiVisitsN.toLocaleString()} RUI visits (${opacityRate}%)`,
     implication:
       "Surface opacity controls with an onboarding tooltip on first RUI load. A simple 'Tip: You can toggle organ visibility' prompt could dramatically increase this metric.",
     data: [
-      { label: "Total opacity toggles", value: "196"                  },
-      { label: "Usage rate",            value: "3.8% of visits"       },
-      { label: "Most-used toggle",      value: "All Structures (50×)" },
+      { label: "Total opacity toggles", value: opacityTotal.toString()                    },
+      { label: "Usage rate",           value: `${opacityRate}% of RUI visits`            },
+      { label: "Most-used toggle",     value: `All Structures (${topOpacity?.count ?? 0}×)` },
     ],
   },
   {
     id: 9,
     color: "border-l-amber-400",
     dot: "bg-amber-400",
-    tag: "Missing Feature",
-    title: "CDE export/download is completely undiscovered",
-    metric: "132 visualizations created · 0 downloads",
+    tag: "Instrumentation Gap",
+    title: "CDE export/download usage cannot be measured yet",
+    metric: `${cdeVizN} visualizations created · download events not yet tracked in app`,
     implication:
-      "Audit the CDE post-visualization screen immediately. Place a prominent 'Download / Export' CTA directly after the visualization renders. Potentially the highest-value UX fix in HRA.",
+      "Add an explicit CDE download/export analytics event first. After instrumentation is in place, audit the post-visualization screen and add a more prominent CTA if measured usage remains low.",
     data: [
-      { label: "Visualizations submitted", value: "132"        },
-      { label: "Downloads logged",         value: "0"          },
-      { label: "Completion rate",          value: "81% of uploads" },
+      { label: "Visualizations submitted", value: cdeVizN.toString()                         },
+      { label: "Download tracking",        value: "Not yet tracked in app"                  },
+      { label: "Completion rate",          value: `${cdeCompPct}% of uploads`               },
     ],
   },
   {
@@ -179,13 +275,13 @@ const insights = [
     dot: "bg-emerald-400",
     tag: "High Engagement",
     title: "EUI spatial search users are deeply engaged once inside",
-    metric: "330 scene navigation events vs 101 button clicks (3.3×)",
+    metric: `${spatialSceneN} scene navigation events vs ${spatialBtnN} button clicks (${spatialRatioN}×)`,
     implication:
       "The spatial search onboarding has a 37% continuation rate. Simplifying organ selection or adding 'Quick Search' presets for common organs (kidney, heart) could significantly increase completion.",
     data: [
-      { label: "Button clicks",            value: "101"              },
-      { label: "Scene navigation events",  value: "330 (3.3×)"       },
-      { label: "Continue to search",       value: "37 (37% of clicks)" },
+      { label: "Button clicks",           value: spatialBtnN.toString()                            },
+      { label: "Scene navigation events", value: `${spatialSceneN} (${spatialRatioN}×)`           },
+      { label: "Continue to search",      value: `${spatialContN} (${spatialContRate}% of clicks)` },
     ],
   },
   {
@@ -209,13 +305,13 @@ const insights = [
     dot: "bg-red-400",
     tag: "Quality Issue",
     title: "72% of all errors come from 3 fixable bugs",
-    metric: "15,401 of 21,350 errors traceable to specific root causes",
+    metric: `${kgErrors.toLocaleString()} KG + ${euiErrors.toLocaleString()} EUI errors traceable to specific root causes`,
     implication:
       "Fix in priority order: (1) Patch API CORS on technology-names endpoint. (2) Audit KG Explorer CDN paths for icon assets. (3) Add null guard in EUI's getLastPickedObject before index [0].",
     data: [
-      { label: "KG Explorer error rate", value: "35% (7,034 errors)" },
-      { label: "EUI error rate",         value: "28% (2,846 errors)" },
-      { label: "RUI error rate",         value: "0.2% (16 errors) ✓" },
+      { label: "KG Explorer errors", value: `${kgErrPct}% (${kgErrors.toLocaleString()} errors)` },
+      { label: "EUI errors",         value: `${euiErrPct}% (${euiErrors.toLocaleString()} errors)` },
+      { label: "RUI errors",         value: `${ruiErrors} errors ✓`                               },
     ],
   },
   {
@@ -224,13 +320,13 @@ const insights = [
     dot: "bg-fuchsia-500",
     tag: "UX Insight",
     title: "43% of CDE users skip the landing page entirely",
-    metric: "70 of 163 uploads bypassed the landing CTA",
+    metric: `${cdeUploadsN - cdeLandingN} of ${cdeUploadsN} uploads bypassed the landing CTA`,
     implication:
       "The upload page itself needs to be fully self-explanatory. Add in-page guidance, accepted file format info, and a quick-start template directly on the upload screen.",
     data: [
-      { label: "Landing CTA clicks",    value: "93"                    },
-      { label: "Total uploads",         value: "163"                   },
-      { label: "Direct-to-upload rate", value: "43% bypassed landing"  },
+      { label: "Landing CTA clicks",    value: cdeLandingN.toString()              },
+      { label: "Total uploads",         value: cdeUploadsN.toString()              },
+      { label: "Direct-to-upload rate", value: `${cdeBypassPct}% bypassed landing` },
     ],
   },
 
@@ -270,14 +366,14 @@ const insights = [
     color: "border-l-sky-400",
     dot: "bg-sky-400",
     tag: "Discovery Path",
-    title: "Users browse 'Data' 1.5× more than 'Apps' — data drives tool discovery",
-    metric: "Data: 482 clicks · Apps: 262 · Development: 138",
+    title: `Users browse 'Data' ${dataToAppsRatio}× more than 'Apps' — data drives tool discovery`,
+    metric: `Data: ${dataClicks} clicks · Apps: ${appsClicks} · Development: ${devClicks}`,
     implication:
       "Embed tool launch points directly within data browsing pages. 'Explore this dataset in EUI' CTAs placed on data pages capture users already in research mode.",
     data: [
-      { label: "'Data' nav clicks",        value: "482 (35%)" },
-      { label: "'Apps' nav clicks",        value: "262 (23%)" },
-      { label: "'Development' nav clicks", value: "138 (15%)" },
+      { label: "'Data' nav clicks",        value: `${dataClicks} (${dataPct}%)` },
+      { label: "'Apps' nav clicks",        value: `${appsClicks} (${appsPct}%)` },
+      { label: "'Development' nav clicks", value: `${devClicks} (${devPct}%)`   },
     ],
   },
   {
@@ -303,13 +399,13 @@ const insights = [
     dot: "bg-orange-400",
     tag: "Engagement",
     title: "Engagement is bimodal — users either bounce immediately or go very deep",
-    metric: "28% single-event bounces · 23% with 11+ events",
+    metric: `${bouncePct}% single-event bounces · ${deep11Pct}% with 11+ events`,
     implication:
       "Two distinct user archetypes exist. Design for both: add immediate value indicators on first load to hook bouncers, and invest in advanced features for power users who return.",
     data: [
-      { label: "Single-event bounces",      value: "1,776 (28%)" },
-      { label: "Sessions with 11+ events",  value: "1,449 (23%)" },
-      { label: "Sessions with 20+ events",  value: "741 (12%)"   },
+      { label: "Single-event bounces",     value: `${singleBounce.toLocaleString()} (${bouncePct}%)` },
+      { label: "Sessions with 11+ events", value: `${deep11.toLocaleString()} (${deep11Pct}%)`        },
+      { label: "Sessions with 20+ events", value: `${deep20.toLocaleString()} (${deep20Pct}%)`        },
     ],
   },
   {
@@ -318,13 +414,13 @@ const insights = [
     dot: "bg-rose-400",
     tag: "Global Reach",
     title: "Asia-Pacific accounts for nearly 1 in 4 visits",
-    metric: "10,341 visits (23.8%) from Asia-Pacific",
+    metric: `${apacVisits.toLocaleString()} visits (${apacPct}%) from Asia-Pacific`,
     implication:
       "Asia-Pacific is the #2 market by region. Ensure HRA tools are geographically distributed to minimize latency for Asian users, and consider outreach to HK, SG, and JP institutions.",
     data: [
-      { label: "Asia-Pacific total",  value: "10,341 visits (23.8%)" },
-      { label: "Hong Kong rank",      value: "#2 globally"           },
-      { label: "Singapore rank",      value: "#3 globally"           },
+      { label: "Asia-Pacific total", value: `${apacVisits.toLocaleString()} visits (${apacPct}%)` },
+      { label: "Hong Kong rank",     value: `#${hkRank} globally`                                },
+      { label: "Singapore rank",     value: `#${sgRank} globally`                                },
     ],
   },
   {
@@ -333,13 +429,13 @@ const insights = [
     dot: "bg-yellow-500",
     tag: "Anomaly",
     title: "Ecuador, Bulgaria, and Seychelles show suspicious traffic volume",
-    metric: "EC: 769 · BG: 246 · SC: 108",
+    metric: `EC: ${ecVisits} · BG: ${bgVisits} · SC: ${scVisits}`,
     implication:
       "Cross-reference CloudFront IP addresses for Ecuador and Seychelles traffic against known CDN ranges. If confirmed as CDN artifacts, exclude from geographic analyses.",
     data: [
-      { label: "Ecuador rank",           value: "#9 globally (769)" },
-      { label: "Bulgaria",               value: "246 visits"        },
-      { label: "Seychelles (pop 100K)",  value: "108 visits"        },
+      { label: "Ecuador rank",          value: `#${ecRank} globally (${ecVisits.toLocaleString()})` },
+      { label: "Bulgaria",              value: `${bgVisits.toLocaleString()} visits`               },
+      { label: "Seychelles (pop 100K)", value: `${scVisits.toLocaleString()} visits`              },
     ],
   },
 ];
@@ -360,7 +456,7 @@ export default function InsightsPage() {
         <h1 className="text-2xl font-bold text-zinc-50 tracking-tight">What the Data Tells Us</h1>
         <p className="text-zinc-400 text-sm max-w-2xl">
           20 actionable findings derived from CloudFront log analysis across{" "}
-          <span className="text-zinc-300 font-medium">27 months</span> of HRA tool usage data, covering
+          <span className="text-zinc-300 font-medium">{monthCount} months</span> ({dataRange}) of HRA tool usage data, covering
           traffic patterns, feature adoption, user behavior, and geographic distribution.
         </p>
       </div>

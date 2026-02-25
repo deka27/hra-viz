@@ -146,9 +146,8 @@ export function AprilCoSpikeChart({ compact }: { compact?: boolean }) {
     tooltip: {
       trigger: "axis",
       ...TOOLTIP,
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      formatter: (params: any[]) => {
-        const rows = params.map((p: any) => `<span style="color:#a1a1aa">${p.seriesName}:</span> <strong>${p.value.toLocaleString()}</strong>`).join("<br/>");
+      formatter: (params: { seriesName: string; value: number; axisValue: string }[]) => {
+        const rows = params.map((p) => `<span style="color:#a1a1aa">${p.seriesName}:</span> <strong>${p.value.toLocaleString()}</strong>`).join("<br/>");
         return `<span style="color:#a1a1aa">${params[0].axisValue}</span><br/>${rows}`;
       },
     },

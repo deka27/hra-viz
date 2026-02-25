@@ -1,6 +1,9 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { TOOL_COLORS } from "../../lib/chartTheme";
+import errorBreakdown from "../../../public/data/error_breakdown.json";
+import errorClusters from "../../../public/data/error_clusters.json";
 
 const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
@@ -12,27 +15,35 @@ const TOOLTIP = {
   extraCssText: "box-shadow:0 4px 20px rgba(0,0,0,0.5);border-radius:8px;padding:8px 12px;",
 };
 
-// By source app: errors and error rate (from parquet analysis)
-const BY_SOURCE = [
-  { app: "RUI",               errors: 16,   rate: 0.2,   color: "#8b5cf6" },
-  { app: "CDE",               errors: 29,   rate: 0.7,   color: "#f59e0b" },
-  { app: "FTU Explorer",      errors: 182,  rate: 12.0,  color: "#10b981" },
-  { app: "Portal",            errors: 2267, rate: 14.3,  color: "#71717a" },
-  { app: "EUI",               errors: 2846, rate: 28.2,  color: "#3b82f6" },
-  { app: "KG Explorer",       errors: 7034, rate: 35.0,  color: "#f43f5e" },
-];
+const SOURCE_COLORS: Record<string, string> = {
+  ...TOOL_COLORS,
+};
 
-// By root cause (from error message analysis)
-const BY_CAUSE = [
-  { cause: "Unhandled rejection / other", count: 1055,  color: "#52525b" },
-  { cause: "Organ Info widget 404s",      count: 371,   color: "#d97706" },
-  { cause: "Portal social icon failures", count: 1423,  color: "#71717a" },
-  { cause: "EUI null ref in 3D picker",   count: 2251,  color: "#3b82f6" },
-  { cause: "API endpoint failure",        count: 6438,  color: "#a78bfa" },
-  { cause: "KG Explorer missing icons",   count: 6712,  color: "#f43f5e" },
-];
+// Sorted ascending for horizontal bar (lowest → highest)
+const BY_SOURCE = [...errorBreakdown.by_source]
+  .sort((a, b) => a.errors - b.errors)
+  .map((d) => ({
+    app: d.tool,
+    errors: d.errors,
+    color: SOURCE_COLORS[d.tool] ?? "#52525b",
+  }));
+
+// Clusters sorted ascending for horizontal bar
+const BY_CAUSE = [...errorClusters.clusters]
+  .sort((a, b) => a.count - b.count)
+  .map((d) => ({
+    cause: d.label,
+    count: d.count,
+    color: d.label.startsWith("KG Explorer") ? TOOL_COLORS["KG Explorer"]
+         : d.label.startsWith("HTTP") ? "#a78bfa"
+         : d.label.startsWith("HRA Pop") ? "#06b6d4"
+         : d.label.startsWith("Malformed") ? "#d97706"
+         : d.label.startsWith("Dev") ? "#52525b"
+         : "#52525b",
+  }));
 
 export function ErrorSourceChart() {
+  const maxErrors = Math.max(...BY_SOURCE.map((d) => d.errors));
   const option = {
     backgroundColor: "transparent",
     grid: { top: 8, left: 4, right: 64, bottom: 8, containLabel: true },
@@ -44,11 +55,10 @@ export function ErrorSourceChart() {
       formatter: (p: any) => {
         const d = BY_SOURCE.find((s) => s.app === p[0].name)!;
         return `<span style="color:#a1a1aa">${d.app}</span><br/>
-          <strong>${d.errors.toLocaleString()} errors</strong><br/>
-          <span style="color:#ef4444">${d.rate}% error rate</span>`;
+          <strong>${d.errors.toLocaleString()} errors</strong>`;
       },
     },
-    xAxis: { type: "value", show: false, max: 9000 },
+    xAxis: { type: "value", show: false, max: maxErrors * 1.15 },
     yAxis: {
       type: "category",
       data: BY_SOURCE.map((d) => d.app),
@@ -67,11 +77,7 @@ export function ErrorSourceChart() {
         label: {
           show: true,
           position: "right",
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          formatter: (p: any) => {
-            const d = BY_SOURCE.find((s) => s.errors === p.value)!;
-            return `${d.rate}%`;
-          },
+          formatter: ({ value }: { value: number }) => value.toLocaleString(),
           color: "#71717a",
           fontSize: 10,
         },
@@ -85,6 +91,7 @@ export function ErrorSourceChart() {
 
 export function ErrorCauseChart() {
   const total = BY_CAUSE.reduce((s, d) => s + d.count, 0);
+  const maxCount = Math.max(...BY_CAUSE.map((d) => d.count));
   const option = {
     backgroundColor: "transparent",
     grid: { top: 8, left: 4, right: 60, bottom: 8, containLabel: true },
@@ -99,7 +106,7 @@ export function ErrorCauseChart() {
           <strong>${p[0].value.toLocaleString()} errors (${pct}%)</strong>`;
       },
     },
-    xAxis: { type: "value", show: false, max: 9000 },
+    xAxis: { type: "value", show: false, max: maxCount * 1.15 },
     yAxis: {
       type: "category",
       data: BY_CAUSE.map((d) => d.cause),

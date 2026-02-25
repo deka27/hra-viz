@@ -52,14 +52,11 @@ interface GeoItem {
 }
 
 export default function WorldMapChart({ data }: { data: GeoItem[] }) {
-  const [ready, setReady] = useState(false);
+  const [ready, setReady] = useState(() => !!echarts.getMap("world"));
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    if (echarts.getMap("world")) {
-      setReady(true);
-      return;
-    }
+    if (ready) return;
     fetch("/world.json")
       .then((r) => {
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
@@ -70,7 +67,7 @@ export default function WorldMapChart({ data }: { data: GeoItem[] }) {
         setReady(true);
       })
       .catch(() => setError(true));
-  }, []);
+  }, [ready]);
 
   const mapData = data
     .filter((d) => d.c_country !== "-" && CODE_TO_NAME[d.c_country])

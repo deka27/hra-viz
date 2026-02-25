@@ -3,10 +3,15 @@ import MonthlyTrendsChart from "../components/charts/MonthlyTrendsChart";
 import YearlyGroupedBar from "../components/charts/YearlyGroupedBar";
 import DonutChart from "../components/charts/DonutChart";
 import StatCard from "../components/StatCard";
+import ToolHourlyHeatmap from "../components/charts/ToolHourlyHeatmap";
+import TrafficByDowChart from "../components/charts/TrafficByDowChart";
+import { TOOL_COLORS } from "../lib/chartTheme";
 
 import monthlyData from "../../public/data/tool_visits_by_month.json";
 import yearlyData from "../../public/data/tool_visits_by_year.json";
 import totalData from "../../public/data/total_tool_visits.json";
+import hourlyHeatmapData from "../../public/data/tool_hourly_heatmap.json";
+import dowData from "../../public/data/traffic_by_dow.json";
 
 const TOOL_CARD_COLORS: Record<string, string> = {
   "KG Explorer": "text-rose-400",
@@ -16,15 +21,15 @@ const TOOL_CARD_COLORS: Record<string, string> = {
   "FTU Explorer": "text-emerald-400",
 };
 
-const TOOL_HEX: Record<string, string> = {
-  "KG Explorer": "#f43f5e",
-  "EUI": "#3b82f6",
-  "RUI": "#8b5cf6",
-  "CDE": "#f59e0b",
-  "FTU Explorer": "#10b981",
-};
+function fmtMonth(ym: string): string {
+  const [y, mo] = ym.split("-");
+  const names = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return `${names[parseInt(mo) - 1]} ${y}`;
+}
 
 const sorted = [...totalData].sort((a, b) => b.visits - a.visits);
+const dateRange = `${fmtMonth(monthlyData[0].month_year)} – ${fmtMonth(monthlyData[monthlyData.length - 1].month_year)}`;
+const numMonths = monthlyData.length;
 
 export default function ToolsPage() {
   return (
@@ -53,8 +58,8 @@ export default function ToolsPage() {
       {/* Monthly trends — main chart */}
       <ChartCard
         title="Monthly Visits per Tool"
-        subtitle="Nov 2023 – Jan 2026 · Use the slider or scroll to zoom"
-        badge="27 months"
+        subtitle={`${dateRange} · Use the slider or scroll to zoom`}
+        badge={`${numMonths} months`}
         badgeColor="bg-zinc-800 text-zinc-400 border-zinc-700"
       >
         <MonthlyTrendsChart data={monthlyData} />
@@ -79,12 +84,58 @@ export default function ToolsPage() {
             data={totalData.map((d) => ({
               name: d.tool,
               value: d.visits,
-              color: TOOL_HEX[d.tool] ?? "#3b82f6",
+              color: TOOL_COLORS[d.tool] ?? "#3b82f6",
             }))}
             unit="visits"
           />
         </ChartCard>
       </div>
+
+      {/* Per-tool hourly heatmap */}
+      <ChartCard
+        title="When Each Tool Gets Used — By Hour (UTC)"
+        subtitle="Event count per hour of day · KG Explorer peaks mid-afternoon UTC (US morning); EUI follows a similar pattern"
+        badge="Hourly · All Tools"
+        badgeColor="bg-zinc-800 text-zinc-400 border-zinc-700"
+      >
+        <ToolHourlyHeatmap data={hourlyHeatmapData} />
+      </ChartCard>
+
+      {/* Day of week breakdown */}
+      <ChartCard
+        title="Visits by Day of Week"
+        subtitle="Stacked by tool · EUI Sunday spike driven by March 2024 workshop event skewing the aggregate"
+        badge="Day of Week"
+        badgeColor="bg-zinc-800 text-zinc-400 border-zinc-700"
+      >
+        <TrafficByDowChart data={dowData} />
+        <div className="mt-4 pt-4 border-t border-zinc-800 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Weekend Drop-off</span>
+            <p className="text-sm text-zinc-300">
+              All tools see sharply lower weekend traffic — CDE, RUI, and FTU drop 60–80%.
+              The pattern is most consistent with <span className="text-blue-400 font-semibold">weekday professional or academic workflows</span>,
+              with lighter casual usage on weekends.
+            </p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">EUI Sunday Anomaly</span>
+            <p className="text-sm text-zinc-300">
+              EUI shows unusually high Sunday visits — an artifact of the{" "}
+              <span className="text-blue-400 font-semibold">March 2024 workshop</span> (7,140 visits)
+              whose dates happened to fall on a Sunday, skewing the DOW aggregate.
+            </p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">KG Explorer: Flat Across Week</span>
+              <p className="text-sm text-zinc-300">
+                KG Explorer has the most even distribution across days — reflecting its{" "}
+                <span className="text-rose-400 font-semibold">international user base</span> across multiple time zones
+                rather than a single institution&apos;s working hours.
+              </p>
+            </div>
+        </div>
+      </ChartCard>
 
       {/* Key observations */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

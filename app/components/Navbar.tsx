@@ -10,6 +10,7 @@ const navLinks = [
   { href: "/geo", label: "Geographic" },
   { href: "/network", label: "Opportunities" },
   { href: "/insights", label: "Insights" },
+  { href: "/ml", label: "ML" },
 ];
 
 export default function Navbar() {

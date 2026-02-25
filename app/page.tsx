@@ -8,11 +8,31 @@ import HourlyTrafficChart from "./components/charts/HourlyTrafficChart";
 import totalToolVisits from "../public/data/total_tool_visits.json";
 import trafficTypes from "../public/data/traffic_types.json";
 import monthlyData from "../public/data/tool_visits_by_month.json";
+import geoData from "../public/data/geo_distribution.json";
+import referrers from "../public/data/referrers.json";
+
+function fmtMonth(ym: string): string {
+  const [y, mo] = ym.split("-");
+  const names = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return `${names[parseInt(mo) - 1]} ${y}`;
+}
 
 const totalVisits = totalToolVisits.reduce((sum, d) => sum + d.visits, 0);
 const humanCount = trafficTypes.find((d) => d.type === "Likely Human")?.count ?? 0;
 const totalRequests = trafficTypes.reduce((sum, d) => sum + d.count, 0);
 const humanPct = ((humanCount / totalRequests) * 100).toFixed(1);
+const numTools = totalToolVisits.length;
+const countryCount = geoData.filter((d) => d.c_country !== "-").length;
+const dateRange = `${fmtMonth(monthlyData[0].month_year)} – ${fmtMonth(monthlyData[monthlyData.length - 1].month_year)}`;
+const numMonths = monthlyData.length;
+const gtexRequests = referrers.find((d) => d.name === "GTEx Portal")?.value ?? 0;
+const hubmapRequests = referrers.find((d) => d.name === "HubMAP")?.value ?? 0;
+
+function fmtCompact(value: number): string {
+  if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(2)}M`;
+  if (value >= 1000) return `${(value / 1000).toFixed(1)}K`;
+  return value.toLocaleString();
+}
 
 export default function OverviewPage() {
   return (
@@ -29,7 +49,7 @@ export default function OverviewPage() {
         </h1>
         <p className="text-zinc-400 text-sm max-w-2xl">
           Usage analytics for the HRA portal tools derived from Amazon CloudFront access logs.
-          Covers <span className="text-zinc-300 font-medium">Nov 2023 – Jan 2026</span> · 5 tools · 93 countries.
+          Covers <span className="text-zinc-300 font-medium">{dateRange}</span> · {numTools} tools · {countryCount} countries.
         </p>
       </div>
 
@@ -38,7 +58,7 @@ export default function OverviewPage() {
         <StatCard
           label="Total Tool Visits"
           value={totalVisits.toLocaleString()}
-          sub="Across all 5 HRA tools"
+          sub={`Across all ${numTools} HRA tools`}
           accent="text-blue-400"
         />
         <StatCard
@@ -49,12 +69,12 @@ export default function OverviewPage() {
         />
         <StatCard
           label="Tools Analyzed"
-          value="5"
+          value={numTools.toString()}
           sub="EUI · RUI · CDE · FTU · KG"
         />
         <StatCard
           label="Countries Reached"
-          value="93"
+          value={countryCount.toString()}
           sub="From US to Singapore to Ecuador"
           accent="text-rose-400"
         />
@@ -63,8 +83,8 @@ export default function OverviewPage() {
       {/* Monthly sparkline */}
       <ChartCard
         title="Total Tool Visits by Month"
-        subtitle="Combined visits across all 5 HRA tools, Nov 2023 – Jan 2026"
-        badge="27 months"
+        subtitle={`Combined visits across all ${numTools} HRA tools, ${dateRange}`}
+        badge={`${numMonths} months`}
         badgeColor="bg-zinc-800 text-zinc-400 border-zinc-700"
       >
         <TotalVisitsSparkline data={monthlyData} />
@@ -74,7 +94,7 @@ export default function OverviewPage() {
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
         <ChartCard
           title="Total Visits by Tool"
-          subtitle="Cumulative page visits per HRA tool, Nov 2023 – Jan 2026"
+          subtitle={`Cumulative page visits per HRA tool, ${dateRange}`}
           className="lg:col-span-3"
         >
           <ToolVisitsChart data={totalToolVisits} />
@@ -139,7 +159,7 @@ export default function OverviewPage() {
           </div>
           <p className="text-sm text-zinc-400 leading-relaxed">
             GTEx Portal generates{" "}
-            <span className="text-zinc-200 font-medium">1.73M API calls</span> to HRA — the largest external consumer, ahead of HubMAP (1.38M).
+            <span className="text-zinc-200 font-medium">{fmtCompact(gtexRequests)} API calls</span> to HRA — the largest external consumer, ahead of HubMAP ({fmtCompact(hubmapRequests)}).
           </p>
         </div>
       </div>

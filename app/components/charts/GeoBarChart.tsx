@@ -16,24 +16,25 @@ const COUNTRY_NAMES: Record<string, string> = {
   NL: "Netherlands", IN: "India", CA: "Canada", IR: "Iran", FR: "France",
   AT: "Austria", BR: "Brazil", BG: "Bulgaria", FI: "Finland", CH: "Switzerland",
   AU: "Australia", HU: "Hungary", SE: "Sweden", ES: "Spain", RU: "Russia",
-  SC: "Scotland", MX: "Mexico", PL: "Poland", VN: "Vietnam", IT: "Italy",
+  SC: "Seychelles", MX: "Mexico", PL: "Poland", VN: "Vietnam", IT: "Italy",
 };
 
 const REGION: Record<string, string> = {
   US: "Americas", CA: "Americas", MX: "Americas", BR: "Americas", EC: "Americas",
   GB: "Europe", DE: "Europe", FR: "Europe", NL: "Europe", IE: "Europe",
   AT: "Europe", CH: "Europe", SE: "Europe", FI: "Europe", BG: "Europe",
-  HU: "Europe", ES: "Europe", PL: "Europe", IT: "Europe", SC: "Europe",
+  HU: "Europe", ES: "Europe", PL: "Europe", IT: "Europe",
   JP: "Asia-Pacific", KR: "Asia-Pacific", CN: "Asia-Pacific", HK: "Asia-Pacific",
   SG: "Asia-Pacific", AU: "Asia-Pacific", IN: "Asia-Pacific", VN: "Asia-Pacific",
-  IR: "Middle East & Other", RU: "Middle East & Other",
+  IR: "Middle East & Africa", SC: "Middle East & Africa", RU: "Other",
 };
 
 const REGION_COLORS: Record<string, string> = {
   Americas: "#3b82f6",
   Europe: "#8b5cf6",
   "Asia-Pacific": "#f43f5e",
-  "Middle East & Other": "#f59e0b",
+  "Middle East & Africa": "#f59e0b",
+  Other: "#71717a",
 };
 
 export default function GeoBarChart({ data }: { data: GeoItem[] }) {
