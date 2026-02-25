@@ -253,7 +253,7 @@ export default function MLPage() {
         )}
       </ChartCard>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <ChartCard
           title="Big Traffic Jumps We Should Explain"
           subtitle="Bars show extra visits compared with the previous month."
@@ -310,7 +310,7 @@ export default function MLPage() {
         </div>
       </ChartCard>
 
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
         <ChartCard
           title="Session Types (Simple Grouping)"
           subtitle="The model groups sessions by depth, duration, and interaction style."
@@ -349,7 +349,7 @@ export default function MLPage() {
         </ChartCard>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <ChartCard
           title="Behaviors That Happen Together"
           subtitle="How often the right-side action happens after the left-side action."
@@ -384,7 +384,7 @@ export default function MLPage() {
         </ChartCard>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
         <ChartCard
           title="Countries With Unusual Traffic Patterns"
           subtitle="Bar = bot-like traffic share. Use as a review list, not a final verdict."

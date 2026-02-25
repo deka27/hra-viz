@@ -150,7 +150,7 @@ export default function OpportunitiesPage() {
         badge="EUI · Low Adoption"
         badgeColor="bg-blue-500/10 text-blue-400 border-blue-500/20"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="lg:col-span-2">
             <EUISpatialFunnelChart />
           </div>
@@ -189,7 +189,7 @@ export default function OpportunitiesPage() {
         badge="CDE"
         badgeColor="bg-amber-500/10 text-amber-400 border-amber-500/20"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="lg:col-span-2">
             <CDESankeyChart />
           </div>

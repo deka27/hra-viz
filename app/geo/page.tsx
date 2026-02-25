@@ -159,7 +159,7 @@ export default function GeoPage() {
       </ChartCard>
 
       {/* Regional breakdown + US vs Intl */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <ChartCard title="Regional Breakdown" subtitle="Visit share by world region">
           <GeoRegionDonut data={geoData} />
         </ChartCard>

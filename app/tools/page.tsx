@@ -66,7 +66,7 @@ export default function ToolsPage() {
       </ChartCard>
 
       {/* Yearly + tool share */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
         <ChartCard
           title="Visits by Year (Grouped)"
           subtitle="Year-over-year tool breakdown"

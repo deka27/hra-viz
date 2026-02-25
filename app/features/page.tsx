@@ -104,7 +104,7 @@ export default function FeaturesPage() {
         badge="Quality · All Tools"
         badgeColor="bg-red-500/10 text-red-400 border-red-500/20"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
             <p className="text-xs text-zinc-500 uppercase tracking-wider font-medium mb-3">Error rate by tool</p>
             <ErrorSourceChart />
@@ -207,7 +207,7 @@ export default function FeaturesPage() {
         badge="RUI"
         badgeColor="bg-violet-500/10 text-violet-400 border-violet-500/20"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="lg:col-span-2">
             <RUIKeyboardChart />
           </div>
@@ -231,7 +231,7 @@ export default function FeaturesPage() {
       </ChartCard>
 
       {/* CDE workflow + Spatial search */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <ChartCard
           title="CDE Workflow Steps"
           subtitle="User journey through the cell distribution explorer tool"
@@ -297,7 +297,7 @@ export default function FeaturesPage() {
         badge="RUI · Low Adoption"
         badgeColor="bg-violet-500/10 text-violet-400 border-violet-500/20"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="lg:col-span-2">
             <OpacityChart data={opacityData} />
           </div>
@@ -341,7 +341,7 @@ export default function FeaturesPage() {
         badge="KG Explorer · Portal"
         badgeColor="bg-rose-500/10 text-rose-400 border-rose-500/20"
       >
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           <div className="lg:col-span-2">
             <OrgContentSelectChart data={orgSelections} />
           </div>

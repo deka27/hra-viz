@@ -91,7 +91,7 @@ export default function OverviewPage() {
       </ChartCard>
 
       {/* Charts row */}
-      <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
         <ChartCard
           title="Total Visits by Tool"
           subtitle={`Cumulative page visits per HRA tool, ${dateRange}`}
