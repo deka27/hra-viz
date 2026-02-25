@@ -1,0 +1,85 @@
+{
+  "recommendations": [
+    {
+      "source_tool": "CDE",
+      "recommended_tool": "FTU Explorer",
+      "support": 0.0015,
+      "confidence": 0.0221,
+      "lift": 0.4518,
+      "co_sessions": 4,
+      "basis": "confidence_fallback"
+    },
+    {
+      "source_tool": "CDE",
+      "recommended_tool": "KG Explorer",
+      "support": 0.0079,
+      "confidence": 0.116,
+      "lift": 0.1728,
+      "co_sessions": 21,
+      "basis": "confidence_fallback"
+    },
+    {
+      "source_tool": "EUI",
+      "recommended_tool": "RUI",
+      "support": 0.0026,
+      "confidence": 0.0139,
+      "lift": 0.3083,
+      "co_sessions": 7,
+      "basis": "confidence_fallback"
+    },
+    {
+      "source_tool": "EUI",
+      "recommended_tool": "KG Explorer",
+      "support": 0.0034,
+      "confidence": 0.0179,
+      "lift": 0.0266,
+      "co_sessions": 9,
+      "basis": "confidence_fallback"
+    },
+    {
+      "source_tool": "FTU Explorer",
+      "recommended_tool": "CDE",
+      "support": 0.0015,
+      "confidence": 0.0308,
+      "lift": 0.4518,
+      "co_sessions": 4,
+      "basis": "confidence_fallback"
+    },
+    {
+      "source_tool": "FTU Explorer",
+      "recommended_tool": "KG Explorer",
+      "support": 0.0071,
+      "confidence": 0.1462,
+      "lift": 0.2176,
+      "co_sessions": 19,
+      "basis": "confidence_fallback"
+    },
+    {
+      "source_tool": "KG Explorer",
+      "recommended_tool": "FTU Explorer",
+      "support": 0.0071,
+      "confidence": 0.0106,
+      "lift": 0.2176,
+      "co_sessions": 19,
+      "basis": "confidence_fallback"
+    },
+    {
+      "source_tool": "KG Explorer",
+      "recommended_tool": "CDE",
+      "support": 0.0079,
+      "confidence": 0.0118,
+      "lift": 0.1728,
+      "co_sessions": 21,
+      "basis": "confidence_fallback"
+    },
+    {
+      "source_tool": "RUI",
+      "recommended_tool": "EUI",
+      "support": 0.0026,
+      "confidence": 0.0583,
+      "lift": 0.3083,
+      "co_sessions": 7,
+      "basis": "confidence_fallback"
+    }
+  ]
+}

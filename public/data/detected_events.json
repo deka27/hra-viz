@@ -1,0 +1,98 @@
+[
+  {
+    "tool": "FTU Explorer",
+    "month": "2024-03",
+    "event_type": "mom_spike",
+    "magnitude_pct": 5672.7,
+    "from_value": 22,
+    "to_value": 1270
+  },
+  {
+    "tool": "EUI",
+    "month": "2024-03",
+    "event_type": "mom_spike",
+    "magnitude_pct": 4075.4,
+    "from_value": 171,
+    "to_value": 7140
+  },
+  {
+    "tool": "RUI",
+    "month": "2024-10",
+    "event_type": "mom_spike",
+    "magnitude_pct": 1770.1,
+    "from_value": 67,
+    "to_value": 1253
+  },
+  {
+    "tool": "RUI",
+    "month": "2024-03",
+    "event_type": "mom_spike",
+    "magnitude_pct": 1563.9,
+    "from_value": 61,
+    "to_value": 1015
+  },
+  {
+    "tool": "KG Explorer",
+    "month": "2025-08",
+    "event_type": "new_baseline_jump",
+    "absolute_jump": 1354,
+    "from_value": 0,
+    "to_value": 1354
+  },
+  {
+    "tool": "FTU Explorer",
+    "month": "2025-04",
+    "event_type": "mom_spike",
+    "magnitude_pct": 471.2,
+    "from_value": 104,
+    "to_value": 594
+  },
+  {
+    "tool": "CDE",
+    "month": "2024-10",
+    "event_type": "mom_spike",
+    "magnitude_pct": 383.3,
+    "from_value": 252,
+    "to_value": 1218
+  },
+  {
+    "tool": "EUI",
+    "month": "2024-10",
+    "event_type": "mom_spike",
+    "magnitude_pct": 257.3,
+    "from_value": 351,
+    "to_value": 1254
+  },
+  {
+    "tool": "FTU Explorer",
+    "month": "2024-06",
+    "event_type": "mom_spike",
+    "magnitude_pct": 164.3,
+    "from_value": 56,
+    "to_value": 148
+  },
+  {
+    "tool": "EUI",
+    "month": "2025-09",
+    "event_type": "mom_spike",
+    "magnitude_pct": 160.7,
+    "from_value": 173,
+    "to_value": 451
+  },
+  {
+    "tool": "CDE",
+    "month": "2025-04",
+    "event_type": "mom_spike",
+    "magnitude_pct": 156.2,
+    "from_value": 176,
+    "to_value": 451
+  },
+  {
+    "tool": "CDE",
+    "month": "2024-06",
+    "event_type": "new_baseline_jump",
+    "absolute_jump": 133,
+    "from_value": 0,
+    "to_value": 133
+  }
+]

@@ -1,0 +1,242 @@
+[
+  {
+    "month": "2026-02",
+    "tool": "CDE",
+    "predicted": 147,
+    "lower": 0,
+    "upper": 352,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-02",
+    "tool": "EUI",
+    "predicted": 81,
+    "lower": 0,
+    "upper": 1121,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-02",
+    "tool": "FTU Explorer",
+    "predicted": 84,
+    "lower": 0,
+    "upper": 228,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-02",
+    "tool": "KG Explorer",
+    "predicted": 1729,
+    "lower": 639,
+    "upper": 2792,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-02",
+    "tool": "RUI",
+    "predicted": 136,
+    "lower": 0,
+    "upper": 368,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-03",
+    "tool": "CDE",
+    "predicted": 245,
+    "lower": 51,
+    "upper": 458,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-03",
+    "tool": "EUI",
+    "predicted": 81,
+    "lower": 0,
+    "upper": 270,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-03",
+    "tool": "FTU Explorer",
+    "predicted": 30,
+    "lower": 0,
+    "upper": 0,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-03",
+    "tool": "KG Explorer",
+    "predicted": 1360,
+    "lower": 0,
+    "upper": 1686,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-03",
+    "tool": "RUI",
+    "predicted": 209,
+    "lower": 0,
+    "upper": 420,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-04",
+    "tool": "CDE",
+    "predicted": 534,
+    "lower": 331,
+    "upper": 746,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-04",
+    "tool": "EUI",
+    "predicted": 3372,
+    "lower": 2145,
+    "upper": 4554,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-04",
+    "tool": "FTU Explorer",
+    "predicted": 1474,
+    "lower": 1337,
+    "upper": 1628,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-04",
+    "tool": "KG Explorer",
+    "predicted": 2047,
+    "lower": 942,
+    "upper": 3054,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-04",
+    "tool": "RUI",
+    "predicted": 608,
+    "lower": 382,
+    "upper": 828,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-05",
+    "tool": "CDE",
+    "predicted": 44,
+    "lower": 0,
+    "upper": 71,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-05",
+    "tool": "EUI",
+    "predicted": 1463,
+    "lower": 250,
+    "upper": 2688,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-05",
+    "tool": "FTU Explorer",
+    "predicted": 249,
+    "lower": 86,
+    "upper": 399,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-05",
+    "tool": "KG Explorer",
+    "predicted": 2626,
+    "lower": 1573,
+    "upper": 3690,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-05",
+    "tool": "RUI",
+    "predicted": 210,
+    "lower": 0,
+    "upper": 405,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-06",
+    "tool": "CDE",
+    "predicted": 44,
+    "lower": 0,
+    "upper": 181,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-06",
+    "tool": "EUI",
+    "predicted": 81,
+    "lower": 0,
+    "upper": 1240,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-06",
+    "tool": "FTU Explorer",
+    "predicted": 73,
+    "lower": 0,
+    "upper": 225,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-06",
+    "tool": "KG Explorer",
+    "predicted": 2314,
+    "lower": 1178,
+    "upper": 3366,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-06",
+    "tool": "RUI",
+    "predicted": 91,
+    "lower": 0,
+    "upper": 308,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-07",
+    "tool": "CDE",
+    "predicted": 210,
+    "lower": 0,
+    "upper": 419,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-07",
+    "tool": "EUI",
+    "predicted": 81,
+    "lower": 0,
+    "upper": 187,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-07",
+    "tool": "FTU Explorer",
+    "predicted": 72,
+    "lower": 0,
+    "upper": 232,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-07",
+    "tool": "KG Explorer",
+    "predicted": 1360,
+    "lower": 194,
+    "upper": 2320,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-07",
+    "tool": "RUI",
+    "predicted": 68,
+    "lower": 0,
+    "upper": 195,
+    "method": "prophet"
+  }
+]

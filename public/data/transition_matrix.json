@@ -1,0 +1,203 @@
+{
+  "transitions": [
+    {
+      "from_tool": "KG Explorer",
+      "to_tool": "CDE",
+      "count": 17,
+      "probability": 0.425
+    },
+    {
+      "from_tool": "KG Explorer",
+      "to_tool": "FTU Explorer",
+      "count": 14,
+      "probability": 0.35
+    },
+    {
+      "from_tool": "FTU Explorer",
+      "to_tool": "KG Explorer",
+      "count": 14,
+      "probability": 0.8235
+    },
+    {
+      "from_tool": "CDE",
+      "to_tool": "KG Explorer",
+      "count": 12,
+      "probability": 0.8
+    },
+    {
+      "from_tool": "KG Explorer",
+      "to_tool": "EUI",
+      "count": 8,
+      "probability": 0.2
+    },
+    {
+      "from_tool": "RUI",
+      "to_tool": "EUI",
+      "count": 8,
+      "probability": 0.8889
+    },
+    {
+      "from_tool": "EUI",
+      "to_tool": "RUI",
+      "count": 6,
+      "probability": 0.5
+    },
+    {
+      "from_tool": "EUI",
+      "to_tool": "KG Explorer",
+      "count": 3,
+      "probability": 0.25
+    },
+    {
+      "from_tool": "EUI",
+      "to_tool": "FTU Explorer",
+      "count": 2,
+      "probability": 0.1667
+    },
+    {
+      "from_tool": "FTU Explorer",
+      "to_tool": "EUI",
+      "count": 2,
+      "probability": 0.1176
+    },
+    {
+      "from_tool": "CDE",
+      "to_tool": "FTU Explorer",
+      "count": 2,
+      "probability": 0.1333
+    },
+    {
+      "from_tool": "EUI",
+      "to_tool": "CDE",
+      "count": 1,
+      "probability": 0.0833
+    },
+    {
+      "from_tool": "FTU Explorer",
+      "to_tool": "CDE",
+      "count": 1,
+      "probability": 0.0588
+    },
+    {
+      "from_tool": "CDE",
+      "to_tool": "RUI",
+      "count": 1,
+      "probability": 0.0667
+    },
+    {
+      "from_tool": "KG Explorer",
+      "to_tool": "RUI",
+      "count": 1,
+      "probability": 0.025
+    },
+    {
+      "from_tool": "RUI",
+      "to_tool": "KG Explorer",
+      "count": 1,
+      "probability": 0.1111
+    }
+  ],
+  "top_paths": [
+    {
+      "path": "KG Explorer -> CDE",
+      "count": 8
+    },
+    {
+      "path": "KG Explorer -> FTU Explorer",
+      "count": 5
+    },
+    {
+      "path": "CDE -> KG Explorer",
+      "count": 4
+    },
+    {
+      "path": "FTU Explorer -> KG Explorer",
+      "count": 4
+    },
+    {
+      "path": "KG Explorer -> EUI",
+      "count": 4
+    },
+    {
+      "path": "KG Explorer -> CDE -> KG Explorer",
+      "count": 3
+    },
+    {
+      "path": "KG Explorer -> FTU Explorer -> KG Explorer",
+      "count": 3
+    },
+    {
+      "path": "RUI -> EUI",
+      "count": 2
+    },
+    {
+      "path": "EUI -> RUI -> EUI",
+      "count": 2
+    },
+    {
+      "path": "FTU Explorer -> KG Explorer -> FTU Explorer -> KG Explorer",
+      "count": 2
+    },
+    {
+      "path": "KG Explorer -> EUI -> FTU Explorer",
+      "count": 1
+    },
+    {
+      "path": "EUI -> KG Explorer -> EUI",
+      "count": 1
+    },
+    {
+      "path": "FTU Explorer -> EUI",
+      "count": 1
+    },
+    {
+      "path": "EUI -> CDE",
+      "count": 1
+    },
+    {
+      "path": "KG Explorer -> CDE -> KG Explorer -> CDE",
+      "count": 1
+    },
+    {
+      "path": "CDE -> KG Explorer -> CDE",
+      "count": 1
+    },
+    {
+      "path": "KG Explorer -> CDE -> KG Explorer -> FTU Explorer",
+      "count": 1
+    },
+    {
+      "path": "CDE -> FTU Explorer",
+      "count": 1
+    },
+    {
+      "path": "FTU Explorer -> CDE",
+      "count": 1
+    },
+    {
+      "path": "CDE -> KG Explorer -> EUI",
+      "count": 1
+    },
+    {
+      "path": "CDE -> KG Explorer -> CDE -> RUI",
+      "count": 1
+    },
+    {
+      "path": "RUI -> EUI -> RUI -> EUI -> RUI -> EUI -> RUI",
+      "count": 1
+    },
+    {
+      "path": "EUI -> KG Explorer -> EUI -> KG Explorer -> RUI -> KG Explorer",
+      "count": 1
+    },
+    {
+      "path": "FTU Explorer -> KG Explorer -> FTU Explorer -> KG Explorer -> FTU Explorer",
+      "count": 1
+    },
+    {
+      "path": "KG Explorer -> CDE -> FTU Explorer -> EUI -> FTU Explorer",
+      "count": 1
+    }
+  ],
+  "sessions_with_sequences": 54
+}

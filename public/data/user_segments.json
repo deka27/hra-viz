@@ -1,0 +1,64 @@
+{
+  "segments": [
+    {
+      "cluster_id": 3,
+      "size": 4272,
+      "pct": 67.16,
+      "avg_events": 8.82,
+      "avg_depth": 8.82,
+      "avg_duration_min": 0.46,
+      "avg_unique_tools": 0.44,
+      "bounce_rate": 0.0,
+      "click_rate": 0.38,
+      "error_rate": 0.22,
+      "peak_hour_utc": 12,
+      "top_tool": "KG Explorer",
+      "name": "Regular Researchers"
+    },
+    {
+      "cluster_id": 1,
+      "size": 1776,
+      "pct": 27.92,
+      "avg_events": 1.0,
+      "avg_depth": 1.0,
+      "avg_duration_min": 0.0,
+      "avg_unique_tools": 0.32,
+      "bounce_rate": 1.0,
+      "click_rate": 0.111,
+      "error_rate": 0.178,
+      "peak_hour_utc": 14,
+      "top_tool": "KG Explorer",
+      "name": "Single-Page Visits"
+    },
+    {
+      "cluster_id": 0,
+      "size": 284,
+      "pct": 4.46,
+      "avg_events": 144.42,
+      "avg_depth": 144.42,
+      "avg_duration_min": 21.01,
+      "avg_unique_tools": 0.84,
+      "bounce_rate": 0.0,
+      "click_rate": 0.472,
+      "error_rate": 0.076,
+      "peak_hour_utc": 14,
+      "top_tool": "KG Explorer",
+      "name": "Power Researchers"
+    },
+    {
+      "cluster_id": 2,
+      "size": 29,
+      "pct": 0.46,
+      "avg_events": 326.9,
+      "avg_depth": 326.9,
+      "avg_duration_min": 10.14,
+      "avg_unique_tools": 0.76,
+      "bounce_rate": 0.0,
+      "click_rate": 0.335,
+      "error_rate": 0.0,
+      "peak_hour_utc": 12,
+      "top_tool": "RUI",
+      "name": "Power Researchers 2"
+    }
+  ]
+}

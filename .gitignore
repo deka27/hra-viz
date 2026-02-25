@@ -45,5 +45,5 @@ __pycache__/
 *.py[cod]
 
 # data files (large, not for version control)
-data/
+/data/
 *.parquet

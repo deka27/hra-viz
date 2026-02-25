@@ -1,0 +1,24 @@
+{
+  "generated_at_utc": "2026-02-25T19:01:51+00:00",
+  "input_parquet": "data/2026-01-13_hra-logs.parquet",
+  "output_dir": "public/data",
+  "forecast_horizon_months": 6,
+  "rows": {
+    "monthly_points": 106,
+    "event_rows": 89930,
+    "sessions": 6361,
+    "transactions": 6361
+  },
+  "outputs": [
+    "forecast_tool_visits.json",
+    "detected_events.json",
+    "user_segments.json",
+    "return_probability.json",
+    "transition_matrix.json",
+    "feature_cooccurrence.json",
+    "bot_scores.json",
+    "error_clusters.json",
+    "suspicious_countries.json",
+    "cross_tool_recommendations.json"
+  ]
+}

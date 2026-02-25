@@ -1,0 +1,107 @@
+{
+  "clusters": [
+    {
+      "cluster_id": 0,
+      "label": "HTTP network failure",
+      "count": 12245,
+      "pct": 55.11,
+      "top_terms": [
+        "error",
+        "error http",
+        "response unknown",
+        "unknown",
+        "unknown error",
+        "failure response",
+        "response",
+        "failure"
+      ],
+      "sample_error": "Http failure response for https://humanatlas.io/assets/content/landing-page/data.yaml: 0 Unknown Error"
+    },
+    {
+      "cluster_id": 1,
+      "label": "KG Explorer icon 404",
+      "count": 4506,
+      "pct": 20.28,
+      "top_terms": [
+        "mz",
+        "error",
+        "mz _error",
+        "_error mz",
+        "error mz",
+        "mz error",
+        "_error",
+        "error error"
+      ],
+      "sample_error": "Error retrieving icon organ:lymph-nodes! Http failure response for https://cdn.humanatlas.io/ui/kg-explorer/assets/icons/organ/lymph-nodes.svg: 404 OK"
+    },
+    {
+      "cluster_id": 2,
+      "label": "HRA Pop Visualizer crash",
+      "count": 2768,
+      "pct": 12.46,
+      "top_terms": [
+        "chart",
+        "chart element",
+        "visualizer",
+        "hra pop",
+        "hra",
+        "bar graph",
+        "pop",
+        "pop visualizer"
+      ],
+      "sample_error": "nan"
+    },
+    {
+      "cluster_id": 5,
+      "label": "KG Explorer icon network error",
+      "count": 1020,
+      "pct": 4.59,
+      "top_terms": [
+        "tz",
+        "error",
+        "error tz",
+        "tz error",
+        "tz _error",
+        "_error tz",
+        "_error",
+        "error error"
+      ],
+      "sample_error": "Error retrieving icon product:ftu! Http failure response for https://cdn.humanatlas.io/ui/kg-explorer/assets/icons/product/ftu.svg: 0 Unknown Error"
+    },
+    {
+      "cluster_id": 4,
+      "label": "Malformed SVG icon",
+      "count": 963,
+      "pct": 4.33,
+      "top_terms": [
+        "_error error",
+        "error _error",
+        "error",
+        "_error",
+        "error error",
+        "_currenticonfetch",
+        "_updatesvgicon _currenticonfetch",
+        "_currenticonfetch error"
+      ],
+      "sample_error": "Error retrieving icon organ:lymph-node! <svg> tag not found"
+    },
+    {
+      "cluster_id": 6,
+      "label": "Dev localhost (noise)",
+      "count": 719,
+      "pct": 3.24,
+      "top_terms": [
+        "response 404",
+        "404",
+        "error http",
+        "failure response",
+        "response",
+        "http failure",
+        "failure",
+        "http"
+      ],
+      "sample_error": "Http failure response for http://127.0.0.1:5500/docs/assets/links.yml: 404 Not Found"
+    }
+  ],
+  "total_error_rows": 22221
+}
