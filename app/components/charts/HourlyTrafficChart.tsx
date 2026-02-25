@@ -15,57 +15,77 @@ const TOOLTIP = {
 
 const total = hourlyData.reduce((s, d) => s + d.count, 0);
 
-export default function HourlyTrafficChart() {
-  const hours = hourlyData.map((d) => `${String(d.hour).padStart(2, "0")}:00`);
-  const pcts  = hourlyData.map((d) => +((d.count / total) * 100).toFixed(2));
+// Convert UTC hour to ET label (Indiana / US Eastern = UTC-5 EST year-round)
+function toET(utcHour: number): string {
+  const h = (utcHour - 5 + 24) % 24;
+  const period = h >= 12 ? "pm" : "am";
+  const display = h === 0 ? 12 : h > 12 ? h - 12 : h;
+  return `${display}${period}`;
+}
 
-  // Peak zone: 13–21 UTC (9 AM–5 PM US Eastern)
+export default function HourlyTrafficChart() {
+  const hours   = hourlyData.map((d) => `${String(d.hour).padStart(2, "0")}:00`);
+  const etLabels = hourlyData.map((d) => toET(d.hour));
+  const pcts    = hourlyData.map((d) => +((d.count / total) * 100).toFixed(2));
+
+  // Peak zone: 13–21 UTC (9 AM–5 PM ET)
   const isPeak = (h: number) => h >= 13 && h <= 21;
 
   const option = {
     backgroundColor: "transparent",
-    grid: { top: 24, left: 8, right: 16, bottom: 48, containLabel: true },
+    grid: { top: 32, left: 8, right: 16, bottom: 56, containLabel: true },
     tooltip: {
       trigger: "axis",
       axisPointer: { type: "line", lineStyle: { color: "#3f3f46" } },
       ...TOOLTIP,
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       formatter: (p: any) => {
-        const d = hourlyData[p[0].dataIndex];
-        const pct = pcts[p[0].dataIndex];
-        return `<span style="color:#a1a1aa">${p[0].name} UTC</span><br/>
+        const i = p[0].dataIndex;
+        const d = hourlyData[i];
+        const pct = pcts[i];
+        return `<span style="color:#a1a1aa">${p[0].name} UTC</span>
+          <span style="color:#52525b"> · ${etLabels[i]} ET</span><br/>
           <strong>${d.count.toLocaleString()} requests</strong>
           <span style="color:#71717a"> (${pct}% of daily)</span>`;
       },
     },
-    xAxis: {
-      type: "category",
-      data: hours,
-      axisLine: { lineStyle: { color: "#3f3f46" } },
-      axisTick: { show: false },
-      axisLabel: {
-        color: "#71717a",
-        fontSize: 10,
-        interval: 2,
-        formatter: (v: string) => v.replace(":00", "h"),
+    xAxis: [
+      {
+        // Primary: UTC hours
+        type: "category",
+        data: hours,
+        axisLine: { lineStyle: { color: "#3f3f46" } },
+        axisTick: { show: false },
+        axisLabel: {
+          color: "#71717a",
+          fontSize: 10,
+          interval: 2,
+          formatter: (v: string) => v.replace(":00", "h"),
+        },
       },
-    },
+      {
+        // Secondary: ET hours below
+        type: "category",
+        data: etLabels,
+        position: "bottom",
+        offset: 18,
+        axisLine: { show: false },
+        axisTick: { show: false },
+        axisLabel: {
+          color: "#52525b",
+          fontSize: 9,
+          interval: 2,
+        },
+      },
+    ],
     yAxis: {
       type: "value",
       show: false,
     },
-    visualMap: {
-      show: false,
-      dimension: 0,
-      pieces: [
-        { min: 13, max: 21, color: "#3b82f6" },
-        { min: 0, max: 12, color: "#27272a" },
-        { min: 22, max: 23, color: "#27272a" },
-      ],
-    },
     series: [
       {
         type: "bar",
+        xAxisIndex: 0,
         barWidth: "70%",
         data: pcts.map((v, i) => ({
           value: v,
@@ -75,10 +95,18 @@ export default function HourlyTrafficChart() {
             borderRadius: [2, 2, 0, 0],
           },
         })),
+        label: {
+          show: true,
+          position: "top",
+          fontSize: 9,
+          color: "#e4e4e7",
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          formatter: (p: any) => p.value >= 3.5 ? `${p.value}%` : "",
+        },
       },
-      // Invisible line for smooth tooltip
       {
         type: "line",
+        xAxisIndex: 0,
         data: pcts,
         lineStyle: { opacity: 0 },
         itemStyle: { opacity: 0 },
@@ -90,14 +118,15 @@ export default function HourlyTrafficChart() {
 
   return (
     <div>
-      <ReactECharts option={option} style={{ height: "160px", width: "100%" }} opts={{ renderer: "canvas" }} />
+      <ReactECharts option={option} style={{ height: "200px", width: "100%" }} opts={{ renderer: "canvas" }} />
       <div className="flex items-center justify-between mt-2 px-1">
         <p className="text-xs text-zinc-600">
           <span className="inline-block w-2 h-2 rounded-sm bg-blue-500 mr-1.5 align-middle" />
-          Peak 13–21 UTC &nbsp;(US Eastern 9 AM–5 PM)
+          Peak 13–21 UTC · <span className="text-zinc-500">9 AM–5 PM ET</span>
+          <span className="text-zinc-700 ml-2">(top row UTC · bottom row ET)</span>
         </p>
         <p className="text-xs text-zinc-600">
-          14:00 UTC = <span className="text-zinc-400 font-medium">single-hour peak</span>
+          14:00 UTC · <span className="text-zinc-500">9 AM ET</span> = <span className="text-zinc-400 font-medium">single-hour peak</span>
         </p>
       </div>
     </div>

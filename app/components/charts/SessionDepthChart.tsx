@@ -15,7 +15,7 @@ const TOOLTIP = {
 
 const total = sessionData.reduce((s, d) => s + d.sessions, 0);
 
-export default function SessionDepthChart() {
+export default function SessionDepthChart({ compact }: { compact?: boolean }) {
   const option = {
     backgroundColor: "transparent",
     grid: { top: 8, left: 4, right: 72, bottom: 8, containLabel: true },
@@ -69,11 +69,13 @@ export default function SessionDepthChart() {
 
   return (
     <div>
-      <ReactECharts option={option} style={{ height: "160px", width: "100%" }} opts={{ renderer: "canvas" }} />
-      <div className="flex gap-4 mt-2 px-1 text-xs text-zinc-600">
-        <span><span className="text-red-400 font-semibold">Red</span> = single-event bounces</span>
-        <span><span className="text-emerald-400 font-semibold">Green</span> = power users (20+ events)</span>
-      </div>
+      <ReactECharts option={option} style={{ height: compact ? "145px" : "160px", width: "100%" }} opts={{ renderer: "canvas" }} />
+      {!compact && (
+        <div className="flex gap-4 mt-2 px-1 text-xs text-zinc-600">
+          <span><span className="text-red-400 font-semibold">Red</span> = single-event bounces</span>
+          <span><span className="text-emerald-400 font-semibold">Green</span> = power users (20+ events)</span>
+        </div>
+      )}
     </div>
   );
 }

@@ -28,7 +28,7 @@ export default function TotalVisitsSparkline({ data }: { data: MonthData[] }) {
         return `<div style="padding:2px 0"><div style="font-weight:600;color:#fafafa;margin-bottom:4px">${p.axisValue}</div><div style="color:#a1a1aa">${Number(p.value).toLocaleString()} total visits</div></div>`;
       },
     },
-    grid: { top: 8, left: 8, right: 8, bottom: 24, containLabel: true },
+    grid: { top: 48, left: 8, right: 8, bottom: 24, containLabel: true },
     xAxis: {
       type: "category",
       data: months,
@@ -68,8 +68,13 @@ export default function TotalVisitsSparkline({ data }: { data: MonthData[] }) {
           data: [
             {
               coord: ["Mar '24", Math.max(...totals)],
-              label: { show: true, formatter: "Workshop", color: "#f87171", fontSize: 9 },
+              label: { show: true, formatter: "?", color: "#ffffff", fontSize: 11, fontWeight: "bold" },
               itemStyle: { color: "#f87171" },
+            },
+            {
+              coord: ["Oct '24", totals[months.indexOf("Oct '24")]],
+              label: { show: true, formatter: "PoT", color: "#ffffff", fontSize: 9, fontWeight: "bold" },
+              itemStyle: { color: "#f59e0b" },
             },
           ],
         },
@@ -80,7 +85,7 @@ export default function TotalVisitsSparkline({ data }: { data: MonthData[] }) {
   return (
     <ReactECharts
       option={option}
-      style={{ height: "160px", width: "100%" }}
+      style={{ height: "240px", width: "100%" }}
       opts={{ renderer: "canvas" }}
     />
   );

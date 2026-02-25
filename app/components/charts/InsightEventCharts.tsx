@@ -15,7 +15,7 @@ const TOOLTIP = {
 
 // ── INSIGHT 1 ─────────────────────────────────────────────────────────────────
 // March 2024 spike: EUI +4075%, FTU +5673%, RUI +1564%
-export function SpikeComparisonChart() {
+export function SpikeComparisonChart({ compact }: { compact?: boolean }) {
   const data = [
     { name: "RUI",           pct: 1564, color: TOOL_COLORS["RUI"] },
     { name: "EUI",           pct: 4075, color: TOOL_COLORS["EUI"] },
@@ -60,7 +60,7 @@ export function SpikeComparisonChart() {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: "130px", width: "100%" }} opts={{ renderer: "canvas" }} />
+    <ReactECharts option={option} style={{ height: compact ? "145px" : "130px", width: "100%" }} opts={{ renderer: "canvas" }} />
   );
 }
 
@@ -124,14 +124,15 @@ export function TripleToolSpikeChart() {
 
 // ── INSIGHT 3 ─────────────────────────────────────────────────────────────────
 // April 2025 co-spike: CDE 176→451, FTU 104→594, EUI 228→240
-export function AprilCoSpikeChart() {
+export function AprilCoSpikeChart({ compact }: { compact?: boolean }) {
   const tools = ["CDE", "FTU Explorer", "EUI"];
   const before = [176, 104, 228];
   const after  = [451, 594, 240];
   const option = {
     backgroundColor: "transparent",
-    grid: { top: 28, left: 8, right: 8, bottom: 8, containLabel: true },
+    grid: { top: compact ? 8 : 28, left: 8, right: 8, bottom: 8, containLabel: true },
     legend: {
+      show: !compact,
       top: 0,
       left: 0,
       itemWidth: 10,
@@ -192,7 +193,7 @@ export function AprilCoSpikeChart() {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: "175px", width: "100%" }} opts={{ renderer: "canvas" }} />
+    <ReactECharts option={option} style={{ height: compact ? "145px" : "175px", width: "100%" }} opts={{ renderer: "canvas" }} />
   );
 }
 
@@ -213,7 +214,7 @@ const MONTHLY_AVGS = [
   { month: "Dec", avg: 1388 },
 ];
 
-export function SeasonalPatternChart() {
+export function SeasonalPatternChart({ compact }: { compact?: boolean }) {
   const option = {
     backgroundColor: "transparent",
     grid: { top: 12, left: 8, right: 8, bottom: 8, containLabel: true },
@@ -259,11 +260,13 @@ export function SeasonalPatternChart() {
   };
   return (
     <div>
-      <ReactECharts option={option} style={{ height: "160px", width: "100%" }} opts={{ renderer: "canvas" }} />
-      <div className="flex items-center gap-4 mt-1 px-1 text-xs text-zinc-600">
-        <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-sm bg-amber-500 inline-block" /> Oct — yearly peak</span>
-        <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-sm bg-red-500 inline-block" /> Mar — incl. 2024 event spike</span>
-      </div>
+      <ReactECharts option={option} style={{ height: compact ? "145px" : "160px", width: "100%" }} opts={{ renderer: "canvas" }} />
+      {!compact && (
+        <div className="flex items-center gap-4 mt-1 px-1 text-xs text-zinc-600">
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-sm bg-amber-500 inline-block" /> Oct — yearly peak</span>
+          <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-sm bg-red-500 inline-block" /> Mar — incl. 2024 event spike</span>
+        </div>
+      )}
     </div>
   );
 }
@@ -279,10 +282,10 @@ const KG_MONTHS = [
   { month: "Jan '26", value: 2141 },
 ];
 
-export function KGTrajectoryChart() {
+export function KGTrajectoryChart({ compact }: { compact?: boolean }) {
   const option = {
     backgroundColor: "transparent",
-    grid: { top: 24, left: 8, right: 8, bottom: 8, containLabel: true },
+    grid: { top: compact ? 16 : 24, left: 8, right: 8, bottom: 8, containLabel: true },
     tooltip: {
       trigger: "axis",
       ...TOOLTIP,
@@ -331,7 +334,7 @@ export function KGTrajectoryChart() {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: "165px", width: "100%" }} opts={{ renderer: "canvas" }} />
+    <ReactECharts option={option} style={{ height: compact ? "145px" : "165px", width: "100%" }} opts={{ renderer: "canvas" }} />
   );
 }
 

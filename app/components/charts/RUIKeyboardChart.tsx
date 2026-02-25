@@ -1,147 +1,184 @@
 "use client";
 
-import dynamic from "next/dynamic";
+const HEAT: Record<string, { count: number; action: string }> = {
+  A: { count: 974, action: "Strafe Left"  },
+  E: { count: 645, action: "Move Up"      },
+  Q: { count: 631, action: "Move Down"    },
+  W: { count: 528, action: "Forward"      },
+  D: { count: 473, action: "Strafe Right" },
+  S: { count: 0,   action: "—"            },
+};
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
+const MAX   = Math.max(...Object.values(HEAT).map((d) => d.count));
+const TOTAL = Object.values(HEAT).reduce((s, d) => s + d.count, 0);
 
-// RUI directional keyboard controls from top_ui_paths.json
-const KEY_DATA = [
-  { key: "A", count: 974, action: "Strafe Left", x: 0,   y: 0 },
-  { key: "E", count: 645, action: "Move Up",     x: 2,   y: 1 },
-  { key: "Q", count: 631, action: "Move Down",   x: 0,   y: 1 },
-  { key: "W", count: 528, action: "Forward",     x: 1,   y: 1 },
-  { key: "D", count: 473, action: "Strafe Right",x: 2.3, y: 0 },
+function heatRGB(t: number): [number, number, number] {
+  return [
+    Math.round(76  + t * 63),
+    Math.round(29  + t * 63),
+    Math.round(149 + t * 97),
+  ];
+}
+
+function keyStyle(key: string) {
+  const d = HEAT[key];
+  if (!d)         return { fill: "#1c1c1f", stroke: "#282828", text: "#343438" };
+  if (d.count === 0) return { fill: "#252527", stroke: "#333336", text: "#52525b" };
+  const t = d.count / MAX;
+  const [r, g, b] = heatRGB(t);
+  return {
+    fill:   `rgb(${r},${g},${b})`,
+    stroke: `rgba(196,181,253,${0.3 + t * 0.6})`,
+    text:   "#f5f3ff",
+  };
+}
+
+// Unit pitch = 40px key + 4px gap = 44px per 1U
+const PITCH = 44;
+const G     = 4;
+const KH    = 38;  // key height
+const PAD   = 8;
+
+type KeyRow = [label: string, width: number][];
+
+// All rows total exactly 15U so they align
+const ROWS: KeyRow[] = [
+  // Number row
+  [["`",1],["1",1],["2",1],["3",1],["4",1],["5",1],["6",1],["7",1],["8",1],["9",1],["0",1],["-",1],["=",1],["⌫",2]],
+  // QWERTY
+  [["⇥",1.5],["Q",1],["W",1],["E",1],["R",1],["T",1],["Y",1],["U",1],["I",1],["O",1],["P",1],["[",1],["]",1],["\\",1.5]],
+  // ASDF
+  [["⇪",1.75],["A",1],["S",1],["D",1],["F",1],["G",1],["H",1],["J",1],["K",1],["L",1],[";",1],["'",1],["↵",2.25]],
+  // ZXCV
+  [["⇧",2.25],["Z",1],["X",1],["C",1],["V",1],["B",1],["N",1],["M",1],[",",1],[".",1],["/",1],["⇧",2.75]],
+  // Bottom
+  [["fn",1.25],["ctrl",1.25],["⌥",1.25],["⌘",1.25],["",6.25],["⌘",1.25],["⌥",1.25],["←→",1.25]],
 ];
 
-const TOTAL = KEY_DATA.reduce((s, k) => s + k.count, 0);
-
-// Map count to bubble size
-const MAX_COUNT = Math.max(...KEY_DATA.map((k) => k.count));
-const scaleSize = (count: number) => 28 + (count / MAX_COUNT) * 52;
+const KB_W  = 15 * PITCH - G;               // 656px
+const KB_H  = ROWS.length * (KH + G) - G;  // 226px
+const SVG_W = KB_W + PAD * 2;               // 672px
+const SVG_H = KB_H + PAD * 2;               // 242px
 
 export default function RUIKeyboardChart() {
-  const option = {
-    backgroundColor: "transparent",
-    tooltip: {
-      trigger: "item",
-      backgroundColor: "#18181b",
-      borderColor: "#3f3f46",
-      borderWidth: 1,
-      textStyle: { color: "#fafafa", fontSize: 13 },
-      extraCssText: "box-shadow:0 4px 20px rgba(0,0,0,0.5);border-radius:8px;padding:10px 14px;",
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      formatter: (p: any) => {
-        const d = KEY_DATA[p.dataIndex];
-        return `<div>
-          <div style="font-weight:700;color:#fafafa;font-size:18px;margin-bottom:4px">${d.key}</div>
-          <div style="color:#a1a1aa">${d.action}</div>
-          <div style="color:#8b5cf6;font-weight:600;margin-top:4px">${d.count.toLocaleString()} interactions</div>
-          <div style="color:#71717a;font-size:11px">${((d.count / TOTAL) * 100).toFixed(1)}% of keyboard usage</div>
-        </div>`;
-      },
-    },
-    xAxis: {
-      type: "value",
-      min: -0.6,
-      max: 3.2,
-      show: false,
-    },
-    yAxis: {
-      type: "value",
-      min: -0.7,
-      max: 1.8,
-      show: false,
-    },
-    series: [
-      {
-        type: "scatter",
-        data: KEY_DATA.map((k) => [k.x, k.y]),
-        symbolSize: (val: number[], params: { dataIndex: number }) =>
-          scaleSize(KEY_DATA[params.dataIndex].count),
-        itemStyle: {
-          color: (params: { dataIndex: number }) => {
-            const count = KEY_DATA[params.dataIndex].count;
-            const intensity = count / MAX_COUNT;
-            // violet scale: low → high
-            const r = Math.round(80 + intensity * 59);
-            const g = Math.round(40 + intensity * 51);
-            const b = Math.round(160 + intensity * 86);
-            return `rgb(${r},${g},${b})`;
-          },
-          shadowBlur: 20,
-          shadowColor: "rgba(139,92,246,0.4)",
-        },
-        emphasis: {
-          itemStyle: { shadowBlur: 30, shadowColor: "rgba(139,92,246,0.6)" },
-          scale: 1.1,
-        },
-        label: {
-          show: true,
-          formatter: (params: { dataIndex: number }) => {
-            const d = KEY_DATA[params.dataIndex];
-            return `{key|${d.key}}\n{count|${d.count}}`;
-          },
-          rich: {
-            key: { color: "#fafafa", fontWeight: 700, fontSize: 15, lineHeight: 20 },
-            count: { color: "#c4b5fd", fontSize: 10, lineHeight: 14 },
-          },
-        },
-      },
-      // Invisible "S" key to show the gap
-      {
-        type: "scatter",
-        data: [[1.3, 0]],
-        symbolSize: 52,
-        itemStyle: { color: "#27272a", borderColor: "#3f3f46", borderWidth: 1.5 },
-        label: {
-          show: true,
-          formatter: "{key|S}\n{count|—}",
-          rich: {
-            key: { color: "#52525b", fontWeight: 700, fontSize: 15, lineHeight: 20 },
-            count: { color: "#3f3f46", fontSize: 10, lineHeight: 14 },
-          },
-        },
-        tooltip: { show: false },
-        emphasis: { disabled: true },
-      },
-    ],
-    graphic: [
-      // Row labels
-      {
-        type: "text",
-        left: 22,
-        bottom: "35%",
-        style: { text: "Middle row", fill: "#52525b", fontSize: 10 },
-      },
-      {
-        type: "text",
-        left: 22,
-        bottom: "18%",
-        style: { text: "Home row", fill: "#52525b", fontSize: 10 },
-      },
-    ],
-  };
-
   return (
-    <div>
-      <ReactECharts
-        option={option}
-        style={{ height: "240px", width: "100%" }}
-        opts={{ renderer: "canvas" }}
-      />
-      {/* Legend bar */}
-      <div className="flex items-center justify-between mt-2 px-4">
-        {KEY_DATA.sort((a, b) => b.count - a.count).map((k) => (
-          <div key={k.key} className="flex flex-col items-center gap-1">
-            <span className="text-sm font-bold text-violet-300">{k.key}</span>
-            <span className="text-xs text-zinc-500">{k.count.toLocaleString()}</span>
-            <div
-              className="h-1 rounded-full bg-violet-500"
-              style={{ width: `${(k.count / MAX_COUNT) * 48 + 8}px`, opacity: 0.6 + (k.count / MAX_COUNT) * 0.4 }}
-            />
-            <span className="text-xs text-zinc-600">{((k.count / TOTAL) * 100).toFixed(0)}%</span>
-          </div>
-        ))}
+    <div className="flex flex-col gap-3 w-full">
+      {/* ── Keyboard SVG ── */}
+      <svg
+        viewBox={`0 0 ${SVG_W} ${SVG_H}`}
+        width="100%"
+        style={{ maxHeight: 260 }}
+        aria-label="Keyboard heatmap showing RUI key usage"
+      >
+        {/* Keyboard plate */}
+        <rect x={0} y={0} width={SVG_W} height={SVG_H} rx={10} fill="#0d0d0f" />
+
+        {ROWS.map((row, ri) => {
+          let cx = PAD;
+          const cy = PAD + ri * (KH + G);
+
+          return row.map(([key, w]) => {
+            const kx = cx;
+            const kw = w * PITCH - G;
+            cx += w * PITCH;
+
+            const s = keyStyle(key);
+            const hd = HEAT[key];
+            const isHeat   = hd !== undefined;
+            const hasCount = isHeat && hd.count > 0;
+            const isLetter = /^[A-Z]$/.test(key);
+            const labelSize = isLetter ? 13 : kw < 30 ? 7 : 9;
+
+            return (
+              <g key={`${ri}-${kx}`}>
+                <rect
+                  x={kx} y={cy} width={kw} height={KH} rx={4}
+                  fill={s.fill} stroke={s.stroke} strokeWidth={1}
+                />
+
+                {/* Key label */}
+                <text
+                  x={kx + kw / 2}
+                  y={cy + (hasCount ? KH * 0.36 : KH * 0.52)}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  fontSize={labelSize}
+                  fontWeight={isHeat ? 700 : 400}
+                  fontFamily="ui-sans-serif, system-ui, sans-serif"
+                  fill={s.text}
+                >
+                  {key}
+                </text>
+
+                {/* Usage count inside heated letter keys */}
+                {hasCount && isLetter && (
+                  <text
+                    x={kx + kw / 2}
+                    y={cy + KH * 0.72}
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                    fontSize={9}
+                    fontFamily="ui-monospace, monospace"
+                    fill={`rgba(221,214,254,${0.55 + (hd.count / MAX) * 0.45})`}
+                  >
+                    {hd.count}
+                  </text>
+                )}
+
+                {/* S key "n/a" */}
+                {key === "S" && (
+                  <text
+                    x={kx + kw / 2}
+                    y={cy + KH * 0.72}
+                    textAnchor="middle"
+                    dominantBaseline="middle"
+                    fontSize={8}
+                    fontFamily="ui-sans-serif, sans-serif"
+                    fill="#3f3f46"
+                  >
+                    n/a
+                  </text>
+                )}
+              </g>
+            );
+          });
+        })}
+      </svg>
+
+      {/* ── Colour scale ── */}
+      <div className="flex items-center justify-center gap-2">
+        <span className="text-xs text-zinc-600">low</span>
+        <div className="flex gap-0.5">
+          {Array.from({ length: 10 }, (_, i) => {
+            const [r, g, b] = heatRGB(i / 9);
+            return (
+              <div
+                key={i}
+                className="h-2.5 rounded-sm"
+                style={{ width: 20, background: `rgb(${r},${g},${b})` }}
+              />
+            );
+          })}
+        </div>
+        <span className="text-xs text-zinc-600">high</span>
+      </div>
+
+      {/* ── Key breakdown ── */}
+      <div className="flex flex-wrap gap-x-5 gap-y-1 justify-center">
+        {Object.entries(HEAT)
+          .filter(([, d]) => d.count > 0)
+          .sort(([, a], [, b]) => b.count - a.count)
+          .map(([key, d]) => {
+            const [r, g, b] = heatRGB(d.count / MAX);
+            return (
+              <div key={key} className="flex items-center gap-1.5 text-xs">
+                <span className="font-bold" style={{ color: `rgb(${r},${g},${b})` }}>{key}</span>
+                <span className="text-zinc-500">{d.action}</span>
+                <span className="font-semibold text-zinc-400 tabular-nums">{d.count.toLocaleString()}</span>
+                <span className="text-zinc-600">· {((d.count / TOTAL) * 100).toFixed(0)}%</span>
+              </div>
+            );
+          })}
       </div>
     </div>
   );

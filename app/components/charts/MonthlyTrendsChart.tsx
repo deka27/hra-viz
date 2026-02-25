@@ -51,7 +51,7 @@ export default function MonthlyTrendsChart({ data }: { data: MonthData[] }) {
             {
               xAxis: "Mar '24",
               itemStyle: { color: "rgba(248,113,113,0.06)", borderColor: "rgba(248,113,113,0.25)", borderWidth: 1 },
-              label: { show: true, position: "insideTopRight", formatter: "Workshop\nEvent", color: "#f87171", fontSize: 10, lineHeight: 14 },
+              label: { show: true, position: "insideTopRight", formatter: "Probably\nHuBMAP training", color: "#f87171", fontSize: 10, lineHeight: 14 },
             },
             { xAxis: "Apr '24" },
           ],
@@ -59,7 +59,7 @@ export default function MonthlyTrendsChart({ data }: { data: MonthData[] }) {
             {
               xAxis: "Oct '24",
               itemStyle: { color: "rgba(251,191,36,0.05)", borderColor: "rgba(251,191,36,0.2)", borderWidth: 1 },
-              label: { show: true, position: "insideTopRight", formatter: "Conf.\nEvent", color: "#fbbf24", fontSize: 10, lineHeight: 14 },
+              label: { show: true, position: "insideTopRight", formatter: "Powers\nof Ten", color: "#fbbf24", fontSize: 10, lineHeight: 14 },
             },
             { xAxis: "Nov '24" },
           ],
@@ -67,7 +67,7 @@ export default function MonthlyTrendsChart({ data }: { data: MonthData[] }) {
             {
               xAxis: "Apr '25",
               itemStyle: { color: "rgba(16,185,129,0.05)", borderColor: "rgba(16,185,129,0.2)", borderWidth: 1 },
-              label: { show: true, position: "insideTopRight", formatter: "CDE+FTU\nEvent", color: "#34d399", fontSize: 10, lineHeight: 14 },
+              label: { show: true, position: "insideTopRight", formatter: "Probably\nHuBMAP WG", color: "#34d399", fontSize: 10, lineHeight: 14 },
             },
             { xAxis: "May '25" },
           ],

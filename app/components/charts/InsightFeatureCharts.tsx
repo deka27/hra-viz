@@ -16,7 +16,7 @@ const TOOLTIP = {
 
 // ── INSIGHT 10 ───────────────────────────────────────────────────────────────
 // RUI keyboard asymmetry: A=974, E=645, Q=631, W=528, D=473
-export function KeyboardAsymmetryChart() {
+export function KeyboardAsymmetryChart({ compact }: { compact?: boolean }) {
   const data = [
     { key: "D (right)", value: 473, color: "#8b5cf6", opacity: 0.45 },
     { key: "W (forward)", value: 528, color: "#8b5cf6", opacity: 0.55 },
@@ -64,8 +64,8 @@ export function KeyboardAsymmetryChart() {
   };
   return (
     <div>
-      <ReactECharts option={option} style={{ height: "140px", width: "100%" }} opts={{ renderer: "canvas" }} />
-      <p className="text-xs text-zinc-600 mt-1 px-1">A (left) used <span className="text-violet-400 font-semibold">2.06× more</span> than D (right)</p>
+      <ReactECharts option={option} style={{ height: compact ? "145px" : "140px", width: "100%" }} opts={{ renderer: "canvas" }} />
+      {!compact && <p className="text-xs text-zinc-600 mt-1 px-1">A (left) used <span className="text-violet-400 font-semibold">2.06× more</span> than D (right)</p>}
     </div>
   );
 }
@@ -112,7 +112,7 @@ export function CDEEntrySplitChart() {
 
 // ── INSIGHT 18 ───────────────────────────────────────────────────────────────
 // External referrers by API request volume (from cs_referer analysis)
-export function ReferrerEcosystemChart() {
+export function ReferrerEcosystemChart({ compact }: { compact?: boolean }) {
   const COLORS: Record<string, string> = {
     "GTEx Portal": "#2dd4bf",
     "HubMAP":      "#3b82f6",
@@ -174,13 +174,13 @@ export function ReferrerEcosystemChart() {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: "180px", width: "100%" }} opts={{ renderer: "canvas" }} />
+    <ReactECharts option={option} style={{ height: compact ? "145px" : "180px", width: "100%" }} opts={{ renderer: "canvas" }} />
   );
 }
 
 // ── INSIGHT 19 ───────────────────────────────────────────────────────────────
 // Portal navigation clicks (e.label) — top nav items on humanatlas.io
-export function NavClicksChart() {
+export function NavClicksChart({ compact }: { compact?: boolean }) {
   // Top 5, sorted ascending for horizontal bar
   const top5 = [...navClicksData]
     .sort((a, b) => a.count - b.count)
@@ -230,11 +230,13 @@ export function NavClicksChart() {
   };
   return (
     <div>
-      <ReactECharts option={option} style={{ height: "140px", width: "100%" }} opts={{ renderer: "canvas" }} />
-      <p className="text-xs text-zinc-600 mt-1 px-1">
-        <span className="text-sky-400 font-semibold">Data</span> pages outpace{" "}
-        <span className="text-sky-300/70 font-semibold">Apps</span> by 52% — users follow the data, not the tools
-      </p>
+      <ReactECharts option={option} style={{ height: compact ? "145px" : "140px", width: "100%" }} opts={{ renderer: "canvas" }} />
+      {!compact && (
+        <p className="text-xs text-zinc-600 mt-1 px-1">
+          <span className="text-sky-400 font-semibold">Data</span> pages outpace{" "}
+          <span className="text-sky-300/70 font-semibold">Apps</span> by 52% — users follow the data, not the tools
+        </p>
+      )}
     </div>
   );
 }

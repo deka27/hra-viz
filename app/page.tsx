@@ -109,7 +109,7 @@ export default function OverviewPage() {
           <p className="text-sm text-zinc-400 leading-relaxed">
             EUI visits spiked from{" "}
             <span className="text-zinc-200 font-medium">171 → 7,140</span> in March 2024 —
-            a 41× jump consistent with a university workshop.
+            a 41× jump. Probably an internal HuBMAP/HRA training session (no public record found).
           </p>
         </div>
         <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">

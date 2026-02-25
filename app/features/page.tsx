@@ -156,7 +156,7 @@ export default function FeaturesPage() {
       {/* RUI Keyboard Navigation */}
       <ChartCard
         title="RUI 3D Navigation — Keyboard Key Usage"
-        subtitle="Bubble size = interaction count · Hover for details · S key not logged (unused)"
+        subtitle="Heatmap — violet intensity = interaction count · S key not logged (no data)"
         badge="RUI"
         badgeColor="bg-violet-500/10 text-violet-400 border-violet-500/20"
       >
