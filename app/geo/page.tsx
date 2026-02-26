@@ -74,7 +74,7 @@ export default function GeoPage() {
         badge={`${countryCount} countries`}
         badgeColor="bg-zinc-800 text-zinc-400 border-zinc-700"
       >
-        <WorldMapChart data={geoData} />
+        <WorldMapChart data={geoData} toolPref={geoToolPref} botData={geoBotData} />
       </ChartCard>
 
       {/* Top countries bar */}

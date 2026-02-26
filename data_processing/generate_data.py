@@ -513,6 +513,45 @@ def run(parquet: str, out: str) -> None:
         "by_month": error_by_month,
     })
 
+    # ─── NEW: Human request type breakdown (for Sankey infra bifurcation) ──────
+    # Categorises every human CloudFront row that is NOT an event ping (/tr)
+    # by the type of asset being fetched, so the Sankey can split "Infra Requests"
+    # into meaningful sub-nodes (JS bundles, API calls, fonts, etc.)
+    write_json(f"{out}/request_type_breakdown.json", q(f"""
+        SELECT
+            CASE
+                WHEN cs_uri_stem LIKE '%.js'
+                  OR cs_uri_stem LIKE '%.js.map'       THEN 'JS Bundles'
+                WHEN cs_uri_stem LIKE '%.css'
+                  OR cs_uri_stem LIKE '%.css.map'      THEN 'Stylesheets'
+                WHEN cs_uri_stem LIKE '%.woff'
+                  OR cs_uri_stem LIKE '%.woff2'
+                  OR cs_uri_stem LIKE '%.ttf'
+                  OR cs_uri_stem LIKE '%.otf'
+                  OR cs_uri_stem LIKE '%.eot'          THEN 'Fonts'
+                WHEN cs_uri_stem LIKE '/api/%'
+                  OR cs_uri_stem LIKE '%.graphql'      THEN 'API Calls'
+                WHEN cs_uri_stem LIKE '%.json'
+                  OR cs_uri_stem LIKE '%.geojson'      THEN 'Data Files'
+                WHEN cs_uri_stem LIKE '%.png'
+                  OR cs_uri_stem LIKE '%.jpg'
+                  OR cs_uri_stem LIKE '%.jpeg'
+                  OR cs_uri_stem LIKE '%.svg'
+                  OR cs_uri_stem LIKE '%.ico'
+                  OR cs_uri_stem LIKE '%.webp'         THEN 'Images'
+                WHEN cs_uri_stem LIKE '%.html'
+                  OR cs_uri_stem = '/'
+                  OR cs_uri_stem LIKE '%/'             THEN 'HTML Pages'
+                ELSE                                        'Other'
+            END AS request_type,
+            count(*)::BIGINT AS count
+        FROM {P}
+        WHERE traffic_type = 'Likely Human'
+          AND cs_uri_stem != '/tr'
+        GROUP BY request_type
+        ORDER BY count DESC
+    """))
+
     total = len(os.listdir(out))
     print(f"\nAll done — {total} files in {out}/")
 

@@ -4,12 +4,14 @@ import ToolVisitsChart from "./components/charts/ToolVisitsChart";
 import TrafficDonut from "./components/charts/TrafficDonut";
 import TotalVisitsSparkline from "./components/charts/TotalVisitsSparkline";
 import HourlyTrafficChart from "./components/charts/HourlyTrafficChart";
+import RequestFunnelInfographic from "./components/RequestFunnelInfographic";
 
 import totalToolVisits from "../public/data/total_tool_visits.json";
 import trafficTypes from "../public/data/traffic_types.json";
 import monthlyData from "../public/data/tool_visits_by_month.json";
 import geoData from "../public/data/geo_distribution.json";
 import referrers from "../public/data/referrers.json";
+import requestTypeBreakdown from "../public/data/request_type_breakdown.json";
 
 function fmtMonth(ym: string): string {
   const [y, mo] = ym.split("-");
@@ -79,6 +81,62 @@ export default function OverviewPage() {
           accent="text-rose-400"
         />
       </div>
+
+      {/* Funnel insights */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+          <div className="flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+            <span className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">Clean Traffic</span>
+          </div>
+          <p className="text-sm text-zinc-400 leading-relaxed">
+            <span className="text-zinc-200 font-medium">{humanPct}% human</span> traffic is unusually
+            clean for a public scientific API — industry average for open endpoints is 40–60%.
+          </p>
+        </div>
+        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+          <div className="flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-rose-400" />
+            <span className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">AI Crawlers</span>
+          </div>
+          <p className="text-sm text-zinc-400 leading-relaxed">
+            <span className="text-zinc-200 font-medium">{fmtCompact(trafficTypes.find(d => d.type === "AI-Assistant / Bot")?.count ?? 0)} AI-bot requests</span> — LLM training crawlers are actively
+            indexing HRA's open biomedical ontology and atlas data.
+          </p>
+        </div>
+        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+          <div className="flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
+            <span className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">The 226× Gap</span>
+          </div>
+          <p className="text-sm text-zinc-400 leading-relaxed">
+            Each tracked visit fires{" "}
+            <span className="text-zinc-200 font-medium">~{Math.round(humanCount / totalVisits)} HTTP requests</span> —
+            JS bundles, fonts, API calls, map tiles. CDN volume alone badly overstates actual user engagement.
+          </p>
+        </div>
+        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+          <div className="flex items-center gap-2">
+            <div className="w-1.5 h-1.5 rounded-full bg-rose-500" />
+            <span className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">Visit Concentration</span>
+          </div>
+          <p className="text-sm text-zinc-400 leading-relaxed">
+            KG Explorer captures{" "}
+            <span className="text-zinc-200 font-medium">{((totalToolVisits.find(d => d.tool === "KG Explorer")?.visits ?? 0) / totalVisits * 100).toFixed(1)}% of all visits</span> despite
+            launching just months ago — reshaping the tool landscape faster than any prior release.
+          </p>
+        </div>
+      </div>
+
+      {/* Request funnel Sankey — first chart */}
+      <ChartCard
+        title="From 12.78M Requests to 43K Tool Visits"
+        subtitle="4-level flow: all CloudFront traffic → traffic type → tracked vs. infra → individual tools"
+      >
+        <RequestFunnelInfographic trafficTypes={trafficTypes} totalVisits={totalVisits} toolVisits={totalToolVisits} requestTypes={requestTypeBreakdown} />
+      </ChartCard>
+
+      
 
       {/* Monthly sparkline */}
       <ChartCard
