@@ -6,13 +6,13 @@ import { useState } from "react";
 import { useTheme } from "next-themes";
 
 const navLinks = [
-  { href: "/",          label: "Overview"      },
-  { href: "/tools",     label: "Tool Usage"    },
-  { href: "/features",  label: "Features"      },
-  { href: "/geo",       label: "Geographic"    },
-  { href: "/network",   label: "Opportunities" },
-  { href: "/insights",  label: "Insights"      },
-  { href: "/ml",        label: "ML"            },
+  { href: "/",          label: "Overview"            },
+  { href: "/tools",     label: "Usage + Reliability" },
+  { href: "/features",  label: "Tool Behaviour"      },
+  { href: "/geo",       label: "Geography"           },
+  { href: "/journeys",  label: "Journeys"            },
+  { href: "/insights",  label: "Insights"            },
+  { href: "/ml",        label: "ML Lab"              },
 ];
 
 function ThemeToggle() {

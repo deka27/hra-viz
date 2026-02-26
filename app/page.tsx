@@ -5,6 +5,8 @@ import TrafficDonut from "./components/charts/TrafficDonut";
 import TotalVisitsSparkline from "./components/charts/TotalVisitsSparkline";
 import HourlyTrafficChart from "./components/charts/HourlyTrafficChart";
 import RequestFunnelInfographic from "./components/RequestFunnelInfographic";
+import EventTypesChart from "./components/charts/EventTypesChart";
+import TopPathsByEventChart from "./components/charts/TopPathsByEventChart";
 
 import totalToolVisits from "../public/data/total_tool_visits.json";
 import trafficTypes from "../public/data/traffic_types.json";
@@ -12,6 +14,10 @@ import monthlyData from "../public/data/tool_visits_by_month.json";
 import geoData from "../public/data/geo_distribution.json";
 import referrers from "../public/data/referrers.json";
 import requestTypeBreakdown from "../public/data/request_type_breakdown.json";
+import eventTypes from "../public/data/event_types.json";
+import topPathsByEvent from "../public/data/top_paths_by_event.json";
+import opacityData from "../public/data/opacity_interactions.json";
+import spatialSearch from "../public/data/spatial_search.json";
 
 function fmtMonth(ym: string): string {
   const [y, mo] = ym.split("-");
@@ -29,6 +35,11 @@ const dateRange = `${fmtMonth(monthlyData[0].month_year)} – ${fmtMonth(monthly
 const numMonths = monthlyData.length;
 const gtexRequests = referrers.find((d) => d.name === "GTEx Portal")?.value ?? 0;
 const hubmapRequests = referrers.find((d) => d.name === "HubMAP")?.value ?? 0;
+const totalEvents = eventTypes.reduce((s, d) => s + d.count, 0);
+const clickCount = eventTypes.find((d) => d.event === "click")?.count ?? 0;
+const clickPct = ((clickCount / totalEvents) * 100).toFixed(1);
+const opacityTotal = opacityData.reduce((s, d) => s + d.count, 0);
+const spatialTotal = spatialSearch.reduce((s, d) => s + d.count, 0);
 
 function fmtCompact(value: number): string {
   if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(2)}M`;
@@ -175,6 +186,69 @@ export default function OverviewPage() {
         badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
       >
         <HourlyTrafficChart />
+      </ChartCard>
+
+      <div className="flex items-center gap-3">
+        <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Interactivity Snapshot</span>
+        <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
+      </div>
+
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <StatCard
+          label="Total Interactions"
+          value={totalEvents.toLocaleString()}
+          sub="Clicks, hovers, keys, errors"
+        />
+        <StatCard
+          label="Click Share"
+          value={`${clickPct}%`}
+          sub={`${clickCount.toLocaleString()} click interactions`}
+          accent="text-blue-400"
+        />
+        <StatCard
+          label="Opacity Toggles (RUI)"
+          value={opacityTotal.toLocaleString()}
+          sub="Low adoption — hidden feature"
+          accent="text-violet-400"
+        />
+        <StatCard
+          label="Spatial Searches (EUI)"
+          value={spatialTotal.toLocaleString()}
+          sub="978 total interactions"
+          accent="text-blue-400"
+        />
+      </div>
+
+      <ChartCard
+        title="Interaction Types Across All Tools"
+        subtitle={`${totalEvents.toLocaleString()} total logged interactions across all HRA tools`}
+        badge="Cross-Tool"
+        badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
+      >
+        <EventTypesChart data={eventTypes} />
+        <div className="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800 grid grid-cols-2 sm:grid-cols-3 gap-3">
+          <div className="flex flex-col gap-0.5">
+            <span className="text-xs text-zinc-500">Most common</span>
+            <span className="text-sm font-semibold text-blue-400">Click ({clickPct}%)</span>
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <span className="text-xs text-zinc-500">Event types tracked</span>
+            <span className="text-sm font-semibold text-zinc-700 dark:text-zinc-300">{eventTypes.length} categories</span>
+          </div>
+          <div className="flex flex-col gap-0.5">
+            <span className="text-xs text-zinc-500">Keyboard use</span>
+            <span className="text-sm font-semibold text-amber-400">Significant — RUI keyboard nav</span>
+          </div>
+        </div>
+      </ChartCard>
+
+      <ChartCard
+        title="Where Are Clicks and Hovers Happening?"
+        subtitle="Top 15 UI elements per interaction type · color = tool · hover a bar for full path"
+        badge="Cross-Tool"
+        badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
+      >
+        <TopPathsByEventChart data={topPathsByEvent as Record<string, { path: string; count: number }[]>} />
       </ChartCard>
 
       {/* Quick callouts */}

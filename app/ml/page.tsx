@@ -19,7 +19,6 @@ import featureCooccurrence from "../../public/data/feature_cooccurrence.json";
 import botScores from "../../public/data/bot_scores.json";
 import errorClusters from "../../public/data/error_clusters.json";
 import suspiciousCountries from "../../public/data/suspicious_countries.json";
-import crossToolRecommendations from "../../public/data/cross_tool_recommendations.json";
 import pipelineMetadata from "../../public/data/ml_pipeline_metadata.json";
 import cohortRetention from "../../public/data/cohort_retention.json";
 
@@ -53,16 +52,6 @@ type BotMetrics = {
   positive_rate: number;
   rows_train: number;
   rows_test: number;
-};
-
-type Recommendation = {
-  source_tool: string;
-  recommended_tool: string;
-  support: number;
-  confidence: number;
-  lift: number;
-  co_sessions: number;
-  basis: string;
 };
 
 type PipelineRows = {
@@ -144,7 +133,6 @@ export default function MLPage() {
   const bot = (botScores as { metrics?: BotMetrics; feature_importance?: Array<{ feature: string; importance: number }> });
   const clusters = ((errorClusters as { clusters?: ErrorClusterRow[] }).clusters ?? []) as ErrorClusterRow[];
   const geo = ((suspiciousCountries as { suspicious_countries?: GeoAnomalyRow[] }).suspicious_countries ?? []) as GeoAnomalyRow[];
-  const recs = ((crossToolRecommendations as { recommendations?: Recommendation[] }).recommendations ?? []) as Recommendation[];
   const metadataRows = ((pipelineMetadata as { rows?: PipelineRows }).rows ?? {
     monthly_points: 0,
     event_rows: 0,
@@ -168,10 +156,6 @@ export default function MLPage() {
     value: s.size,
     color: SEGMENT_COLORS[idx % SEGMENT_COLORS.length],
   }));
-
-  const strongestRecommendations = [...recs]
-    .sort((a, b) => b.confidence - a.confidence)
-    .slice(0, 8);
 
   return (
     <div className="flex flex-col gap-8">
@@ -384,57 +368,22 @@ export default function MLPage() {
         </ChartCard>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
-        <ChartCard
-          title="Countries With Unusual Traffic Patterns"
-          subtitle="Bar = bot-like traffic share. Use as a review list, not a final verdict."
-          className="lg:col-span-3"
-          badge="Geo Review"
-          badgeColor="bg-fuchsia-500/10 text-fuchsia-400 border-fuchsia-500/20"
-        >
-          <MLGeoAnomalyChart data={geo} />
-          {topGeo && (
-            <p className="mt-2 text-xs text-zinc-500">
-              Highest-priority review country in this run:{" "}
-              <span className="text-zinc-700 dark:text-zinc-300 font-medium">
-                {COUNTRY_NAMES[topGeo.c_country] ?? topGeo.c_country}
-              </span>.
-            </p>
-          )}
-        </ChartCard>
-
-        <ChartCard
-          title="Cross-Tool Usage"
-          subtitle="Do users move between tools in the same session?"
-          className="lg:col-span-2"
-          badge="Tool Loyalty"
-          badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
-        >
-          <div className="flex flex-col gap-3 py-2">
-            <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
-              Users strongly prefer <span className="text-zinc-900 dark:text-zinc-100 font-medium">staying in one tool</span> per session.
-              All cross-tool pairings have lift &lt; 1 — meaning switching tools is{" "}
-              <span className="text-zinc-900 dark:text-zinc-100 font-medium">less likely than random chance</span>.
-            </p>
-            <div className="grid grid-cols-1 gap-2 mt-1">
-              {[...recs]
-                .sort((a, b) => b.co_sessions - a.co_sessions)
-                .slice(0, 4)
-                .map((r) => (
-                  <div key={`${r.source_tool}-${r.recommended_tool}`} className="flex items-center justify-between bg-zinc-100 dark:bg-zinc-800/40 rounded-lg px-3 py-2">
-                    <span className="text-xs text-zinc-600 dark:text-zinc-400">
-                      {r.source_tool} → {r.recommended_tool}
-                    </span>
-                    <span className="text-xs text-zinc-500">{r.co_sessions} shared sessions</span>
-                  </div>
-                ))}
-            </div>
-            <p className="text-xs text-zinc-500">
-              Most cross-tool sessions involve KG Explorer + CDE ({recs.find(r => r.source_tool === "CDE" && r.recommended_tool === "KG Explorer")?.co_sessions ?? 0} sessions). Consider surface-level cross-links rather than active suggestions.
-            </p>
-          </div>
-        </ChartCard>
-      </div>
+      <ChartCard
+        title="Countries With Unusual Traffic Patterns"
+        subtitle="Bar = bot-like traffic share. Use as a review list, not a final verdict."
+        badge="Geo Review"
+        badgeColor="bg-fuchsia-500/10 text-fuchsia-400 border-fuchsia-500/20"
+      >
+        <MLGeoAnomalyChart data={geo} />
+        {topGeo && (
+          <p className="mt-2 text-xs text-zinc-500">
+            Highest-priority review country in this run:{" "}
+            <span className="text-zinc-700 dark:text-zinc-300 font-medium">
+              {COUNTRY_NAMES[topGeo.c_country] ?? topGeo.c_country}
+            </span>.
+          </p>
+        )}
+      </ChartCard>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">

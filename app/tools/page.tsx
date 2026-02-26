@@ -5,12 +5,18 @@ import DonutChart from "../components/charts/DonutChart";
 import StatCard from "../components/StatCard";
 import ToolHourlyHeatmap from "../components/charts/ToolHourlyHeatmap";
 import TrafficByDowChart from "../components/charts/TrafficByDowChart";
+import { ErrorSourceChart, ErrorCauseChart } from "../components/charts/ErrorBreakdownChart";
+import MonthlyErrorTrendChart from "../components/charts/MonthlyErrorTrendChart";
 
 import monthlyData from "../../public/data/tool_visits_by_month.json";
 import yearlyData from "../../public/data/tool_visits_by_year.json";
 import totalData from "../../public/data/total_tool_visits.json";
 import hourlyHeatmapData from "../../public/data/tool_hourly_heatmap.json";
 import dowData from "../../public/data/traffic_by_dow.json";
+import eventTypes from "../../public/data/event_types.json";
+import errorClusters from "../../public/data/error_clusters.json";
+import monthlyErrorData from "../../public/data/monthly_error_trend.json";
+import errorBreakdown from "../../public/data/error_breakdown.json";
 
 const TOOL_CARD_COLORS: Record<string, string> = {
   "KG Explorer": "text-rose-400",
@@ -37,16 +43,31 @@ function fmtMonth(ym: string): string {
 const sorted = [...totalData].sort((a, b) => b.visits - a.visits);
 const dateRange = `${fmtMonth(monthlyData[0].month_year)} – ${fmtMonth(monthlyData[monthlyData.length - 1].month_year)}`;
 const numMonths = monthlyData.length;
+const totalEvents = eventTypes.reduce((s, d) => s + d.count, 0);
+const errorCount = eventTypes.find((d) => d.event === "error")?.count ?? 0;
+const errorPct = ((errorCount / totalEvents) * 100).toFixed(1);
+const clusterTotal = (errorClusters as { total_error_rows: number }).total_error_rows;
+const errorSources = (errorBreakdown as { by_source: { tool: string; errors: number }[] }).by_source;
+const topErrorSource = [...errorSources].sort((a, b) => b.errors - a.errors)[0];
+const topErrorSourceShare = topErrorSource && errorCount > 0
+  ? ((topErrorSource.errors / errorCount) * 100).toFixed(1)
+  : "0.0";
+const errorByMonth = (monthlyErrorData as { by_month: { month_year: string; total_errors: number }[] }).by_month;
+const peakErrorMonth = errorByMonth.reduce((mx, row) => (row.total_errors > mx.total_errors ? row : mx), errorByMonth[0]);
+const latestErrorMonth = errorByMonth[errorByMonth.length - 1];
+const peakToLatestDropPct = peakErrorMonth && latestErrorMonth && peakErrorMonth.total_errors > 0
+  ? (((peakErrorMonth.total_errors - latestErrorMonth.total_errors) / peakErrorMonth.total_errors) * 100).toFixed(1)
+  : "0.0";
 
 export default function ToolsPage() {
   return (
     <div className="flex flex-col gap-8">
       {/* Header */}
       <div className="flex flex-col gap-1">
-        <div className="text-xs font-medium text-zinc-500 uppercase tracking-wider">Tool Usage</div>
-        <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">Visit Trends by Tool</h1>
+        <div className="text-xs font-medium text-zinc-500 uppercase tracking-wider">Usage + Reliability</div>
+        <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">Tool Usage and Reliability Trends</h1>
         <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-2xl">
-          Monthly and yearly breakdown of HRA tool page visits. KG Explorer launched in Aug 2025 and immediately became the most-visited tool.
+          Monthly and yearly breakdown of HRA tool page visits, plus cross-tool reliability trends. KG Explorer launched in Aug 2025 and immediately became the most-visited tool.
         </p>
       </div>
 
@@ -141,6 +162,129 @@ export default function ToolsPage() {
                 rather than a single institution&apos;s working hours.
               </p>
             </div>
+        </div>
+      </ChartCard>
+
+      <div className="flex items-center gap-3">
+        <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Cross-Tool Reliability</span>
+        <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
+      </div>
+
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <StatCard
+          label="Logged Errors"
+          value={errorCount.toLocaleString()}
+          sub={`${errorPct}% of all events`}
+          accent="text-red-400"
+        />
+        <StatCard
+          label="Clustered Samples"
+          value={clusterTotal.toLocaleString()}
+          sub="Rows used for root-cause clustering"
+          accent="text-amber-400"
+        />
+        <StatCard
+          label="Top Error Source"
+          value={topErrorSource ? topErrorSource.errors.toLocaleString() : "0"}
+          sub={topErrorSource ? `${topErrorSource.tool} (${topErrorSourceShare}% of errors)` : "No source data"}
+          accent="text-rose-400"
+        />
+        <StatCard
+          label="Peak→Latest Drop"
+          value={`${peakToLatestDropPct}%`}
+          sub={`${peakErrorMonth ? fmtMonth(peakErrorMonth.month_year) : "n/a"} → ${latestErrorMonth ? fmtMonth(latestErrorMonth.month_year) : "n/a"}`}
+          accent="text-emerald-400"
+        />
+      </div>
+
+      <ChartCard
+        title="Where Do the Errors Come From?"
+        subtitle={`${errorCount.toLocaleString()} logged error events (${errorPct}% of all events) · stack trace clustering (${clusterTotal.toLocaleString()} sampled) shows 72% traceable to 3 fixable bugs`}
+        badge="Quality · All Tools"
+        badgeColor="bg-red-500/10 text-red-400 border-red-500/20"
+      >
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div>
+            <p className="text-xs text-zinc-500 uppercase tracking-wider font-medium mb-3">Error rate by tool</p>
+            <ErrorSourceChart />
+            <p className="text-xs text-zinc-500 mt-2">
+              RUI and CDE are nearly clean. KG Explorer and EUI drive the bulk of errors.
+            </p>
+          </div>
+          <div>
+            <p className="text-xs text-zinc-500 uppercase tracking-wider font-medium mb-3">Errors by root cause</p>
+            <ErrorCauseChart />
+            <p className="text-xs text-zinc-500 mt-2">
+              Top 2 causes alone account for 62% of all errors — both are infrastructure issues, not UX.
+              <span className="block mt-1 text-zinc-500">Source: NLP clustering on {clusterTotal.toLocaleString()} error messages — separate universe from the event-log error count above.</span>
+            </p>
+          </div>
+        </div>
+        <div className="mt-5 pt-4 border-t border-zinc-200 dark:border-zinc-800 grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="bg-zinc-200/70 dark:bg-zinc-800/50 rounded-lg p-3 flex flex-col gap-1.5">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-medium px-1.5 py-0.5 rounded bg-red-500/15 text-red-400">Fix #1</span>
+              <span className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">6,438 errors</span>
+            </div>
+            <p className="text-xs text-zinc-700 dark:text-zinc-300">
+              <span className="font-semibold">API CORS failure</span> — <code className="text-zinc-600 dark:text-zinc-400 text-[10px]">technology-names</code> endpoint returns
+              &ldquo;0 Unknown Error&rdquo;. Fix CORS headers on <code className="text-zinc-600 dark:text-zinc-400 text-[10px]">apps.humanatlas.io/api/v1</code>.
+            </p>
+          </div>
+          <div className="bg-zinc-200/70 dark:bg-zinc-800/50 rounded-lg p-3 flex flex-col gap-1.5">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-medium px-1.5 py-0.5 rounded bg-red-500/15 text-red-400">Fix #2</span>
+              <span className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">6,712 errors</span>
+            </div>
+            <p className="text-xs text-zinc-700 dark:text-zinc-300">
+              <span className="font-semibold">KG Explorer missing icons</span> — SVG assets for organs and products
+              (all-organs, kidneys, ftu, schema…) not resolving on CDN. Audit CDN asset paths.
+            </p>
+          </div>
+          <div className="bg-zinc-200/70 dark:bg-zinc-800/50 rounded-lg p-3 flex flex-col gap-1.5">
+            <div className="flex items-center gap-2">
+              <span className="text-xs font-medium px-1.5 py-0.5 rounded bg-red-500/15 text-red-400">Fix #3</span>
+              <span className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">2,251 errors</span>
+            </div>
+            <p className="text-xs text-zinc-700 dark:text-zinc-300">
+              <span className="font-semibold">EUI null ref in 3D picker</span> —{" "}
+              <code className="text-zinc-600 dark:text-zinc-400 text-[10px]">Cannot read properties of null (reading &apos;0&apos;)</code> in{" "}
+              <code className="text-zinc-600 dark:text-zinc-400 text-[10px]">getLastPickedObject</code>. Add null guard before accessing index.
+            </p>
+          </div>
+        </div>
+      </ChartCard>
+
+      <ChartCard
+        title="Error Volume Over Time"
+        subtitle="Monthly error events by tool · Oct 2025 spike = KG Explorer launch + CDN icon failures · trend improving"
+        badge="Error Trend"
+        badgeColor="bg-red-500/10 text-red-400 border-red-500/20"
+      >
+        <MonthlyErrorTrendChart data={monthlyErrorData} />
+        <div className="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Oct 2025 Spike</span>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
+              12,387 errors in October — driven by{" "}
+              <span className="text-rose-400 font-semibold">KG Explorer&apos;s August launch</span> triggering
+              CDN icon resolution failures that accumulated until CDN paths were corrected.
+            </p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Declining Trend</span>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
+              Errors fell from <span className="text-red-400 font-semibold">12,387 → 3,149 → 2,976</span> in
+              Oct–Dec 2025. Jan 2026 is partial but tracking lower. The CDN fixes are taking hold.
+            </p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Portal/Other Category</span>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
+              The large &ldquo;Portal/Other&rdquo; bar represents errors from the HRA portal layer
+              before app-attribution is set in the event payload. These overlap with the KG icon failures.
+            </p>
+          </div>
         </div>
       </ChartCard>
 

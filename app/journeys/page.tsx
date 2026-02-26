@@ -10,6 +10,7 @@ import spatialSearch from "../../public/data/spatial_search.json";
 import cdeWorkflow from "../../public/data/cde_workflow.json";
 import opacityData from "../../public/data/opacity_interactions.json";
 import totalToolVisits from "../../public/data/total_tool_visits.json";
+import crossToolRecommendations from "../../public/data/cross_tool_recommendations.json";
 
 const spatialApplyCount = spatialSearch.find((d) => d.path === "eui.data-filters.filters.spatial-search.add")?.count ?? 0;
 const euiVisits = totalToolVisits.find((d) => d.tool === "EUI")?.visits ?? 0;
@@ -25,17 +26,19 @@ const cdeDropoffs = cdeUploads - cdeVisualizations;
 const opacityPanelOpens = opacityData.find((d) => d.path === "rui.left-sidebar.opacity-settings.toggle")?.count ?? 0;
 const pct = (value: number, total: number, digits = 2) => (total > 0 ? ((value / total) * 100).toFixed(digits) : "0.00");
 const pctRounded = (value: number, total: number) => (total > 0 ? Math.round((value / total) * 100) : 0);
+const recs = (crossToolRecommendations as {
+  recommendations?: Array<{ source_tool: string; recommended_tool: string; co_sessions: number; lift: number }>;
+}).recommendations ?? [];
 
 export default function OpportunitiesPage() {
   return (
     <div className="flex flex-col gap-8">
       {/* Header */}
       <div className="flex flex-col gap-1">
-        <div className="text-xs font-medium text-zinc-500 uppercase tracking-wider">UX Gaps & Opportunities</div>
-        <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">What Users Aren&apos;t Finding</h1>
+        <div className="text-xs font-medium text-zinc-500 uppercase tracking-wider">Journeys & Opportunities</div>
+        <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">How Users Move and Where They Drop Off</h1>
         <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-2xl">
-          Several high-value features in EUI, RUI, and CDE go nearly undiscovered.
-          These are the biggest opportunities to improve tool value without adding new functionality.
+          Track feature drop-offs and cross-tool movement patterns to surface the clearest UX and growth opportunities.
         </p>
       </div>
 
@@ -274,6 +277,38 @@ export default function OpportunitiesPage() {
               Cross-linking these pairs more tightly would reduce friction in these natural workflows.
             </p>
           </div>
+        </div>
+      </ChartCard>
+
+      <ChartCard
+        title="Cross-Tool Usage (Session-Level)"
+        subtitle="Do users move between tools in the same session?"
+        badge="Tool Loyalty"
+        badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
+      >
+        <div className="flex flex-col gap-3 py-1">
+          <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
+            Users strongly prefer <span className="text-zinc-900 dark:text-zinc-100 font-medium">staying in one tool</span> per session.
+            All cross-tool pairings have lift &lt; 1 — meaning switching tools is{" "}
+            <span className="text-zinc-900 dark:text-zinc-100 font-medium">less likely than random chance</span>.
+          </p>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-2 mt-1">
+            {[...recs]
+              .sort((a, b) => b.co_sessions - a.co_sessions)
+              .slice(0, 6)
+              .map((r) => (
+                <div key={`${r.source_tool}-${r.recommended_tool}`} className="flex items-center justify-between bg-zinc-100 dark:bg-zinc-800/40 rounded-lg px-3 py-2">
+                  <span className="text-xs text-zinc-600 dark:text-zinc-400">
+                    {r.source_tool} → {r.recommended_tool}
+                  </span>
+                  <span className="text-xs text-zinc-500">{r.co_sessions} sessions</span>
+                </div>
+              ))}
+          </div>
+          <p className="text-xs text-zinc-500">
+            Most cross-tool sessions involve KG Explorer + CDE ({recs.find((r) => r.source_tool === "CDE" && r.recommended_tool === "KG Explorer")?.co_sessions ?? 0} sessions).
+            Use lightweight cross-links in context rather than aggressive handoff prompts.
+          </p>
         </div>
       </ChartCard>
 
