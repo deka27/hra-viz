@@ -1,8 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
+import ThemedEChart from "../ThemedEChart";
 
 // Derived from cde_workflow.json
 // 163 uploads, 132 visualized, 93 came via landing page "Create a Visualization" button
@@ -92,7 +90,7 @@ export default function CDESankeyChart() {
 
   return (
     <div className="flex flex-col gap-4">
-      <ReactECharts
+      <ThemedEChart
         option={option}
         style={{ height: "340px", width: "100%" }}
         opts={{ renderer: "canvas" }}

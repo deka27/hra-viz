@@ -1,8 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
+import ThemedEChart from "../ThemedEChart";
 
 export interface TransitionRow {
   from_tool: string;
@@ -88,5 +86,5 @@ export default function MLTransitionHeatmap({ data }: { data: TransitionRow[] })
     ],
   };
 
-  return <ReactECharts option={option} style={{ height: "320px", width: "100%" }} opts={{ renderer: "canvas" }} />;
+  return <ThemedEChart option={option} style={{ height: "320px", width: "100%" }} opts={{ renderer: "canvas" }} />;
 }

@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { TOOL_COLORS } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 const TOOLS = ["KG Explorer", "EUI", "FTU Explorer", "CDE", "RUI"] as const;
 
@@ -127,7 +126,7 @@ export default function MonthlyErrorTrendChart({
   };
 
   return (
-    <ReactECharts
+    <ThemedEChart
       option={option}
       style={{ height: "280px", width: "100%" }}
       opts={{ renderer: "canvas" }}

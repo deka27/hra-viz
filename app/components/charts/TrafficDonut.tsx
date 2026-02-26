@@ -1,8 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
+import ThemedEChart from "../ThemedEChart";
 
 interface TrafficType {
   type: string;
@@ -64,7 +62,7 @@ export default function TrafficDonut({ data }: { data: TrafficType[] }) {
   };
 
   return (
-    <ReactECharts
+    <ThemedEChart
       option={option}
       style={{ height: "280px", width: "100%" }}
       opts={{ renderer: "canvas" }}

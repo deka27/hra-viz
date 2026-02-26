@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { formatMonth, tooltipStyle, axisStyle } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 interface MonthData {
   month_year: string;
@@ -83,7 +82,7 @@ export default function TotalVisitsSparkline({ data }: { data: MonthData[] }) {
   };
 
   return (
-    <ReactECharts
+    <ThemedEChart
       option={option}
       style={{ height: "240px", width: "100%" }}
       opts={{ renderer: "canvas" }}

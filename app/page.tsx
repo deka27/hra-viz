@@ -46,12 +46,12 @@ export default function OverviewPage() {
           <span>·</span>
           <span>Indiana University</span>
         </div>
-        <h1 className="text-2xl font-bold text-zinc-50 tracking-tight">
+        <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">
           Human Reference Atlas Tools
         </h1>
-        <p className="text-zinc-400 text-sm max-w-2xl">
+        <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-2xl">
           Usage analytics for the HRA portal tools derived from Amazon CloudFront access logs.
-          Covers <span className="text-zinc-300 font-medium">{dateRange}</span> · {numTools} tools · {countryCount} countries.
+          Covers <span className="text-zinc-700 dark:text-zinc-300 font-medium">{dateRange}</span> · {numTools} tools · {countryCount} countries.
         </p>
       </div>
 
@@ -84,45 +84,45 @@ export default function OverviewPage() {
 
       {/* Funnel insights */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-            <span className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">Clean Traffic</span>
+            <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Clean Traffic</span>
           </div>
-          <p className="text-sm text-zinc-400 leading-relaxed">
-            <span className="text-zinc-200 font-medium">{humanPct}% human</span> traffic is unusually
+          <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            <span className="text-zinc-800 dark:text-zinc-200 font-medium">{humanPct}% human</span> traffic is unusually
             clean for a public scientific API — industry average for open endpoints is 40–60%.
           </p>
         </div>
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-rose-400" />
-            <span className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">AI Crawlers</span>
+            <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">AI Crawlers</span>
           </div>
-          <p className="text-sm text-zinc-400 leading-relaxed">
-            <span className="text-zinc-200 font-medium">{fmtCompact(trafficTypes.find(d => d.type === "AI-Assistant / Bot")?.count ?? 0)} AI-bot requests</span> — LLM training crawlers are actively
-            indexing HRA's open biomedical ontology and atlas data.
+          <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
+            <span className="text-zinc-800 dark:text-zinc-200 font-medium">{fmtCompact(trafficTypes.find(d => d.type === "AI-Assistant / Bot")?.count ?? 0)} AI-bot requests</span> — LLM training crawlers are actively
+            indexing HRA&apos;s open biomedical ontology and atlas data.
           </p>
         </div>
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-blue-400" />
-            <span className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">The 226× Gap</span>
+            <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">The 226× Gap</span>
           </div>
-          <p className="text-sm text-zinc-400 leading-relaxed">
+          <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
             Each tracked visit fires{" "}
-            <span className="text-zinc-200 font-medium">~{Math.round(humanCount / totalVisits)} HTTP requests</span> —
+            <span className="text-zinc-800 dark:text-zinc-200 font-medium">~{Math.round(humanCount / totalVisits)} HTTP requests</span> —
             JS bundles, fonts, API calls, map tiles. CDN volume alone badly overstates actual user engagement.
           </p>
         </div>
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-rose-500" />
-            <span className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">Visit Concentration</span>
+            <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Visit Concentration</span>
           </div>
-          <p className="text-sm text-zinc-400 leading-relaxed">
+          <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
             KG Explorer captures{" "}
-            <span className="text-zinc-200 font-medium">{((totalToolVisits.find(d => d.tool === "KG Explorer")?.visits ?? 0) / totalVisits * 100).toFixed(1)}% of all visits</span> despite
+            <span className="text-zinc-800 dark:text-zinc-200 font-medium">{((totalToolVisits.find(d => d.tool === "KG Explorer")?.visits ?? 0) / totalVisits * 100).toFixed(1)}% of all visits</span> despite
             launching just months ago — reshaping the tool landscape faster than any prior release.
           </p>
         </div>
@@ -136,14 +136,14 @@ export default function OverviewPage() {
         <RequestFunnelInfographic trafficTypes={trafficTypes} totalVisits={totalVisits} toolVisits={totalToolVisits} requestTypes={requestTypeBreakdown} />
       </ChartCard>
 
-      
+
 
       {/* Monthly sparkline */}
       <ChartCard
         title="Total Tool Visits by Month"
         subtitle={`Combined visits across all ${numTools} HRA tools, ${dateRange}`}
         badge={`${numMonths} months`}
-        badgeColor="bg-zinc-800 text-zinc-400 border-zinc-700"
+        badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
       >
         <TotalVisitsSparkline data={monthlyData} />
       </ChartCard>
@@ -171,53 +171,53 @@ export default function OverviewPage() {
       <ChartCard
         title="When Are Users Active?"
         subtitle="Traffic distribution by hour of day — human CloudFront requests, all sites"
-        badge="UTC"
-        badgeColor="bg-zinc-800 text-zinc-400 border-zinc-700"
+        badge="EST / EDT"
+        badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
       >
         <HourlyTrafficChart />
       </ChartCard>
 
       {/* Quick callouts */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-rose-500" />
-            <span className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">Surge Event</span>
+            <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Surge Event</span>
           </div>
-          <p className="text-sm text-zinc-400 leading-relaxed">
+          <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
             EUI visits spiked from{" "}
-            <span className="text-zinc-200 font-medium">171 → 7,140</span> in March 2024 —
+            <span className="text-zinc-800 dark:text-zinc-200 font-medium">171 → 7,140</span> in March 2024 —
             a 41× jump. Probably an internal HuBMAP/HRA training session (no public record found).
           </p>
         </div>
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-            <span className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">Undiscovered Feature</span>
+            <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Undiscovered Feature</span>
           </div>
-          <p className="text-sm text-zinc-400 leading-relaxed">
+          <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
             RUI opacity controls used only{" "}
-            <span className="text-zinc-200 font-medium">196 times</span> total across 5,161 visits — a powerful but buried feature.
+            <span className="text-zinc-800 dark:text-zinc-200 font-medium">196 times</span> total across 5,161 visits — a powerful but buried feature.
           </p>
         </div>
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-rose-500" />
-            <span className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">Breakout Tool</span>
+            <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Breakout Tool</span>
           </div>
-          <p className="text-sm text-zinc-400 leading-relaxed">
+          <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
             KG Explorer launched Aug 2025 and hit{" "}
-            <span className="text-zinc-200 font-medium">3,891 visits/mo</span> by October — now the most-visited HRA tool.
+            <span className="text-zinc-800 dark:text-zinc-200 font-medium">3,891 visits/mo</span> by October — now the most-visited HRA tool.
           </p>
         </div>
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
           <div className="flex items-center gap-2">
             <div className="w-1.5 h-1.5 rounded-full bg-teal-500" />
-            <span className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">Ecosystem Integration</span>
+            <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Ecosystem Integration</span>
           </div>
-          <p className="text-sm text-zinc-400 leading-relaxed">
+          <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
             GTEx Portal generates{" "}
-            <span className="text-zinc-200 font-medium">{fmtCompact(gtexRequests)} API calls</span> to HRA — the largest external consumer, ahead of HubMAP ({fmtCompact(hubmapRequests)}).
+            <span className="text-zinc-800 dark:text-zinc-200 font-medium">{fmtCompact(gtexRequests)} API calls</span> to HRA — the largest external consumer, ahead of HubMAP ({fmtCompact(hubmapRequests)}).
           </p>
         </div>
       </div>

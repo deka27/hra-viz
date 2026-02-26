@@ -1,7 +1,6 @@
 import ChartCard from "../components/ChartCard";
 import StatCard from "../components/StatCard";
 import EventTypesChart from "../components/charts/EventTypesChart";
-import TopUIPathsChart from "../components/charts/TopUIPathsChart";
 import TopPathsByEventChart from "../components/charts/TopPathsByEventChart";
 import CDEWorkflowChart from "../components/charts/CDEWorkflowChart";
 import SpatialSearchChart from "../components/charts/SpatialSearchChart";
@@ -13,7 +12,6 @@ import MonthlyErrorTrendChart from "../components/charts/MonthlyErrorTrendChart"
 
 import eventTypes from "../../public/data/event_types.json";
 import errorClusters from "../../public/data/error_clusters.json";
-import topUIPathsData from "../../public/data/top_ui_paths.json";
 import cdeWorkflow from "../../public/data/cde_workflow.json";
 import spatialSearch from "../../public/data/spatial_search.json";
 import opacityData from "../../public/data/opacity_interactions.json";
@@ -33,6 +31,21 @@ const spatialTotal = spatialSearch.reduce((s, d) => s + d.count, 0);
 const cdeUploads = cdeWorkflow.find((d) => d.path === "cde-ui.create-visualization-page.upload-data.file-upload.upload")?.count ?? 0;
 const cdeViz = cdeWorkflow.find((d) => d.path === "cde-ui.create-visualization-page.visualize-data.submit")?.count ?? 0;
 const cdeCompletionPct = cdeUploads > 0 ? Math.round((cdeViz / cdeUploads) * 100) : 0;
+const keyboardRows = ((topPathsByEvent as { keyboard?: { path: string; count: number }[] }).keyboard ?? [])
+  .filter((row) => row.path.startsWith("rui.stage-content.directional-controls.keyboard."));
+function ruiKeyCount(key: string): number {
+  const keyLower = key.toLowerCase();
+  return keyboardRows
+    .filter((row) => row.path.toLowerCase().endsWith(`.${keyLower}`))
+    .reduce((sum, row) => sum + row.count, 0);
+}
+const ruiA = ruiKeyCount("a");
+const ruiD = ruiKeyCount("d");
+const ruiQ = ruiKeyCount("q");
+const ruiE = ruiKeyCount("e");
+const ruiW = ruiKeyCount("w");
+const ruiS = ruiKeyCount("s");
+const adRatio = ruiD > 0 ? `${(ruiA / ruiD).toFixed(1)}x` : "n/a";
 
 export default function FeaturesPage() {
   return (
@@ -40,8 +53,8 @@ export default function FeaturesPage() {
       {/* Header */}
       <div className="flex flex-col gap-1">
         <div className="text-xs font-medium text-zinc-500 uppercase tracking-wider">Feature Analysis</div>
-        <h1 className="text-2xl font-bold text-zinc-50 tracking-tight">How Users Interact with Tools</h1>
-        <p className="text-zinc-400 text-sm max-w-2xl">
+        <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">How Users Interact with Tools</h1>
+        <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-2xl">
           Breakdown of interaction types, most-used UI elements, and deep dives into feature adoption across EUI, RUI, and CDE.
         </p>
       </div>
@@ -78,10 +91,10 @@ export default function FeaturesPage() {
         title="Interaction Types"
         subtitle={`${totalEvents.toLocaleString()} total logged interactions across all HRA tools`}
         badge="All Tools"
-        badgeColor="bg-zinc-800 text-zinc-400 border-zinc-700"
+        badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
       >
         <EventTypesChart data={eventTypes} />
-        <div className="mt-4 pt-4 border-t border-zinc-800 grid grid-cols-2 sm:grid-cols-3 gap-3">
+        <div className="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800 grid grid-cols-2 sm:grid-cols-3 gap-3">
           <div className="flex flex-col gap-0.5">
             <span className="text-xs text-zinc-500">Most common</span>
             <span className="text-sm font-semibold text-blue-400">Click ({((clickCount / totalEvents) * 100).toFixed(1)}%)</span>
@@ -108,49 +121,49 @@ export default function FeaturesPage() {
           <div>
             <p className="text-xs text-zinc-500 uppercase tracking-wider font-medium mb-3">Error rate by tool</p>
             <ErrorSourceChart />
-            <p className="text-xs text-zinc-600 mt-2">
+            <p className="text-xs text-zinc-500 mt-2">
               RUI and CDE are nearly clean. KG Explorer and EUI drive the bulk of errors.
             </p>
           </div>
           <div>
             <p className="text-xs text-zinc-500 uppercase tracking-wider font-medium mb-3">Errors by root cause</p>
             <ErrorCauseChart />
-            <p className="text-xs text-zinc-600 mt-2">
+            <p className="text-xs text-zinc-500 mt-2">
               Top 2 causes alone account for 62% of all errors — both are infrastructure issues, not UX.
-              <span className="block mt-1 text-zinc-700">Source: NLP clustering on {clusterTotal.toLocaleString()} error messages — separate universe from the event-log error count above.</span>
+              <span className="block mt-1 text-zinc-500">Source: NLP clustering on {clusterTotal.toLocaleString()} error messages — separate universe from the event-log error count above.</span>
             </p>
           </div>
         </div>
-        <div className="mt-5 pt-4 border-t border-zinc-800 grid grid-cols-1 sm:grid-cols-3 gap-3">
-          <div className="bg-zinc-800/50 rounded-lg p-3 flex flex-col gap-1.5">
+        <div className="mt-5 pt-4 border-t border-zinc-200 dark:border-zinc-800 grid grid-cols-1 sm:grid-cols-3 gap-3">
+          <div className="bg-zinc-200/70 dark:bg-zinc-800/50 rounded-lg p-3 flex flex-col gap-1.5">
             <div className="flex items-center gap-2">
               <span className="text-xs font-medium px-1.5 py-0.5 rounded bg-red-500/15 text-red-400">Fix #1</span>
-              <span className="text-xs text-zinc-400 font-medium">6,438 errors</span>
+              <span className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">6,438 errors</span>
             </div>
-            <p className="text-xs text-zinc-300">
-              <span className="font-semibold">API CORS failure</span> — <code className="text-zinc-400 text-[10px]">technology-names</code> endpoint returns
-              &ldquo;0 Unknown Error&rdquo;. Fix CORS headers on <code className="text-zinc-400 text-[10px]">apps.humanatlas.io/api/v1</code>.
+            <p className="text-xs text-zinc-700 dark:text-zinc-300">
+              <span className="font-semibold">API CORS failure</span> — <code className="text-zinc-600 dark:text-zinc-400 text-[10px]">technology-names</code> endpoint returns
+              &ldquo;0 Unknown Error&rdquo;. Fix CORS headers on <code className="text-zinc-600 dark:text-zinc-400 text-[10px]">apps.humanatlas.io/api/v1</code>.
             </p>
           </div>
-          <div className="bg-zinc-800/50 rounded-lg p-3 flex flex-col gap-1.5">
+          <div className="bg-zinc-200/70 dark:bg-zinc-800/50 rounded-lg p-3 flex flex-col gap-1.5">
             <div className="flex items-center gap-2">
               <span className="text-xs font-medium px-1.5 py-0.5 rounded bg-red-500/15 text-red-400">Fix #2</span>
-              <span className="text-xs text-zinc-400 font-medium">6,712 errors</span>
+              <span className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">6,712 errors</span>
             </div>
-            <p className="text-xs text-zinc-300">
+            <p className="text-xs text-zinc-700 dark:text-zinc-300">
               <span className="font-semibold">KG Explorer missing icons</span> — SVG assets for organs and products
               (all-organs, kidneys, ftu, schema…) not resolving on CDN. Audit CDN asset paths.
             </p>
           </div>
-          <div className="bg-zinc-800/50 rounded-lg p-3 flex flex-col gap-1.5">
+          <div className="bg-zinc-200/70 dark:bg-zinc-800/50 rounded-lg p-3 flex flex-col gap-1.5">
             <div className="flex items-center gap-2">
               <span className="text-xs font-medium px-1.5 py-0.5 rounded bg-red-500/15 text-red-400">Fix #3</span>
-              <span className="text-xs text-zinc-400 font-medium">2,251 errors</span>
+              <span className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">2,251 errors</span>
             </div>
-            <p className="text-xs text-zinc-300">
+            <p className="text-xs text-zinc-700 dark:text-zinc-300">
               <span className="font-semibold">EUI null ref in 3D picker</span> —{" "}
-              <code className="text-zinc-400 text-[10px]">Cannot read properties of null (reading &apos;0&apos;)</code> in{" "}
-              <code className="text-zinc-400 text-[10px]">getLastPickedObject</code>. Add null guard before accessing index.
+              <code className="text-zinc-600 dark:text-zinc-400 text-[10px]">Cannot read properties of null (reading &apos;0&apos;)</code> in{" "}
+              <code className="text-zinc-600 dark:text-zinc-400 text-[10px]">getLastPickedObject</code>. Add null guard before accessing index.
             </p>
           </div>
         </div>
@@ -164,10 +177,10 @@ export default function FeaturesPage() {
         badgeColor="bg-red-500/10 text-red-400 border-red-500/20"
       >
         <MonthlyErrorTrendChart data={monthlyErrorData} />
-        <div className="mt-4 pt-4 border-t border-zinc-800 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800 grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="flex flex-col gap-1">
             <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Oct 2025 Spike</span>
-            <p className="text-sm text-zinc-300">
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
               12,387 errors in October — driven by{" "}
               <span className="text-rose-400 font-semibold">KG Explorer&apos;s August launch</span> triggering
               CDN icon resolution failures that accumulated until CDN paths were corrected.
@@ -175,14 +188,14 @@ export default function FeaturesPage() {
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Declining Trend</span>
-            <p className="text-sm text-zinc-300">
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
               Errors fell from <span className="text-red-400 font-semibold">12,387 → 3,149 → 2,976</span> in
               Oct–Dec 2025. Jan 2026 is partial but tracking lower. The CDN fixes are taking hold.
             </p>
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Portal/Other Category</span>
-            <p className="text-sm text-zinc-300">
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
               The large &ldquo;Portal/Other&rdquo; bar represents errors from the HRA portal layer
               before app-attribution is set in the event payload. These overlap with the KG icon failures.
             </p>
@@ -195,7 +208,7 @@ export default function FeaturesPage() {
         title="Where Are Clicks and Hovers Happening?"
         subtitle="Top 15 UI elements per interaction type · color = tool · hover a bar for full path"
         badge="Drilldown"
-        badgeColor="bg-zinc-800 text-zinc-400 border-zinc-700"
+        badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
       >
         <TopPathsByEventChart data={topPathsByEvent as Record<string, { path: string; count: number }[]>} />
       </ChartCard>
@@ -203,7 +216,7 @@ export default function FeaturesPage() {
       {/* RUI Keyboard Navigation */}
       <ChartCard
         title="RUI 3D Navigation — Keyboard Key Usage"
-        subtitle="Heatmap — violet intensity = interaction count · S key not logged (no data)"
+        subtitle="Heatmap of logged RUI directional key events · action labels inferred from keybind semantics"
         badge="RUI"
         badgeColor="bg-violet-500/10 text-violet-400 border-violet-500/20"
       >
@@ -212,18 +225,18 @@ export default function FeaturesPage() {
             <RUIKeyboardChart />
           </div>
           <div className="flex flex-col gap-3 justify-center">
-            <div className="bg-zinc-800/50 rounded-lg p-4 flex flex-col gap-2">
+            <div className="bg-zinc-200/70 dark:bg-zinc-800/50 rounded-lg p-4 flex flex-col gap-2">
               <p className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Key Finding</p>
-              <p className="text-sm text-zinc-300 leading-relaxed">
-                <span className="text-violet-300 font-semibold">A (left) is used 2× more than D (right)</span> — 974 vs 473 interactions.
+              <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                <span className="text-violet-300 font-semibold">A (left) is used {adRatio} more than D (right)</span> — {ruiA.toLocaleString()} vs {ruiD.toLocaleString()} interactions.
                 Users heavily favor left-side navigation when placing tissue blocks in 3D space.
               </p>
             </div>
-            <div className="bg-zinc-800/50 rounded-lg p-4 flex flex-col gap-2">
+            <div className="bg-zinc-200/70 dark:bg-zinc-800/50 rounded-lg p-4 flex flex-col gap-2">
               <p className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Rotation vs Translation</p>
-              <p className="text-sm text-zinc-300 leading-relaxed">
-                Q+E (vertical, 1,276 total) outpace W (forward, 528), suggesting users spend
-                more time adjusting <span className="text-violet-300 font-semibold">depth/elevation</span> than moving forward through the 3D model.
+              <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
+                W+S (up/down, {(ruiW + ruiS).toLocaleString()} total) and Q+E (back/front, {(ruiQ + ruiE).toLocaleString()} total) are both heavily used,
+                showing users spend significant time fine-tuning 3D positioning rather than moving in only one direction.
               </p>
             </div>
           </div>
@@ -242,25 +255,25 @@ export default function FeaturesPage() {
           <p className="mt-3 text-xs text-zinc-500 leading-relaxed">
             <span className="text-amber-400 font-medium">{cdeViz} of {cdeUploads}</span> users who uploaded data submitted a visualization ({cdeCompletionPct}% completion).
           </p>
-          <div className="mt-3 bg-zinc-800/60 border border-dashed border-zinc-700 rounded-lg p-3 flex gap-3 items-start">
+          <div className="mt-3 bg-zinc-200/70 dark:bg-zinc-800/60 border border-dashed border-zinc-300 dark:border-zinc-700 rounded-lg p-3 flex gap-3 items-start">
             <span className="text-amber-400 text-sm mt-0.5">⚠</span>
             <div className="flex flex-col gap-0.5">
-              <span className="text-xs font-semibold text-zinc-300">Data gap — histogram &amp; violin plot downloads</span>
+              <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">Data gap — histogram &amp; violin plot downloads</span>
               <p className="text-xs text-zinc-500 leading-relaxed">
                 The CDE app does not fire any tracking event when a user downloads a chart.
                 No &ldquo;download&rdquo;, &ldquo;histogram&rdquo;, or &ldquo;violin&rdquo; paths appear anywhere in the logs.
-                To answer this question, CDE needs to add a <code className="text-zinc-400">download</code> event to its analytics instrumentation.
+                To answer this question, CDE needs to add a <code className="text-zinc-600 dark:text-zinc-400">download</code> event to its analytics instrumentation.
               </p>
             </div>
           </div>
-          <div className="mt-4 pt-4 border-t border-zinc-800">
+          <div className="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
             <p className="text-xs text-zinc-500 uppercase tracking-wider font-medium mb-3">CDE Tab Usage</p>
             <div className="flex gap-3 flex-wrap">
               {cdeTabsData.map(({ tab, count }) => {
                 const isTop = count >= (cdeTabsData[0]?.count ?? 0) * 0.9;
                 const color = isTop
                   ? "bg-amber-500/20 text-amber-300 border-amber-500/30"
-                  : "bg-zinc-800 text-zinc-400 border-zinc-700";
+                  : "bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700";
                 return (
                   <div key={tab} className={`flex items-center gap-2 px-3 py-1.5 rounded-lg border text-xs font-medium ${color}`}>
                     <span>{tab}</span>
@@ -269,7 +282,7 @@ export default function FeaturesPage() {
                 );
               })}
             </div>
-            <p className="text-xs text-zinc-600 mt-2">
+            <p className="text-xs text-zinc-500 mt-2">
               Upload and Visualization tabs are nearly equal — users who upload almost always proceed to view the result.
               Table, OMAPs, and Illustration tabs are rarely discovered.
             </p>
@@ -302,33 +315,33 @@ export default function FeaturesPage() {
             <OpacityChart data={opacityData} />
           </div>
           <div className="flex flex-col gap-3 justify-center">
-            <div className="bg-zinc-800/50 rounded-lg p-4 flex flex-col gap-2">
+            <div className="bg-zinc-200/70 dark:bg-zinc-800/50 rounded-lg p-4 flex flex-col gap-2">
               <p className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Finding</p>
-              <p className="text-sm text-zinc-300 leading-relaxed">
+              <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
                 The &ldquo;All Anatomical Structures&rdquo; global toggle accounts for 26% of all opacity interactions —
                 users who find the feature tend to use the bulk toggle rather than per-structure controls.
               </p>
             </div>
-            <div className="bg-zinc-800/50 rounded-lg p-4 flex flex-col gap-2">
+            <div className="bg-zinc-200/70 dark:bg-zinc-800/50 rounded-lg p-4 flex flex-col gap-2">
               <p className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Recommendation</p>
-              <p className="text-sm text-zinc-300 leading-relaxed">
+              <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
                 Surface opacity controls more prominently in the RUI UI — perhaps via an onboarding tooltip or
                 a more visible panel toggle to increase discoverability.
               </p>
             </div>
           </div>
         </div>
-        <div className="mt-4 pt-4 border-t border-zinc-800">
+        <div className="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
           <p className="text-xs text-zinc-500 uppercase tracking-wider font-medium mb-3">RUI Sidebar Actions</p>
           <div className="flex gap-3 flex-wrap">
             {sidebarActions.map(({ action, count }) => (
-              <div key={action} className="flex items-center gap-2 px-3 py-1.5 rounded-lg border bg-zinc-800 border-zinc-700 text-xs font-medium text-zinc-400">
+              <div key={action} className="flex items-center gap-2 px-3 py-1.5 rounded-lg border bg-zinc-100 border-zinc-300 dark:bg-zinc-800 dark:border-zinc-700 text-xs font-medium text-zinc-600 dark:text-zinc-400">
                 <span className="capitalize">{action.replace("-", " ")}</span>
                 <span className="opacity-60">{count}</span>
               </div>
             ))}
           </div>
-          <p className="text-xs text-zinc-600 mt-2">
+          <p className="text-xs text-zinc-500 mt-2">
             Users actively toggle the sidebar ({sidebarActions.reduce((s, d) => s + d.count, 0).toLocaleString()} total actions) — yet the opacity panel inside it was opened only {opacityData.find((d) => d.path === "rui.left-sidebar.opacity-settings.toggle")?.count ?? 0} times. The panel exists but isn&apos;t being discovered.
           </p>
         </div>
@@ -346,17 +359,17 @@ export default function FeaturesPage() {
             <OrgContentSelectChart data={orgSelections} />
           </div>
           <div className="flex flex-col gap-3 justify-center">
-            <div className="bg-zinc-800/50 rounded-lg p-4 flex flex-col gap-2">
+            <div className="bg-zinc-200/70 dark:bg-zinc-800/50 rounded-lg p-4 flex flex-col gap-2">
               <p className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Organ Views Dominate</p>
-              <p className="text-sm text-zinc-300 leading-relaxed">
+              <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
                 <span className="text-rose-400 font-semibold">All Organs</span> (313) and{" "}
                 <span className="text-rose-400 font-semibold">3D Organs</span> (202) are the most-selected content —
                 users primarily use KG Explorer as an organ-level browser before drilling into specific structures.
               </p>
             </div>
-            <div className="bg-zinc-800/50 rounded-lg p-4 flex flex-col gap-2">
+            <div className="bg-zinc-200/70 dark:bg-zinc-800/50 rounded-lg p-4 flex flex-col gap-2">
               <p className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Reference Content Underused</p>
-              <p className="text-sm text-zinc-300 leading-relaxed">
+              <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
                 ASCT+B Tables (128) and FTU Illustrations (101) see a fraction of organ view traffic.
                 These deep reference resources may need more prominent entry points from within the organ views.
               </p>

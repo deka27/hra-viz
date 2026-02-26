@@ -1,8 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
+import ThemedEChart from "./ThemedEChart";
 
 interface TrafficType  { type: string; count: number; }
 interface ToolVisit    { tool: string; visits: number; }
@@ -223,7 +221,7 @@ export default function RequestFunnelInfographic({ trafficTypes, totalVisits, to
 
   return (
     <div className="flex flex-col gap-3">
-      <ReactECharts
+      <ThemedEChart
         option={option}
         style={{ height: "720px", width: "100%" }}
         opts={{ renderer: "canvas" }}

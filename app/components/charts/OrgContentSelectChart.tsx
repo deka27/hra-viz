@@ -1,8 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
+import ThemedEChart from "../ThemedEChart";
 
 interface SelectionRow {
   selection: string;
@@ -85,7 +83,7 @@ export default function OrgContentSelectChart({ data }: { data: SelectionRow[] }
   };
 
   return (
-    <ReactECharts
+    <ThemedEChart
       option={option}
       style={{ height: "280px", width: "100%" }}
       opts={{ renderer: "canvas" }}

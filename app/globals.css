@@ -1,12 +1,20 @@
 @import "tailwindcss";
 
+/* Class-based dark mode (next-themes adds/removes .dark on <html>) */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Light mode (default) */
 :root {
+  color-scheme: light;
+  --background: #f4f4f5;
+  --foreground: #09090b;
+}
+
+/* Dark mode */
+.dark {
   color-scheme: dark;
   --background: #09090b;
-  --surface: #18181b;
-  --border: #27272a;
-  --muted: #71717a;
-  --accent: #3b82f6;
+  --foreground: #fafafa;
 }
 
 @theme inline {
@@ -16,7 +24,7 @@
 
 body {
   background: var(--background);
-  color: #fafafa;
+  color: var(--foreground);
   font-family: var(--font-geist-sans), system-ui, -apple-system, sans-serif;
 }
 

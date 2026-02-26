@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { tooltipStyle } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 export interface DonutItem {
   name: string;
@@ -63,7 +62,7 @@ export default function DonutChart({ data, unit = "visits", height = 280 }: Prop
   };
 
   return (
-    <ReactECharts
+    <ThemedEChart
       option={option}
       style={{ height: `${height}px`, width: "100%" }}
       opts={{ renderer: "canvas" }}

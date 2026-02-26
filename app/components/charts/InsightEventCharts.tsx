@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { TOOL_COLORS } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 const TOOLTIP = {
   backgroundColor: "#18181b",
@@ -60,7 +59,7 @@ export function SpikeComparisonChart({ compact }: { compact?: boolean }) {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: compact ? "145px" : "130px", width: "100%" }} opts={{ renderer: "canvas" }} />
+    <ThemedEChart option={option} style={{ height: compact ? "145px" : "130px", width: "100%" }} opts={{ renderer: "canvas" }} />
   );
 }
 
@@ -118,7 +117,7 @@ export function TripleToolSpikeChart() {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: "165px", width: "100%" }} opts={{ renderer: "canvas" }} />
+    <ThemedEChart option={option} style={{ height: "165px", width: "100%" }} opts={{ renderer: "canvas" }} />
   );
 }
 
@@ -192,7 +191,7 @@ export function AprilCoSpikeChart({ compact }: { compact?: boolean }) {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: compact ? "145px" : "175px", width: "100%" }} opts={{ renderer: "canvas" }} />
+    <ThemedEChart option={option} style={{ height: compact ? "145px" : "175px", width: "100%" }} opts={{ renderer: "canvas" }} />
   );
 }
 
@@ -259,7 +258,7 @@ export function SeasonalPatternChart({ compact }: { compact?: boolean }) {
   };
   return (
     <div>
-      <ReactECharts option={option} style={{ height: compact ? "145px" : "160px", width: "100%" }} opts={{ renderer: "canvas" }} />
+      <ThemedEChart option={option} style={{ height: compact ? "145px" : "160px", width: "100%" }} opts={{ renderer: "canvas" }} />
       {!compact && (
         <div className="flex items-center gap-4 mt-1 px-1 text-xs text-zinc-600">
           <span className="flex items-center gap-1"><span className="w-2 h-2 rounded-sm bg-amber-500 inline-block" /> Oct — yearly peak</span>
@@ -333,7 +332,7 @@ export function KGTrajectoryChart({ compact }: { compact?: boolean }) {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: compact ? "145px" : "165px", width: "100%" }} opts={{ renderer: "canvas" }} />
+    <ThemedEChart option={option} style={{ height: compact ? "145px" : "165px", width: "100%" }} opts={{ renderer: "canvas" }} />
   );
 }
 
@@ -403,6 +402,6 @@ export function EUIBaselineLiftChart() {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: "175px", width: "100%" }} opts={{ renderer: "canvas" }} />
+    <ThemedEChart option={option} style={{ height: "175px", width: "100%" }} opts={{ renderer: "canvas" }} />
   );
 }

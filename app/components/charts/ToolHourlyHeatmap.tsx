@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { TOOL_COLORS } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 interface HeatmapRow {
   tool: string;
@@ -11,10 +10,13 @@ interface HeatmapRow {
   events: number;
 }
 
-function toEasternHour(utcHour: number, utcOffset: number): string {
-  const h = (utcHour + utcOffset + 24) % 24;
-  const period = h >= 12 ? "pm" : "am";
-  const display = h === 0 ? 12 : h > 12 ? h - 12 : h;
+function toEasternHourInt(utcHour: number, utcOffset: number): number {
+  return (utcHour + utcOffset + 24) % 24;
+}
+
+function toEasternHourFromLocal(localHour: number): string {
+  const period = localHour >= 12 ? "pm" : "am";
+  const display = localHour === 0 ? 12 : localHour > 12 ? localHour - 12 : localHour;
   return `${display}${period}`;
 }
 
@@ -22,13 +24,15 @@ const TOOL_ORDER = ["EUI", "RUI", "CDE", "FTU Explorer", "KG Explorer"];
 
 export default function ToolHourlyHeatmap({ data }: { data: HeatmapRow[] }) {
   const tools = TOOL_ORDER.filter((t) => data.some((d) => d.tool === t));
-  const hours = Array.from({ length: 24 }, (_, i) => i);
+  const estHours = Array.from({ length: 24 }, (_, i) => i);
 
-  // Build matrix: [x=hour, y=tool_idx, value=events]
-  const map = new Map(data.map((d) => [`${d.tool}|${d.hour_utc}`, d.events]));
+  // Build matrix in EST hour space: [x=hour_est, y=tool_idx, value=events]
+  const map = new Map(
+    data.map((d) => [`${d.tool}|${toEasternHourInt(d.hour_utc, -5)}`, d.events]),
+  );
   const matrixData: [number, number, number][] = [];
   for (let yi = 0; yi < tools.length; yi++) {
-    for (const h of hours) {
+    for (const h of estHours) {
       matrixData.push([h, yi, map.get(`${tools[yi]}|${h}`) ?? 0]);
     }
   }
@@ -48,7 +52,7 @@ export default function ToolHourlyHeatmap({ data }: { data: HeatmapRow[] }) {
         const tool = tools[yi];
         return `<div>
           <div style="font-weight:600;color:#fafafa;margin-bottom:4px">${tool}</div>
-          <div style="color:#a1a1aa">${String(h).padStart(2, "0")}:00 UTC · ${toEasternHour(h, -5)} EST / ${toEasternHour(h, -4)} EDT</div>
+          <div style="color:#a1a1aa">${toEasternHourFromLocal(h)} EST · ${toEasternHourFromLocal((h + 1) % 24)} EDT</div>
           <div style="color:#fafafa;font-weight:600">${v.toLocaleString()} events</div>
         </div>`;
       },
@@ -56,7 +60,7 @@ export default function ToolHourlyHeatmap({ data }: { data: HeatmapRow[] }) {
     grid: { top: 8, left: 8, right: 72, bottom: 48, containLabel: true },
     xAxis: {
       type: "category",
-      data: hours.map((h) => `${String(h).padStart(2, "0")}h`),
+      data: estHours.map((h) => toEasternHourFromLocal(h)),
       axisLine: { show: false },
       axisTick: { show: false },
       axisLabel: { color: "#71717a", fontSize: 9, interval: 1 },
@@ -95,7 +99,7 @@ export default function ToolHourlyHeatmap({ data }: { data: HeatmapRow[] }) {
 
   return (
     <div className="flex flex-col gap-3">
-      <ReactECharts
+      <ThemedEChart
         option={option}
         style={{ height: `${tools.length * 44 + 80}px`, width: "100%" }}
         opts={{ renderer: "canvas" }}
@@ -110,7 +114,7 @@ export default function ToolHourlyHeatmap({ data }: { data: HeatmapRow[] }) {
             <div key={tool} className="flex items-center gap-2 text-xs">
               <span className="font-semibold" style={{ color }}>{tool}</span>
               <span className="text-zinc-500">
-                peaks at {String(peak[0]).padStart(2, "0")}:00 UTC ({toEasternHour(peak[0], -5)} EST / {toEasternHour(peak[0], -4)} EDT)
+                peaks at {toEasternHourFromLocal(peak[0])} EST ({toEasternHourFromLocal((peak[0] + 1) % 24)} EDT)
               </span>
             </div>
           );

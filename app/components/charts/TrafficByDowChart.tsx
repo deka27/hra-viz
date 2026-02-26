@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { TOOL_COLORS } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 const TOOLS = ["EUI", "FTU Explorer", "RUI", "CDE", "KG Explorer"] as const;
 const DAYS_ORDER = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
@@ -123,7 +122,7 @@ export default function TrafficByDowChart({ data }: { data: Row[] }) {
   };
 
   return (
-    <ReactECharts
+    <ThemedEChart
       option={option}
       style={{ height: "300px", width: "100%" }}
       opts={{ renderer: "canvas" }}

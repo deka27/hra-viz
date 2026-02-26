@@ -1,10 +1,10 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import referrersData from "../../../public/data/referrers.json";
 import navClicksData from "../../../public/data/nav_clicks.json";
+import topPathsByEvent from "../../../public/data/top_paths_by_event.json";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 const TOOLTIP = {
   backgroundColor: "#18181b",
@@ -14,16 +14,34 @@ const TOOLTIP = {
   extraCssText: "box-shadow:0 4px 20px rgba(0,0,0,0.5);border-radius:8px;padding:8px 12px;",
 };
 
+const ruiKeyboardRows = ((topPathsByEvent as { keyboard?: { path: string; count: number }[] }).keyboard ?? [])
+  .filter((d) => d.path.startsWith("rui.stage-content.directional-controls.keyboard."));
+const ruiKeyCount = (key: string) =>
+  ruiKeyboardRows
+    .filter((d) => d.path.toLowerCase().endsWith(`.${key.toLowerCase()}`))
+    .reduce((sum, d) => sum + d.count, 0);
+
 // ── INSIGHT 10 ───────────────────────────────────────────────────────────────
-// RUI keyboard asymmetry: A=974, E=645, Q=631, W=528, D=473
 export function KeyboardAsymmetryChart({ compact }: { compact?: boolean }) {
-  const data = [
-    { key: "D (right)", value: 473, color: "#8b5cf6", opacity: 0.45 },
-    { key: "W (forward)", value: 528, color: "#8b5cf6", opacity: 0.55 },
-    { key: "Q (down)", value: 631, color: "#8b5cf6", opacity: 0.65 },
-    { key: "E (up)", value: 645, color: "#8b5cf6", opacity: 0.70 },
-    { key: "A (left)", value: 974, color: "#8b5cf6", opacity: 1.0 },
+  const keyData = [
+    { key: "A (left)", value: ruiKeyCount("a") },
+    { key: "D (right)", value: ruiKeyCount("d") },
+    { key: "W (up)", value: ruiKeyCount("w") },
+    { key: "S (down)", value: ruiKeyCount("s") },
+    { key: "Q (back)", value: ruiKeyCount("q") },
+    { key: "E (front)", value: ruiKeyCount("e") },
   ];
+  const sorted = [...keyData].sort((a, b) => a.value - b.value);
+  const maxVal = Math.max(...sorted.map((d) => d.value), 1);
+  const data = sorted.map((d, i) => ({
+    ...d,
+    color: "#8b5cf6",
+    opacity: 0.45 + (i / Math.max(sorted.length - 1, 1)) * 0.55,
+  }));
+  const aCount = keyData.find((d) => d.key.startsWith("A"))?.value ?? 0;
+  const dCount = keyData.find((d) => d.key.startsWith("D"))?.value ?? 0;
+  const adRatio = dCount > 0 ? `${(aCount / dCount).toFixed(2)}x` : "n/a";
+
   const option = {
     backgroundColor: "transparent",
     grid: { top: 8, left: 4, right: 72, bottom: 8, containLabel: true },
@@ -34,7 +52,7 @@ export function KeyboardAsymmetryChart({ compact }: { compact?: boolean }) {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       formatter: (p: any) => `<span style="color:#a1a1aa">${p[0].name}</span><br/><strong>${p[0].value.toLocaleString()} interactions</strong>`,
     },
-    xAxis: { type: "value", show: false, max: 1100 },
+    xAxis: { type: "value", show: false, max: Math.ceil(maxVal * 1.15) },
     yAxis: {
       type: "category",
       data: data.map((d) => d.key),
@@ -64,8 +82,8 @@ export function KeyboardAsymmetryChart({ compact }: { compact?: boolean }) {
   };
   return (
     <div>
-      <ReactECharts option={option} style={{ height: compact ? "145px" : "140px", width: "100%" }} opts={{ renderer: "canvas" }} />
-      {!compact && <p className="text-xs text-zinc-600 mt-1 px-1">A (left) used <span className="text-violet-400 font-semibold">2.06× more</span> than D (right)</p>}
+      <ThemedEChart option={option} style={{ height: compact ? "145px" : "140px", width: "100%" }} opts={{ renderer: "canvas" }} />
+      {!compact && <p className="text-xs text-zinc-600 mt-1 px-1">A (left) used <span className="text-violet-400 font-semibold">{adRatio}</span> more than D (right)</p>}
     </div>
   );
 }
@@ -106,7 +124,7 @@ export function CDEEntrySplitChart() {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: "140px", width: "100%" }} opts={{ renderer: "canvas" }} />
+    <ThemedEChart option={option} style={{ height: "140px", width: "100%" }} opts={{ renderer: "canvas" }} />
   );
 }
 
@@ -174,7 +192,7 @@ export function ReferrerEcosystemChart({ compact }: { compact?: boolean }) {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: compact ? "145px" : "180px", width: "100%" }} opts={{ renderer: "canvas" }} />
+    <ThemedEChart option={option} style={{ height: compact ? "145px" : "180px", width: "100%" }} opts={{ renderer: "canvas" }} />
   );
 }
 
@@ -230,7 +248,7 @@ export function NavClicksChart({ compact }: { compact?: boolean }) {
   };
   return (
     <div>
-      <ReactECharts option={option} style={{ height: compact ? "145px" : "140px", width: "100%" }} opts={{ renderer: "canvas" }} />
+      <ThemedEChart option={option} style={{ height: compact ? "145px" : "140px", width: "100%" }} opts={{ renderer: "canvas" }} />
       {!compact && (
         <p className="text-xs text-zinc-600 mt-1 px-1">
           <span className="text-sky-400 font-semibold">Data</span> pages outpace{" "}
@@ -298,7 +316,7 @@ export function ErrorRateChart() {
   };
   return (
     <div>
-      <ReactECharts option={option} style={{ height: "160px", width: "100%" }} opts={{ renderer: "canvas" }} />
+      <ThemedEChart option={option} style={{ height: "160px", width: "100%" }} opts={{ renderer: "canvas" }} />
       <p className="text-xs text-zinc-600 mt-1 px-1"><span className="text-red-400 font-semibold">Error</span> is the 2nd-largest event type — 1 error for every 1.57 clicks</p>
     </div>
   );

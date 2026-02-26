@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { tooltipStyle, axisStyle } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 interface GeoItem {
   c_country: string;
@@ -104,7 +103,7 @@ export default function GeoBarChart({ data }: { data: GeoItem[] }) {
   };
 
   return (
-    <ReactECharts
+    <ThemedEChart
       option={option}
       style={{ height: "520px", width: "100%" }}
       opts={{ renderer: "canvas" }}

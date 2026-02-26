@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import sessionData from "../../../public/data/session_depth.json";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 const TOOLTIP = {
   backgroundColor: "#18181b",
@@ -69,7 +68,7 @@ export default function SessionDepthChart({ compact }: { compact?: boolean }) {
 
   return (
     <div>
-      <ReactECharts option={option} style={{ height: compact ? "145px" : "160px", width: "100%" }} opts={{ renderer: "canvas" }} />
+      <ThemedEChart option={option} style={{ height: compact ? "145px" : "160px", width: "100%" }} opts={{ renderer: "canvas" }} />
       {!compact && (
         <div className="flex gap-4 mt-2 px-1 text-xs text-zinc-600">
           <span><span className="text-red-400 font-semibold">Red</span> = single-event bounces</span>

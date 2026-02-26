@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { TOOL_COLORS, axisStyle, tooltipStyle } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 interface UIPath {
   path: string;
@@ -34,20 +33,21 @@ function friendlyName(path: string): string {
     "humanatlas.header.navigation.applications": "Portal · Nav → Apps",
     "rui.stage-content.3d": "RUI · 3D Registration Stage",
     "kg-explorer.main-page.digital-objects.table.table-icon": "KG · Table Row Icon",
-    "rui.stage-content.directional-controls.keyboard.a": "RUI · Keyboard ← (A)",
+    "rui.stage-content.directional-controls.keyboard.a": "RUI · Keyboard Move Left (A)",
     "humanatlas.header.navigation.training": "Portal · Nav → Training",
     "humanatlas.navigation-category-expansion": "Portal · Category Expand",
     "kg-explorer.main-page.digital-objects.table.link-cell": "KG · Table Link",
-    "rui.stage-content.directional-controls.keyboard.e": "RUI · Keyboard ↑ (E)",
-    "rui.stage-content.directional-controls.keyboard.q": "RUI · Keyboard ↓ (Q)",
+    "rui.stage-content.directional-controls.keyboard.e": "RUI · Keyboard Move Front (E)",
+    "rui.stage-content.directional-controls.keyboard.q": "RUI · Keyboard Move Back (Q)",
     "kg-explorer.header.header.navigation.data": "KG · Nav → Data",
     "kg-explorer.header.header.navigation.applications": "KG · Nav → Apps",
     "humanatlas.header.navigation.about": "Portal · Nav → About",
     "humanatlas.data-viewer.data-selectors.organ": "Portal · Organ Selector",
     "humanatlas.table.link-cell": "Portal · Table Link",
     "eui.right-panel.statistics": "EUI · Statistics Panel",
-    "rui.stage-content.directional-controls.keyboard.w": "RUI · Keyboard → (W)",
-    "rui.stage-content.directional-controls.keyboard.d": "RUI · Keyboard → (D)",
+    "rui.stage-content.directional-controls.keyboard.w": "RUI · Keyboard Move Up (W)",
+    "rui.stage-content.directional-controls.keyboard.s": "RUI · Keyboard Move Down (S)",
+    "rui.stage-content.directional-controls.keyboard.d": "RUI · Keyboard Move Right (D)",
   };
   return map[path] ?? path;
 }
@@ -112,7 +112,7 @@ export default function TopUIPathsChart({ data }: { data: UIPath[] }) {
   };
 
   return (
-    <ReactECharts
+    <ThemedEChart
       option={option}
       style={{ height: "480px", width: "100%" }}
       opts={{ renderer: "canvas" }}

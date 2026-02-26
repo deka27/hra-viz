@@ -1,11 +1,10 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { TOOL_COLORS } from "../../lib/chartTheme";
 import transitionData from "../../../public/data/transition_matrix.json";
 import totalToolVisits from "../../../public/data/total_tool_visits.json";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 const totalVisitsByTool = Object.fromEntries(totalToolVisits.map((d) => [d.tool, d.visits] as const));
 const allTools = Array.from(
@@ -116,7 +115,7 @@ export default function ToolTransitionFlowChart() {
 
   return (
     <div className="flex flex-col gap-3">
-      <ReactECharts
+      <ThemedEChart
         option={option}
         style={{ height: "420px", width: "100%" }}
         opts={{ renderer: "canvas" }}

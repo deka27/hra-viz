@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { axisStyle, tooltipStyle } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 export interface GeoAnomalyRow {
   c_country: string;
@@ -92,5 +91,5 @@ export default function MLGeoAnomalyChart({ data }: { data: GeoAnomalyRow[] }) {
     ],
   };
 
-  return <ReactECharts option={option} style={{ height: "360px", width: "100%" }} opts={{ renderer: "canvas" }} />;
+  return <ThemedEChart option={option} style={{ height: "360px", width: "100%" }} opts={{ renderer: "canvas" }} />;
 }

@@ -1,10 +1,9 @@
 "use client";
 
+import ThemedEChart from "../ThemedEChart";
 import { useEffect, useState } from "react";
-import dynamic from "next/dynamic";
 import * as echarts from "echarts";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 // ISO alpha-2 → echarts world GeoJSON name
 const CODE_TO_NAME: Record<string, string> = {
@@ -138,12 +137,12 @@ export default function WorldMapChart({ data, toolPref, botData }: Props) {
       layoutCenter: ["50%", "54%"],
       layoutSize:   "100%",
       itemStyle: {
-        areaColor:   "#080f0a",
-        borderColor: "#162616",
+        areaColor:   "#111215",
+        borderColor: "#2f2f36",
         borderWidth:  0.4,
       },
       emphasis: {
-        itemStyle: { areaColor: "#14532d" },
+        itemStyle: { areaColor: "#3f3f46" },
         label:     { show: false },
       },
     },
@@ -153,7 +152,7 @@ export default function WorldMapChart({ data, toolPref, botData }: Props) {
       max:        2500,          // cap so mid-tier countries get visible colour
       show:       false,
       seriesIndex: 0,
-      inRange:    { color: ["#0a1a0f", "#14532d", "#16a34a", "#4ade80"] },
+      inRange:    { color: ["#1f1f23", "#3f3f46", "#71717a", "#a1a1aa", "#e4e4e7"] },
     },
     tooltip: {
       trigger:        "item",
@@ -171,13 +170,13 @@ export default function WorldMapChart({ data, toolPref, botData }: Props) {
         geoIndex:  0,
         data:      choroData,
         itemStyle: {
-          areaColor:   "#080f0a",
-          borderColor: "#162616",
+          areaColor:   "#111215",
+          borderColor: "#2f2f36",
           borderWidth:  0.4,
         },
         emphasis: {
           label:     { show: true, color: "#fafafa", fontSize: 11, fontWeight: 600 },
-          itemStyle: { areaColor: "#166534", borderColor: "#4ade80", borderWidth: 1 },
+          itemStyle: { areaColor: "#52525b", borderColor: "#d4d4d8", borderWidth: 1 },
         },
         select: { disabled: true },
       },
@@ -211,7 +210,7 @@ export default function WorldMapChart({ data, toolPref, botData }: Props) {
 
   return (
     <div className="flex flex-col gap-3">
-      <ReactECharts
+      <ThemedEChart
         option={option}
         style={{ height: "500px", width: "100%" }}
         opts={{ renderer: "canvas" }}
@@ -231,7 +230,7 @@ export default function WorldMapChart({ data, toolPref, botData }: Props) {
           ))}
         </div>
         <span className="text-xs text-zinc-600">
-          Bubble size = visits · Color = dominant tool · Hover for details
+          Country fill intensity = visits · Dot color = dominant tool · Hover for details
         </span>
       </div>
     </div>

@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { tooltipStyle, axisStyle } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 interface PathItem {
   path: string;
@@ -145,7 +144,7 @@ export default function SpatialSearchChart({ data }: { data: PathItem[] }) {
     <div className="flex flex-col gap-6">
       <div>
         <p className="text-xs text-zinc-500 mb-3 font-medium uppercase tracking-wider">Search Workflow Steps</p>
-        <ReactECharts
+        <ThemedEChart
           option={funnelOption}
           style={{ height: "260px", width: "100%" }}
           opts={{ renderer: "canvas" }}
@@ -153,7 +152,7 @@ export default function SpatialSearchChart({ data }: { data: PathItem[] }) {
       </div>
       <div>
         <p className="text-xs text-zinc-500 mb-3 font-medium uppercase tracking-wider">Organs Searched</p>
-        <ReactECharts
+        <ThemedEChart
           option={organOption}
           style={{ height: "240px", width: "100%" }}
           opts={{ renderer: "canvas" }}

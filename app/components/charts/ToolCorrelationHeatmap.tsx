@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { TOOL_COLORS } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 const TOOLS = ["EUI", "FTU Explorer", "RUI", "CDE", "KG Explorer"];
 
@@ -122,7 +121,7 @@ export default function ToolCorrelationHeatmap() {
 
   return (
     <div className="flex flex-col gap-4">
-      <ReactECharts
+      <ThemedEChart
         option={option}
         style={{ height: "320px", width: "100%" }}
         opts={{ renderer: "canvas" }}

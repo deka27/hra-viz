@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { axisStyle, tooltipStyle } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 export interface SpikeRow {
   tool: string;
@@ -104,5 +103,5 @@ export default function MLSpikeEventsChart({ data }: { data: SpikeRow[] }) {
     ],
   };
 
-  return <ReactECharts option={option} style={{ height: "360px", width: "100%" }} opts={{ renderer: "canvas" }} />;
+  return <ThemedEChart option={option} style={{ height: "360px", width: "100%" }} opts={{ renderer: "canvas" }} />;
 }

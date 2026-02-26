@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { TOOL_COLORS } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 // Pearson correlations over full dataset period (Jan 2024 – Jan 2026)
 // KG Explorer launched Aug 2025, so its full-period correlations are dampened by 21 months of zeros
@@ -121,7 +120,7 @@ export default function ToolCorrelationGraph() {
 
   return (
     <div className="flex flex-col gap-3">
-      <ReactECharts
+      <ThemedEChart
         option={option}
         style={{ height: "420px", width: "100%" }}
         opts={{ renderer: "canvas" }}

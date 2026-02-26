@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { TOOL_COLORS, axisStyle, tooltipStyle } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 export interface ForecastRow {
   month: string;
@@ -98,5 +97,5 @@ export default function MLForecastChart({ data }: { data: ForecastRow[] }) {
     series,
   };
 
-  return <ReactECharts option={option} style={{ height: "360px", width: "100%" }} opts={{ renderer: "canvas" }} />;
+  return <ThemedEChart option={option} style={{ height: "360px", width: "100%" }} opts={{ renderer: "canvas" }} />;
 }

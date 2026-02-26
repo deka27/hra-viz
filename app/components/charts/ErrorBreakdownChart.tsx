@@ -1,11 +1,10 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { TOOL_COLORS } from "../../lib/chartTheme";
 import errorBreakdown from "../../../public/data/error_breakdown.json";
 import errorClusters from "../../../public/data/error_clusters.json";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 const TOOLTIP = {
   backgroundColor: "#18181b",
@@ -85,7 +84,7 @@ export function ErrorSourceChart() {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: "170px", width: "100%" }} opts={{ renderer: "canvas" }} />
+    <ThemedEChart option={option} style={{ height: "170px", width: "100%" }} opts={{ renderer: "canvas" }} />
   );
 }
 
@@ -134,6 +133,6 @@ export function ErrorCauseChart() {
     ],
   };
   return (
-    <ReactECharts option={option} style={{ height: "170px", width: "100%" }} opts={{ renderer: "canvas" }} />
+    <ThemedEChart option={option} style={{ height: "170px", width: "100%" }} opts={{ renderer: "canvas" }} />
   );
 }

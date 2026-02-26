@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { TOOL_COLORS, TOOLS, axisStyle, tooltipStyle } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 interface YearData {
   year: number;
@@ -80,7 +79,7 @@ export default function YearlyGroupedBar({ data }: { data: YearData[] }) {
   };
 
   return (
-    <ReactECharts
+    <ThemedEChart
       option={option}
       style={{ height: "320px", width: "100%" }}
       opts={{ renderer: "canvas" }}

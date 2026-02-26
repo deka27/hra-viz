@@ -1,8 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
+import ThemedEChart from "../ThemedEChart";
 
 interface RetentionRow {
   cohort_month: string;
@@ -158,7 +156,7 @@ export default function CohortRetentionChart({ data }: { data: RetentionRow[] })
 
   return (
     <>
-      <ReactECharts
+      <ThemedEChart
         option={option}
         style={{ height: "280px", width: "100%" }}
         opts={{ renderer: "canvas" }}

@@ -177,27 +177,27 @@ export default function MLPage() {
     <div className="flex flex-col gap-8">
       <div className="flex flex-col gap-1">
         <div className="text-xs font-medium text-zinc-500 uppercase tracking-wider">Machine Learning View</div>
-        <h1 className="text-2xl font-bold text-zinc-50 tracking-tight">What the Models Suggest (Plain Language)</h1>
-        <p className="text-zinc-400 text-sm max-w-3xl">
+        <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">What the Models Suggest (Plain Language)</h1>
+        <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-3xl">
           This page translates model output into practical answers: expected traffic, unusual surges, who returns,
           where people go next, recurring error themes, and countries with unusual traffic patterns.
         </p>
       </div>
 
-      <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-5">
-        <h2 className="text-sm font-semibold text-zinc-200 mb-3">How To Read This Page</h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs text-zinc-400">
+      <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-5">
+        <h2 className="text-sm font-semibold text-zinc-800 dark:text-zinc-200 mb-3">How To Read This Page</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 text-xs text-zinc-600 dark:text-zinc-400">
           <div>
-            <span className="text-zinc-300 font-medium">Forecasts:</span> directional estimates, not exact counts.
+            <span className="text-zinc-700 dark:text-zinc-300 font-medium">Forecasts:</span> directional estimates, not exact counts.
           </div>
           <div>
-            <span className="text-zinc-300 font-medium">Behavior charts:</span> percentages are easier to trust than raw scores.
+            <span className="text-zinc-700 dark:text-zinc-300 font-medium">Behavior charts:</span> percentages are easier to trust than raw scores.
           </div>
           <div>
-            <span className="text-zinc-300 font-medium">Anomalies:</span> these are review candidates, not confirmed issues.
+            <span className="text-zinc-700 dark:text-zinc-300 font-medium">Anomalies:</span> these are review candidates, not confirmed issues.
           </div>
           <div>
-            <span className="text-zinc-300 font-medium">Recommendations:</span> treat as hints for UI prompts and cross-links.
+            <span className="text-zinc-700 dark:text-zinc-300 font-medium">Recommendations:</span> treat as hints for UI prompts and cross-links.
           </div>
         </div>
       </div>
@@ -243,9 +243,9 @@ export default function MLPage() {
       >
         <MLForecastChart data={forecast} />
         {peak && (
-          <div className="mt-3 pt-3 border-t border-zinc-800 text-xs text-zinc-500">
+          <div className="mt-3 pt-3 border-t border-zinc-200 dark:border-zinc-800 text-xs text-zinc-500">
             Biggest projected month in this run:{" "}
-            <span className="text-zinc-300 font-medium">
+            <span className="text-zinc-700 dark:text-zinc-300 font-medium">
               {peak.tool} at {peak.predicted.toLocaleString()} visits in {monthLabel(peak.month)}
             </span>{" "}
             (likely range {peak.lower.toLocaleString()} - {peak.upper.toLocaleString()}).
@@ -264,7 +264,7 @@ export default function MLPage() {
           {topSpike && (
             <p className="mt-3 text-xs text-zinc-500">
               Largest jump in this run:{" "}
-              <span className="text-zinc-300 font-medium">
+              <span className="text-zinc-700 dark:text-zinc-300 font-medium">
                 {topSpike.tool} in {monthLabel(topSpike.month)}
               </span>.
             </p>
@@ -280,9 +280,9 @@ export default function MLPage() {
           <MLChurnBucketsChart data={(churn.probability_buckets ?? []) as ChurnBucket[]} />
           <div className="mt-3 text-xs text-zinc-500">
             Strongest return signal:{" "}
-            <span className="text-zinc-300 font-medium">{friendlyFeatureName(churn.top_positive_features?.[0]?.feature)}</span> ·
+            <span className="text-zinc-700 dark:text-zinc-300 font-medium">{friendlyFeatureName(churn.top_positive_features?.[0]?.feature)}</span> ·
             strongest drop-off signal:{" "}
-            <span className="text-zinc-300 font-medium">{friendlyFeatureName(churn.top_negative_features?.[0]?.feature)}</span>.
+            <span className="text-zinc-700 dark:text-zinc-300 font-medium">{friendlyFeatureName(churn.top_negative_features?.[0]?.feature)}</span>.
           </div>
         </ChartCard>
       </div>
@@ -294,17 +294,17 @@ export default function MLPage() {
         badgeColor="bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
       >
         <CohortRetentionChart data={cohortRetention} />
-        <div className="mt-4 pt-4 border-t border-zinc-800 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-zinc-500">
+        <div className="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800 grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs text-zinc-500">
           <div>
-            <span className="text-zinc-300 font-medium">Reading the chart:</span> Row = cohort month, Column = months after first visit.
+            <span className="text-zinc-700 dark:text-zinc-300 font-medium">Reading the chart:</span> Row = cohort month, Column = months after first visit.
             Darker blue = more users returned. Tracked via persistent cookie (anon_id).
           </div>
           <div>
-            <span className="text-zinc-300 font-medium">Month 0 = 100%</span> by definition — these are the users that define the cohort.
+            <span className="text-zinc-700 dark:text-zinc-300 font-medium">Month 0 = 100%</span> by definition — these are the users that define the cohort.
             Watch for how quickly each row fades.
           </div>
           <div>
-            <span className="text-zinc-300 font-medium">Cookie tracking</span> started Oct 2025, so only recent cohorts appear.
+            <span className="text-zinc-700 dark:text-zinc-300 font-medium">Cookie tracking</span> started Oct 2025, so only recent cohorts appear.
             Older visits lack persistent IDs for user-level retention measurement.
           </div>
         </div>
@@ -322,7 +322,7 @@ export default function MLPage() {
           {dominantSegment && (
             <p className="mt-2 text-xs text-zinc-500">
               Largest group:{" "}
-              <span className="text-zinc-300 font-medium">
+              <span className="text-zinc-700 dark:text-zinc-300 font-medium">
                 {dominantSegment.name} ({dominantSegment.pct.toFixed(1)}%)
               </span>.
             </p>
@@ -340,7 +340,7 @@ export default function MLPage() {
           {topTransition && (
             <p className="mt-2 text-xs text-zinc-500">
               Most common next-step path:{" "}
-              <span className="text-zinc-300 font-medium">
+              <span className="text-zinc-700 dark:text-zinc-300 font-medium">
                 {topTransition.from_tool} → {topTransition.to_tool}
               </span>{" "}
               ({(topTransition.probability * 100).toFixed(1)}%, {topTransition.count} transitions).
@@ -360,7 +360,7 @@ export default function MLPage() {
           {topRule && (
             <p className="mt-3 text-xs text-zinc-500">
               Strongest pairing right now:{" "}
-              <span className="text-zinc-300 font-medium">
+              <span className="text-zinc-700 dark:text-zinc-300 font-medium">
                 {friendlyRuleText(topRule)}
               </span>{" "}
               (confidence {(topRule.confidence * 100).toFixed(1)}%).
@@ -378,7 +378,7 @@ export default function MLPage() {
           {topError && (
             <p className="mt-3 text-xs text-zinc-500">
               Largest cluster contributes{" "}
-              <span className="text-zinc-300 font-medium">{topError.pct.toFixed(1)}%</span> of error rows.
+              <span className="text-zinc-700 dark:text-zinc-300 font-medium">{topError.pct.toFixed(1)}%</span> of error rows.
             </p>
           )}
         </ChartCard>
@@ -396,7 +396,7 @@ export default function MLPage() {
           {topGeo && (
             <p className="mt-2 text-xs text-zinc-500">
               Highest-priority review country in this run:{" "}
-              <span className="text-zinc-300 font-medium">
+              <span className="text-zinc-700 dark:text-zinc-300 font-medium">
                 {COUNTRY_NAMES[topGeo.c_country] ?? topGeo.c_country}
               </span>.
             </p>
@@ -408,28 +408,28 @@ export default function MLPage() {
           subtitle="Do users move between tools in the same session?"
           className="lg:col-span-2"
           badge="Tool Loyalty"
-          badgeColor="bg-zinc-800 text-zinc-400 border-zinc-700"
+          badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
         >
           <div className="flex flex-col gap-3 py-2">
-            <p className="text-sm text-zinc-300 leading-relaxed">
-              Users strongly prefer <span className="text-zinc-100 font-medium">staying in one tool</span> per session.
+            <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
+              Users strongly prefer <span className="text-zinc-900 dark:text-zinc-100 font-medium">staying in one tool</span> per session.
               All cross-tool pairings have lift &lt; 1 — meaning switching tools is{" "}
-              <span className="text-zinc-100 font-medium">less likely than random chance</span>.
+              <span className="text-zinc-900 dark:text-zinc-100 font-medium">less likely than random chance</span>.
             </p>
             <div className="grid grid-cols-1 gap-2 mt-1">
               {[...recs]
                 .sort((a, b) => b.co_sessions - a.co_sessions)
                 .slice(0, 4)
                 .map((r) => (
-                  <div key={`${r.source_tool}-${r.recommended_tool}`} className="flex items-center justify-between bg-zinc-800/40 rounded-lg px-3 py-2">
-                    <span className="text-xs text-zinc-400">
+                  <div key={`${r.source_tool}-${r.recommended_tool}`} className="flex items-center justify-between bg-zinc-100 dark:bg-zinc-800/40 rounded-lg px-3 py-2">
+                    <span className="text-xs text-zinc-600 dark:text-zinc-400">
                       {r.source_tool} → {r.recommended_tool}
                     </span>
                     <span className="text-xs text-zinc-500">{r.co_sessions} shared sessions</span>
                   </div>
                 ))}
             </div>
-            <p className="text-xs text-zinc-600">
+            <p className="text-xs text-zinc-500">
               Most cross-tool sessions involve KG Explorer + CDE ({recs.find(r => r.source_tool === "CDE" && r.recommended_tool === "KG Explorer")?.co_sessions ?? 0} sessions). Consider surface-level cross-links rather than active suggestions.
             </p>
           </div>
@@ -437,34 +437,34 @@ export default function MLPage() {
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
-          <div className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">Confidence Note</div>
-          <p className="text-sm text-zinc-400">
-            Return model score is <span className="text-zinc-200 font-medium">{modelScore}/100</span>, which is useful for
+        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+          <div className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Confidence Note</div>
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
+            Return model score is <span className="text-zinc-800 dark:text-zinc-200 font-medium">{modelScore}/100</span>, which is useful for
             ranking risk but not perfect for exact individual prediction.
           </p>
         </div>
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
-          <div className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">Bot Signal Driver</div>
-          <p className="text-sm text-zinc-400">
+        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+          <div className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Bot Signal Driver</div>
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
             Most influential bot feature is{" "}
-            <span className="text-zinc-200 font-medium">{friendlyFeatureName(topBotFeature?.feature)}</span> in this run.
+            <span className="text-zinc-800 dark:text-zinc-200 font-medium">{friendlyFeatureName(topBotFeature?.feature)}</span> in this run.
           </p>
         </div>
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
-          <div className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">Journey Coverage</div>
-          <p className="text-sm text-zinc-400">
-            <span className="text-zinc-200 font-medium">
+        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+          <div className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Journey Coverage</div>
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
+            <span className="text-zinc-800 dark:text-zinc-200 font-medium">
               {asNum((transitionMatrix as { sessions_with_sequences?: number }).sessions_with_sequences).toLocaleString()}
             </span>{" "}
             sessions contained multi-step tool journeys we could model.
           </p>
         </div>
-        <div className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
-          <div className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">Data Coverage</div>
-          <p className="text-sm text-zinc-400">
-            Last ML run processed <span className="text-zinc-200 font-medium">{metadataRows.monthly_points}</span> monthly
-            tool points and <span className="text-zinc-200 font-medium">{metadataRows.transactions.toLocaleString()}</span> session-level transactions.
+        <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+          <div className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">Data Coverage</div>
+          <p className="text-sm text-zinc-600 dark:text-zinc-400">
+            Last ML run processed <span className="text-zinc-800 dark:text-zinc-200 font-medium">{metadataRows.monthly_points}</span> monthly
+            tool points and <span className="text-zinc-800 dark:text-zinc-200 font-medium">{metadataRows.transactions.toLocaleString()}</span> session-level transactions.
           </p>
         </div>
       </div>

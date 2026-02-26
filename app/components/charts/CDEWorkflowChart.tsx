@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { tooltipStyle, axisStyle } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 interface WorkflowItem {
   path: string;
@@ -82,7 +81,7 @@ export default function CDEWorkflowChart({ data }: { data: WorkflowItem[] }) {
   };
 
   return (
-    <ReactECharts
+    <ThemedEChart
       option={option}
       style={{ height: "380px", width: "100%" }}
       opts={{ renderer: "canvas" }}

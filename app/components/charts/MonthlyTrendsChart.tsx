@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { TOOL_COLORS, TOOLS, axisStyle, tooltipStyle, formatMonth, multiTooltip } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 interface MonthData {
   month_year: string;
@@ -149,7 +148,7 @@ export default function MonthlyTrendsChart({ data }: { data: MonthData[] }) {
   };
 
   return (
-    <ReactECharts
+    <ThemedEChart
       option={option}
       style={{ height: "420px", width: "100%" }}
       opts={{ renderer: "canvas" }}

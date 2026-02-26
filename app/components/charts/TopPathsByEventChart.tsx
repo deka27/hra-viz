@@ -1,9 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import dynamic from "next/dynamic";
-
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
+import ThemedEChart from "../ThemedEChart";
 
 interface PathRow {
   path: string;
@@ -171,7 +169,7 @@ export default function TopPathsByEventChart({ data }: Props) {
       </div>
 
       {/* Chart */}
-      <ReactECharts
+      <ThemedEChart
         key={active}
         option={option}
         style={{ height: "420px", width: "100%" }}

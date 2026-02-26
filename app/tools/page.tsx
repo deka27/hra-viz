@@ -5,7 +5,6 @@ import DonutChart from "../components/charts/DonutChart";
 import StatCard from "../components/StatCard";
 import ToolHourlyHeatmap from "../components/charts/ToolHourlyHeatmap";
 import TrafficByDowChart from "../components/charts/TrafficByDowChart";
-import { TOOL_COLORS } from "../lib/chartTheme";
 
 import monthlyData from "../../public/data/tool_visits_by_month.json";
 import yearlyData from "../../public/data/tool_visits_by_year.json";
@@ -19,6 +18,14 @@ const TOOL_CARD_COLORS: Record<string, string> = {
   "RUI": "text-violet-400",
   "CDE": "text-amber-400",
   "FTU Explorer": "text-emerald-400",
+};
+
+const TOOL_PIE_COLORS: Record<string, string> = {
+  "KG Explorer": "#f43f5e",
+  "EUI": "#3b82f6",
+  "RUI": "#8b5cf6",
+  "CDE": "#f59e0b",
+  "FTU Explorer": "#10b981",
 };
 
 function fmtMonth(ym: string): string {
@@ -37,8 +44,8 @@ export default function ToolsPage() {
       {/* Header */}
       <div className="flex flex-col gap-1">
         <div className="text-xs font-medium text-zinc-500 uppercase tracking-wider">Tool Usage</div>
-        <h1 className="text-2xl font-bold text-zinc-50 tracking-tight">Visit Trends by Tool</h1>
-        <p className="text-zinc-400 text-sm max-w-2xl">
+        <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">Visit Trends by Tool</h1>
+        <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-2xl">
           Monthly and yearly breakdown of HRA tool page visits. KG Explorer launched in Aug 2025 and immediately became the most-visited tool.
         </p>
       </div>
@@ -50,7 +57,7 @@ export default function ToolsPage() {
             key={t.tool}
             label={t.tool}
             value={t.visits.toLocaleString()}
-            accent={TOOL_CARD_COLORS[t.tool] ?? "text-zinc-50"}
+            accent={TOOL_CARD_COLORS[t.tool] ?? "text-zinc-900 dark:text-zinc-50"}
           />
         ))}
       </div>
@@ -60,7 +67,7 @@ export default function ToolsPage() {
         title="Monthly Visits per Tool"
         subtitle={`${dateRange} · Use the slider or scroll to zoom`}
         badge={`${numMonths} months`}
-        badgeColor="bg-zinc-800 text-zinc-400 border-zinc-700"
+        badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
       >
         <MonthlyTrendsChart data={monthlyData} />
       </ChartCard>
@@ -84,7 +91,7 @@ export default function ToolsPage() {
             data={totalData.map((d) => ({
               name: d.tool,
               value: d.visits,
-              color: TOOL_COLORS[d.tool] ?? "#3b82f6",
+              color: TOOL_PIE_COLORS[d.tool] ?? "#3b82f6",
             }))}
             unit="visits"
           />
@@ -93,10 +100,10 @@ export default function ToolsPage() {
 
       {/* Per-tool hourly heatmap */}
       <ChartCard
-        title="When Each Tool Gets Used — By Hour (UTC)"
-        subtitle="Event count per hour of day · KG Explorer peaks mid-afternoon UTC (US morning); EUI follows a similar pattern"
+        title="When Each Tool Gets Used — By Hour (EST)"
+        subtitle="Event count per hour of day (EST) · KG Explorer peaks late morning EST; EUI follows a similar pattern"
         badge="Hourly · All Tools"
-        badgeColor="bg-zinc-800 text-zinc-400 border-zinc-700"
+        badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
       >
         <ToolHourlyHeatmap data={hourlyHeatmapData} />
       </ChartCard>
@@ -106,13 +113,13 @@ export default function ToolsPage() {
         title="Visits by Day of Week"
         subtitle="Stacked by tool · EUI Sunday spike driven by March 2024 workshop event skewing the aggregate"
         badge="Day of Week"
-        badgeColor="bg-zinc-800 text-zinc-400 border-zinc-700"
+        badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
       >
         <TrafficByDowChart data={dowData} />
-        <div className="mt-4 pt-4 border-t border-zinc-800 grid grid-cols-1 sm:grid-cols-3 gap-4">
+        <div className="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800 grid grid-cols-1 sm:grid-cols-3 gap-4">
           <div className="flex flex-col gap-1">
             <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Weekend Drop-off</span>
-            <p className="text-sm text-zinc-300">
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
               All tools see sharply lower weekend traffic — CDE, RUI, and FTU drop 60–80%.
               The pattern is most consistent with <span className="text-blue-400 font-semibold">weekday professional or academic workflows</span>,
               with lighter casual usage on weekends.
@@ -120,7 +127,7 @@ export default function ToolsPage() {
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">EUI Sunday Anomaly</span>
-            <p className="text-sm text-zinc-300">
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
               EUI shows unusually high Sunday visits — an artifact of the{" "}
               <span className="text-blue-400 font-semibold">March 2024 workshop</span> (7,140 visits)
               whose dates happened to fall on a Sunday, skewing the DOW aggregate.
@@ -128,7 +135,7 @@ export default function ToolsPage() {
           </div>
           <div className="flex flex-col gap-1">
             <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">KG Explorer: Flat Across Week</span>
-              <p className="text-sm text-zinc-300">
+              <p className="text-sm text-zinc-700 dark:text-zinc-300">
                 KG Explorer has the most even distribution across days — reflecting its{" "}
                 <span className="text-rose-400 font-semibold">international user base</span> across multiple time zones
                 rather than a single institution&apos;s working hours.
@@ -161,12 +168,12 @@ export default function ToolsPage() {
             text: "RUI visits have gradually increased in 2025, possibly reflecting growing adoption in tissue registration workflows.",
           },
         ].map((c) => (
-          <div key={c.label} className="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
+          <div key={c.label} className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
             <div className="flex items-center gap-2">
               <div className={`w-1.5 h-1.5 rounded-full ${c.color}`} />
-              <span className="text-xs font-semibold text-zinc-300 uppercase tracking-wider">{c.label}</span>
+              <span className="text-xs font-semibold text-zinc-700 dark:text-zinc-300 uppercase tracking-wider">{c.label}</span>
             </div>
-            <p className="text-sm text-zinc-400 leading-relaxed">{c.text}</p>
+            <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">{c.text}</p>
           </div>
         ))}
       </div>

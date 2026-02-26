@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { tooltipStyle, axisStyle } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 interface PathItem {
   path: string;
@@ -93,7 +92,7 @@ export default function OpacityChart({ data }: { data: PathItem[] }) {
   };
 
   return (
-    <ReactECharts
+    <ThemedEChart
       option={option}
       style={{ height: "360px", width: "100%" }}
       opts={{ renderer: "canvas" }}

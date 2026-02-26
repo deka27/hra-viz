@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { TOOL_COLORS } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 const COUNTRY_NAMES: Record<string, string> = {
   US: "United States", HK: "Hong Kong", SG: "Singapore", JP: "Japan",
@@ -127,7 +126,7 @@ export default function GeoToolPreferenceChart({ data }: { data: Row[] }) {
   };
 
   return (
-    <ReactECharts
+    <ThemedEChart
       option={option}
       style={{ height: "600px", width: "100%" }}
       opts={{ renderer: "canvas" }}

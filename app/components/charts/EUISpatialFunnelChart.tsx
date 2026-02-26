@@ -1,8 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
+import ThemedEChart from "../ThemedEChart";
 
 // From spatial_search.json — starting from users who opened the panel
 // 13,366 total EUI visits but only 101 opened the spatial search button
@@ -81,7 +79,7 @@ export default function EUISpatialFunnelChart() {
   };
 
   return (
-    <ReactECharts
+    <ThemedEChart
       option={option}
       style={{ height: "340px", width: "100%" }}
       opts={{ renderer: "canvas" }}

@@ -1,8 +1,6 @@
 "use client";
 
-import dynamic from "next/dynamic";
-
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
+import ThemedEChart from "../ThemedEChart";
 
 const COUNTRY_NAMES: Record<string, string> = {
   US: "US", SG: "SG", FR: "FR", DE: "DE", RU: "RU",
@@ -141,7 +139,7 @@ export default function GeoBotChart({ data }: { data: Row[] }) {
   };
 
   return (
-    <ReactECharts
+    <ThemedEChart
       option={option}
       style={{ height: "340px", width: "100%" }}
       opts={{ renderer: "canvas" }}

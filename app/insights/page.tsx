@@ -10,6 +10,7 @@ import sessionDepth from "../../public/data/session_depth.json";
 import navClicks from "../../public/data/nav_clicks.json";
 import monthlyData from "../../public/data/tool_visits_by_month.json";
 import errorBreakdown from "../../public/data/error_breakdown.json";
+import topPathsByEvent from "../../public/data/top_paths_by_event.json";
 
 import {
   SpikeComparisonChart,
@@ -63,6 +64,22 @@ const spatialSceneN = (spatialSearch as { path: string; count: number }[]).find(
 const spatialContN = (spatialSearch as { path: string; count: number }[]).find(d => d.path.includes("continue"))?.count ?? 0;
 const spatialRatioN = spatialBtnN > 0 ? (spatialSceneN / spatialBtnN).toFixed(1) : "?";
 const spatialContRate = spatialBtnN > 0 ? Math.round((spatialContN / spatialBtnN) * 100) : 0;
+
+// ID 10: RUI keyboard navigation
+const ruiKeyboardRows = ((topPathsByEvent as { keyboard?: { path: string; count: number }[] }).keyboard ?? [])
+  .filter((d) => d.path.startsWith("rui.stage-content.directional-controls.keyboard."));
+const ruiKeyCount = (key: string) =>
+  ruiKeyboardRows
+    .filter((d) => d.path.toLowerCase().endsWith(`.${key.toLowerCase()}`))
+    .reduce((sum, d) => sum + d.count, 0);
+const ruiA = ruiKeyCount("a");
+const ruiD = ruiKeyCount("d");
+const ruiW = ruiKeyCount("w");
+const ruiS = ruiKeyCount("s");
+const ruiQ = ruiKeyCount("q");
+const ruiE = ruiKeyCount("e");
+const ruiKeyTotal = ruiA + ruiD + ruiW + ruiS + ruiQ + ruiE;
+const ruiKeyPct = (n: number) => (ruiKeyTotal > 0 ? `${((n / ruiKeyTotal) * 100).toFixed(1)}%` : "0.0%");
 
 // IDs 15 & 16: Geography
 const APAC = new Set(["CN","HK","SG","JP","KR","TW","AU","IN","NZ","TH","MY","PH","ID","VN","MM","KH","MN","LK","NP","BD","PK"]);
@@ -289,14 +306,14 @@ const insights = [
     color: "border-l-violet-400",
     dot: "bg-violet-400",
     tag: "Navigation Pattern",
-    title: "RUI users strafe left 2× more than right",
-    metric: "A key: 974 uses · D key: 473 uses",
+    title: "RUI users move left more than right",
+    metric: `A key: ${ruiA.toLocaleString()} uses · D key: ${ruiD.toLocaleString()} uses`,
     implication:
-      "Users may find it easier to approach placement by rotating vertically and sidestepping left. Consider a visible movement guide or smart-snap features to reduce navigation friction.",
+      "Lateral movement is asymmetric (left over right), while both vertical (W/S) and depth (Q/E) controls are active. Consider a visible movement guide or smart-snap features to reduce navigation friction.",
     data: [
-      { label: "A key (left)",    value: "974 (30.0%)"  },
-      { label: "D key (right)",   value: "473 (14.5%)"  },
-      { label: "Q+E (vertical)",  value: "1,276 (39.2%)" },
+      { label: "A key (move left)",    value: `${ruiA.toLocaleString()} (${ruiKeyPct(ruiA)})`             },
+      { label: "D key (move right)",   value: `${ruiD.toLocaleString()} (${ruiKeyPct(ruiD)})`             },
+      { label: "W+S (up/down)",        value: `${(ruiW + ruiS).toLocaleString()} (${ruiKeyPct(ruiW + ruiS)})` },
     ],
   },
   {
@@ -453,10 +470,10 @@ export default function InsightsPage() {
       {/* Header */}
       <div className="flex flex-col gap-1">
         <div className="text-xs font-medium text-zinc-500 uppercase tracking-wider">Key Insights</div>
-        <h1 className="text-2xl font-bold text-zinc-50 tracking-tight">What the Data Tells Us</h1>
-        <p className="text-zinc-400 text-sm max-w-2xl">
+        <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">What the Data Tells Us</h1>
+        <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-2xl">
           20 actionable findings derived from CloudFront log analysis across{" "}
-          <span className="text-zinc-300 font-medium">{monthCount} months</span> ({dataRange}) of HRA tool usage data, covering
+          <span className="text-zinc-700 dark:text-zinc-300 font-medium">{monthCount} months</span> ({dataRange}) of HRA tool usage data, covering
           traffic patterns, feature adoption, user behavior, and geographic distribution.
         </p>
       </div>
@@ -478,11 +495,11 @@ export default function InsightsPage() {
                 key={`h-${item.name}`}
                 className={`col-span-full flex items-center gap-3 ${item.sectionIdx > 0 ? "mt-4" : ""}`}
               >
-                <div className="h-px flex-1 bg-zinc-800" />
+                <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
                 <span className="text-[11px] font-semibold text-zinc-500 uppercase tracking-widest px-2">
                   {item.name}
                 </span>
-                <div className="h-px flex-1 bg-zinc-800" />
+                <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
               </div>
             );
           }
@@ -493,7 +510,7 @@ export default function InsightsPage() {
           return (
             <div
               key={item.id}
-              className={`bg-zinc-900 border border-zinc-800 border-l-4 ${insight.color} rounded-xl p-4 flex flex-col gap-3`}
+              className={`bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 border-l-4 ${insight.color} rounded-xl p-4 flex flex-col gap-3`}
             >
               {/* Tag */}
               <div className="flex items-center gap-2">
@@ -505,30 +522,30 @@ export default function InsightsPage() {
 
               {/* Title + metric */}
               <div>
-                <h2 className="text-sm font-bold text-zinc-100 leading-snug">{insight.title}</h2>
+                <h2 className="text-sm font-bold text-zinc-800 dark:text-zinc-100 leading-snug">{insight.title}</h2>
                 <p className="text-xs font-medium text-zinc-500 mt-1">{insight.metric}</p>
               </div>
 
               {/* Chart or data chips */}
               {chart ? (
-                <div className="border-t border-zinc-800/50 pt-2">
+                <div className="border-t border-zinc-200/50 dark:border-zinc-800/50 pt-2">
                   {chart}
                 </div>
               ) : (
-                <div className="flex flex-col gap-1 border-t border-zinc-800/50 pt-2">
+                <div className="flex flex-col gap-1 border-t border-zinc-200/50 dark:border-zinc-800/50 pt-2">
                   {insight.data.map((d) => (
-                    <div key={d.label} className="flex justify-between items-baseline gap-2 bg-zinc-800/40 rounded px-2.5 py-1.5">
+                    <div key={d.label} className="flex justify-between items-baseline gap-2 bg-zinc-100 dark:bg-zinc-800/40 rounded px-2.5 py-1.5">
                       <span className="text-[10px] text-zinc-500 leading-tight">{d.label}</span>
-                      <span className="text-xs font-semibold text-zinc-200 tabular-nums shrink-0">{d.value}</span>
+                      <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 tabular-nums shrink-0">{d.value}</span>
                     </div>
                   ))}
                 </div>
               )}
 
               {/* Implication */}
-              <div className="flex items-start gap-1.5 bg-zinc-800/30 rounded-lg p-2.5 mt-auto">
-                <span className="text-[10px] text-zinc-600 mt-0.5 shrink-0">→</span>
-                <p className="text-xs text-zinc-400 leading-relaxed line-clamp-3">{insight.implication}</p>
+              <div className="flex items-start gap-1.5 bg-zinc-100 dark:bg-zinc-800/30 rounded-lg p-2.5 mt-auto">
+                <span className="text-[10px] text-zinc-400 dark:text-zinc-600 mt-0.5 shrink-0">→</span>
+                <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed line-clamp-3">{insight.implication}</p>
               </div>
             </div>
           );

@@ -1,13 +1,36 @@
 "use client";
 
-const HEAT: Record<string, { count: number; action: string }> = {
-  A: { count: 974, action: "Strafe Left"  },
-  E: { count: 645, action: "Move Up"      },
-  Q: { count: 631, action: "Move Down"    },
-  W: { count: 528, action: "Forward"      },
-  D: { count: 473, action: "Strafe Right" },
-  S: { count: 0,   action: "—"            },
+import topPathsByEvent from "../../../public/data/top_paths_by_event.json";
+
+type EventPathRow = { path: string; count: number };
+
+const KEY_ACTIONS: Record<string, string> = {
+  A: "Move Left",
+  D: "Move Right",
+  W: "Move Up",
+  S: "Move Down",
+  Q: "Move Back",
+  E: "Move Front",
 };
+
+const DISPLAY_KEYS = ["A", "E", "Q", "W", "D", "S"] as const;
+
+const keyboardRows = ((topPathsByEvent as { keyboard?: EventPathRow[] }).keyboard ?? [])
+  .filter((row) => row.path.startsWith("rui.stage-content.directional-controls.keyboard."));
+
+const keyCounts = keyboardRows.reduce<Record<string, number>>((acc, row) => {
+  const key = row.path.split(".").pop()?.toUpperCase();
+  if (!key || !(key in KEY_ACTIONS)) return acc;
+  acc[key] = (acc[key] ?? 0) + row.count;
+  return acc;
+}, {});
+
+const HEAT: Record<string, { count: number; action: string }> = Object.fromEntries(
+  DISPLAY_KEYS.map((key) => [
+    key,
+    { count: keyCounts[key] ?? 0, action: KEY_ACTIONS[key] },
+  ]),
+) as Record<string, { count: number; action: string }>;
 
 const MAX   = Math.max(...Object.values(HEAT).map((d) => d.count));
 const TOTAL = Object.values(HEAT).reduce((s, d) => s + d.count, 0);
@@ -22,8 +45,8 @@ function heatRGB(t: number): [number, number, number] {
 
 function keyStyle(key: string) {
   const d = HEAT[key];
-  if (!d)         return { fill: "#1c1c1f", stroke: "#282828", text: "#343438" };
-  if (d.count === 0) return { fill: "#252527", stroke: "#333336", text: "#52525b" };
+  if (!d)         return { fill: "var(--kb-key-fill)", stroke: "var(--kb-key-stroke)", text: "var(--kb-key-text)" };
+  if (d.count === 0) return { fill: "var(--kb-key-zero-fill)", stroke: "var(--kb-key-zero-stroke)", text: "var(--kb-key-zero-text)" };
   const t = d.count / MAX;
   const [r, g, b] = heatRGB(t);
   return {
@@ -62,7 +85,7 @@ const SVG_H = KB_H + PAD * 2;               // 242px
 
 export default function RUIKeyboardChart() {
   return (
-    <div className="flex flex-col gap-3 w-full">
+    <div className="flex flex-col gap-3 w-full [--kb-plate:#eff1f6] [--kb-key-fill:#ffffff] [--kb-key-stroke:#d4d4db] [--kb-key-text:#71717a] [--kb-key-zero-fill:#e9ecf3] [--kb-key-zero-stroke:#cdd3de] [--kb-key-zero-text:#6b7280] [--kb-count-text:#ddd6fe] dark:[--kb-plate:#0d0d0f] dark:[--kb-key-fill:#1c1c1f] dark:[--kb-key-stroke:#282828] dark:[--kb-key-text:#343438] dark:[--kb-key-zero-fill:#252527] dark:[--kb-key-zero-stroke:#333336] dark:[--kb-key-zero-text:#52525b] dark:[--kb-count-text:#ddd6fe]">
       {/* ── Keyboard SVG ── */}
       <svg
         viewBox={`0 0 ${SVG_W} ${SVG_H}`}
@@ -71,7 +94,7 @@ export default function RUIKeyboardChart() {
         aria-label="Keyboard heatmap showing RUI key usage"
       >
         {/* Keyboard plate */}
-        <rect x={0} y={0} width={SVG_W} height={SVG_H} rx={10} fill="#0d0d0f" />
+        <rect x={0} y={0} width={SVG_W} height={SVG_H} rx={10} fill="var(--kb-plate)" />
 
         {ROWS.map((row, ri) => {
           let cx = PAD;
@@ -119,26 +142,12 @@ export default function RUIKeyboardChart() {
                     dominantBaseline="middle"
                     fontSize={9}
                     fontFamily="ui-monospace, monospace"
-                    fill={`rgba(221,214,254,${0.55 + (hd.count / MAX) * 0.45})`}
+                    fill="var(--kb-count-text)"
                   >
                     {hd.count}
                   </text>
                 )}
 
-                {/* S key "n/a" */}
-                {key === "S" && (
-                  <text
-                    x={kx + kw / 2}
-                    y={cy + KH * 0.72}
-                    textAnchor="middle"
-                    dominantBaseline="middle"
-                    fontSize={8}
-                    fontFamily="ui-sans-serif, sans-serif"
-                    fill="#3f3f46"
-                  >
-                    n/a
-                  </text>
-                )}
               </g>
             );
           });
@@ -147,7 +156,7 @@ export default function RUIKeyboardChart() {
 
       {/* ── Colour scale ── */}
       <div className="flex items-center justify-center gap-2">
-        <span className="text-xs text-zinc-600">low</span>
+        <span className="text-xs text-zinc-600 dark:text-zinc-400">low</span>
         <div className="flex gap-0.5">
           {Array.from({ length: 10 }, (_, i) => {
             const [r, g, b] = heatRGB(i / 9);
@@ -160,7 +169,7 @@ export default function RUIKeyboardChart() {
             );
           })}
         </div>
-        <span className="text-xs text-zinc-600">high</span>
+        <span className="text-xs text-zinc-600 dark:text-zinc-400">high</span>
       </div>
 
       {/* ── Key breakdown ── */}
@@ -173,13 +182,16 @@ export default function RUIKeyboardChart() {
             return (
               <div key={key} className="flex items-center gap-1.5 text-xs">
                 <span className="font-bold" style={{ color: `rgb(${r},${g},${b})` }}>{key}</span>
-                <span className="text-zinc-500">{d.action}</span>
-                <span className="font-semibold text-zinc-400 tabular-nums">{d.count.toLocaleString()}</span>
-                <span className="text-zinc-600">· {((d.count / TOTAL) * 100).toFixed(0)}%</span>
+                <span className="text-zinc-600 dark:text-zinc-400">{d.action}</span>
+                <span className="font-semibold text-zinc-700 dark:text-zinc-300 tabular-nums">{d.count.toLocaleString()}</span>
+                <span className="text-zinc-600 dark:text-zinc-500">· {((d.count / TOTAL) * 100).toFixed(0)}%</span>
               </div>
             );
           })}
       </div>
+      <p className="text-[11px] text-zinc-500 text-center">
+        Counts are from logged RUI keyboard events; action labels are inferred from keybind semantics.
+      </p>
     </div>
   );
 }

@@ -1,9 +1,8 @@
 "use client";
 
-import dynamic from "next/dynamic";
+import ThemedEChart from "../ThemedEChart";
 import { axisStyle, tooltipStyle } from "../../lib/chartTheme";
 
-const ReactECharts = dynamic(() => import("echarts-for-react"), { ssr: false });
 
 export interface ChurnBucket {
   probability_bucket: string;
@@ -84,7 +83,7 @@ export default function MLChurnBucketsChart({ data }: { data: ChurnBucket[] }) {
     ],
   };
 
-  return <ReactECharts option={option} style={{ height: "320px", width: "100%" }} opts={{ renderer: "canvas" }} />;
+  return <ThemedEChart option={option} style={{ height: "320px", width: "100%" }} opts={{ renderer: "canvas" }} />;
 }
 
 function pms(value: string): string {
