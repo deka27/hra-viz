@@ -1,0 +1,287 @@
+{
+  "generated_at_utc": "2026-03-03T06:48:57+00:00",
+  "parquet_path": "data/2026-01-13_hra-logs.parquet",
+  "row_count": 12779123,
+  "fields": [
+    {
+      "field": "anon_id",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "Anonymous identifier for a visitor/session actor.",
+      "usage": "Session grouping, retention, and repeat-visitor analytics."
+    },
+    {
+      "field": "date",
+      "type": "DATE",
+      "nullable": true,
+      "meaning": "Request date.",
+      "usage": "Daily/monthly/yearly trend views and period filters."
+    },
+    {
+      "field": "time",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "Request time component.",
+      "usage": "Hour-of-day activity analysis."
+    },
+    {
+      "field": "x_edge_location",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "CloudFront edge location code that served the request.",
+      "usage": "Infra routing diagnostics and coarse geo context."
+    },
+    {
+      "field": "sc_bytes",
+      "type": "BIGINT",
+      "nullable": true,
+      "meaning": "Response bytes sent by server.",
+      "usage": "Payload-size analysis and traffic profiling."
+    },
+    {
+      "field": "cs_method",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "HTTP request method (GET, POST, etc.).",
+      "usage": "Request profiling and endpoint behavior checks."
+    },
+    {
+      "field": "cs_uri_stem",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "Path part of the URL (without query params).",
+      "usage": "Tool/page visit counting and route-level analytics."
+    },
+    {
+      "field": "sc_status",
+      "type": "INTEGER",
+      "nullable": true,
+      "meaning": "HTTP status code returned to client.",
+      "usage": "Error-rate and reliability metrics."
+    },
+    {
+      "field": "cs_referer",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "Incoming referrer URL header.",
+      "usage": "Source attribution and external ecosystem analysis."
+    },
+    {
+      "field": "cs_user_agent",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "User-agent string from client.",
+      "usage": "Client profiling and bot/human heuristics."
+    },
+    {
+      "field": "cs_uri_query",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "Raw URL query string.",
+      "usage": "Parameter extraction and event-context parsing."
+    },
+    {
+      "field": "cs_cookie",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "Cookie header from request.",
+      "usage": "Session continuity and identity context."
+    },
+    {
+      "field": "x_edge_result_type",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "CloudFront result category.",
+      "usage": "Infra/cache behavior diagnostics."
+    },
+    {
+      "field": "x_edge_request_id",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "Unique CloudFront request id.",
+      "usage": "Request traceability and de-dup checks."
+    },
+    {
+      "field": "x_host_header",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "Host header requested by client.",
+      "usage": "Domain-level segmentation and host routing checks."
+    },
+    {
+      "field": "cs_protocol",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "Protocol scheme used by client request.",
+      "usage": "Transport-level diagnostics."
+    },
+    {
+      "field": "cs_bytes",
+      "type": "BIGINT",
+      "nullable": true,
+      "meaning": "Request bytes sent by client.",
+      "usage": "Upload/payload profiling."
+    },
+    {
+      "field": "time_taken",
+      "type": "DOUBLE",
+      "nullable": true,
+      "meaning": "Total time to serve request.",
+      "usage": "Latency and performance monitoring."
+    },
+    {
+      "field": "ssl_protocol",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "TLS protocol version.",
+      "usage": "Security/transport compatibility diagnostics."
+    },
+    {
+      "field": "ssl_cipher",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "TLS cipher used for the request.",
+      "usage": "Security posture and transport telemetry."
+    },
+    {
+      "field": "x_edge_response_result_type",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "CloudFront response result type.",
+      "usage": "Delivery outcome and cache/error analysis."
+    },
+    {
+      "field": "cs_protocol_version",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "HTTP protocol version.",
+      "usage": "Network/client compatibility analysis."
+    },
+    {
+      "field": "time_to_first_byte",
+      "type": "DOUBLE",
+      "nullable": true,
+      "meaning": "Time until first byte is returned.",
+      "usage": "Backend/network latency monitoring."
+    },
+    {
+      "field": "x_edge_detailed_result_type",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "Detailed CloudFront result reason.",
+      "usage": "Infra troubleshooting for specific failure classes."
+    },
+    {
+      "field": "sc_content_type",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "Response content MIME type.",
+      "usage": "Asset/API/document classification."
+    },
+    {
+      "field": "sc_content_len",
+      "type": "BIGINT",
+      "nullable": true,
+      "meaning": "Response content length.",
+      "usage": "Payload distribution and bandwidth analysis."
+    },
+    {
+      "field": "sc_range_start",
+      "type": "BIGINT",
+      "nullable": true,
+      "meaning": "Range start for partial content responses.",
+      "usage": "Media/file transfer diagnostics."
+    },
+    {
+      "field": "sc_range_end",
+      "type": "BIGINT",
+      "nullable": true,
+      "meaning": "Range end for partial content responses.",
+      "usage": "Media/file transfer diagnostics."
+    },
+    {
+      "field": "timestamp",
+      "type": "BIGINT",
+      "nullable": true,
+      "meaning": "Event timestamp in source format.",
+      "usage": "Event ordering and temporal feature engineering."
+    },
+    {
+      "field": "timestamp_ms",
+      "type": "BIGINT",
+      "nullable": true,
+      "meaning": "Event timestamp in milliseconds.",
+      "usage": "Fine-grained sequencing and latency math."
+    },
+    {
+      "field": "c_country",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "Country derived from client/edge location.",
+      "usage": "Geo usage trends and country comparisons."
+    },
+    {
+      "field": "query",
+      "type": "MAP(VARCHAR, VARCHAR)",
+      "nullable": true,
+      "meaning": "Parsed query-parameter map.",
+      "usage": "Event/tool context and parameter-level analysis."
+    },
+    {
+      "field": "traffic_type",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "Traffic classification label (for example likely human or bot).",
+      "usage": "Filtering analytics to desired traffic segments."
+    },
+    {
+      "field": "referrer",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "Normalized referrer category/value.",
+      "usage": "Traffic-source reporting."
+    },
+    {
+      "field": "airport",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "Airport/location code derived from edge location context.",
+      "usage": "Regional infrastructure distribution analysis."
+    },
+    {
+      "field": "month",
+      "type": "INTEGER",
+      "nullable": true,
+      "meaning": "Month component derived from date.",
+      "usage": "Monthly aggregation and trend charting."
+    },
+    {
+      "field": "day",
+      "type": "INTEGER",
+      "nullable": true,
+      "meaning": "Day component derived from date.",
+      "usage": "Daily aggregation and anomaly detection."
+    },
+    {
+      "field": "distribution",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "Distribution/environment identifier.",
+      "usage": "Comparing traffic across deployment distributions."
+    },
+    {
+      "field": "site",
+      "type": "VARCHAR",
+      "nullable": true,
+      "meaning": "High-level site/category label for the event.",
+      "usage": "Separating Apps vs Events traffic in dashboards."
+    },
+    {
+      "field": "year",
+      "type": "INTEGER",
+      "nullable": true,
+      "meaning": "Year component derived from date.",
+      "usage": "Year-over-year trend analysis."
+    }
+  ]
+}

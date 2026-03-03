@@ -36,6 +36,27 @@ function ThemeToggle() {
   );
 }
 
+function HelpButton({ active }: { active: boolean }) {
+  return (
+    <Link
+      href="/help"
+      className={`flex items-center justify-center w-8 h-8 rounded-md transition-colors ${
+        active
+          ? "bg-zinc-200 dark:bg-zinc-800 text-zinc-900 dark:text-zinc-50"
+          : "text-zinc-500 hover:text-zinc-800 dark:hover:text-zinc-200 hover:bg-zinc-200 dark:hover:bg-zinc-800"
+      }`}
+      aria-label="Open data dictionary help page"
+      title="Data Dictionary"
+    >
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <circle cx="12" cy="12" r="10" />
+        <path d="M9.09 9a3 3 0 015.82 1c0 2-3 2-3 4" />
+        <path d="M12 17h.01" />
+      </svg>
+    </Link>
+  );
+}
+
 export default function Navbar() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
@@ -76,6 +97,7 @@ export default function Navbar() {
 
           {/* Right side: theme toggle + hamburger */}
           <div className="flex items-center gap-1">
+            <HelpButton active={pathname === "/help"} />
             <ThemeToggle />
 
             {/* Hamburger — visible below sm */}
