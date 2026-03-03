@@ -6,6 +6,7 @@ import StatCard from "../components/StatCard";
 import ToolHourlyHeatmap from "../components/charts/ToolHourlyHeatmap";
 import TrafficByDowChart from "../components/charts/TrafficByDowChart";
 import { ErrorSourceChart, ErrorCauseChart } from "../components/charts/ErrorBreakdownChart";
+import { ErrorBucketBySourceChart } from "../components/charts/ErrorRootCauseBreakdownCharts";
 import MonthlyErrorTrendChart from "../components/charts/MonthlyErrorTrendChart";
 
 import monthlyData from "../../public/data/tool_visits_by_month.json";
@@ -17,6 +18,7 @@ import eventTypes from "../../public/data/event_types.json";
 import errorClusters from "../../public/data/error_clusters.json";
 import monthlyErrorData from "../../public/data/monthly_error_trend.json";
 import errorBreakdown from "../../public/data/error_breakdown.json";
+import errorRootCauseBreakdown from "../../public/data/error_root_cause_breakdown.json";
 
 const TOOL_CARD_COLORS: Record<string, string> = {
   "KG Explorer": "text-rose-400",
@@ -24,6 +26,7 @@ const TOOL_CARD_COLORS: Record<string, string> = {
   "RUI": "text-violet-400",
   "CDE": "text-amber-400",
   "FTU Explorer": "text-emerald-400",
+  "Portal/Other": "text-zinc-400",
 };
 
 const TOOL_PIE_COLORS: Record<string, string> = {
@@ -58,6 +61,51 @@ const latestErrorMonth = errorByMonth[errorByMonth.length - 1];
 const peakToLatestDropPct = peakErrorMonth && latestErrorMonth && peakErrorMonth.total_errors > 0
   ? (((peakErrorMonth.total_errors - latestErrorMonth.total_errors) / peakErrorMonth.total_errors) * 100).toFixed(1)
   : "0.0";
+const rootCauseBuckets = (errorRootCauseBreakdown as { by_bucket: { bucket: string; errors: number }[] }).by_bucket;
+const topRootCauseFixes = [...rootCauseBuckets]
+  .sort((a, b) => b.errors - a.errors)
+  .slice(0, 4)
+  .map((row) => {
+    const coverage = errorCount > 0 ? ((row.errors / errorCount) * 100).toFixed(1) : "0.0";
+    const guidance: Record<string, { title: string; action: string }> = {
+      "Net/CORS: technology list API": {
+        title: "Stabilize technology list API access",
+        action: "Fix CORS + gateway routing for /api/v1/technology-names and add retries with fallback cache.",
+      },
+      "Icon retrieval failures": {
+        title: "Repair icon asset delivery",
+        action: "Audit icon manifest paths, publish missing SVGs, and add pre-deploy link checks against CDN URLs.",
+      },
+      "Null selection read": {
+        title: "Guard empty selection states",
+        action: "Add null/length checks before index access in selection handlers (e.g., getLastPickedObject).",
+      },
+      "Unreadable structured error object": {
+        title: "Improve client error serialization",
+        action: "Log structured error fields (name/message/stack) instead of raw object stringification.",
+      },
+      "Content file fetch failures": {
+        title: "Harden content file loading",
+        action: "Verify YAML asset URLs, add timeout/retry, and surface a user-safe fallback when content fetch fails.",
+      },
+      "Local development request noise": {
+        title: "Separate dev telemetry from prod",
+        action: "Tag local environments and exclude localhost/127.0.0.1 events from production dashboards.",
+      },
+      "Other": {
+        title: "Triage long-tail errors",
+        action: "Sample the uncategorized tail weekly and promote recurring patterns into explicit buckets.",
+      },
+    };
+    const suggestion = guidance[row.bucket] ?? guidance.Other;
+    return {
+      bucket: row.bucket,
+      errors: row.errors,
+      coverage,
+      title: suggestion.title,
+      action: suggestion.action,
+    };
+  });
 
 export default function ToolsPage() {
   return (
@@ -187,7 +235,7 @@ export default function ToolsPage() {
           label="Top Error Source"
           value={topErrorSource ? topErrorSource.errors.toLocaleString() : "0"}
           sub={topErrorSource ? `${topErrorSource.tool} (${topErrorSourceShare}% of errors)` : "No source data"}
-          accent="text-rose-400"
+          accent={topErrorSource ? (TOOL_CARD_COLORS[topErrorSource.tool] ?? "text-zinc-300") : "text-zinc-300"}
         />
         <StatCard
           label="Peak→Latest Drop"
@@ -205,10 +253,10 @@ export default function ToolsPage() {
       >
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div>
-            <p className="text-xs text-zinc-500 uppercase tracking-wider font-medium mb-3">Error rate by tool</p>
+            <p className="text-xs text-zinc-500 uppercase tracking-wider font-medium mb-3">Error volume by source</p>
             <ErrorSourceChart />
             <p className="text-xs text-zinc-500 mt-2">
-              RUI and CDE are nearly clean. KG Explorer and EUI drive the bulk of errors.
+              Portal/Other (unattributed app context) and KG Explorer account for most error volume; RUI and CDE are low.
             </p>
           </div>
           <div>
@@ -257,8 +305,30 @@ export default function ToolsPage() {
       </ChartCard>
 
       <ChartCard
+        title="Root-Cause Composition by Source"
+        subtitle="Stacked error counts by source (Portal/Other + tools)"
+        badge="All Sources"
+        badgeColor="bg-red-500/10 text-red-400 border-red-500/20"
+      >
+        <ErrorBucketBySourceChart data={errorRootCauseBreakdown} />
+        <div className="mt-5 pt-4 border-t border-zinc-200 dark:border-zinc-800 grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {topRootCauseFixes.map((fix, idx) => (
+            <div key={fix.bucket} className="bg-zinc-200/70 dark:bg-zinc-800/50 rounded-lg p-3 flex flex-col gap-1.5">
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-medium px-1.5 py-0.5 rounded bg-red-500/15 text-red-400">Priority #{idx + 1}</span>
+                <span className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">{fix.errors.toLocaleString()} errors ({fix.coverage}%)</span>
+              </div>
+              <p className="text-xs font-semibold text-zinc-700 dark:text-zinc-300">{fix.title}</p>
+              <p className="text-xs text-zinc-600 dark:text-zinc-400">{fix.action}</p>
+              <p className="text-[11px] text-zinc-500">Bucket: {fix.bucket}</p>
+            </div>
+          ))}
+        </div>
+      </ChartCard>
+
+      <ChartCard
         title="Error Volume Over Time"
-        subtitle="Monthly error events by tool · Oct 2025 spike = KG Explorer launch + CDN icon failures · trend improving"
+        subtitle="Monthly error events by source (tools + Portal/Other) · Oct 2025 spike = KG launch + CDN icon failures · trend improving"
         badge="Error Trend"
         badgeColor="bg-red-500/10 text-red-400 border-red-500/20"
       >
@@ -283,7 +353,7 @@ export default function ToolsPage() {
             <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Portal/Other Category</span>
             <p className="text-sm text-zinc-700 dark:text-zinc-300">
               The large &ldquo;Portal/Other&rdquo; bar represents errors from the HRA portal layer
-              before app-attribution is set in the event payload. These overlap with the KG icon failures.
+              before app-attribution is set in the event payload. Some KG icon failures were logged without app attribution, so they appear under Portal/Other.
             </p>
           </div>
         </div>

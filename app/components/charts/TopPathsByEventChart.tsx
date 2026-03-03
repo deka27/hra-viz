@@ -11,6 +11,7 @@ interface PathRow {
 
 interface Props {
   data: Record<string, PathRow[]>;
+  eventTotals?: Record<string, number>;
 }
 
 const EVENT_TABS = [
@@ -18,7 +19,7 @@ const EVENT_TABS = [
   { key: "hover",     label: "Hovers",    color: "#8b5cf6" },
   { key: "pageView",  label: "Page Views", color: "#10b981" },
   { key: "keyboard",  label: "Keyboard",  color: "#f59e0b" },
-  { key: "error",     label: "Errors",    color: "#ef4444" },
+  { key: "error",     label: "Errors",    color: "#991b1b" },
 ];
 
 const TOOL_COLORS: Record<string, string> = {
@@ -41,10 +42,8 @@ function pathColor(path: string, eventType: string): string {
     return TOOL_COLORS["humanatlas"];
   }
   if (eventType === "error") {
-    if (path.includes("kg-explorer") || path.includes("icon")) return TOOL_COLORS["kg-explorer"];
-    if (path.includes("eui") || path.includes("ccf-eui"))      return TOOL_COLORS["eui"];
-    if (path.includes("rui") || path.includes("ccf-rui"))      return TOOL_COLORS["rui"];
-    return "#ef4444";
+    // Error bars represent message frequency, not reliable tool attribution.
+    return "#991b1b";
   }
   const prefix = path.split(".")[0].toLowerCase();
   return TOOL_COLORS[prefix] ?? "#52525b";
@@ -74,10 +73,12 @@ function shortPath(path: string, eventType: string): string {
   return parts.slice(-3).join(" › ");
 }
 
-export default function TopPathsByEventChart({ data }: Props) {
+export default function TopPathsByEventChart({ data, eventTotals }: Props) {
   const [active, setActive] = useState("click");
 
   const rows = (data[active] ?? []).slice(0, 15).reverse();
+  const shownCount = rows.reduce((sum, row) => sum + row.count, 0);
+  const totalCount = eventTotals?.[active] ?? (data[active] ?? []).reduce((sum, row) => sum + row.count, 0);
 
   const option = {
     backgroundColor: "transparent",
@@ -155,7 +156,7 @@ export default function TopPathsByEventChart({ data }: Props) {
       <div className="flex gap-2 flex-wrap">
         {EVENT_TABS.map((tab) => {
           const isActive = tab.key === active;
-          const count = data[tab.key]?.reduce((s, r) => s + r.count, 0) ?? 0;
+          const count = eventTotals?.[tab.key] ?? (data[tab.key]?.reduce((s, r) => s + r.count, 0) ?? 0);
           return (
             <button
               key={tab.key}
@@ -184,15 +185,26 @@ export default function TopPathsByEventChart({ data }: Props) {
         opts={{ renderer: "canvas" }}
       />
 
+      <p className="text-xs text-zinc-500">
+        Showing top {rows.length} paths/messages covering {shownCount.toLocaleString()} of {totalCount.toLocaleString()} {active} events.
+      </p>
+
       {/* Color legend */}
-      <div className="flex gap-4 flex-wrap text-xs text-zinc-500">
-        {Object.entries(TOOL_COLORS).map(([prefix, c]) => (
-          <span key={prefix} className="flex items-center gap-1.5">
-            <span className="inline-block w-2 h-2 rounded-full" style={{ backgroundColor: c }} />
-            {prefix === "humanatlas" ? "Portal" : prefix === "hra" ? "HRA Pop" : prefix.toUpperCase().replace("-EXPLORER", " Explorer")}
-          </span>
-        ))}
-      </div>
+      {active === "error" ? (
+        <p className="text-xs text-zinc-500">
+          Error bars are grouped by message frequency and shown in a single color. Tool/source attribution is shown in the
+          &ldquo;Where Do the Errors Come From?&rdquo; chart.
+        </p>
+      ) : (
+        <div className="flex gap-4 flex-wrap text-xs text-zinc-500">
+          {Object.entries(TOOL_COLORS).map(([prefix, c]) => (
+            <span key={prefix} className="flex items-center gap-1.5">
+              <span className="inline-block w-2 h-2 rounded-full" style={{ backgroundColor: c }} />
+              {prefix === "humanatlas" ? "Portal" : prefix === "hra" ? "HRA Pop" : prefix.toUpperCase().replace("-EXPLORER", " Explorer")}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

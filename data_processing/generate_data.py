@@ -39,6 +39,19 @@ APP_TOOL_CASE = """CASE query['app']
     WHEN 'kg-explorer'      THEN 'KG Explorer'
 END"""
 
+ERROR_BUCKET_CASE = """CASE
+    WHEN query['e.reason.message'] ILIKE '%/api/v1/technology-names%' THEN 'Net/CORS: technology list API'
+    WHEN query['e.reason.message'] ILIKE 'Error retrieving icon%' THEN 'Icon retrieval failures'
+    WHEN query['e.reason.message'] ILIKE 'Cannot read properties of null (reading ''0'')%' THEN 'Null selection read'
+    WHEN query['e.reason.message'] = '[object Object]' THEN 'Unreadable structured error object'
+    WHEN query['e.reason.message'] ILIKE '%data.yaml%'
+      OR query['e.reason.message'] ILIKE '%links.yml%'
+      OR query['e.reason.message'] ILIKE '%resources.yml%' THEN 'Content file fetch failures'
+    WHEN query['e.reason.message'] ILIKE '%127.0.0.1%'
+      OR query['e.reason.message'] ILIKE '%localhost%' THEN 'Local development request noise'
+    ELSE 'Other'
+END"""
+
 STATIC_FILTER = r"NOT regexp_matches(cs_uri_stem, '\.(js|css|svg|png|ico|woff2?|ttf|jpe?g|webp)$')"
 
 SESSION_FILTER = """
@@ -294,13 +307,11 @@ def run(parquet: str, out: str) -> None:
     # Source = which app; root cause = top error message patterns.
     write_json(f"{out}/error_breakdown.json", {
         "by_source": q(f"""
-            SELECT {APP_TOOL_CASE} AS tool, count(*)::BIGINT AS errors
+            SELECT COALESCE({APP_TOOL_CASE}, 'Portal/Other') AS tool, count(*)::BIGINT AS errors
             FROM {P}
             WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
               AND query['event'] = 'error'
-              AND query['app'] IS NOT NULL
             GROUP BY tool
-            HAVING tool IS NOT NULL
             ORDER BY errors DESC
         """),
         "by_message": q(f"""
@@ -310,6 +321,41 @@ def run(parquet: str, out: str) -> None:
               AND query['event'] = 'error'
               AND query['e.reason.message'] IS NOT NULL
             GROUP BY message ORDER BY errors DESC LIMIT 20
+        """),
+    })
+
+    # ─── 20. Error root-cause buckets by source (tools + Portal/Other) ───────
+    write_json(f"{out}/error_root_cause_breakdown.json", {
+        "by_source_bucket": q(f"""
+            SELECT
+                COALESCE({APP_TOOL_CASE}, 'Portal/Other') AS source,
+                {ERROR_BUCKET_CASE} AS bucket,
+                count(*)::BIGINT AS errors
+            FROM {P}
+            WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+              AND query['event'] = 'error'
+            GROUP BY source, bucket
+            ORDER BY source, errors DESC
+        """),
+        "by_source": q(f"""
+            SELECT
+                COALESCE({APP_TOOL_CASE}, 'Portal/Other') AS source,
+                count(*)::BIGINT AS errors
+            FROM {P}
+            WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+              AND query['event'] = 'error'
+            GROUP BY source
+            ORDER BY errors DESC
+        """),
+        "by_bucket": q(f"""
+            SELECT
+                {ERROR_BUCKET_CASE} AS bucket,
+                count(*)::BIGINT AS errors
+            FROM {P}
+            WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+              AND query['event'] = 'error'
+            GROUP BY bucket
+            ORDER BY errors DESC
         """),
     })
 

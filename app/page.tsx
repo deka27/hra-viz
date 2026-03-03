@@ -36,6 +36,7 @@ const numMonths = monthlyData.length;
 const gtexRequests = referrers.find((d) => d.name === "GTEx Portal")?.value ?? 0;
 const hubmapRequests = referrers.find((d) => d.name === "HubMAP")?.value ?? 0;
 const totalEvents = eventTypes.reduce((s, d) => s + d.count, 0);
+const eventTotalsByType = Object.fromEntries(eventTypes.map((d) => [d.event, d.count]));
 const clickCount = eventTypes.find((d) => d.event === "click")?.count ?? 0;
 const clickPct = ((clickCount / totalEvents) * 100).toFixed(1);
 const opacityTotal = opacityData.reduce((s, d) => s + d.count, 0);
@@ -244,11 +245,14 @@ export default function OverviewPage() {
 
       <ChartCard
         title="Where Are Clicks and Hovers Happening?"
-        subtitle="Top 15 UI elements per interaction type · color = tool · hover a bar for full path"
+        subtitle="Top 15 UI elements per interaction type · tab totals show full event counts · color = tool for non-error events"
         badge="Cross-Tool"
         badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
       >
-        <TopPathsByEventChart data={topPathsByEvent as Record<string, { path: string; count: number }[]>} />
+        <TopPathsByEventChart
+          data={topPathsByEvent as Record<string, { path: string; count: number }[]>}
+          eventTotals={eventTotalsByType}
+        />
       </ChartCard>
 
       {/* Quick callouts */}

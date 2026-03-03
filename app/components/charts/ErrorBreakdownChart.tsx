@@ -16,6 +16,7 @@ const TOOLTIP = {
 
 const SOURCE_COLORS: Record<string, string> = {
   ...TOOL_COLORS,
+  "Portal/Other": "#71717a",
 };
 
 // Sorted ascending for horizontal bar (lowest → highest)
