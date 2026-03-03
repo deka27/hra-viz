@@ -227,8 +227,9 @@ export default function ToolsPage() {
               <span className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">6,438 errors</span>
             </div>
             <p className="text-xs text-zinc-700 dark:text-zinc-300">
-              <span className="font-semibold">API CORS failure</span> — <code className="text-zinc-600 dark:text-zinc-400 text-[10px]">technology-names</code> endpoint returns
-              &ldquo;0 Unknown Error&rdquo;. Fix CORS headers on <code className="text-zinc-600 dark:text-zinc-400 text-[10px]">apps.humanatlas.io/api/v1</code>.
+              <span className="font-semibold">API request blocked before response</span> — the technology list request
+              fails before any HTTP status comes back, so users see loading failures instead of a clear server message.
+              Fix CORS policy and cross-origin routing on <code className="text-zinc-600 dark:text-zinc-400 text-[10px]">apps.humanatlas.io/api/v1</code>.
             </p>
           </div>
           <div className="bg-zinc-200/70 dark:bg-zinc-800/50 rounded-lg p-3 flex flex-col gap-1.5">
@@ -247,9 +248,9 @@ export default function ToolsPage() {
               <span className="text-xs text-zinc-600 dark:text-zinc-400 font-medium">2,251 errors</span>
             </div>
             <p className="text-xs text-zinc-700 dark:text-zinc-300">
-              <span className="font-semibold">EUI null ref in 3D picker</span> —{" "}
-              <code className="text-zinc-600 dark:text-zinc-400 text-[10px]">Cannot read properties of null (reading &apos;0&apos;)</code> in{" "}
-              <code className="text-zinc-600 dark:text-zinc-400 text-[10px]">getLastPickedObject</code>. Add null guard before accessing index.
+              <span className="font-semibold">EUI selection state is sometimes empty</span> — the 3D picker tries to read
+              the first selected item even when nothing is selected, causing a client crash.
+              Add a null/length guard in <code className="text-zinc-600 dark:text-zinc-400 text-[10px]">getLastPickedObject</code> before indexing.
             </p>
           </div>
         </div>

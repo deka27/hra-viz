@@ -2,6 +2,7 @@
 
 import ThemedEChart from "../ThemedEChart";
 import { axisStyle, tooltipStyle } from "../../lib/chartTheme";
+import { escapeHtml, toFriendlyError } from "../../lib/errorSemantics";
 
 
 export interface ErrorClusterRow {
@@ -26,10 +27,13 @@ export default function MLErrorClustersChart({ data }: { data: ErrorClusterRow[]
         const idx = params[0]?.dataIndex ?? 0;
         const row = top[idx];
         if (!row) return "";
+        const friendly = toFriendlyError(row.sample_error);
         return `<div>
           <div style="font-weight:600;color:#fafafa;margin-bottom:4px">${row.label} · ${row.pct.toFixed(1)}%</div>
           <div style="color:#a1a1aa;margin-bottom:6px">${row.count.toLocaleString()} error events</div>
-          <div style="color:#71717a;font-size:11px;margin-top:4px;max-width:300px">${row.sample_error !== "nan" ? row.sample_error : "No sample message captured"}</div>
+          <div style="color:#e4e4e7;font-size:11px;max-width:300px">${escapeHtml(friendly.label)}</div>
+          <div style="color:#a1a1aa;font-size:11px;margin-top:4px;max-width:300px">${escapeHtml(friendly.summary)}</div>
+          <div style="color:#71717a;font-size:10px;margin-top:6px;max-width:300px;word-break:break-word">Raw: ${escapeHtml(friendly.technical)}</div>
         </div>`;
       },
     },

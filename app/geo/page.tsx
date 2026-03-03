@@ -6,6 +6,7 @@ import DonutChart from "../components/charts/DonutChart";
 import WorldMapChart from "../components/charts/WorldMapChart";
 import GeoToolPreferenceChart from "../components/charts/GeoToolPreferenceChart";
 import GeoBotChart from "../components/charts/GeoBotChart";
+import GeoTopCountryByToolChart from "../components/charts/GeoTopCountryByToolChart";
 
 import geoData from "../../public/data/geo_distribution.json";
 import geoToolPref from "../../public/data/geo_tool_preference.json";
@@ -13,11 +14,22 @@ import geoToolBreakdown from "../../public/data/geo_tool_breakdown.json";
 import geoBotData from "../../public/data/geo_bot_traffic.json";
 
 const COUNTRY_NAMES: Record<string, string> = {
-  US: "United States",
-  SG: "Singapore",
-  FR: "France",
-  HK: "Hong Kong",
-  IE: "Ireland",
+  US: "United States", HK: "Hong Kong", SG: "Singapore", JP: "Japan", CN: "China",
+  IE: "Ireland", KR: "South Korea", DE: "Germany", EC: "Ecuador", GB: "United Kingdom",
+  NL: "Netherlands", IN: "India", CA: "Canada", IR: "Iran", FR: "France",
+  AT: "Austria", BR: "Brazil", BG: "Bulgaria", FI: "Finland", CH: "Switzerland",
+  AU: "Australia", HU: "Hungary", SE: "Sweden", ES: "Spain", RU: "Russia",
+  SC: "Seychelles", MX: "Mexico", PL: "Poland", VN: "Vietnam", IT: "Italy",
+};
+
+type GeoToolBreakdownRow = {
+  c_country: string;
+  total: number;
+  EUI: number;
+  RUI: number;
+  CDE: number;
+  "FTU Explorer": number;
+  "KG Explorer": number;
 };
 
 function countryName(code?: string): string {
@@ -45,6 +57,7 @@ const highBotRateCountries = [...geoBotData]
   .slice(0, 2);
 const highBotRateA = highBotRateCountries[0];
 const highBotRateB = highBotRateCountries[1];
+const toolBreakdownRows = geoToolBreakdown as GeoToolBreakdownRow[];
 
 export default function GeoPage() {
   return (
@@ -120,6 +133,21 @@ export default function GeoPage() {
               <span className="text-rose-400 font-semibold">specific international research community</span> driving adoption.
             </p>
           </div>
+        </div>
+      </ChartCard>
+
+      <ChartCard
+        title="Top 10 Countries by Tool (Vertical Bars)"
+        subtitle="Five charts (one per tool) · x-axis is country code · y-axis is visits"
+        badge="Bar view"
+        badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
+      >
+        <GeoTopCountryByToolChart data={toolBreakdownRows} />
+        <div className="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
+          <p className="text-sm text-zinc-700 dark:text-zinc-300">
+            These rankings are calculated independently per tool, so you can compare how country usage differs
+            between EUI, RUI, CDE, FTU Explorer, and KG Explorer.
+          </p>
         </div>
       </ChartCard>
 

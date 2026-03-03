@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import ThemedEChart from "../ThemedEChart";
+import { escapeHtml, toFriendlyError } from "../../lib/errorSemantics";
 
 interface PathRow {
   path: string;
@@ -65,9 +66,8 @@ const PAGE_LABELS: Record<string, string> = {
 function shortPath(path: string, eventType: string): string {
   if (eventType === "pageView") return PAGE_LABELS[path] ?? path;
   if (eventType === "error") {
-    // Truncate long error messages
-    const clean = path.replace(/https?:\/\/[^\s:]+/g, "").replace(/\s+/g, " ").trim();
-    return clean.length > 55 ? clean.slice(0, 55) + "…" : clean;
+    const label = toFriendlyError(path).label;
+    return label.length > 55 ? `${label.slice(0, 55)}…` : label;
   }
   const parts = path.split(".");
   if (parts.length <= 2) return path;
@@ -78,7 +78,6 @@ export default function TopPathsByEventChart({ data }: Props) {
   const [active, setActive] = useState("click");
 
   const rows = (data[active] ?? []).slice(0, 15).reverse();
-  const color = EVENT_TABS.find((t) => t.key === active)?.color ?? "#3b82f6";
 
   const option = {
     backgroundColor: "transparent",
@@ -92,9 +91,18 @@ export default function TopPathsByEventChart({ data }: Props) {
       formatter: (params: Array<{ dataIndex: number; value: number }>) => {
         const row = rows[params[0]?.dataIndex ?? 0];
         if (!row) return "";
+        if (active === "error") {
+          const friendly = toFriendlyError(row.path);
+          return `<div>
+            <div style="font-weight:600;color:#fafafa;margin-bottom:4px">${row.count.toLocaleString()} error events</div>
+            <div style="color:#e4e4e7;font-size:11px;max-width:300px">${escapeHtml(friendly.label)}</div>
+            <div style="color:#a1a1aa;font-size:11px;max-width:300px;margin-top:4px">${escapeHtml(friendly.summary)}</div>
+            <div style="color:#71717a;font-size:10px;max-width:300px;margin-top:6px;word-break:break-word">Raw: ${escapeHtml(friendly.technical)}</div>
+          </div>`;
+        }
         return `<div>
-          <div style="font-weight:600;color:#fafafa;margin-bottom:4px">${row.count.toLocaleString()} ${active}s</div>
-          <div style="color:#a1a1aa;font-size:11px;word-break:break-all;max-width:280px">${row.path}</div>
+          <div style="font-weight:600;color:#fafafa;margin-bottom:4px">${row.count.toLocaleString()} ${active === "pageView" ? "page views" : `${active}s`}</div>
+          <div style="color:#a1a1aa;font-size:11px;word-break:break-all;max-width:280px">${escapeHtml(row.path)}</div>
         </div>`;
       },
     },
