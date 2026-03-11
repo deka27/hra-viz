@@ -8,8 +8,7 @@ import TrafficByDowChart from "../components/charts/TrafficByDowChart";
 import { ErrorSourceChart, ErrorCauseChart } from "../components/charts/ErrorBreakdownChart";
 import { ErrorBucketBySourceChart } from "../components/charts/ErrorRootCauseBreakdownCharts";
 import MonthlyErrorTrendChart from "../components/charts/MonthlyErrorTrendChart";
-import ToolErrorRateChart from "../components/charts/ToolErrorRateChart";
-import ToolErrorDrilldown from "../components/charts/ToolErrorDrilldown";
+import ToolErrorPanel from "../components/charts/ToolErrorPanel";
 import ToolReturnRateChart from "../components/charts/ToolReturnRateChart";
 
 import monthlyData from "../../public/data/tool_visits_by_month.json";
@@ -81,9 +80,10 @@ const cdePeak = toolPeakRate("CDE"); const cdeLatest = toolLatestRate("CDE");
 const ruiPeak = toolPeakRate("RUI");
 const ftuPeak = toolPeakRate("FTU Explorer");
 
-type TopErrToolRow = { tool: string; errors: { message: string; count: number; bucket: string }[] };
-const topErrByTool = topErrorsByTool as TopErrToolRow[];
-const ftuTopErr = topErrByTool.find(d => d.tool === "FTU Explorer")?.errors[0];
+type TopErrEntry = { message: string; count: number; bucket: string };
+type TopErrToolRow = { tool: string; all_time: TopErrEntry[]; by_month: Record<string, TopErrEntry[]> };
+const topErrByTool = topErrorsByTool as unknown as TopErrToolRow[];
+const ftuTopErr = topErrByTool.find(d => d.tool === "FTU Explorer")?.all_time[0];
 const kgPeakEntry = kgErrActive.reduce((max, d) => d.rate > max.rate ? d : max, kgErrActive[0] ?? { rate: 0, month_year: "" });
 const kgLaunchRate = kgPeakEntry?.rate ?? 0;
 const kgCurrentRate = kgErrActive[kgErrActive.length - 1]?.rate ?? 0;
@@ -410,67 +410,62 @@ export default function ToolsPage() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <ChartCard
           title="KG Explorer — Error Rate"
-          subtitle="Bar = visits · Line = errors per 100 visits"
+          subtitle="Hover a month to see that month's top errors · click to pin"
           badge="KG Explorer · Quality"
           badgeColor="bg-rose-500/10 text-rose-400 border-rose-500/20"
         >
-          <ToolErrorRateChart data={errLong} tool="KG Explorer" />
+          <ToolErrorPanel rateData={errLong} errorData={topErrByTool} tool="KG Explorer" />
           <p className="mt-3 text-sm text-zinc-500">
-            Peaked at <span className="text-red-400 font-semibold">{kgLaunchRate}</span> in Oct &apos;25 (CDN icon failures + CORS on the technology list API). Down to <span className="text-emerald-400 font-semibold">{kgCurrentRate}</span> by Feb &apos;26 — <span className="text-emerald-400 font-semibold">{kgRateDrop}% improvement</span>.
+            Peaked at <span className="text-red-400 font-semibold">{kgLaunchRate}</span> in Oct &apos;25 (CDN icon failures + CORS on the technology list API). Down to <span className="text-emerald-400 font-semibold">{kgCurrentRate}</span> — <span className="text-emerald-400 font-semibold">{kgRateDrop}% improvement</span>.
           </p>
-          <ToolErrorDrilldown data={topErrorsByTool} tool="KG Explorer" />
         </ChartCard>
 
         <ChartCard
           title="EUI — Error Rate"
-          subtitle="Bar = visits · Line = errors per 100 visits"
+          subtitle="Hover a month to see that month's top errors · click to pin"
           badge="EUI · Quality"
           badgeColor="bg-blue-500/10 text-blue-400 border-blue-500/20"
         >
-          <ToolErrorRateChart data={errLong} tool="EUI" />
+          <ToolErrorPanel rateData={errLong} errorData={topErrByTool} tool="EUI" />
           <p className="mt-3 text-sm text-zinc-500">
             EUI peaked at <span className="text-red-400 font-semibold">{euiPeak.rate} errors/100 visits</span> ({fmtMonth(euiPeak.month_year)}). API failures (session-token, ontology endpoints) and null-ref errors on map initialization are the top drivers.
           </p>
-          <ToolErrorDrilldown data={topErrorsByTool} tool="EUI" />
         </ChartCard>
 
         <ChartCard
           title="CDE — Error Rate"
-          subtitle="Bar = visits · Line = errors per 100 visits"
+          subtitle="Hover a month to see that month's top errors · click to pin"
           badge="CDE · Quality"
           badgeColor="bg-amber-500/10 text-amber-400 border-amber-500/20"
         >
-          <ToolErrorRateChart data={errLong} tool="CDE" />
+          <ToolErrorPanel rateData={errLong} errorData={topErrByTool} tool="CDE" />
           <p className="mt-3 text-sm text-zinc-500">
             CDE peaked at <span className="text-red-400 font-semibold">{cdePeak.rate} errors/100 visits</span> ({fmtMonth(cdePeak.month_year)}), latest at {cdeLatest.rate} ({fmtMonth(cdeLatest.month_year)}). Angular DI errors (NG0201, NG0950) and undefined property reads dominate.
           </p>
-          <ToolErrorDrilldown data={topErrorsByTool} tool="CDE" />
         </ChartCard>
 
         <ChartCard
           title="RUI — Error Rate"
-          subtitle="Bar = visits · Line = errors per 100 visits"
+          subtitle="Hover a month to see that month's top errors · click to pin"
           badge="RUI · Quality"
           badgeColor="bg-violet-500/10 text-violet-400 border-violet-500/20"
         >
-          <ToolErrorRateChart data={errLong} tool="RUI" />
+          <ToolErrorPanel rateData={errLong} errorData={topErrByTool} tool="RUI" />
           <p className="mt-3 text-sm text-zinc-500">
             RUI generally has low error rates — peak at <span className="text-red-400 font-semibold">{ruiPeak.rate} errors/100</span> ({fmtMonth(ruiPeak.month_year)}). Icon retrieval from localhost dev environments accounts for most of the noise.
           </p>
-          <ToolErrorDrilldown data={topErrorsByTool} tool="RUI" />
         </ChartCard>
 
         <ChartCard
           title="FTU Explorer — Error Rate"
-          subtitle="Bar = visits · Line = errors per 100 visits"
+          subtitle="Hover a month to see that month's top errors · click to pin"
           badge="FTU Explorer · Quality"
           badgeColor="bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
         >
-          <ToolErrorRateChart data={errLong} tool="FTU Explorer" />
+          <ToolErrorPanel rateData={errLong} errorData={topErrByTool} tool="FTU Explorer" />
           <p className="mt-3 text-sm text-zinc-500">
             FTU Explorer peaked at <span className="text-red-400 font-semibold">{ftuPeak.rate} errors/100</span> ({fmtMonth(ftuPeak.month_year)}). {ftuTopErr && <><code className="text-xs">{ftuTopErr.message}</code> is the dominant error ({ftuTopErr.count.toLocaleString()} hits). </>}Localhost dev noise also inflates counts.
           </p>
-          <ToolErrorDrilldown data={topErrorsByTool} tool="FTU Explorer" />
         </ChartCard>
       </div>
 

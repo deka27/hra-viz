@@ -736,7 +736,8 @@ def run(parquet: str, out: str) -> None:
     top_err_results = []
     for tool, app_keys in TOOL_APP_KEYS_ERR.items():
         app_list = ", ".join(f"'{k}'" for k in app_keys)
-        rows = con.execute(f"""
+        # All-time top errors
+        all_time = con.execute(f"""
             SELECT query['e.reason.message'] AS msg, COUNT(*)::BIGINT AS cnt,
                    {BUCKET_CASE_ERR} AS bucket
             FROM {P}
@@ -745,9 +746,32 @@ def run(parquet: str, out: str) -> None:
               AND query['e.reason.message'] IS NOT NULL
             GROUP BY 1 ORDER BY cnt DESC LIMIT 10
         """).fetchall()
+        # Per-month top errors
+        months_with_errors = con.execute(f"""
+            SELECT DISTINCT strftime(date_trunc('month', date)::DATE, '%Y-%m') AS mo
+            FROM {P}
+            WHERE site='Events' AND query['event']='error'
+              AND query['app'] IN ({app_list})
+            ORDER BY mo
+        """).fetchall()
+        by_month = {}
+        for (mo,) in months_with_errors:
+            mrows = con.execute(f"""
+                SELECT query['e.reason.message'] AS msg, COUNT(*)::BIGINT AS cnt,
+                       {BUCKET_CASE_ERR} AS bucket
+                FROM {P}
+                WHERE site='Events' AND query['event']='error'
+                  AND query['app'] IN ({app_list})
+                  AND query['e.reason.message'] IS NOT NULL
+                  AND strftime(date_trunc('month', date)::DATE, '%Y-%m') = '{mo}'
+                GROUP BY 1 ORDER BY cnt DESC LIMIT 10
+            """).fetchall()
+            if mrows:
+                by_month[mo] = [{"message": _clean_msg(r[0]), "count": r[1], "bucket": r[2]} for r in mrows]
         top_err_results.append({
             "tool": tool,
-            "errors": [{"message": _clean_msg(r[0]), "raw": r[0][:120], "count": r[1], "bucket": r[2]} for r in rows],
+            "all_time": [{"message": _clean_msg(r[0]), "count": r[1], "bucket": r[2]} for r in all_time],
+            "by_month": by_month,
         })
     write_json(f"{out}/top_errors_by_tool.json", top_err_results)
 

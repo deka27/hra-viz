@@ -1,1 +1,1465 @@
-[{"tool": "EUI", "errors": [{"message": "Http failure: apps.humanatlas.io/api/v1/session-token: 0 Unknown Error", "raw": "Http failure response for https://apps.humanatlas.io/api/v1/session-token: 0 Unknown Error", "count": 627, "bucket": "API failure"}, {"message": "Cannot read properties of null (reading '0')", "raw": "Cannot read properties of null (reading '0')", "count": 143, "bucket": "Null-ref error"}, {"message": "setting getter-only property \"message\"", "raw": "setting getter-only property \"message\"", "count": 103, "bucket": "Other"}, {"message": "Http failure: apps.humanatlas.io/api/v1/ontology-term-occurences: 0 Unknown Error", "raw": "Http failure response for https://apps.humanatlas.io/api/v1/ontology-term-occurences: 0 Unknown Error", "count": 101, "bucket": "API failure"}, {"message": "Http failure: apps.humanatlas.io/api/v1/biomarker-term-occurences: 0 Unknown Error", "raw": "Http failure response for https://apps.humanatlas.io/api/v1/biomarker-term-occurences: 0 Unknown Error", "count": 101, "bucket": "API failure"}, {"message": "Http failure: apps.humanatlas.io/api/v1/cell-type-term-occurences: 0 Unknown Error", "raw": "Http failure response for https://apps.humanatlas.io/api/v1/cell-type-term-occurences: 0 Unknown Error", "count": 99, "bucket": "API failure"}, {"message": "Http failure: apps.humanatlas.io/api/v1/tissue-blocks: 0 Unknown Error", "raw": "Http failure response for https://apps.humanatlas.io/api/v1/tissue-blocks: 0 Unknown Error", "count": 93, "bucket": "API failure"}, {"message": "Http failure: apps.humanatlas.io/api/v1/db-status: 0 Unknown Error", "raw": "Http failure response for https://apps.humanatlas.io/api/v1/db-status: 0 Unknown Error", "count": 92, "bucket": "API failure"}, {"message": "Http failure: apps.humanatlas.io/api/v1/scene: 0 Unknown Error", "raw": "Http failure response for https://apps.humanatlas.io/api/v1/scene: 0 Unknown Error", "count": 83, "bucket": "API failure"}, {"message": "Http failure: apps.humanatlas.io/api/v1/technology-names: 0 Unknown Error", "raw": "Http failure response for https://apps.humanatlas.io/api/v1/technology-names: 0 Unknown Error", "count": 76, "bucket": "CORS: technology list API"}]}, {"tool": "RUI", "errors": [{"message": "Icon failure: app:opacity", "raw": "Error retrieving icon app:opacity! Http failure response for http://localhost:4200/assets/icons/opacity-24px.svg: 404 No", "count": 29, "bucket": "Dev noise"}, {"message": "Icon failure: product:rui", "raw": "Error retrieving icon product:rui! Http failure response for https://cdn.humanatlas.io/ui/ccf-rui/assets/icons/product/r", "count": 22, "bucket": "CDN / HTTP failure"}, {"message": "Cannot read properties of undefined (reading 'target')", "raw": "Cannot read properties of undefined (reading 'target')", "count": 15, "bucket": "Null-ref error"}, {"message": "Cannot read properties of undefined (reading 'match')", "raw": "Cannot read properties of undefined (reading 'match')", "count": 5, "bucket": "Null-ref error"}, {"message": "setting getter-only property \"message\"", "raw": "setting getter-only property \"message\"", "count": 1, "bucket": "Other"}, {"message": "[\n  {\n    \"expected\": \"number\",\n    \"code\": \"invalid_type\",\n    \"received\": \"NaN\",\n    \"pa", "raw": "[\n  {\n    \"expected\": \"number\",\n    \"code\": \"invalid_type\",\n    \"received\": \"NaN\",\n    \"path\": [\n      \"x\"\n    ],\n    \"m", "count": 1, "bucket": "Other"}]}, {"tool": "CDE", "errors": [{"message": "NG0201: No provider found for `_MarkdownService`", "raw": "NG0201: No provider found for `_MarkdownService`. Source: Standalone[_StudyPageComponent]. Find more at https://v20.angu", "count": 1003, "bucket": "Angular DI error"}, {"message": "Cannot read properties of undefined (reading 'sourceFileName')", "raw": "Cannot read properties of undefined (reading 'sourceFileName')", "count": 840, "bucket": "Null-ref error"}, {"message": "Cannot read properties of undefined (reading 'title')", "raw": "Cannot read properties of undefined (reading 'title')", "count": 300, "bucket": "Null-ref error"}, {"message": "NG0950: Input \"studies\" is required but no value is available yet", "raw": "NG0950: Input \"studies\" is required but no value is available yet. Find more at https://v20.angular.dev/errors/NG0950", "count": 133, "bucket": "Angular DI error"}, {"message": "Icon failure: :HRA registered", "raw": "Error retrieving icon :HRA registered! Http failure response for http://localhost:4201/assets/icons/HRA%20registered.svg", "count": 55, "bucket": "Dev noise"}, {"message": "Icon failure: :HuBMAP", "raw": "Error retrieving icon :HuBMAP! Http failure response for http://localhost:4201/assets/icons/HuBMAP.svg: 404 Not Found", "count": 45, "bucket": "Dev noise"}, {"message": "newCollection[Symbol.iterator] is not a function", "raw": "newCollection[Symbol.iterator] is not a function", "count": 43, "bucket": "Runtime type error"}, {"message": "ctx.chips is not a function", "raw": "ctx.chips is not a function", "count": 35, "bucket": "Runtime type error"}, {"message": "Http failure: cdn.humanatlas.io/ui/cde-ui/assets/data/landing-page/cards.json: 0 Unknown E", "raw": "Http failure response for https://cdn.humanatlas.io/ui/cde-ui/assets/data/landing-page/cards.json: 0 Unknown Error", "count": 24, "bucket": "CDN / HTTP failure"}, {"message": "Cannot read properties of undefined (reading 'concat')", "raw": "Cannot read properties of undefined (reading 'concat')", "count": 23, "bucket": "Null-ref error"}]}, {"tool": "FTU Explorer", "errors": [{"message": "can't access property \"clientWidth\", this.viewportElement is undefined", "raw": "can't access property \"clientWidth\", this.viewportElement is undefined", "count": 564, "bucket": "Null-ref error"}, {"message": "Cannot read properties of undefined (reading 'nativeElement')", "raw": "Cannot read properties of undefined (reading 'nativeElement')", "count": 414, "bucket": "Null-ref error"}, {"message": "can't access property \"nativeElement\", this.scrollbar is undefined", "raw": "can't access property \"nativeElement\", this.scrollbar is undefined", "count": 131, "bucket": "Null-ref error"}, {"message": "can't access property \"checkViewportSize\", this.vscroll is undefined", "raw": "can't access property \"checkViewportSize\", this.vscroll is undefined", "count": 114, "bucket": "Null-ref error"}, {"message": "tissues[iri] is undefined", "raw": "tissues[iri] is undefined", "count": 111, "bucket": "Null-ref error"}, {"message": "Http failure: 127.0.0.1:5500/docs/iftu-fixes/assets/links.yml: 404 Not Found", "raw": "Http failure response for http://127.0.0.1:5500/docs/iftu-fixes/assets/links.yml: 404 Not Found", "count": 92, "bucket": "Dev noise"}, {"message": "Http failure: 127.0.0.1:5500/docs/iftu-fixes/assets/resources.yml: 404 Not Found", "raw": "Http failure response for http://127.0.0.1:5500/docs/iftu-fixes/assets/resources.yml: 404 Not Found", "count": 92, "bucket": "Dev noise"}, {"message": "NG0951: Child query result is required but no value is available", "raw": "NG0951: Child query result is required but no value is available. Find more at https://v20.angular.dev/errors/NG0951", "count": 58, "bucket": "Angular DI error"}, {"message": "Cannot read properties of undefined (reading 'clientWidth')", "raw": "Cannot read properties of undefined (reading 'clientWidth')", "count": 39, "bucket": "Null-ref error"}, {"message": "Http failure: 127.0.0.1:5500/docs/iftu-testing/assets/ftu-cell-summaries.jsonld?id=https:/", "raw": "Http failure during parsing for http://127.0.0.1:5500/docs/iftu-testing/assets/ftu-cell-summaries.jsonld?id=https://purl", "count": 31, "bucket": "Dev noise"}]}, {"tool": "KG Explorer", "errors": [{"message": "Icon failure: organ:all-organs", "raw": "Error retrieving icon organ:all-organs! Http failure response for https://cdn.humanatlas.io/ui/kg-explorer/assets/icons/", "count": 3432, "bucket": "CDN / HTTP failure"}, {"message": "Icon failure: product:3d-organ", "raw": "Error retrieving icon product:3d-organ! Http failure response for https://cdn.humanatlas.io/ui/kg-explorer/assets/icons/", "count": 1313, "bucket": "CDN / HTTP failure"}, {"message": "Icon failure: product:omaps", "raw": "Error retrieving icon product:omaps! Http failure response for https://cdn.humanatlas.io/ui/kg-explorer/assets/icons/pro", "count": 691, "bucket": "CDN / HTTP failure"}, {"message": "Icon failure: product:ftu", "raw": "Error retrieving icon product:ftu! Http failure response for https://cdn.humanatlas.io/ui/kg-explorer/assets/icons/produ", "count": 678, "bucket": "CDN / HTTP failure"}, {"message": "Icon failure: product:asctb-reporter", "raw": "Error retrieving icon product:asctb-reporter! Http failure response for https://cdn.humanatlas.io/ui/kg-explorer/assets/", "count": 674, "bucket": "CDN / HTTP failure"}, {"message": "Icon failure: product:schema", "raw": "Error retrieving icon product:schema! Http failure response for https://cdn.humanatlas.io/ui/kg-explorer/assets/icons/pr", "count": 559, "bucket": "CDN / HTTP failure"}, {"message": "Icon failure: product:landmark", "raw": "Error retrieving icon product:landmark! Http failure response for https://cdn.humanatlas.io/ui/kg-explorer/assets/icons/", "count": 557, "bucket": "CDN / HTTP failure"}, {"message": "Icon failure: organ:kidneys", "raw": "Error retrieving icon organ:kidneys! Http failure response for https://cdn.humanatlas.io/ui/kg-explorer/assets/icons/org", "count": 444, "bucket": "CDN / HTTP failure"}, {"message": "Http failure: apps.humanatlas.io/api/kg/digital-objects: 0 Unknown Error", "raw": "Http failure response for https://apps.humanatlas.io/api/kg/digital-objects: 0 Unknown Error", "count": 256, "bucket": "API failure"}, {"message": "Icon failure: product:millitome", "raw": "Error retrieving icon product:millitome! Http failure response for https://cdn.humanatlas.io/ui/kg-explorer/assets/icons", "count": 242, "bucket": "CDN / HTTP failure"}]}]
+[
+  {
+    "tool": "EUI",
+    "all_time": [
+      {
+        "message": "Http failure: apps.humanatlas.io/api/v1/session-token: 0 Unknown Error",
+        "count": 627,
+        "bucket": "API failure"
+      },
+      {
+        "message": "Cannot read properties of null (reading '0')",
+        "count": 143,
+        "bucket": "Null-ref error"
+      },
+      {
+        "message": "setting getter-only property \"message\"",
+        "count": 103,
+        "bucket": "Other"
+      },
+      {
+        "message": "Http failure: apps.humanatlas.io/api/v1/ontology-term-occurences: 0 Unknown Error",
+        "count": 101,
+        "bucket": "API failure"
+      },
+      {
+        "message": "Http failure: apps.humanatlas.io/api/v1/biomarker-term-occurences: 0 Unknown Error",
+        "count": 101,
+        "bucket": "API failure"
+      },
+      {
+        "message": "Http failure: apps.humanatlas.io/api/v1/cell-type-term-occurences: 0 Unknown Error",
+        "count": 99,
+        "bucket": "API failure"
+      },
+      {
+        "message": "Http failure: apps.humanatlas.io/api/v1/tissue-blocks: 0 Unknown Error",
+        "count": 93,
+        "bucket": "API failure"
+      },
+      {
+        "message": "Http failure: apps.humanatlas.io/api/v1/db-status: 0 Unknown Error",
+        "count": 92,
+        "bucket": "API failure"
+      },
+      {
+        "message": "Http failure: apps.humanatlas.io/api/v1/scene: 0 Unknown Error",
+        "count": 83,
+        "bucket": "API failure"
+      },
+      {
+        "message": "Http failure: apps.humanatlas.io/api/v1/technology-names: 0 Unknown Error",
+        "count": 76,
+        "bucket": "CORS: technology list API"
+      }
+    ],
+    "by_month": {
+      "2025-10": [
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/session-token: 504 OK",
+          "count": 35,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/session-token: 0 Unknown Error",
+          "count": 32,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/scene: 0 Unknown Error",
+          "count": 10,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/ontology-term-occurences: 0 Unknown Error",
+          "count": 9,
+          "bucket": "API failure"
+        },
+        {
+          "message": "setting getter-only property \"message\"",
+          "count": 9,
+          "bucket": "Other"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/reference-organs: 0 Unknown Error",
+          "count": 8,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/tissue-blocks: 0 Unknown Error",
+          "count": 8,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/biomarker-term-occurences: 0 Unknown Error",
+          "count": 6,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/aggregate-results: 0 Unknown Error",
+          "count": 6,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/ontology-tree-model: 0 Unknown Error",
+          "count": 5,
+          "bucket": "API failure"
+        }
+      ],
+      "2025-11": [
+        {
+          "message": "Cannot read properties of null (reading '0')",
+          "count": 143,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/session-token: 0 Unknown Error",
+          "count": 116,
+          "bucket": "API failure"
+        },
+        {
+          "message": "setting getter-only property \"message\"",
+          "count": 92,
+          "bucket": "Other"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/db-status: 0 Unknown Error",
+          "count": 35,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/session-token: 403 Forbidden",
+          "count": 32,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/tissue-blocks: 0 Unknown Error",
+          "count": 22,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/biomarker-term-occurences: 0 Unknown Error",
+          "count": 19,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/cell-type-term-occurences: 0 Unknown Error",
+          "count": 19,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/ontology-term-occurences: 0 Unknown Error",
+          "count": 17,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/aggregate-results: 0 Unknown Error",
+          "count": 16,
+          "bucket": "API failure"
+        }
+      ],
+      "2025-12": [
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/session-token: 0 Unknown Error",
+          "count": 246,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Icon failure: product:eui",
+          "count": 15,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/session-token: 403 Forbidden",
+          "count": 14,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/scene: 0 Unknown Error",
+          "count": 8,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/ontology-term-occurences: 0 Unknown Error",
+          "count": 8,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/cell-type-term-occurences: 0 Unknown Error",
+          "count": 7,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/biomarker-term-occurences: 0 Unknown Error",
+          "count": 7,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/ontology-tree-model: 0 Unknown Error",
+          "count": 6,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/aggregate-results: 0 Unknown Error",
+          "count": 6,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/tissue-blocks: 0 Unknown Error",
+          "count": 4,
+          "bucket": "API failure"
+        }
+      ],
+      "2026-01": [
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/session-token: 0 Unknown Error",
+          "count": 137,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/ontology-term-occurences: 0 Unknown Error",
+          "count": 24,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/biomarker-term-occurences: 0 Unknown Error",
+          "count": 22,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/cell-type-term-occurences: 0 Unknown Error",
+          "count": 21,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/scene: 0 Unknown Error",
+          "count": 17,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/tissue-blocks: 0 Unknown Error",
+          "count": 17,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/aggregate-results: 0 Unknown Error",
+          "count": 15,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/technology-names: 0 Unknown Error",
+          "count": 8,
+          "bucket": "CORS: technology list API"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/reference-organs: 0 Unknown Error",
+          "count": 8,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/cell-type-term-occurences?ontology-terms=http%3A%2",
+          "count": 6,
+          "bucket": "API failure"
+        }
+      ],
+      "2026-02": [
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/session-token: 0 Unknown Error",
+          "count": 96,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/technology-names: 0 Unknown Error",
+          "count": 53,
+          "bucket": "CORS: technology list API"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/db-status: 0 Unknown Error",
+          "count": 48,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/cell-type-term-occurences: 0 Unknown Error",
+          "count": 48,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/biomarker-term-occurences: 0 Unknown Error",
+          "count": 44,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/ontology-term-occurences: 0 Unknown Error",
+          "count": 43,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/tissue-blocks: 0 Unknown Error",
+          "count": 40,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/reference-organs: 0 Unknown Error",
+          "count": 37,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/scene: 0 Unknown Error",
+          "count": 32,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/ontology-tree-model: 0 Unknown Error",
+          "count": 31,
+          "bucket": "API failure"
+        }
+      ],
+      "2026-03": [
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/session-token: 502 OK",
+          "count": 7,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Framebuffer error 36061",
+          "count": 4,
+          "bucket": "Other"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/biomarker-term-occurences: 0 Unknown Error",
+          "count": 3,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/aggregate-results: 0 Unknown Error",
+          "count": 2,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/tissue-blocks: 0 Unknown Error",
+          "count": 2,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/scene: 0 Unknown Error",
+          "count": 2,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Icon failure: product:eui",
+          "count": 1,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/technology-names: 0 Unknown Error",
+          "count": 1,
+          "bucket": "CORS: technology list API"
+        }
+      ]
+    }
+  },
+  {
+    "tool": "RUI",
+    "all_time": [
+      {
+        "message": "Icon failure: app:opacity",
+        "count": 29,
+        "bucket": "Dev noise"
+      },
+      {
+        "message": "Icon failure: product:rui",
+        "count": 22,
+        "bucket": "CDN / HTTP failure"
+      },
+      {
+        "message": "Cannot read properties of undefined (reading 'target')",
+        "count": 15,
+        "bucket": "Null-ref error"
+      },
+      {
+        "message": "Cannot read properties of undefined (reading 'match')",
+        "count": 5,
+        "bucket": "Null-ref error"
+      },
+      {
+        "message": "setting getter-only property \"message\"",
+        "count": 1,
+        "bucket": "Other"
+      },
+      {
+        "message": "[\n  {\n    \"expected\": \"number\",\n    \"code\": \"invalid_type\",\n    \"received\": \"NaN\",\n    \"pa",
+        "count": 1,
+        "bucket": "Other"
+      }
+    ],
+    "by_month": {
+      "2025-10": [
+        {
+          "message": "Icon failure: product:rui",
+          "count": 8,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Cannot read properties of undefined (reading 'target')",
+          "count": 1,
+          "bucket": "Null-ref error"
+        }
+      ],
+      "2025-11": [
+        {
+          "message": "Icon failure: product:rui",
+          "count": 1,
+          "bucket": "CDN / HTTP failure"
+        }
+      ],
+      "2025-12": [
+        {
+          "message": "Icon failure: app:opacity",
+          "count": 29,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "Icon failure: product:rui",
+          "count": 4,
+          "bucket": "CDN / HTTP failure"
+        }
+      ],
+      "2026-01": [
+        {
+          "message": "Icon failure: product:rui",
+          "count": 2,
+          "bucket": "CDN / HTTP failure"
+        }
+      ],
+      "2026-02": [
+        {
+          "message": "Cannot read properties of undefined (reading 'target')",
+          "count": 14,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "Icon failure: product:rui",
+          "count": 7,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Cannot read properties of undefined (reading 'match')",
+          "count": 5,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "setting getter-only property \"message\"",
+          "count": 1,
+          "bucket": "Other"
+        },
+        {
+          "message": "[\n  {\n    \"expected\": \"number\",\n    \"code\": \"invalid_type\",\n    \"received\": \"NaN\",\n    \"pa",
+          "count": 1,
+          "bucket": "Other"
+        }
+      ]
+    }
+  },
+  {
+    "tool": "CDE",
+    "all_time": [
+      {
+        "message": "NG0201: No provider found for `_MarkdownService`",
+        "count": 1003,
+        "bucket": "Angular DI error"
+      },
+      {
+        "message": "Cannot read properties of undefined (reading 'sourceFileName')",
+        "count": 840,
+        "bucket": "Null-ref error"
+      },
+      {
+        "message": "Cannot read properties of undefined (reading 'title')",
+        "count": 300,
+        "bucket": "Null-ref error"
+      },
+      {
+        "message": "NG0950: Input \"studies\" is required but no value is available yet",
+        "count": 133,
+        "bucket": "Angular DI error"
+      },
+      {
+        "message": "Icon failure: :HRA registered",
+        "count": 55,
+        "bucket": "Dev noise"
+      },
+      {
+        "message": "Icon failure: :HuBMAP",
+        "count": 45,
+        "bucket": "Dev noise"
+      },
+      {
+        "message": "newCollection[Symbol.iterator] is not a function",
+        "count": 43,
+        "bucket": "Runtime type error"
+      },
+      {
+        "message": "ctx.chips is not a function",
+        "count": 35,
+        "bucket": "Runtime type error"
+      },
+      {
+        "message": "Http failure: cdn.humanatlas.io/ui/cde-ui/assets/data/landing-page/cards.json: 0 Unknown E",
+        "count": 24,
+        "bucket": "CDN / HTTP failure"
+      },
+      {
+        "message": "Cannot read properties of undefined (reading 'concat')",
+        "count": 23,
+        "bucket": "Null-ref error"
+      }
+    ],
+    "by_month": {
+      "2025-10": [
+        {
+          "message": "can't access property \"sourceFileName\", this.data().data.metadata is undefined",
+          "count": 6,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "Http failure: cdn.humanatlas.io/ui/cde-ui/assets/data/landing-page/cards.json: 0 Unknown E",
+          "count": 2,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:instagram",
+          "count": 1,
+          "bucket": "CDN / HTTP failure"
+        }
+      ],
+      "2025-11": [
+        {
+          "message": "Icon failure: social:github",
+          "count": 1,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:youtube",
+          "count": 1,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:facebook",
+          "count": 1,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:linkedin",
+          "count": 1,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:bluesky",
+          "count": 1,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:x",
+          "count": 1,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:instagram",
+          "count": 1,
+          "bucket": "CDN / HTTP failure"
+        }
+      ],
+      "2025-12": [
+        {
+          "message": "Icon failure: social:bluesky",
+          "count": 2,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:facebook",
+          "count": 2,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:github",
+          "count": 2,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Http failure: cdn.humanatlas.io/ui/cde-ui/assets/data/landing-page/cards.json: 0 Unknown E",
+          "count": 2,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:x",
+          "count": 2,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:instagram",
+          "count": 2,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:linkedin",
+          "count": 2,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:youtube",
+          "count": 2,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:facebook",
+          "count": 1,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:instagram",
+          "count": 1,
+          "bucket": "CDN / HTTP failure"
+        }
+      ],
+      "2026-01": [
+        {
+          "message": "NG0201: No provider found for `_MarkdownService`",
+          "count": 1003,
+          "bucket": "Angular DI error"
+        },
+        {
+          "message": "Cannot read properties of undefined (reading 'sourceFileName')",
+          "count": 840,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "Cannot read properties of undefined (reading 'title')",
+          "count": 300,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "Icon failure: :HRA registered",
+          "count": 55,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "Icon failure: :HuBMAP",
+          "count": 45,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "newCollection[Symbol.iterator] is not a function",
+          "count": 43,
+          "bucket": "Runtime type error"
+        },
+        {
+          "message": "ctx.chips is not a function",
+          "count": 35,
+          "bucket": "Runtime type error"
+        },
+        {
+          "message": "Cannot read properties of undefined (reading 'concat')",
+          "count": 23,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "NG0309: Directive _ClickEventDirective matches multiple times on the same element",
+          "count": 16,
+          "bucket": "Angular DI error"
+        },
+        {
+          "message": "TODO render error component instead",
+          "count": 15,
+          "bucket": "Other"
+        }
+      ],
+      "2026-02": [
+        {
+          "message": "NG0950: Input \"studies\" is required but no value is available yet",
+          "count": 133,
+          "bucket": "Angular DI error"
+        },
+        {
+          "message": "Http failure: cdn.humanatlas.io/ui/cde-ui/assets/data/landing-page/cards.json: 0 Unknown E",
+          "count": 16,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Example 6 not found",
+          "count": 4,
+          "bucket": "Other"
+        },
+        {
+          "message": "Http failure: cdn.humanatlas.io/ui/cde-ui/assets/data/gallery/data.yaml: 404 OK",
+          "count": 4,
+          "bucket": "Content fetch failure"
+        },
+        {
+          "message": "Http failure: localhost:4200/assets/data/gallery/data.yaml: 0 Unknown Error",
+          "count": 4,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "[\n  {\n    \"expected\": \"string\",\n    \"code\": \"invalid_type\",\n    \"path\": [\n      \"studies\",",
+          "count": 3,
+          "bucket": "Other"
+        },
+        {
+          "message": "Unable to serialize unrecognized input",
+          "count": 2,
+          "bucket": "Other"
+        },
+        {
+          "message": "TODO render error component instead",
+          "count": 2,
+          "bucket": "Other"
+        },
+        {
+          "message": "Http failure: localhost:4200/assets/content/gallery/overview.yaml: 404 Not Found",
+          "count": 2,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "Icon failure: social:x",
+          "count": 1,
+          "bucket": "Dev noise"
+        }
+      ],
+      "2026-03": [
+        {
+          "message": "Http failure: localhost:4200/assets/data/examples/index.json: 0 Unknown Error",
+          "count": 1,
+          "bucket": "Dev noise"
+        }
+      ]
+    }
+  },
+  {
+    "tool": "FTU Explorer",
+    "all_time": [
+      {
+        "message": "can't access property \"clientWidth\", this.viewportElement is undefined",
+        "count": 564,
+        "bucket": "Null-ref error"
+      },
+      {
+        "message": "Cannot read properties of undefined (reading 'nativeElement')",
+        "count": 414,
+        "bucket": "Null-ref error"
+      },
+      {
+        "message": "can't access property \"nativeElement\", this.scrollbar is undefined",
+        "count": 131,
+        "bucket": "Null-ref error"
+      },
+      {
+        "message": "can't access property \"checkViewportSize\", this.vscroll is undefined",
+        "count": 114,
+        "bucket": "Null-ref error"
+      },
+      {
+        "message": "tissues[iri] is undefined",
+        "count": 111,
+        "bucket": "Null-ref error"
+      },
+      {
+        "message": "Http failure: 127.0.0.1:5500/docs/iftu-fixes/assets/links.yml: 404 Not Found",
+        "count": 92,
+        "bucket": "Dev noise"
+      },
+      {
+        "message": "Http failure: 127.0.0.1:5500/docs/iftu-fixes/assets/resources.yml: 404 Not Found",
+        "count": 92,
+        "bucket": "Dev noise"
+      },
+      {
+        "message": "NG0951: Child query result is required but no value is available",
+        "count": 58,
+        "bucket": "Angular DI error"
+      },
+      {
+        "message": "Cannot read properties of undefined (reading 'clientWidth')",
+        "count": 39,
+        "bucket": "Null-ref error"
+      },
+      {
+        "message": "Http failure: 127.0.0.1:5500/docs/iftu-testing/assets/ftu-cell-summaries.jsonld?id=https:/",
+        "count": 31,
+        "bucket": "Dev noise"
+      }
+    ],
+    "by_month": {
+      "2025-10": [
+        {
+          "message": "Http failure: 127.0.0.1:5500/docs/iftu-testing/assets/ftu-cell-summaries.jsonld?id=https:/",
+          "count": 31,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/ftu-illustrations: 0 Unknown Error",
+          "count": 10,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Icon failure: social:linkedin",
+          "count": 5,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Http failure: cdn.humanatlas.io/ui/ftu-ui/assets/resources.yml: 0 Unknown Error",
+          "count": 5,
+          "bucket": "Content fetch failure"
+        },
+        {
+          "message": "Icon failure: social:x",
+          "count": 5,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:ftu",
+          "count": 5,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Http failure: cdn.humanatlas.io/ui/ftu-ui/assets/links.yml: 0 Unknown Error",
+          "count": 5,
+          "bucket": "Content fetch failure"
+        },
+        {
+          "message": "Icon failure: social:facebook",
+          "count": 5,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:youtube",
+          "count": 5,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:bluesky",
+          "count": 5,
+          "bucket": "CDN / HTTP failure"
+        }
+      ],
+      "2025-11": [
+        {
+          "message": "Http failure: cdn.humanatlas.io/ui--staging/ftu-ui/assets/TEMP/2d-ftu-illustrations.jsonld",
+          "count": 4,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: :partner-logos",
+          "count": 2,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/ftu-illustrations: 0 Unknown Error",
+          "count": 2,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Icon failure: :KPMP",
+          "count": 1,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "r[i] is undefined",
+          "count": 1,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/ftu-illustrations?id=: 403 Forbidden",
+          "count": 1,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Cannot destructure property 'id' of 'r[i]' as it is undefined.",
+          "count": 1,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "Http failure: cdn.humanatlas.io/ui--staging/ftu-ui/assets/TEMP/2d-ftu-illustrations.jsonld",
+          "count": 1,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Http failure: cdn.humanatlas.io/ui/ftu-ui/assets/links.yml: 0 Unknown Error",
+          "count": 1,
+          "bucket": "Content fetch failure"
+        }
+      ],
+      "2025-12": [
+        {
+          "message": "Http failure: 127.0.0.1:5500/docs/iftu-fixes/assets/links.yml: 404 Not Found",
+          "count": 10,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "Http failure: 127.0.0.1:5500/docs/iftu-fixes/assets/resources.yml: 404 Not Found",
+          "count": 10,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "Http failure: localhost:5500/docs/iftu-fixes/assets/resources.yml: 404 Not Found",
+          "count": 7,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "Http failure: localhost:5500/docs/iftu-fixes/assets/links.yml: 404 Not Found",
+          "count": 7,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api--staging/v1/ftu-illustrations: 0 Unknown Error",
+          "count": 4,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Http failure: cdn.humanatlas.io/ui/ftu-ui/assets/links.yml: 0 Unknown Error",
+          "count": 4,
+          "bucket": "Content fetch failure"
+        },
+        {
+          "message": "Http failure: cdn.humanatlas.io/ui--staging/ftu-ui/assets/TEMP/2d-ftu-illustrations.jsonld",
+          "count": 3,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Http failure: cdn.humanatlas.io/ui/ftu-ui/assets/TEMP/ftu-datasets.jsonld: 0 Unknown Error",
+          "count": 3,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:bluesky",
+          "count": 2,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Cannot destructure property 'id' of 'tissues[iri]' as it is undefined.",
+          "count": 2,
+          "bucket": "Null-ref error"
+        }
+      ],
+      "2026-01": [
+        {
+          "message": "Http failure: cdn.humanatlas.io/ui/ftu-ui/assets/TEMP/ftu-datasets.jsonld: 0 Unknown Error",
+          "count": 4,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Http failure: cdn.humanatlas.io/ui/ftu-ui/assets/resources.yml: 0 Unknown Error",
+          "count": 4,
+          "bucket": "Content fetch failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/v1/ftu-illustrations: 0 Unknown Error",
+          "count": 4,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Http failure: cdn.humanatlas.io/ui/ftu-ui/assets/links.yml: 0 Unknown Error",
+          "count": 2,
+          "bucket": "Content fetch failure"
+        },
+        {
+          "message": "Http failure: cdn.humanatlas.io/ui/ftu-ui/assets/TEMP/ftu-cell-summaries.jsonld: 0 Unknown",
+          "count": 1,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Http failure: cdn.humanatlas.io/ui--staging/ftu-ui/assets/TEMP/2d-ftu-illustrations.jsonld",
+          "count": 1,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Failed to execute 'animate' on 'Element': 'linear' is not a valid value for easing",
+          "count": 1,
+          "bucket": "Other"
+        },
+        {
+          "message": "Cannot destructure property 'id' of 'r[i]' as it is undefined.",
+          "count": 1,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "i[r] is undefined",
+          "count": 1,
+          "bucket": "Null-ref error"
+        }
+      ],
+      "2026-02": [
+        {
+          "message": "can't access property \"clientWidth\", this.viewportElement is undefined",
+          "count": 564,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "Cannot read properties of undefined (reading 'nativeElement')",
+          "count": 414,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "can't access property \"nativeElement\", this.scrollbar is undefined",
+          "count": 131,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "can't access property \"checkViewportSize\", this.vscroll is undefined",
+          "count": 114,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "tissues[iri] is undefined",
+          "count": 107,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "Http failure: 127.0.0.1:5500/docs/iftu-fixes/assets/resources.yml: 404 Not Found",
+          "count": 82,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "Http failure: 127.0.0.1:5500/docs/iftu-fixes/assets/links.yml: 404 Not Found",
+          "count": 82,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "NG0951: Child query result is required but no value is available",
+          "count": 58,
+          "bucket": "Angular DI error"
+        },
+        {
+          "message": "Cannot read properties of undefined (reading 'clientWidth')",
+          "count": 39,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "Could not find column with id \"postFiller\".",
+          "count": 9,
+          "bucket": "Other"
+        }
+      ],
+      "2026-03": [
+        {
+          "message": "Http failure: localhost:4200/assets/links.yml: 404 Not Found",
+          "count": 6,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "Http failure: localhost:4200/assets/resources.yml: 404 Not Found",
+          "count": 6,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "tissues[iri] is undefined",
+          "count": 4,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "Http failure: localhost:4200/assets/TEMP/ftu-cell-summaries.jsonld?id=https://purl.humanat",
+          "count": 3,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "Http failure: localhost:4200/assets/TEMP/ftu-datasets.jsonld?id=https://purl.humanatlas.io",
+          "count": 1,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "Http failure: localhost:4200/assets/TEMP/ftu-cell-summaries.jsonld?id=https://purl.humanat",
+          "count": 1,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "Cannot read properties of undefined (reading 'color')",
+          "count": 1,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "Cannot destructure property 'id' of 'tissues[iri]' as it is undefined.",
+          "count": 1,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "can't access property \"firstCreatePass\", tView is null",
+          "count": 1,
+          "bucket": "Null-ref error"
+        },
+        {
+          "message": "Http failure: localhost:4200/assets/TEMP/ftu-cell-summaries.jsonld?id=https://purl.humanat",
+          "count": 1,
+          "bucket": "Dev noise"
+        }
+      ]
+    }
+  },
+  {
+    "tool": "KG Explorer",
+    "all_time": [
+      {
+        "message": "Icon failure: organ:all-organs",
+        "count": 3432,
+        "bucket": "CDN / HTTP failure"
+      },
+      {
+        "message": "Icon failure: product:3d-organ",
+        "count": 1313,
+        "bucket": "CDN / HTTP failure"
+      },
+      {
+        "message": "Icon failure: product:omaps",
+        "count": 691,
+        "bucket": "CDN / HTTP failure"
+      },
+      {
+        "message": "Icon failure: product:ftu",
+        "count": 678,
+        "bucket": "CDN / HTTP failure"
+      },
+      {
+        "message": "Icon failure: product:asctb-reporter",
+        "count": 674,
+        "bucket": "CDN / HTTP failure"
+      },
+      {
+        "message": "Icon failure: product:schema",
+        "count": 559,
+        "bucket": "CDN / HTTP failure"
+      },
+      {
+        "message": "Icon failure: product:landmark",
+        "count": 557,
+        "bucket": "CDN / HTTP failure"
+      },
+      {
+        "message": "Icon failure: organ:kidneys",
+        "count": 444,
+        "bucket": "CDN / HTTP failure"
+      },
+      {
+        "message": "Http failure: apps.humanatlas.io/api/kg/digital-objects: 0 Unknown Error",
+        "count": 256,
+        "bucket": "API failure"
+      },
+      {
+        "message": "Icon failure: product:millitome",
+        "count": 242,
+        "bucket": "CDN / HTTP failure"
+      }
+    ],
+    "by_month": {
+      "2025-10": [
+        {
+          "message": "Icon failure: organ:all-organs",
+          "count": 702,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:3d-organ",
+          "count": 350,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:asctb-reporter",
+          "count": 254,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:schema",
+          "count": 248,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:omaps",
+          "count": 222,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:landmark",
+          "count": 183,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:ftu",
+          "count": 182,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: organ:kidneys",
+          "count": 128,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:millitome",
+          "count": 82,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: organ:lungs",
+          "count": 69,
+          "bucket": "CDN / HTTP failure"
+        }
+      ],
+      "2025-11": [
+        {
+          "message": "Icon failure: organ:all-organs",
+          "count": 340,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:landmark",
+          "count": 122,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:schema",
+          "count": 99,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:asctb-reporter",
+          "count": 93,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:3d-organ",
+          "count": 80,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "Icon failure: product:omaps",
+          "count": 70,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:3d-organ",
+          "count": 64,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:landmark",
+          "count": 61,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "Icon failure: product:millitome",
+          "count": 58,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: organ:kidneys",
+          "count": 58,
+          "bucket": "CDN / HTTP failure"
+        }
+      ],
+      "2025-12": [
+        {
+          "message": "Icon failure: organ:all-organs",
+          "count": 214,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "Icon failure: product:3d-organ",
+          "count": 171,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:landmark",
+          "count": 150,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:omaps",
+          "count": 135,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:asctb-reporter",
+          "count": 114,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:ftu",
+          "count": 110,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:schema",
+          "count": 84,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: organ:all-organs",
+          "count": 60,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:landmark",
+          "count": 59,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "Icon failure: organ:kidneys",
+          "count": 55,
+          "bucket": "CDN / HTTP failure"
+        }
+      ],
+      "2026-01": [
+        {
+          "message": "Icon failure: organ:all-organs",
+          "count": 627,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:3d-organ",
+          "count": 420,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:ftu",
+          "count": 82,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/kg/digital-objects: 0 Unknown Error",
+          "count": 59,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Icon failure: product:asctb-reporter",
+          "count": 43,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:omaps",
+          "count": 40,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:facebook",
+          "count": 39,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: organ:kidneys",
+          "count": 38,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:x",
+          "count": 35,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:graphs",
+          "count": 35,
+          "bucket": "CDN / HTTP failure"
+        }
+      ],
+      "2026-02": [
+        {
+          "message": "Icon failure: organ:all-organs",
+          "count": 1138,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:3d-organ",
+          "count": 185,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:ftu",
+          "count": 163,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: organ:kidneys",
+          "count": 114,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Http failure: apps.humanatlas.io/api/kg/digital-objects: 0 Unknown Error",
+          "count": 85,
+          "bucket": "API failure"
+        },
+        {
+          "message": "Icon failure: product:omaps",
+          "count": 76,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:asctb-reporter",
+          "count": 70,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:landmark",
+          "count": 59,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:x",
+          "count": 51,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: social:facebook",
+          "count": 48,
+          "bucket": "CDN / HTTP failure"
+        }
+      ],
+      "2026-03": [
+        {
+          "message": "Icon failure: organ:all-organs",
+          "count": 565,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:omaps",
+          "count": 148,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:3d-organ",
+          "count": 123,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:asctb-reporter",
+          "count": 100,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:ftu",
+          "count": 96,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:landmark",
+          "count": 61,
+          "bucket": "Dev noise"
+        },
+        {
+          "message": "Icon failure: product:landmark",
+          "count": 60,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:schema",
+          "count": 57,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: organ:kidneys",
+          "count": 51,
+          "bucket": "CDN / HTTP failure"
+        },
+        {
+          "message": "Icon failure: product:cell-type-annotations",
+          "count": 42,
+          "bucket": "CDN / HTTP failure"
+        }
+      ]
+    }
+  }
+]
