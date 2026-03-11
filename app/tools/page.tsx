@@ -9,10 +9,12 @@ import { ErrorSourceChart, ErrorCauseChart } from "../components/charts/ErrorBre
 import { ErrorBucketBySourceChart } from "../components/charts/ErrorRootCauseBreakdownCharts";
 import MonthlyErrorTrendChart from "../components/charts/MonthlyErrorTrendChart";
 import ToolErrorRateChart from "../components/charts/ToolErrorRateChart";
+import ToolErrorDrilldown from "../components/charts/ToolErrorDrilldown";
 import ToolReturnRateChart from "../components/charts/ToolReturnRateChart";
 
 import monthlyData from "../../public/data/tool_visits_by_month.json";
 import toolErrorRatesLong from "../../public/data/tool_error_rates_long.json";
+import topErrorsByTool from "../../public/data/top_errors_by_tool.json";
 import toolReturnRateData from "../../public/data/tool_return_rate.json";
 import yearlyData from "../../public/data/tool_visits_by_year.json";
 import totalData from "../../public/data/total_tool_visits.json";
@@ -403,6 +405,7 @@ export default function ToolsPage() {
           <p className="mt-3 text-sm text-zinc-500">
             Peaked at <span className="text-red-400 font-semibold">{kgLaunchRate}</span> in Oct &apos;25 (CDN icon failures + CORS on the technology list API). Down to <span className="text-emerald-400 font-semibold">{kgCurrentRate}</span> by Feb &apos;26 — <span className="text-emerald-400 font-semibold">{kgRateDrop}% improvement</span>.
           </p>
+          <ToolErrorDrilldown data={topErrorsByTool} tool="KG Explorer" />
         </ChartCard>
 
         <ChartCard
@@ -413,8 +416,9 @@ export default function ToolsPage() {
         >
           <ToolErrorRateChart data={errLong} tool="EUI" />
           <p className="mt-3 text-sm text-zinc-500">
-            EUI has spiked significantly — <span className="text-red-400 font-semibold">177.7 errors/100 visits</span> in Feb &apos;26. Null-ref exceptions on map initialization and CORS issues on the technology list API are the primary drivers.
+            EUI has spiked significantly — <span className="text-red-400 font-semibold">177.7 errors/100 visits</span> in Feb &apos;26. API failures (session-token, ontology endpoints) and null-ref errors on map initialization are the top drivers.
           </p>
+          <ToolErrorDrilldown data={topErrorsByTool} tool="EUI" />
         </ChartCard>
 
         <ChartCard
@@ -425,8 +429,9 @@ export default function ToolsPage() {
         >
           <ToolErrorRateChart data={errLong} tool="CDE" />
           <p className="mt-3 text-sm text-zinc-500">
-            CDE had an unusual spike to <span className="text-red-400 font-semibold">1228 errors/100 visits</span> in Jan &apos;26, settling back to 88.5 in Feb &apos;26. Icon retrieval failures account for the bulk of CDE errors.
+            CDE had an unusual spike to <span className="text-red-400 font-semibold">1228 errors/100 visits</span> in Jan &apos;26, settling back to 88.5 in Feb &apos;26. Angular DI errors (NG0201, NG0950) and undefined property reads dominate.
           </p>
+          <ToolErrorDrilldown data={topErrorsByTool} tool="CDE" />
         </ChartCard>
 
         <ChartCard
@@ -437,8 +442,9 @@ export default function ToolsPage() {
         >
           <ToolErrorRateChart data={errLong} tool="RUI" />
           <p className="mt-3 text-sm text-zinc-500">
-            RUI generally has low error rates (&lt;15 errors/100 visits) with a small spike in Feb &apos;26. Icon retrieval and &quot;Other&quot; unclassified errors are the main buckets.
+            RUI generally has low error rates (&lt;15 errors/100 visits) with a small spike in Feb &apos;26. Icon retrieval from localhost dev environments accounts for most of the noise.
           </p>
+          <ToolErrorDrilldown data={topErrorsByTool} tool="RUI" />
         </ChartCard>
 
         <ChartCard
@@ -449,8 +455,9 @@ export default function ToolsPage() {
         >
           <ToolErrorRateChart data={errLong} tool="FTU Explorer" />
           <p className="mt-3 text-sm text-zinc-500">
-            FTU Explorer error rates fluctuate — spiking to <span className="text-red-400 font-semibold">175.5 errors/100</span> in Feb &apos;26. Content file fetch failures and icon retrieval issues are the top causes.
+            FTU Explorer spiked to <span className="text-red-400 font-semibold">175.5 errors/100</span> in Feb &apos;26. A mix of localhost dev noise, Angular DI errors, and CDN asset fetch failures — many fixable.
           </p>
+          <ToolErrorDrilldown data={topErrorsByTool} tool="FTU Explorer" />
         </ChartCard>
       </div>
 
