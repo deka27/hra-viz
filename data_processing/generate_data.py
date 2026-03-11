@@ -18,7 +18,7 @@ from pathlib import Path
 
 import duckdb
 
-PARQUET_DEFAULT = "data/2026-02-22_hra-logs.parquet"
+PARQUET_DEFAULT = "data/2026-03-09_hra-logs.parquet"
 OUT_DEFAULT = "public/data"
 
 TOOL_STEMS = "('/eui/','/rui/','/cde/','/ftu-explorer/','/kg-explorer/')"
@@ -700,6 +700,56 @@ def run(parquet: str, out: str) -> None:
         {"combo_label": " + ".join(c), "count": n, "tools": list(c)}
         for c, n in cc.most_common(12)
     ])
+
+    # ─── NEW: Top errors per tool (drill-down) ────────────────────────────────
+    import re as _re
+    BUCKET_CASE_ERR = """CASE
+        WHEN msg ILIKE '%/api/v1/technology-names%'        THEN 'CORS: technology list API'
+        WHEN msg ILIKE '%Http failure%' AND msg ILIKE '%/api/%' THEN 'API failure'
+        WHEN msg ILIKE '%Http failure%' AND (msg ILIKE '%127.0.0.1%' OR msg ILIKE '%localhost%') THEN 'Dev noise'
+        WHEN msg ILIKE '%Http failure%' AND (msg ILIKE '%.yml%' OR msg ILIKE '%.yaml%') THEN 'Content fetch failure'
+        WHEN msg ILIKE '%Http failure%'                    THEN 'CDN / HTTP failure'
+        WHEN msg ILIKE 'Error retrieving icon%'            THEN 'CDN icon failure'
+        WHEN msg ILIKE 'Cannot read properties of null%'
+          OR msg ILIKE 'Cannot read properties of undefined%'
+          OR msg ILIKE '%is undefined%'
+          OR msg ILIKE 'can''t access property%'           THEN 'Null-ref error'
+        WHEN msg ILIKE 'NG0%'                              THEN 'Angular DI error'
+        WHEN msg ILIKE '%is not a function%'               THEN 'Runtime type error'
+        ELSE 'Other'
+    END"""
+
+    def _clean_msg(msg: str) -> str:
+        msg = _re.sub(r'Http failure (response|during parsing) for (https?://[^\s:]+)[^:]*',
+                      lambda m: f"Http failure: {m.group(2).replace('https://','').replace('http://','')}", msg)
+        msg = _re.sub(r'Error retrieving icon ([^!]+)!.*', r'Icon failure: \1', msg)
+        msg = _re.sub(r'(NG\d+:[^.]+)\..*', r'\1', msg)
+        return msg[:90]
+
+    TOOL_APP_KEYS_ERR = {
+        "EUI":          ["ccf-eui"],
+        "RUI":          ["ccf-rui"],
+        "CDE":          ["cde-ui"],
+        "FTU Explorer": ["ftu-ui", "ftu-ui-small-wc"],
+        "KG Explorer":  ["kg-explorer"],
+    }
+    top_err_results = []
+    for tool, app_keys in TOOL_APP_KEYS_ERR.items():
+        app_list = ", ".join(f"'{k}'" for k in app_keys)
+        rows = con.execute(f"""
+            SELECT query['e.reason.message'] AS msg, COUNT(*)::BIGINT AS cnt,
+                   {BUCKET_CASE_ERR} AS bucket
+            FROM {P}
+            WHERE site='Events' AND query['event']='error'
+              AND query['app'] IN ({app_list})
+              AND query['e.reason.message'] IS NOT NULL
+            GROUP BY 1 ORDER BY cnt DESC LIMIT 10
+        """).fetchall()
+        top_err_results.append({
+            "tool": tool,
+            "errors": [{"message": _clean_msg(r[0]), "raw": r[0][:120], "count": r[1], "bucket": r[2]} for r in rows],
+        })
+    write_json(f"{out}/top_errors_by_tool.json", top_err_results)
 
     total = len(os.listdir(out))
     print(f"\nAll done — {total} files in {out}/")

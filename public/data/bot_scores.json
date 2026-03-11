@@ -1,69 +1,69 @@
 {
   "metrics": {
-    "rows_train": 68822,
-    "rows_test": 22941,
-    "positive_rate": 0.3461,
-    "accuracy": 0.986,
-    "precision": 0.9785,
-    "recall": 0.9811,
-    "f1": 0.9798,
-    "roc_auc": 0.999
+    "rows_train": 69483,
+    "rows_test": 23161,
+    "positive_rate": 0.3524,
+    "accuracy": 0.9846,
+    "precision": 0.9775,
+    "recall": 0.9789,
+    "f1": 0.9782,
+    "roc_auc": 0.9989
   },
   "feature_importance": [
     {
       "feature": "ua_len",
-      "importance": 0.41948918370130983
+      "importance": 0.4139228109831902
     },
     {
       "feature": "referer_len",
-      "importance": 0.19188001948922254
+      "importance": 0.18958526192906672
     },
     {
       "feature": "cs_bytes",
-      "importance": 0.11067030638172555
+      "importance": 0.11433075210890292
     },
     {
       "feature": "uri_len",
-      "importance": 0.09451140716438239
+      "importance": 0.09912161274919207
     },
     {
       "feature": "sc_bytes",
-      "importance": 0.06418688903277305
+      "importance": 0.06364508937270014
     },
     {
       "feature": "ttfb",
-      "importance": 0.03236919285146898
+      "importance": 0.03295027947250091
     },
     {
       "feature": "time_taken",
-      "importance": 0.028385354092810868
+      "importance": 0.029741031417585675
     },
     {
       "feature": "sc_status",
-      "importance": 0.02562119332751855
-    },
-    {
-      "feature": "hour_utc",
-      "importance": 0.013191407326277856
+      "importance": 0.02322555414709179
     },
     {
       "feature": "ua_script_hint",
-      "importance": 0.012553892986552984
+      "importance": 0.01412755868547744
+    },
+    {
+      "feature": "hour_utc",
+      "importance": 0.012500870467966732
     },
     {
       "feature": "has_query",
-      "importance": 0.006371904380250801
+      "importance": 0.006157039308195348
     },
     {
       "feature": "ua_headless_hint",
-      "importance": 0.0007692492657066446
+      "importance": 0.0006921393581299703
     }
   ],
   "suspicious_sessions": [
     {
       "session_id": "dMzttjbpiN",
-      "mean_bot_score": 0.6098245436722843,
-      "max_bot_score": 0.6098245436722843,
+      "mean_bot_score": 0.7119120557890726,
+      "max_bot_score": 0.7119120557890726,
       "request_count": 1,
       "country": "US",
       "top_tool": "",
@@ -71,8 +71,8 @@
     },
     {
       "session_id": "GoXrFDj87x",
-      "mean_bot_score": 0.6014859175580862,
-      "max_bot_score": 0.6088211949613976,
+      "mean_bot_score": 0.6564758536927939,
+      "max_bot_score": 0.6571979978193555,
       "request_count": 2,
       "country": "CN",
       "top_tool": "",
@@ -80,8 +80,8 @@
     },
     {
       "session_id": "8edM9aCyTT",
-      "mean_bot_score": 0.598490915034342,
-      "max_bot_score": 0.598490915034342,
+      "mean_bot_score": 0.6562860285902528,
+      "max_bot_score": 0.6562860285902528,
       "request_count": 1,
       "country": "PH",
       "top_tool": "",
@@ -89,8 +89,8 @@
     },
     {
       "session_id": "kiV5sKh5Gz",
-      "mean_bot_score": 0.5681319173982049,
-      "max_bot_score": 0.5681319173982049,
+      "mean_bot_score": 0.6554438468981807,
+      "max_bot_score": 0.6554438468981807,
       "request_count": 1,
       "country": "US",
       "top_tool": "",
@@ -98,687 +98,687 @@
     },
     {
       "session_id": "CXMoW4qUqQ",
-      "mean_bot_score": 0.5499025059942558,
-      "max_bot_score": 0.5499025059942558,
+      "mean_bot_score": 0.6294824988403267,
+      "max_bot_score": 0.6294824988403267,
       "request_count": 1,
       "country": "US",
-      "top_tool": "",
-      "events": 1
-    },
-    {
-      "session_id": "BeHO0nrP9V",
-      "mean_bot_score": 0.5381041498934215,
-      "max_bot_score": 0.5381041498934215,
-      "request_count": 1,
-      "country": "US",
-      "top_tool": "",
-      "events": 1
-    },
-    {
-      "session_id": "P04Wyc5Oqh",
-      "mean_bot_score": 0.5221722138314061,
-      "max_bot_score": 0.5221722138314061,
-      "request_count": 1,
-      "country": "RU",
-      "top_tool": "",
-      "events": 1
-    },
-    {
-      "session_id": "S9OiW4-rm6",
-      "mean_bot_score": 0.5107787581851357,
-      "max_bot_score": 0.5218075113348768,
-      "request_count": 2,
-      "country": "KR",
-      "top_tool": "",
-      "events": 2
-    },
-    {
-      "session_id": "43crL4bcRT",
-      "mean_bot_score": 0.4896755111357204,
-      "max_bot_score": 0.4896755111357204,
-      "request_count": 1,
-      "country": "IT",
-      "top_tool": "",
-      "events": 1
-    },
-    {
-      "session_id": "DnYiPcjayh",
-      "mean_bot_score": 0.4839452431406009,
-      "max_bot_score": 0.5706021221261012,
-      "request_count": 3,
-      "country": "PH",
-      "top_tool": "",
-      "events": 3
-    },
-    {
-      "session_id": "2LZXbH1fUx",
-      "mean_bot_score": 0.47260789529896857,
-      "max_bot_score": 0.547620288807406,
-      "request_count": 2,
-      "country": "EC",
-      "top_tool": "",
-      "events": 2
-    },
-    {
-      "session_id": "6IS12Ev3dp",
-      "mean_bot_score": 0.47130950462160975,
-      "max_bot_score": 0.47130950462160975,
-      "request_count": 1,
-      "country": "RO",
-      "top_tool": "",
-      "events": 1
-    },
-    {
-      "session_id": "WWsXYq-6Gb",
-      "mean_bot_score": 0.4669316677637546,
-      "max_bot_score": 0.4669316677637546,
-      "request_count": 1,
-      "country": "US",
-      "top_tool": "",
-      "events": 1
-    },
-    {
-      "session_id": "wg3VJA5Bet",
-      "mean_bot_score": 0.4605264277075075,
-      "max_bot_score": 0.6491258670929675,
-      "request_count": 10,
-      "country": "LT",
-      "top_tool": "",
-      "events": 10
-    },
-    {
-      "session_id": "4o17P5YSi0",
-      "mean_bot_score": 0.45659493381708016,
-      "max_bot_score": 0.579628059490894,
-      "request_count": 2,
-      "country": "AE",
-      "top_tool": "",
-      "events": 2
-    },
-    {
-      "session_id": "OD0Ano49qk",
-      "mean_bot_score": 0.45360293235289534,
-      "max_bot_score": 0.45360293235289534,
-      "request_count": 1,
-      "country": "IT",
       "top_tool": "",
       "events": 1
     },
     {
       "session_id": "YWOUyrnKXV",
-      "mean_bot_score": 0.4462889567782743,
-      "max_bot_score": 0.4462889567782743,
+      "mean_bot_score": 0.6240118002720576,
+      "max_bot_score": 0.6240118002720576,
       "request_count": 1,
       "country": "TN",
       "top_tool": "",
       "events": 1
     },
     {
-      "session_id": "jfF3l_QaIt",
-      "mean_bot_score": 0.44403986650063976,
-      "max_bot_score": 0.5414634532636575,
-      "request_count": 8,
-      "country": "CN",
-      "top_tool": "FTU Explorer",
-      "events": 8
-    },
-    {
-      "session_id": "qwA7gHUnUZ",
-      "mean_bot_score": 0.44399118824950706,
-      "max_bot_score": 0.44399118824950706,
-      "request_count": 1,
-      "country": "CN",
-      "top_tool": "",
-      "events": 1
-    },
-    {
-      "session_id": "dD2O5Cz06N",
-      "mean_bot_score": 0.4393223979702748,
-      "max_bot_score": 0.522409405307339,
-      "request_count": 4,
-      "country": "SG",
-      "top_tool": "",
-      "events": 4
-    },
-    {
-      "session_id": "AdcoD4FTFa",
-      "mean_bot_score": 0.4391095186758258,
-      "max_bot_score": 0.47092605137626614,
-      "request_count": 16,
-      "country": "ES",
-      "top_tool": "",
-      "events": 16
-    },
-    {
-      "session_id": "E_vtptyQ9n",
-      "mean_bot_score": 0.43307255397874583,
-      "max_bot_score": 0.43307255397874583,
-      "request_count": 1,
-      "country": "CN",
-      "top_tool": "",
-      "events": 1
-    },
-    {
-      "session_id": "CQtOGs2ptC",
-      "mean_bot_score": 0.4324941089940626,
-      "max_bot_score": 0.4353585380136639,
-      "request_count": 2,
-      "country": "SG",
-      "top_tool": "",
-      "events": 2
-    },
-    {
-      "session_id": "wr-SYAN0j-",
-      "mean_bot_score": 0.43197674257497976,
-      "max_bot_score": 0.43197674257497976,
-      "request_count": 1,
-      "country": "ES",
-      "top_tool": "",
-      "events": 1
-    },
-    {
-      "session_id": "GPUb16XpzE",
-      "mean_bot_score": 0.43015938372432283,
-      "max_bot_score": 0.5947200877065274,
+      "session_id": "wg3VJA5Bet",
+      "mean_bot_score": 0.604042964301408,
+      "max_bot_score": 0.7714231606038502,
       "request_count": 10,
-      "country": "PH",
-      "top_tool": "",
-      "events": 10
-    },
-    {
-      "session_id": "s9cJ-R9azj",
-      "mean_bot_score": 0.430123715009761,
-      "max_bot_score": 0.430123715009761,
-      "request_count": 1,
       "country": "LT",
-      "top_tool": "KG Explorer",
-      "events": 1
-    },
-    {
-      "session_id": "NYVYojjs3-",
-      "mean_bot_score": 0.42834402821560585,
-      "max_bot_score": 0.42834402821560585,
-      "request_count": 1,
-      "country": "DE",
       "top_tool": "",
-      "events": 1
-    },
-    {
-      "session_id": "1b7Hy8JmeP",
-      "mean_bot_score": 0.42834303146764935,
-      "max_bot_score": 0.42834303146764935,
-      "request_count": 1,
-      "country": "IQ",
-      "top_tool": "",
-      "events": 1
-    },
-    {
-      "session_id": "Wi6Z9oIaF_",
-      "mean_bot_score": 0.42679327516971205,
-      "max_bot_score": 0.44800529493656494,
-      "request_count": 3,
-      "country": "PK",
-      "top_tool": "",
-      "events": 3
-    },
-    {
-      "session_id": "9ZubkplzAt",
-      "mean_bot_score": 0.4198479339386541,
-      "max_bot_score": 0.45920381868868576,
-      "request_count": 10,
-      "country": "US",
-      "top_tool": "EUI",
       "events": 10
     },
     {
-      "session_id": "r--FYO5tii",
-      "mean_bot_score": 0.4183803266821775,
-      "max_bot_score": 0.4183803266821775,
-      "request_count": 1,
-      "country": "US",
-      "top_tool": "",
-      "events": 1
-    },
-    {
-      "session_id": "iFFfsNkT7T",
-      "mean_bot_score": 0.4158836481703061,
-      "max_bot_score": 0.4158836481703061,
-      "request_count": 2,
-      "country": "FR",
-      "top_tool": "",
-      "events": 2
-    },
-    {
-      "session_id": "K29qPttrSe",
-      "mean_bot_score": 0.41100816237800203,
-      "max_bot_score": 0.41100816237800203,
-      "request_count": 1,
-      "country": "DZ",
-      "top_tool": "",
-      "events": 1
-    },
-    {
-      "session_id": "nUm8TnhNZt",
-      "mean_bot_score": 0.40949848903048053,
-      "max_bot_score": 0.4755661923560191,
-      "request_count": 49,
-      "country": "US",
-      "top_tool": "KG Explorer",
-      "events": 49
-    },
-    {
-      "session_id": "0rNzgTJJZ4",
-      "mean_bot_score": 0.40924945947936153,
-      "max_bot_score": 0.40924945947936153,
+      "session_id": "43crL4bcRT",
+      "mean_bot_score": 0.5998684508779396,
+      "max_bot_score": 0.5998684508779396,
       "request_count": 1,
       "country": "IT",
       "top_tool": "",
       "events": 1
     },
     {
-      "session_id": "V6qZKM_S8a",
-      "mean_bot_score": 0.40655058591710846,
-      "max_bot_score": 0.40932673441157563,
+      "session_id": "4o17P5YSi0",
+      "mean_bot_score": 0.5981757556927647,
+      "max_bot_score": 0.6965030223800122,
       "request_count": 2,
-      "country": "BO",
-      "top_tool": "KG Explorer",
+      "country": "AE",
+      "top_tool": "",
       "events": 2
     },
     {
-      "session_id": "voWKv1eGZ5",
-      "mean_bot_score": 0.4053594220712463,
-      "max_bot_score": 0.4053594220712463,
-      "request_count": 1,
-      "country": "CN",
-      "top_tool": "KG Explorer",
-      "events": 1
+      "session_id": "2LZXbH1fUx",
+      "mean_bot_score": 0.5715622638341739,
+      "max_bot_score": 0.6570356245004698,
+      "request_count": 2,
+      "country": "EC",
+      "top_tool": "",
+      "events": 2
+    },
+    {
+      "session_id": "S9OiW4-rm6",
+      "mean_bot_score": 0.5583385182694351,
+      "max_bot_score": 0.5860945237485863,
+      "request_count": 2,
+      "country": "KR",
+      "top_tool": "",
+      "events": 2
     },
     {
       "session_id": "yL98hPif2o",
-      "mean_bot_score": 0.4046382712298863,
-      "max_bot_score": 0.4046382712298863,
+      "mean_bot_score": 0.5414565507564888,
+      "max_bot_score": 0.5414565507564888,
       "request_count": 1,
       "country": "US",
       "top_tool": "",
       "events": 1
     },
     {
-      "session_id": "IZqJLOpDeX",
-      "mean_bot_score": 0.4023925857889662,
-      "max_bot_score": 0.4023925857889662,
-      "request_count": 1,
-      "country": "US",
-      "top_tool": "",
-      "events": 1
-    },
-    {
-      "session_id": "rT8v7yMhV5",
-      "mean_bot_score": 0.40165696358257613,
-      "max_bot_score": 0.40737962837864194,
+      "session_id": "Wi6Z9oIaF_",
+      "mean_bot_score": 0.538093863166643,
+      "max_bot_score": 0.6071218448695389,
       "request_count": 3,
-      "country": "US",
+      "country": "PK",
       "top_tool": "",
       "events": 3
     },
     {
-      "session_id": "rHvvi62--y",
-      "mean_bot_score": 0.3976694009090159,
-      "max_bot_score": 0.3976694009090159,
-      "request_count": 1,
-      "country": "US",
-      "top_tool": "",
-      "events": 1
-    },
-    {
-      "session_id": "ykLssl_8Ev",
-      "mean_bot_score": 0.39574431267354604,
-      "max_bot_score": 0.4235037389863517,
-      "request_count": 11,
-      "country": "US",
-      "top_tool": "",
-      "events": 11
-    },
-    {
-      "session_id": "1DXMbSJ1Qa",
-      "mean_bot_score": 0.39523522432838815,
-      "max_bot_score": 0.42315169733711944,
-      "request_count": 21,
-      "country": "FR",
-      "top_tool": "",
-      "events": 21
-    },
-    {
-      "session_id": "rXexjatIPo",
-      "mean_bot_score": 0.3941079294850548,
-      "max_bot_score": 0.5829141514308013,
-      "request_count": 2,
-      "country": "DE",
-      "top_tool": "",
-      "events": 2
-    },
-    {
-      "session_id": "5GHepVN1Cp",
-      "mean_bot_score": 0.3920496296325729,
-      "max_bot_score": 0.42017224385045254,
-      "request_count": 3,
+      "session_id": "jfF3l_QaIt",
+      "mean_bot_score": 0.5289556536681211,
+      "max_bot_score": 0.5865635913506788,
+      "request_count": 8,
       "country": "CN",
-      "top_tool": "",
-      "events": 3
+      "top_tool": "FTU Explorer",
+      "events": 8
     },
     {
-      "session_id": "HAq1bcr0le",
-      "mean_bot_score": 0.3875808659469616,
-      "max_bot_score": 0.3875808659469616,
-      "request_count": 1,
+      "session_id": "DnYiPcjayh",
+      "mean_bot_score": 0.5237392300513911,
+      "max_bot_score": 0.6649469151064643,
+      "request_count": 3,
       "country": "PH",
       "top_tool": "",
-      "events": 1
+      "events": 3
     },
     {
-      "session_id": "8GukaMq0Q9",
-      "mean_bot_score": 0.38076592263158704,
-      "max_bot_score": 0.4084766691161932,
-      "request_count": 7,
-      "country": "ES",
-      "top_tool": "KG Explorer",
-      "events": 7
-    },
-    {
-      "session_id": "1qkGbALL1O",
-      "mean_bot_score": 0.37606777056151397,
-      "max_bot_score": 0.37606777056151397,
+      "session_id": "OD0Ano49qk",
+      "mean_bot_score": 0.5221239785890677,
+      "max_bot_score": 0.5221239785890677,
       "request_count": 1,
-      "country": "JP",
-      "top_tool": "",
-      "events": 1
-    },
-    {
-      "session_id": "yGHKy-1yV3",
-      "mean_bot_score": 0.3757179354340779,
-      "max_bot_score": 0.3822647367973681,
-      "request_count": 2,
-      "country": "ES",
-      "top_tool": "KG Explorer",
-      "events": 2
-    },
-    {
-      "session_id": "09YG-mLCXp",
-      "mean_bot_score": 0.3719759170486089,
-      "max_bot_score": 0.5173821187483081,
-      "request_count": 2,
-      "country": "DE",
-      "top_tool": "",
-      "events": 2
-    },
-    {
-      "session_id": "oFheQy21qn",
-      "mean_bot_score": 0.3719149082402848,
-      "max_bot_score": 0.5731893599958073,
-      "request_count": 24,
-      "country": "SG",
-      "top_tool": "",
-      "events": 24
-    },
-    {
-      "session_id": "ddfQQ5bxgo",
-      "mean_bot_score": 0.37146646881728884,
-      "max_bot_score": 0.38309969473333244,
-      "request_count": 6,
-      "country": "ES",
-      "top_tool": "KG Explorer",
-      "events": 6
-    },
-    {
-      "session_id": "aOT3WsBKxA",
-      "mean_bot_score": 0.3704822140109864,
-      "max_bot_score": 0.3704822140109864,
-      "request_count": 1,
-      "country": "US",
-      "top_tool": "",
-      "events": 1
-    },
-    {
-      "session_id": "_gMk3MtiJF",
-      "mean_bot_score": 0.37007493964781824,
-      "max_bot_score": 0.41455097701623295,
-      "request_count": 2,
-      "country": "CN",
-      "top_tool": "",
-      "events": 2
-    },
-    {
-      "session_id": "hbu4i7SOii",
-      "mean_bot_score": 0.3682354053606654,
-      "max_bot_score": 0.3682354053606654,
-      "request_count": 1,
-      "country": "US",
+      "country": "IT",
       "top_tool": "",
       "events": 1
     },
     {
       "session_id": "P-J_zdXGEk",
-      "mean_bot_score": 0.3669290951033551,
-      "max_bot_score": 0.5726807762109554,
+      "mean_bot_score": 0.5214396024530125,
+      "max_bot_score": 0.7339216758196878,
       "request_count": 10,
       "country": "RU",
       "top_tool": "",
       "events": 10
     },
     {
-      "session_id": "0ekj58lnb7",
-      "mean_bot_score": 0.36691848822508694,
-      "max_bot_score": 0.4026852489065041,
-      "request_count": 20,
+      "session_id": "WWsXYq-6Gb",
+      "mean_bot_score": 0.5193237316052193,
+      "max_bot_score": 0.5193237316052193,
+      "request_count": 1,
       "country": "US",
       "top_tool": "",
-      "events": 20
+      "events": 1
     },
     {
-      "session_id": "L3wAlQS2MY",
-      "mean_bot_score": 0.36679949309087995,
-      "max_bot_score": 0.36679949309087995,
+      "session_id": "voWKv1eGZ5",
+      "mean_bot_score": 0.5140992462752431,
+      "max_bot_score": 0.5140992462752431,
+      "request_count": 1,
+      "country": "CN",
+      "top_tool": "KG Explorer",
+      "events": 1
+    },
+    {
+      "session_id": "wr-SYAN0j-",
+      "mean_bot_score": 0.512932600747056,
+      "max_bot_score": 0.512932600747056,
+      "request_count": 1,
+      "country": "ES",
+      "top_tool": "",
+      "events": 1
+    },
+    {
+      "session_id": "0rNzgTJJZ4",
+      "mean_bot_score": 0.5120824414385893,
+      "max_bot_score": 0.5120824414385893,
+      "request_count": 1,
+      "country": "IT",
+      "top_tool": "",
+      "events": 1
+    },
+    {
+      "session_id": "rT8v7yMhV5",
+      "mean_bot_score": 0.5078841980824742,
+      "max_bot_score": 0.5157830901684485,
+      "request_count": 3,
+      "country": "US",
+      "top_tool": "",
+      "events": 3
+    },
+    {
+      "session_id": "5GHepVN1Cp",
+      "mean_bot_score": 0.5078145417102277,
+      "max_bot_score": 0.5383745757455837,
+      "request_count": 3,
+      "country": "CN",
+      "top_tool": "",
+      "events": 3
+    },
+    {
+      "session_id": "E_vtptyQ9n",
+      "mean_bot_score": 0.501530961832161,
+      "max_bot_score": 0.501530961832161,
       "request_count": 1,
       "country": "CN",
       "top_tool": "",
       "events": 1
     },
     {
-      "session_id": "9qyKQBPDjh",
-      "mean_bot_score": 0.36547300152375684,
-      "max_bot_score": 0.36634237446259554,
+      "session_id": "s9cJ-R9azj",
+      "mean_bot_score": 0.5013679575235725,
+      "max_bot_score": 0.5013679575235725,
+      "request_count": 1,
+      "country": "LT",
+      "top_tool": "KG Explorer",
+      "events": 1
+    },
+    {
+      "session_id": "-yFDZoNcCg",
+      "mean_bot_score": 0.4944317763936849,
+      "max_bot_score": 0.49926191754659455,
       "request_count": 3,
-      "country": "ES",
+      "country": "CN",
       "top_tool": "KG Explorer",
       "events": 3
     },
     {
-      "session_id": "CmX-PYv1zt",
-      "mean_bot_score": 0.3629735767054488,
-      "max_bot_score": 0.3629735767054488,
-      "request_count": 1,
-      "country": "ES",
-      "top_tool": "KG Explorer",
-      "events": 1
-    },
-    {
-      "session_id": "rBKYsIkg6e",
-      "mean_bot_score": 0.3628992977101152,
-      "max_bot_score": 0.3628992977101152,
-      "request_count": 1,
-      "country": "ES",
-      "top_tool": "KG Explorer",
-      "events": 1
+      "session_id": "iUjssLMH3W",
+      "mean_bot_score": 0.4943401687882538,
+      "max_bot_score": 0.5152769646288157,
+      "request_count": 3,
+      "country": "RU",
+      "top_tool": "",
+      "events": 3
     },
     {
       "session_id": "RVIiVQjyDx",
-      "mean_bot_score": 0.3611304859998752,
-      "max_bot_score": 0.37034237446259555,
+      "mean_bot_score": 0.49353487709842314,
+      "max_bot_score": 0.4989081179691889,
       "request_count": 3,
       "country": "ES",
       "top_tool": "KG Explorer",
       "events": 3
     },
     {
-      "session_id": "7JG_j9AyPO",
-      "mean_bot_score": 0.3598014665142695,
-      "max_bot_score": 0.3598014665142695,
-      "request_count": 1,
-      "country": "IN",
-      "top_tool": "",
-      "events": 1
+      "session_id": "8GukaMq0Q9",
+      "mean_bot_score": 0.4929238523878531,
+      "max_bot_score": 0.4984673186857784,
+      "request_count": 7,
+      "country": "ES",
+      "top_tool": "KG Explorer",
+      "events": 7
     },
     {
-      "session_id": "i2S10mSeml",
-      "mean_bot_score": 0.3592129161300037,
-      "max_bot_score": 0.4188674323370381,
+      "session_id": "9qyKQBPDjh",
+      "mean_bot_score": 0.49163635334510664,
+      "max_bot_score": 0.49840315879260694,
+      "request_count": 3,
+      "country": "ES",
+      "top_tool": "KG Explorer",
+      "events": 3
+    },
+    {
+      "session_id": "yGHKy-1yV3",
+      "mean_bot_score": 0.49041369875093593,
+      "max_bot_score": 0.4911030968149112,
       "request_count": 2,
-      "country": "US",
-      "top_tool": "",
+      "country": "ES",
+      "top_tool": "KG Explorer",
       "events": 2
     },
     {
-      "session_id": "d8jdgElJ2D",
-      "mean_bot_score": 0.357018397859653,
-      "max_bot_score": 0.357018397859653,
+      "session_id": "ddfQQ5bxgo",
+      "mean_bot_score": 0.4903026948048983,
+      "max_bot_score": 0.4971133843342915,
+      "request_count": 6,
+      "country": "ES",
+      "top_tool": "KG Explorer",
+      "events": 6
+    },
+    {
+      "session_id": "nUm8TnhNZt",
+      "mean_bot_score": 0.48760752519070805,
+      "max_bot_score": 0.5467752020363125,
+      "request_count": 90,
+      "country": "US",
+      "top_tool": "KG Explorer",
+      "events": 90
+    },
+    {
+      "session_id": "rBKYsIkg6e",
+      "mean_bot_score": 0.4874402282331055,
+      "max_bot_score": 0.4874402282331055,
       "request_count": 1,
-      "country": "IN",
-      "top_tool": "",
+      "country": "ES",
+      "top_tool": "KG Explorer",
       "events": 1
     },
     {
       "session_id": "HCzqDZAG3E",
-      "mean_bot_score": 0.3562567379450404,
-      "max_bot_score": 0.36005180248838997,
+      "mean_bot_score": 0.48705806449140476,
+      "max_bot_score": 0.48769299882999045,
       "request_count": 5,
       "country": "CN",
       "top_tool": "",
       "events": 5
     },
     {
-      "session_id": "aZ2wMgseHd",
-      "mean_bot_score": 0.3557210449460893,
-      "max_bot_score": 0.35813791138469137,
-      "request_count": 2,
-      "country": "PL",
-      "top_tool": "KG Explorer",
-      "events": 2
-    },
-    {
-      "session_id": "efszTT0gl7",
-      "mean_bot_score": 0.35416567451929526,
-      "max_bot_score": 0.35416567451929526,
+      "session_id": "CmX-PYv1zt",
+      "mean_bot_score": 0.4794462261744077,
+      "max_bot_score": 0.4794462261744077,
       "request_count": 1,
-      "country": "OM",
-      "top_tool": "",
-      "events": 1
-    },
-    {
-      "session_id": "-yFDZoNcCg",
-      "mean_bot_score": 0.35266691148295903,
-      "max_bot_score": 0.36664031909696804,
-      "request_count": 3,
-      "country": "CN",
+      "country": "ES",
       "top_tool": "KG Explorer",
-      "events": 3
-    },
-    {
-      "session_id": "4N7sLGPWX-",
-      "mean_bot_score": 0.3523887580258505,
-      "max_bot_score": 0.4280319345886103,
-      "request_count": 16,
-      "country": "CN",
-      "top_tool": "",
-      "events": 16
-    },
-    {
-      "session_id": "me5yflNlnf",
-      "mean_bot_score": 0.35193207969262524,
-      "max_bot_score": 0.35193207969262524,
-      "request_count": 1,
-      "country": "SG",
-      "top_tool": "",
       "events": 1
-    },
-    {
-      "session_id": "mI1F3wVtw6",
-      "mean_bot_score": 0.35177189706448164,
-      "max_bot_score": 0.37404087471311065,
-      "request_count": 3,
-      "country": "CN",
-      "top_tool": "",
-      "events": 3
     },
     {
       "session_id": "_jQQ9qZNih",
-      "mean_bot_score": 0.34772030950247707,
-      "max_bot_score": 0.35591619124757823,
+      "mean_bot_score": 0.4792785357917899,
+      "max_bot_score": 0.4825091838647348,
       "request_count": 3,
       "country": "CN",
       "top_tool": "",
       "events": 3
     },
     {
-      "session_id": "vn2Cxsxv1R",
-      "mean_bot_score": 0.3458511619298963,
-      "max_bot_score": 0.3564974177501005,
+      "session_id": "GPUb16XpzE",
+      "mean_bot_score": 0.47860858407225937,
+      "max_bot_score": 0.653333666764856,
+      "request_count": 10,
+      "country": "PH",
+      "top_tool": "",
+      "events": 10
+    },
+    {
+      "session_id": "Ym8HqkdDVk",
+      "mean_bot_score": 0.4734853974257514,
+      "max_bot_score": 0.5224396124893235,
       "request_count": 2,
-      "country": "MX",
+      "country": "DE",
       "top_tool": "",
       "events": 2
     },
     {
-      "session_id": "OjE9_BUByD",
-      "mean_bot_score": 0.34491110922493673,
-      "max_bot_score": 0.34491110922493673,
+      "session_id": "V6qZKM_S8a",
+      "mean_bot_score": 0.4675700576628046,
+      "max_bot_score": 0.4731342788355852,
+      "request_count": 2,
+      "country": "BO",
+      "top_tool": "KG Explorer",
+      "events": 2
+    },
+    {
+      "session_id": "ODNfkiNlji",
+      "mean_bot_score": 0.4658238547504117,
+      "max_bot_score": 0.48479729359821444,
+      "request_count": 15,
+      "country": "CN",
+      "top_tool": "KG Explorer",
+      "events": 15
+    },
+    {
+      "session_id": "P04Wyc5Oqh",
+      "mean_bot_score": 0.46561658984471804,
+      "max_bot_score": 0.46561658984471804,
       "request_count": 1,
-      "country": "HK",
-      "top_tool": "EUI",
+      "country": "RU",
+      "top_tool": "",
       "events": 1
     },
     {
-      "session_id": "EXvtbA56Cd",
-      "mean_bot_score": 0.3447122761966871,
-      "max_bot_score": 0.5101306535917169,
-      "request_count": 4,
-      "country": "SG",
+      "session_id": "iFFfsNkT7T",
+      "mean_bot_score": 0.465475058536147,
+      "max_bot_score": 0.46676720193813026,
+      "request_count": 2,
+      "country": "FR",
       "top_tool": "",
-      "events": 4
+      "events": 2
     },
     {
-      "session_id": "eydz7x7Bj1",
-      "mean_bot_score": 0.3431082688813187,
-      "max_bot_score": 0.5564975236725153,
-      "request_count": 12,
-      "country": "SG",
-      "top_tool": "",
-      "events": 12
-    },
-    {
-      "session_id": "t6v32RAyQp",
-      "mean_bot_score": 0.3426047615574259,
-      "max_bot_score": 0.3426047615574259,
+      "session_id": "BeHO0nrP9V",
+      "mean_bot_score": 0.46355143716645675,
+      "max_bot_score": 0.46355143716645675,
       "request_count": 1,
       "country": "US",
       "top_tool": "",
       "events": 1
     },
     {
-      "session_id": "25cR8I4JCu",
-      "mean_bot_score": 0.34177294553697224,
-      "max_bot_score": 0.34177294553697224,
+      "session_id": "hbu4i7SOii",
+      "mean_bot_score": 0.460585835840986,
+      "max_bot_score": 0.460585835840986,
       "request_count": 1,
-      "country": "SG",
-      "top_tool": "FTU Explorer",
+      "country": "US",
+      "top_tool": "",
       "events": 1
     },
     {
-      "session_id": "V7jmTZSj8Z",
-      "mean_bot_score": 0.3415539829214647,
-      "max_bot_score": 0.39779543432499015,
+      "session_id": "OjE9_BUByD",
+      "mean_bot_score": 0.45471297689092904,
+      "max_bot_score": 0.45471297689092904,
+      "request_count": 1,
+      "country": "HK",
+      "top_tool": "EUI",
+      "events": 1
+    },
+    {
+      "session_id": "Hz2zmmDC8k",
+      "mean_bot_score": 0.4546815670207448,
+      "max_bot_score": 0.4977241383792788,
+      "request_count": 102,
+      "country": "CN",
+      "top_tool": "",
+      "events": 102
+    },
+    {
+      "session_id": "1DXMbSJ1Qa",
+      "mean_bot_score": 0.45010203607648513,
+      "max_bot_score": 0.4756760129385795,
+      "request_count": 21,
+      "country": "FR",
+      "top_tool": "",
+      "events": 21
+    },
+    {
+      "session_id": "4N7sLGPWX-",
+      "mean_bot_score": 0.44816464844818443,
+      "max_bot_score": 0.48137985664092575,
+      "request_count": 16,
+      "country": "CN",
+      "top_tool": "",
+      "events": 16
+    },
+    {
+      "session_id": "L3wAlQS2MY",
+      "mean_bot_score": 0.44112052464142715,
+      "max_bot_score": 0.44112052464142715,
+      "request_count": 1,
+      "country": "CN",
+      "top_tool": "",
+      "events": 1
+    },
+    {
+      "session_id": "aZ2wMgseHd",
+      "mean_bot_score": 0.4369574640510596,
+      "max_bot_score": 0.4382153470448006,
+      "request_count": 2,
+      "country": "PL",
+      "top_tool": "KG Explorer",
+      "events": 2
+    },
+    {
+      "session_id": "qwA7gHUnUZ",
+      "mean_bot_score": 0.4336941199655642,
+      "max_bot_score": 0.4336941199655642,
+      "request_count": 1,
+      "country": "CN",
+      "top_tool": "",
+      "events": 1
+    },
+    {
+      "session_id": "j5DvLuFdBB",
+      "mean_bot_score": 0.42944394279695663,
+      "max_bot_score": 0.4587695857670054,
+      "request_count": 5,
+      "country": "KR",
+      "top_tool": "EUI",
+      "events": 5
+    },
+    {
+      "session_id": "7o52MDM7-T",
+      "mean_bot_score": 0.4293528918829404,
+      "max_bot_score": 0.4293528918829404,
+      "request_count": 1,
+      "country": "RU",
+      "top_tool": "",
+      "events": 1
+    },
+    {
+      "session_id": "lGEirXkiMU",
+      "mean_bot_score": 0.4285262412279976,
+      "max_bot_score": 0.5294551890178373,
+      "request_count": 6,
+      "country": "RU",
+      "top_tool": "",
+      "events": 6
+    },
+    {
+      "session_id": "9ZubkplzAt",
+      "mean_bot_score": 0.4237461225888891,
+      "max_bot_score": 0.4945129254175828,
+      "request_count": 10,
+      "country": "US",
+      "top_tool": "EUI",
+      "events": 10
+    },
+    {
+      "session_id": "d8jdgElJ2D",
+      "mean_bot_score": 0.42293169155825355,
+      "max_bot_score": 0.42293169155825355,
+      "request_count": 1,
+      "country": "IN",
+      "top_tool": "",
+      "events": 1
+    },
+    {
+      "session_id": "YivRAZHFBe",
+      "mean_bot_score": 0.4219013507652305,
+      "max_bot_score": 0.4219013507652305,
+      "request_count": 1,
+      "country": "PL",
+      "top_tool": "KG Explorer",
+      "events": 1
+    },
+    {
+      "session_id": "i2S10mSeml",
+      "mean_bot_score": 0.4201360699601059,
+      "max_bot_score": 0.42377350760110916,
+      "request_count": 2,
+      "country": "US",
+      "top_tool": "",
+      "events": 2
+    },
+    {
+      "session_id": "iAH9_KcqCX",
+      "mean_bot_score": 0.41892642210780834,
+      "max_bot_score": 0.41892642210780834,
+      "request_count": 1,
+      "country": "EC",
+      "top_tool": "",
+      "events": 1
+    },
+    {
+      "session_id": "6IS12Ev3dp",
+      "mean_bot_score": 0.4169212074971027,
+      "max_bot_score": 0.4169212074971027,
+      "request_count": 1,
+      "country": "RO",
+      "top_tool": "",
+      "events": 1
+    },
+    {
+      "session_id": "rHvvi62--y",
+      "mean_bot_score": 0.4167396546801881,
+      "max_bot_score": 0.4167396546801881,
+      "request_count": 1,
+      "country": "US",
+      "top_tool": "",
+      "events": 1
+    },
+    {
+      "session_id": "BAX407I35Z",
+      "mean_bot_score": 0.41488379046648105,
+      "max_bot_score": 0.4170883053299301,
+      "request_count": 2,
+      "country": "CN",
+      "top_tool": "",
+      "events": 2
+    },
+    {
+      "session_id": "AdcoD4FTFa",
+      "mean_bot_score": 0.41395215414800207,
+      "max_bot_score": 0.44803869533721935,
+      "request_count": 16,
+      "country": "ES",
+      "top_tool": "",
+      "events": 16
+    },
+    {
+      "session_id": "PsyTawrtfx",
+      "mean_bot_score": 0.4111538123690151,
+      "max_bot_score": 0.4111538123690151,
+      "request_count": 1,
+      "country": "US",
+      "top_tool": "",
+      "events": 1
+    },
+    {
+      "session_id": "MZw1udnzkM",
+      "mean_bot_score": 0.4089417924397878,
+      "max_bot_score": 0.4111089499651897,
+      "request_count": 2,
+      "country": "DE",
+      "top_tool": "",
+      "events": 2
+    },
+    {
+      "session_id": "nl_5XtIwx5",
+      "mean_bot_score": 0.4057996674632718,
+      "max_bot_score": 0.46853228490385934,
       "request_count": 3,
-      "country": "BG",
+      "country": "EC",
       "top_tool": "",
       "events": 3
+    },
+    {
+      "session_id": "AhuAeAFWio",
+      "mean_bot_score": 0.4046958013248472,
+      "max_bot_score": 0.46240305926271447,
+      "request_count": 12,
+      "country": "ES",
+      "top_tool": "",
+      "events": 12
+    },
+    {
+      "session_id": "r--FYO5tii",
+      "mean_bot_score": 0.40120642721322697,
+      "max_bot_score": 0.40120642721322697,
+      "request_count": 1,
+      "country": "US",
+      "top_tool": "",
+      "events": 1
+    },
+    {
+      "session_id": "tfUBg2Poia",
+      "mean_bot_score": 0.4007827248378559,
+      "max_bot_score": 0.45215229413595126,
+      "request_count": 3,
+      "country": "JP",
+      "top_tool": "",
+      "events": 3
+    },
+    {
+      "session_id": "IHM6dQ4YkW",
+      "mean_bot_score": 0.40023537674336324,
+      "max_bot_score": 0.45350282569552963,
+      "request_count": 5,
+      "country": "RU",
+      "top_tool": "",
+      "events": 5
+    },
+    {
+      "session_id": "_5Y6IPV6O2",
+      "mean_bot_score": 0.4000204277986613,
+      "max_bot_score": 0.4000204277986613,
+      "request_count": 1,
+      "country": "US",
+      "top_tool": "",
+      "events": 1
+    },
+    {
+      "session_id": "DZ6Hz496zx",
+      "mean_bot_score": 0.400004344845301,
+      "max_bot_score": 0.5780521112326164,
+      "request_count": 8,
+      "country": "SG",
+      "top_tool": "",
+      "events": 8
+    },
+    {
+      "session_id": "mI1F3wVtw6",
+      "mean_bot_score": 0.39998017535074387,
+      "max_bot_score": 0.40724980747814943,
+      "request_count": 3,
+      "country": "CN",
+      "top_tool": "",
+      "events": 3
+    },
+    {
+      "session_id": "vEukWygX_9",
+      "mean_bot_score": 0.39944009950670406,
+      "max_bot_score": 0.4006568611002664,
+      "request_count": 2,
+      "country": "SG",
+      "top_tool": "",
+      "events": 2
+    },
+    {
+      "session_id": "dD2O5Cz06N",
+      "mean_bot_score": 0.39863152425492654,
+      "max_bot_score": 0.462529981064858,
+      "request_count": 4,
+      "country": "SG",
+      "top_tool": "",
+      "events": 4
+    },
+    {
+      "session_id": "HAq1bcr0le",
+      "mean_bot_score": 0.39794670363684626,
+      "max_bot_score": 0.39794670363684626,
+      "request_count": 1,
+      "country": "PH",
+      "top_tool": "",
+      "events": 1
+    },
+    {
+      "session_id": "miYiBsi52U",
+      "mean_bot_score": 0.39750029923139696,
+      "max_bot_score": 0.3986900418176649,
+      "request_count": 2,
+      "country": "HR",
+      "top_tool": "",
+      "events": 2
+    },
+    {
+      "session_id": "P00XY88bjK",
+      "mean_bot_score": 0.3949673973160752,
+      "max_bot_score": 0.3953822179267061,
+      "request_count": 3,
+      "country": "CN",
+      "top_tool": "",
+      "events": 3
+    },
+    {
+      "session_id": "OuyT30U_bd",
+      "mean_bot_score": 0.3948690215512915,
+      "max_bot_score": 0.4335612968590798,
+      "request_count": 24,
+      "country": "TW",
+      "top_tool": "",
+      "events": 24
     }
   ]
 }

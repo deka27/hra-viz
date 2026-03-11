@@ -71,6 +71,19 @@ const peakToLatestDropPct = peakErrorMonth && latestErrorMonth && peakErrorMonth
 type ErrRow = { tool: string; month_year: string; visits: number; errors: number; rate: number };
 const errLong = toolErrorRatesLong as ErrRow[];
 const kgErrActive = errLong.filter((d) => d.tool === "KG Explorer" && d.visits > 0);
+
+// Per-tool peak/current error rates — derived so narrative text stays accurate after each parquet update
+function toolPeakRate(tool: string) { const rows = errLong.filter(d => d.tool === tool && d.visits > 0); return rows.reduce((mx, d) => d.rate > mx.rate ? d : mx, rows[0] ?? { rate: 0, month_year: "" }); }
+function toolLatestRate(tool: string) { const rows = errLong.filter(d => d.tool === tool && d.visits > 0); return rows[rows.length - 1] ?? { rate: 0, month_year: "" }; }
+
+const euiPeak = toolPeakRate("EUI"); const euiLatest = toolLatestRate("EUI");
+const cdePeak = toolPeakRate("CDE"); const cdeLatest = toolLatestRate("CDE");
+const ruiPeak = toolPeakRate("RUI");
+const ftuPeak = toolPeakRate("FTU Explorer");
+
+type TopErrToolRow = { tool: string; errors: { message: string; count: number; bucket: string }[] };
+const topErrByTool = topErrorsByTool as TopErrToolRow[];
+const ftuTopErr = topErrByTool.find(d => d.tool === "FTU Explorer")?.errors[0];
 const kgPeakEntry = kgErrActive.reduce((max, d) => d.rate > max.rate ? d : max, kgErrActive[0] ?? { rate: 0, month_year: "" });
 const kgLaunchRate = kgPeakEntry?.rate ?? 0;
 const kgCurrentRate = kgErrActive[kgErrActive.length - 1]?.rate ?? 0;
@@ -416,7 +429,7 @@ export default function ToolsPage() {
         >
           <ToolErrorRateChart data={errLong} tool="EUI" />
           <p className="mt-3 text-sm text-zinc-500">
-            EUI has spiked significantly — <span className="text-red-400 font-semibold">177.7 errors/100 visits</span> in Feb &apos;26. API failures (session-token, ontology endpoints) and null-ref errors on map initialization are the top drivers.
+            EUI peaked at <span className="text-red-400 font-semibold">{euiPeak.rate} errors/100 visits</span> ({fmtMonth(euiPeak.month_year)}). API failures (session-token, ontology endpoints) and null-ref errors on map initialization are the top drivers.
           </p>
           <ToolErrorDrilldown data={topErrorsByTool} tool="EUI" />
         </ChartCard>
@@ -429,7 +442,7 @@ export default function ToolsPage() {
         >
           <ToolErrorRateChart data={errLong} tool="CDE" />
           <p className="mt-3 text-sm text-zinc-500">
-            CDE had an unusual spike to <span className="text-red-400 font-semibold">1228 errors/100 visits</span> in Jan &apos;26, settling back to 88.5 in Feb &apos;26. Angular DI errors (NG0201, NG0950) and undefined property reads dominate.
+            CDE peaked at <span className="text-red-400 font-semibold">{cdePeak.rate} errors/100 visits</span> ({fmtMonth(cdePeak.month_year)}), latest at {cdeLatest.rate} ({fmtMonth(cdeLatest.month_year)}). Angular DI errors (NG0201, NG0950) and undefined property reads dominate.
           </p>
           <ToolErrorDrilldown data={topErrorsByTool} tool="CDE" />
         </ChartCard>
@@ -442,7 +455,7 @@ export default function ToolsPage() {
         >
           <ToolErrorRateChart data={errLong} tool="RUI" />
           <p className="mt-3 text-sm text-zinc-500">
-            RUI generally has low error rates (&lt;15 errors/100 visits) with a small spike in Feb &apos;26. Icon retrieval from localhost dev environments accounts for most of the noise.
+            RUI generally has low error rates — peak at <span className="text-red-400 font-semibold">{ruiPeak.rate} errors/100</span> ({fmtMonth(ruiPeak.month_year)}). Icon retrieval from localhost dev environments accounts for most of the noise.
           </p>
           <ToolErrorDrilldown data={topErrorsByTool} tool="RUI" />
         </ChartCard>
@@ -455,7 +468,7 @@ export default function ToolsPage() {
         >
           <ToolErrorRateChart data={errLong} tool="FTU Explorer" />
           <p className="mt-3 text-sm text-zinc-500">
-            FTU Explorer spiked to <span className="text-red-400 font-semibold">175.5 errors/100</span> in Feb &apos;26. A mix of localhost dev noise, Angular DI errors, and CDN asset fetch failures — many fixable.
+            FTU Explorer peaked at <span className="text-red-400 font-semibold">{ftuPeak.rate} errors/100</span> ({fmtMonth(ftuPeak.month_year)}). {ftuTopErr && <><code className="text-xs">{ftuTopErr.message}</code> is the dominant error ({ftuTopErr.count.toLocaleString()} hits). </>}Localhost dev noise also inflates counts.
           </p>
           <ToolErrorDrilldown data={topErrorsByTool} tool="FTU Explorer" />
         </ChartCard>

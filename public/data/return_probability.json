@@ -1,110 +1,110 @@
 {
   "metrics": {
-    "sessions_used": 9116,
-    "positive_rate": 0.5713,
-    "accuracy": 0.6196,
-    "precision": 0.6593,
-    "recall": 0.6912,
-    "f1": 0.6749,
-    "roc_auc": 0.6403
+    "sessions_used": 10418,
+    "positive_rate": 0.5701,
+    "accuracy": 0.6154,
+    "precision": 0.6667,
+    "recall": 0.6505,
+    "f1": 0.6585,
+    "roc_auc": 0.6411
   },
   "top_positive_features": [
     {
       "feature": "early_pageView",
-      "weight": 0.4864196843387273
+      "weight": 0.339363866752862
     },
     {
-      "feature": "early_click",
-      "weight": 0.2482956368655242
-    },
-    {
-      "feature": "early_hover",
-      "weight": 0.22354291841290885
+      "feature": "early_events",
+      "weight": 0.13770958049155094
     },
     {
       "feature": "unique_tools",
-      "weight": 0.07374456141515885
+      "weight": 0.070788664805079
     },
     {
-      "feature": "events",
-      "weight": 0.011373775990803235
+      "feature": "start_hour_utc",
+      "weight": 0.037594895457719484
     },
     {
-      "feature": "early_keyboard",
-      "weight": 0.0
+      "feature": "early_click",
+      "weight": 0.0346809774416649
+    },
+    {
+      "feature": "early_hover",
+      "weight": 0.02836671301818165
     }
   ],
   "top_negative_features": [
     {
-      "feature": "duration_min",
-      "weight": -0.12335383690595196
+      "feature": "early_error",
+      "weight": -0.191435107884332
     },
     {
       "feature": "is_weekend",
-      "weight": -0.11825224991592018
+      "weight": -0.15751927500405985
+    },
+    {
+      "feature": "duration_min",
+      "weight": -0.07335983556636738
     },
     {
       "feature": "early_unique_paths",
-      "weight": -0.06335743101150358
+      "weight": -0.056520913344922596
     },
     {
-      "feature": "early_events",
-      "weight": -0.027232753449971992
+      "feature": "early_keyboard",
+      "weight": 0.0
     },
     {
-      "feature": "early_error",
-      "weight": -0.0253465709295012
-    },
-    {
-      "feature": "start_hour_utc",
-      "weight": -0.018043387188220645
+      "feature": "events",
+      "weight": 0.010276807027303029
     }
   ],
   "probability_buckets": [
     {
       "probability_bucket": "(-0.001, 0.1]",
-      "sessions": 4,
-      "observed_return_rate": 0.5
+      "sessions": 1,
+      "observed_return_rate": 0.0
     },
     {
       "probability_bucket": "(0.1, 0.2]",
-      "sessions": 7,
-      "observed_return_rate": 0.4286
+      "sessions": 3,
+      "observed_return_rate": 0.6667
     },
     {
       "probability_bucket": "(0.2, 0.3]",
-      "sessions": 271,
-      "observed_return_rate": 0.1993
+      "sessions": 343,
+      "observed_return_rate": 0.1983
     },
     {
       "probability_bucket": "(0.3, 0.4]",
-      "sessions": 2088,
-      "observed_return_rate": 0.4148
+      "sessions": 2379,
+      "observed_return_rate": 0.4266
     },
     {
       "probability_bucket": "(0.4, 0.5]",
-      "sessions": 1309,
-      "observed_return_rate": 0.5095
+      "sessions": 1848,
+      "observed_return_rate": 0.507
     },
     {
       "probability_bucket": "(0.5, 0.6]",
-      "sessions": 3173,
-      "observed_return_rate": 0.6287
+      "sessions": 3510,
+      "observed_return_rate": 0.6467
     },
     {
       "probability_bucket": "(0.6, 0.7]",
-      "sessions": 1596,
-      "observed_return_rate": 0.718
+      "sessions": 1570,
+      "observed_return_rate": 0.7019
     },
     {
       "probability_bucket": "(0.7, 0.8]",
-      "sessions": 613,
-      "observed_return_rate": 0.7194
+      "sessions": 707,
+      "observed_return_rate": 0.7185
     },
     {
       "probability_bucket": "(0.8, 0.9]",
-      "sessions": 55,
-      "observed_return_rate": 0.6182
+      "sessions": 57,
+      "observed_return_rate": 0.6491
     },
     {
       "probability_bucket": "(0.9, 1.0]",

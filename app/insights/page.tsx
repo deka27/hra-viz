@@ -15,6 +15,7 @@ import navClicks from "../../public/data/nav_clicks.json";
 import monthlyData from "../../public/data/tool_visits_by_month.json";
 import errorBreakdown from "../../public/data/error_breakdown.json";
 import topPathsByEvent from "../../public/data/top_paths_by_event.json";
+import topUiPaths from "../../public/data/top_ui_paths.json";
 
 import { HcMark } from "../components/Hc";
 import {
@@ -140,10 +141,11 @@ const trainingNavClicks = ((topPathsByEvent as Record<string, {path: string; cou
 // IDs 21-23: New insights from Feb 2026 parquet
 type KgErrRow2 = { month_year: string; visits: number; errors: number; rate: number };
 const kgErrArr2 = (kgErrorRateData as KgErrRow2[]).filter((d) => d.visits > 0);
-const kgLaunchRateI = kgErrArr2[0]?.rate ?? 0;
+const kgPeakErrEntry2 = kgErrArr2.reduce((mx, d) => d.rate > mx.rate ? d : mx, kgErrArr2[0] ?? { rate: 0, month_year: "" });
+const kgLaunchRateI = kgPeakErrEntry2?.rate ?? 0;
 const kgCurrRateI   = kgErrArr2[kgErrArr2.length - 1]?.rate ?? 0;
 const kgRateDropI   = kgLaunchRateI > 0 ? Math.round(((kgLaunchRateI - kgCurrRateI) / kgLaunchRateI) * 100) : 0;
-const kgLaunchMonthI = kgErrArr2[0] ? fmtMY(kgErrArr2[0].month_year) : "";
+const kgLaunchMonthI = kgPeakErrEntry2?.month_year ? fmtMY(kgPeakErrEntry2.month_year) : "";
 const kgCurrMonthI   = kgErrArr2.length > 0 ? fmtMY(kgErrArr2[kgErrArr2.length - 1].month_year) : "";
 
 type RetRow2 = { month_year: string; tool: string; return_pct: number };
@@ -158,6 +160,20 @@ type CtRow2 = { combo_label: string; count: number; tools: string[] };
 const ctArr2 = crossToolSessions as CtRow2[];
 const topComboI = ctArr2[0];
 const multiTotalI = ctArr2.reduce((s, d) => s + d.count, 0);
+
+// ID 7: Non-KG H1/H2 2025 averages (derived from monthly data)
+const nonKgMonthly = monthly.map(d => ({ month_year: d.month_year, visits: d.EUI + d.RUI + d.CDE + d["FTU Explorer"] }));
+const nonKgH1 = nonKgMonthly.filter(d => d.month_year >= "2025-01" && d.month_year <= "2025-06");
+const nonKgH2 = nonKgMonthly.filter(d => d.month_year >= "2025-07" && d.month_year <= "2025-12");
+const nonKgH1Avg = nonKgH1.length ? Math.round(nonKgH1.reduce((s, d) => s + d.visits, 0) / nonKgH1.length) : 0;
+const nonKgH2Avg = nonKgH2.length ? Math.round(nonKgH2.reduce((s, d) => s + d.visits, 0) / nonKgH2.length) : 0;
+
+// ID 14: Bar graph interactions (derived from top_ui_paths.json)
+type UiPathRow = { path: string; count: number };
+const uiPathArr = topUiPaths as UiPathRow[];
+const barGraphRow = uiPathArr.find(d => d.path === "hra-pop-visualizer.bar-graph");
+const barGraphCount = barGraphRow?.count ?? 0;
+const barGraphRank = barGraphRow ? uiPathArr.indexOf(barGraphRow) + 1 : 0;
 
 // ID 19: Nav clicks
 const navArr = navClicks as { label: string; count: number }[];
@@ -309,8 +325,8 @@ const insights = [
     implication:
       "Cross-linking between tools could keep users in the HRA ecosystem rather than leaving after one tool. KG Explorer's success may be cannibalizing EUI and FTU traffic.",
     data: [
-      { label: "Non-KG H1 2025 avg",         value: "~779 visits/mo", hc: true },
-      { label: "Non-KG H2 2025 avg",         value: "~670 visits/mo", hc: true },
+      { label: "Non-KG H1 2025 avg",         value: `~${nonKgH1Avg.toLocaleString()} visits/mo` },
+      { label: "Non-KG H2 2025 avg",         value: `~${nonKgH2Avg.toLocaleString()} visits/mo` },
       { label: "EUI 2025 vs 2024 (ex-spike)", value: "−16%",          hc: true },
     ],
   },
@@ -459,12 +475,12 @@ const insights = [
     dot: "bg-teal-400",
     tag: "Feature Champion",
     title: "FTU Explorer's entire value is in one element",
-    metric: "2,387 bar graph interactions from a single UI element",
+    metric: `${barGraphCount.toLocaleString()} bar graph interactions from a single UI element`,
     implication:
       "FTU Explorer has a very focused use case. Double down on the bar graph: add filtering, export, and comparison features. Consider it as a standalone embeddable widget.",
     data: [
-      { label: "Bar graph interactions",       value: "2,387",     hc: true },
-      { label: "Rank among all elements",      value: "#2 overall", hc: true },
+      { label: "Bar graph interactions",       value: barGraphCount.toLocaleString() },
+      { label: "Rank among all elements",      value: `#${barGraphRank} overall` },
       { label: "Other FTU elements in top 20", value: "None"               },
     ],
   },

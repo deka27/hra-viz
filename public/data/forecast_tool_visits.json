@@ -1,122 +1,82 @@
 [
   {
-    "month": "2026-03",
+    "month": "2026-04",
     "tool": "CDE",
-    "predicted": 254,
-    "lower": 45,
-    "upper": 463,
+    "predicted": 645,
+    "lower": 449,
+    "upper": 844,
     "method": "prophet"
   },
   {
-    "month": "2026-03",
+    "month": "2026-04",
     "tool": "EUI",
-    "predicted": 105,
-    "lower": 0,
-    "upper": 143,
+    "predicted": 3070,
+    "lower": 1988,
+    "upper": 4319,
     "method": "prophet"
   },
   {
-    "month": "2026-03",
+    "month": "2026-04",
     "tool": "FTU Explorer",
-    "predicted": 50,
-    "lower": 0,
-    "upper": 0,
+    "predicted": 1351,
+    "lower": 1198,
+    "upper": 1513,
     "method": "prophet"
   },
   {
-    "month": "2026-03",
+    "month": "2026-04",
     "tool": "KG Explorer",
-    "predicted": 2944,
-    "lower": 0,
-    "upper": 3290,
+    "predicted": 3532,
+    "lower": 447,
+    "upper": 4804,
     "method": "prophet"
   },
   {
-    "month": "2026-03",
+    "month": "2026-04",
     "tool": "RUI",
+    "predicted": 698,
+    "lower": 477,
+    "upper": 914,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-05",
+    "tool": "CDE",
+    "predicted": 69,
+    "lower": 0,
+    "upper": 131,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-05",
+    "tool": "EUI",
+    "predicted": 1401,
+    "lower": 203,
+    "upper": 2511,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-05",
+    "tool": "FTU Explorer",
     "predicted": 214,
-    "lower": 1,
-    "upper": 414,
-    "method": "prophet"
-  },
-  {
-    "month": "2026-04",
-    "tool": "CDE",
-    "predicted": 550,
-    "lower": 344,
-    "upper": 759,
-    "method": "prophet"
-  },
-  {
-    "month": "2026-04",
-    "tool": "EUI",
-    "predicted": 3430,
-    "lower": 2293,
-    "upper": 4531,
-    "method": "prophet"
-  },
-  {
-    "month": "2026-04",
-    "tool": "FTU Explorer",
-    "predicted": 1490,
-    "lower": 1339,
-    "upper": 1637,
-    "method": "prophet"
-  },
-  {
-    "month": "2026-04",
-    "tool": "KG Explorer",
-    "predicted": 3541,
-    "lower": 1596,
-    "upper": 5723,
-    "method": "prophet"
-  },
-  {
-    "month": "2026-04",
-    "tool": "RUI",
-    "predicted": 620,
-    "lower": 393,
-    "upper": 845,
-    "method": "prophet"
-  },
-  {
-    "month": "2026-05",
-    "tool": "CDE",
-    "predicted": 69,
-    "lower": 0,
-    "upper": 96,
-    "method": "prophet"
-  },
-  {
-    "month": "2026-05",
-    "tool": "EUI",
-    "predicted": 1550,
-    "lower": 334,
-    "upper": 2699,
-    "method": "prophet"
-  },
-  {
-    "month": "2026-05",
-    "tool": "FTU Explorer",
-    "predicted": 271,
-    "lower": 115,
-    "upper": 429,
+    "lower": 52,
+    "upper": 359,
     "method": "prophet"
   },
   {
     "month": "2026-05",
     "tool": "KG Explorer",
-    "predicted": 4638,
-    "lower": 2645,
-    "upper": 6833,
+    "predicted": 4491,
+    "lower": 2186,
+    "upper": 6850,
     "method": "prophet"
   },
   {
     "month": "2026-05",
     "tool": "RUI",
-    "predicted": 224,
-    "lower": 14,
-    "upper": 454,
+    "predicted": 263,
+    "lower": 55,
+    "upper": 458,
     "method": "prophet"
   },
   {
@@ -124,119 +84,159 @@
     "tool": "CDE",
     "predicted": 69,
     "lower": 0,
-    "upper": 198,
+    "upper": 217,
     "method": "prophet"
   },
   {
     "month": "2026-06",
     "tool": "EUI",
-    "predicted": 105,
+    "predicted": 111,
     "lower": 0,
-    "upper": 1252,
+    "upper": 1274,
     "method": "prophet"
   },
   {
     "month": "2026-06",
     "tool": "FTU Explorer",
-    "predicted": 98,
+    "predicted": 112,
     "lower": 0,
-    "upper": 255,
+    "upper": 283,
     "method": "prophet"
   },
   {
     "month": "2026-06",
     "tool": "KG Explorer",
-    "predicted": 4545,
-    "lower": 2455,
-    "upper": 6573,
+    "predicted": 4990,
+    "lower": 2739,
+    "upper": 7229,
     "method": "prophet"
   },
   {
     "month": "2026-06",
     "tool": "RUI",
-    "predicted": 107,
+    "predicted": 111,
     "lower": 0,
-    "upper": 316,
+    "upper": 323,
     "method": "prophet"
   },
   {
     "month": "2026-07",
     "tool": "CDE",
-    "predicted": 234,
-    "lower": 35,
-    "upper": 432,
+    "predicted": 219,
+    "lower": 31,
+    "upper": 428,
     "method": "prophet"
   },
   {
     "month": "2026-07",
     "tool": "EUI",
-    "predicted": 105,
+    "predicted": 88,
     "lower": 0,
-    "upper": 248,
+    "upper": 314,
     "method": "prophet"
   },
   {
     "month": "2026-07",
     "tool": "FTU Explorer",
-    "predicted": 97,
+    "predicted": 150,
     "lower": 0,
-    "upper": 245,
+    "upper": 302,
     "method": "prophet"
   },
   {
     "month": "2026-07",
     "tool": "KG Explorer",
-    "predicted": 3362,
-    "lower": 1307,
-    "upper": 5387,
+    "predicted": 4125,
+    "lower": 1895,
+    "upper": 6324,
     "method": "prophet"
   },
   {
     "month": "2026-07",
     "tool": "RUI",
-    "predicted": 76,
+    "predicted": 56,
     "lower": 0,
-    "upper": 175,
+    "upper": 159,
     "method": "prophet"
   },
   {
     "month": "2026-08",
     "tool": "CDE",
-    "predicted": 635,
+    "predicted": 615,
     "lower": 429,
-    "upper": 838,
+    "upper": 808,
     "method": "prophet"
   },
   {
     "month": "2026-08",
     "tool": "EUI",
-    "predicted": 105,
+    "predicted": 88,
     "lower": 0,
-    "upper": 331,
+    "upper": 536,
     "method": "prophet"
   },
   {
     "month": "2026-08",
     "tool": "FTU Explorer",
-    "predicted": 50,
+    "predicted": 73,
     "lower": 0,
-    "upper": 164,
+    "upper": 236,
     "method": "prophet"
   },
   {
     "month": "2026-08",
     "tool": "KG Explorer",
-    "predicted": 3985,
-    "lower": 2107,
-    "upper": 6054,
+    "predicted": 4693,
+    "lower": 2298,
+    "upper": 6899,
     "method": "prophet"
   },
   {
     "month": "2026-08",
     "tool": "RUI",
-    "predicted": 272,
-    "lower": 66,
-    "upper": 486,
+    "predicted": 251,
+    "lower": 46,
+    "upper": 477,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-09",
+    "tool": "CDE",
+    "predicted": 774,
+    "lower": 568,
+    "upper": 978,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-09",
+    "tool": "EUI",
+    "predicted": 583,
+    "lower": 0,
+    "upper": 1641,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-09",
+    "tool": "FTU Explorer",
+    "predicted": 256,
+    "lower": 93,
+    "upper": 421,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-09",
+    "tool": "KG Explorer",
+    "predicted": 4533,
+    "lower": 2197,
+    "upper": 6799,
+    "method": "prophet"
+  },
+  {
+    "month": "2026-09",
+    "tool": "RUI",
+    "predicted": 849,
+    "lower": 630,
+    "upper": 1057,
     "method": "prophet"
   }
 ]

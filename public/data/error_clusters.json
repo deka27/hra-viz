@@ -3,76 +3,59 @@
     {
       "cluster_id": 1,
       "label": "HTTP network failure",
-      "count": 15673,
-      "pct": 49.0,
+      "count": 16778,
+      "pct": 46.38,
       "top_terms": [
         "error",
         "error http",
-        "failure response",
         "response",
-        "failure",
+        "failure response",
         "http failure",
+        "failure",
         "http",
         "response unknown"
       ],
       "sample_error": "Http failure response for https://humanatlas.io/assets/content/landing-page/data.yaml: 0 Unknown Error"
     },
     {
-      "cluster_id": 2,
-      "label": "HRA Pop Visualizer crash",
-      "count": 6028,
-      "pct": 18.85,
-      "top_terms": [
-        "pop",
-        "element hra",
-        "bar",
-        "bar graph",
-        "hra pop",
-        "visualizer",
-        "visualizer bar",
-        "chart element"
-      ],
-      "sample_error": "nan"
-    },
-    {
-      "cluster_id": 4,
+      "cluster_id": 0,
       "label": "KG Explorer icon network error",
-      "count": 4683,
-      "pct": 14.64,
+      "count": 7216,
+      "pct": 19.95,
       "top_terms": [
         "ph",
         "error",
-        "ph _error",
         "error ph",
         "ph error",
+        "ph _error",
         "_error ph",
         "_error",
         "error error"
       ],
-      "sample_error": "Error retrieving icon organ:ovaries! Http failure response for https://cdn.humanatlas.io/ui/kg-explorer/assets/icons/organ/ovaries.svg: 0 Unknown Error"
+      "sample_error": "Error retrieving icon product:schema! Http failure response for https://cdn.humanatlas.io/ui/kg-explorer/assets/icons/product/schema.svg: 0 Unknown Error"
+    },
+    {
+      "cluster_id": 2,
+      "label": "HRA Pop Visualizer crash",
+      "count": 6531,
+      "pct": 18.05,
+      "top_terms": [
+        "pop",
+        "visualizer bar",
+        "bar",
+        "bar graph",
+        "pop visualizer",
+        "hra pop",
+        "hra",
+        "element hra"
+      ],
+      "sample_error": "nan"
     },
     {
       "cluster_id": 3,
       "label": "KG Explorer icon 404",
-      "count": 4506,
-      "pct": 14.09,
-      "top_terms": [
-        "mz",
-        "error",
-        "mz error",
-        "error mz",
-        "mz _error",
-        "_error mz",
-        "_error",
-        "xd"
-      ],
-      "sample_error": "Error retrieving icon organ:lymph-nodes! Http failure response for https://cdn.humanatlas.io/ui/kg-explorer/assets/icons/organ/lymph-nodes.svg: 404 OK"
-    },
-    {
-      "cluster_id": 0,
-      "label": "Malformed SVG icon",
-      "count": 1093,
-      "pct": 3.42,
+      "count": 5651,
+      "pct": 15.62,
       "top_terms": [
         "_error error",
         "error _error",
@@ -80,11 +63,11 @@
         "_error",
         "error error",
         "_currenticonfetch",
-        "_updatesvgicon _currenticonfetch",
-        "_currenticonfetch error"
+        "_currenticonfetch error",
+        "_updatesvgicon _currenticonfetch"
       ],
-      "sample_error": "Error retrieving icon organ:fallopian-tube! <svg> tag not found"
+      "sample_error": "Error retrieving icon organ:lung! Http failure response for https://cdn.humanatlas.io/ui/ccf-organ-info/assets/icons/organ/lung.svg: 404 OK"
     }
   ],
-  "total_error_rows": 31983
+  "total_error_rows": 36176
 }
