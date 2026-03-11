@@ -76,6 +76,19 @@ def run(parquet: str, out: str) -> None:
     def q(sql: str):
         return con.execute(sql).df().to_dict(orient="records")
 
+    # ─── 0. Data metadata (exact date range) ─────────────────────────────────
+    date_range = con.execute(f"""
+        SELECT
+            MIN(date)::VARCHAR AS first_date,
+            MAX(date)::VARCHAR AS last_date
+        FROM {P}
+        WHERE site = 'Apps'
+    """).fetchone()
+    write_json(f"{out}/data_metadata.json", {
+        "first_date": date_range[0],
+        "last_date":  date_range[1],
+    })
+
     # ─── 1. Tool visits by year (wide format) ────────────────────────────────
     write_json(f"{out}/tool_visits_by_year.json", q(f"""
         SELECT

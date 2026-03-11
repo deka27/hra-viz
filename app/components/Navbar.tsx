@@ -4,16 +4,15 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
 import { useTheme } from "next-themes";
-import monthlyData from "../../public/data/tool_visits_by_month.json";
+import metadata from "../../public/data/data_metadata.json";
 
-const _months = monthlyData as { month_year: string }[];
-function _fmt(ym: string) {
-  const [y, m] = ym.split("-");
-  const n = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  return `${n[parseInt(m) - 1]} '${y.slice(2)}`;
+function _fmtDate(iso: string) {
+  const [y, m, d] = iso.split("-");
+  const mon = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return `${parseInt(d)} ${mon[parseInt(m) - 1]} '${y.slice(2)}`;
 }
-const DATA_RANGE = _months.length > 0
-  ? `${_fmt(_months[0].month_year)} – ${_fmt(_months[_months.length - 1].month_year)}`
+const DATA_RANGE = metadata.first_date && metadata.last_date
+  ? `${_fmtDate(metadata.first_date)} – ${_fmtDate(metadata.last_date)}`
   : "";
 
 const navLinks = [
