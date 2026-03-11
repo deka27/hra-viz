@@ -1,0 +1,44 @@
+[
+  {
+    "month_year": "2025-08",
+    "visits": 1354,
+    "errors": 0,
+    "rate": 0.0
+  },
+  {
+    "month_year": "2025-09",
+    "visits": 2569,
+    "errors": 0,
+    "rate": 0.0
+  },
+  {
+    "month_year": "2025-10",
+    "visits": 3891,
+    "errors": 3402,
+    "rate": 87.4
+  },
+  {
+    "month_year": "2025-11",
+    "visits": 3043,
+    "errors": 1499,
+    "rate": 49.3
+  },
+  {
+    "month_year": "2025-12",
+    "visits": 2977,
+    "errors": 1484,
+    "rate": 49.8
+  },
+  {
+    "month_year": "2026-01",
+    "visits": 8248,
+    "errors": 1964,
+    "rate": 23.8
+  },
+  {
+    "month_year": "2026-02",
+    "visits": 6441,
+    "errors": 1794,
+    "rate": 27.9
+  }
+]

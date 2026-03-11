@@ -8,8 +8,12 @@ import TrafficByDowChart from "../components/charts/TrafficByDowChart";
 import { ErrorSourceChart, ErrorCauseChart } from "../components/charts/ErrorBreakdownChart";
 import { ErrorBucketBySourceChart } from "../components/charts/ErrorRootCauseBreakdownCharts";
 import MonthlyErrorTrendChart from "../components/charts/MonthlyErrorTrendChart";
+import ToolErrorRateChart from "../components/charts/ToolErrorRateChart";
+import ToolReturnRateChart from "../components/charts/ToolReturnRateChart";
 
 import monthlyData from "../../public/data/tool_visits_by_month.json";
+import toolErrorRatesLong from "../../public/data/tool_error_rates_long.json";
+import toolReturnRateData from "../../public/data/tool_return_rate.json";
 import yearlyData from "../../public/data/tool_visits_by_year.json";
 import totalData from "../../public/data/total_tool_visits.json";
 import hourlyHeatmapData from "../../public/data/tool_hourly_heatmap.json";
@@ -61,6 +65,22 @@ const latestErrorMonth = errorByMonth[errorByMonth.length - 1];
 const peakToLatestDropPct = peakErrorMonth && latestErrorMonth && peakErrorMonth.total_errors > 0
   ? (((peakErrorMonth.total_errors - latestErrorMonth.total_errors) / peakErrorMonth.total_errors) * 100).toFixed(1)
   : "0.0";
+
+type ErrRow = { tool: string; month_year: string; visits: number; errors: number; rate: number };
+const errLong = toolErrorRatesLong as ErrRow[];
+const kgErrActive = errLong.filter((d) => d.tool === "KG Explorer" && d.visits > 0);
+const kgPeakEntry = kgErrActive.reduce((max, d) => d.rate > max.rate ? d : max, kgErrActive[0] ?? { rate: 0, month_year: "" });
+const kgLaunchRate = kgPeakEntry?.rate ?? 0;
+const kgCurrentRate = kgErrActive[kgErrActive.length - 1]?.rate ?? 0;
+const kgRateDrop = kgLaunchRate > 0 ? Math.round(((kgLaunchRate - kgCurrentRate) / kgLaunchRate) * 100) : 0;
+
+type RetRow = { month_year: string; tool: string; users: number; returning: number; return_pct: number };
+const retArr = toolReturnRateData as RetRow[];
+const latestRetMonth = retArr.length > 0 ? retArr[retArr.length - 1].month_year : "";
+const latestRets = retArr.filter((d) => d.month_year === latestRetMonth);
+const ruiRetPct = latestRets.find((d) => d.tool === "RUI")?.return_pct ?? 0;
+const euiRetPct = latestRets.find((d) => d.tool === "EUI")?.return_pct ?? 0;
+const kgRetPct = latestRets.find((d) => d.tool === "KG Explorer")?.return_pct ?? 0;
 const rootCauseBuckets = (errorRootCauseBreakdown as { by_bucket: { bucket: string; errors: number }[] }).by_bucket;
 const topRootCauseFixes = [...rootCauseBuckets]
   .sort((a, b) => b.errors - a.errors)
@@ -354,6 +374,110 @@ export default function ToolsPage() {
             <p className="text-sm text-zinc-700 dark:text-zinc-300">
               The large &ldquo;Portal/Other&rdquo; bar represents errors from the HRA portal layer
               before app-attribution is set in the event payload. Some KG icon failures were logged without app attribution, so they appear under Portal/Other.
+            </p>
+          </div>
+        </div>
+      </ChartCard>
+
+      {/* Quality journey section */}
+      <div className="flex items-center gap-3">
+        <span className="text-xs font-semibold text-zinc-500 uppercase tracking-wider">Tool Error Rate Timeline</span>
+        <div className="h-px flex-1 bg-zinc-200 dark:bg-zinc-800" />
+      </div>
+
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
+        <StatCard label="Peak Error Rate" value={`${kgLaunchRate}`} sub="Errors per 100 visits (Oct '25)" accent="text-red-400" />
+        <StatCard label="Current Error Rate" value={`${kgCurrentRate}`} sub="Errors per 100 visits (latest month)" accent="text-emerald-400" />
+        <StatCard label="Rate Improvement" value={`${kgRateDrop}%`} sub="Reduction from launch to now" accent="text-emerald-400" />
+        <StatCard label="RUI Return Rate" value={`${ruiRetPct}%`} sub={`Users returning · EUI ${euiRetPct}% · KG ${kgRetPct}%`} accent="text-violet-400" />
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <ChartCard
+          title="KG Explorer — Error Rate"
+          subtitle="Bar = visits · Line = errors per 100 visits"
+          badge="KG Explorer · Quality"
+          badgeColor="bg-rose-500/10 text-rose-400 border-rose-500/20"
+        >
+          <ToolErrorRateChart data={errLong} tool="KG Explorer" />
+          <p className="mt-3 text-sm text-zinc-500">
+            Peaked at <span className="text-red-400 font-semibold">{kgLaunchRate}</span> in Oct &apos;25 (CDN icon failures + CORS on the technology list API). Down to <span className="text-emerald-400 font-semibold">{kgCurrentRate}</span> by Feb &apos;26 — <span className="text-emerald-400 font-semibold">{kgRateDrop}% improvement</span>.
+          </p>
+        </ChartCard>
+
+        <ChartCard
+          title="EUI — Error Rate"
+          subtitle="Bar = visits · Line = errors per 100 visits"
+          badge="EUI · Quality"
+          badgeColor="bg-blue-500/10 text-blue-400 border-blue-500/20"
+        >
+          <ToolErrorRateChart data={errLong} tool="EUI" />
+          <p className="mt-3 text-sm text-zinc-500">
+            EUI has spiked significantly — <span className="text-red-400 font-semibold">177.7 errors/100 visits</span> in Feb &apos;26. Null-ref exceptions on map initialization and CORS issues on the technology list API are the primary drivers.
+          </p>
+        </ChartCard>
+
+        <ChartCard
+          title="CDE — Error Rate"
+          subtitle="Bar = visits · Line = errors per 100 visits"
+          badge="CDE · Quality"
+          badgeColor="bg-amber-500/10 text-amber-400 border-amber-500/20"
+        >
+          <ToolErrorRateChart data={errLong} tool="CDE" />
+          <p className="mt-3 text-sm text-zinc-500">
+            CDE had an unusual spike to <span className="text-red-400 font-semibold">1228 errors/100 visits</span> in Jan &apos;26, settling back to 88.5 in Feb &apos;26. Icon retrieval failures account for the bulk of CDE errors.
+          </p>
+        </ChartCard>
+
+        <ChartCard
+          title="RUI — Error Rate"
+          subtitle="Bar = visits · Line = errors per 100 visits"
+          badge="RUI · Quality"
+          badgeColor="bg-violet-500/10 text-violet-400 border-violet-500/20"
+        >
+          <ToolErrorRateChart data={errLong} tool="RUI" />
+          <p className="mt-3 text-sm text-zinc-500">
+            RUI generally has low error rates (&lt;15 errors/100 visits) with a small spike in Feb &apos;26. Icon retrieval and &quot;Other&quot; unclassified errors are the main buckets.
+          </p>
+        </ChartCard>
+
+        <ChartCard
+          title="FTU Explorer — Error Rate"
+          subtitle="Bar = visits · Line = errors per 100 visits"
+          badge="FTU Explorer · Quality"
+          badgeColor="bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+        >
+          <ToolErrorRateChart data={errLong} tool="FTU Explorer" />
+          <p className="mt-3 text-sm text-zinc-500">
+            FTU Explorer error rates fluctuate — spiking to <span className="text-red-400 font-semibold">175.5 errors/100</span> in Feb &apos;26. Content file fetch failures and icon retrieval issues are the top causes.
+          </p>
+        </ChartCard>
+      </div>
+
+      <ChartCard
+        title="Are Users Coming Back? — Tool Return Rates"
+        subtitle="% of monthly active users who visited that tool in a prior month · data from H2 2025 onward"
+        badge="Retention"
+        badgeColor="bg-violet-500/10 text-violet-400 border-violet-500/20"
+      >
+        <ToolReturnRateChart data={toolReturnRateData} />
+        <div className="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">RUI Leads Retention</span>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
+              RUI has the highest return rate at <span className="text-violet-400 font-semibold">{ruiRetPct}% in the latest month</span>. Tissue registration is a recurring professional task — users come back because they have to.
+            </p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">EUI Stabilizing</span>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
+              EUI sits at <span className="text-blue-400 font-semibold">{euiRetPct}%</span>, consistent with a mixed audience of returning researchers and first-time workshop visitors.
+            </p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">KG Explorer Building</span>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
+              KG Explorer launched at near-zero return rate and is now at <span className="text-rose-400 font-semibold">{kgRetPct}%</span>. Adding bookmarking and share features could accelerate habit formation significantly.
             </p>
           </div>
         </div>

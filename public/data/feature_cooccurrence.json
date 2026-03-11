@@ -6,10 +6,21 @@
         "tool:KG Explorer"
       ],
       "consequent": "feature:download_export",
-      "support": 0.0283,
-      "confidence": 0.5341,
-      "lift": 5.1478,
-      "leverage": 0.0228
+      "support": 0.0249,
+      "confidence": 0.5304,
+      "lift": 5.6285,
+      "leverage": 0.0205
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "tool:EUI"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.0223,
+      "confidence": 0.4614,
+      "lift": 5.6227,
+      "leverage": 0.0183
     },
     {
       "antecedents": [
@@ -17,10 +28,10 @@
         "tool:KG Explorer"
       ],
       "consequent": "feature:download_export",
-      "support": 0.0907,
-      "confidence": 0.5212,
-      "lift": 5.0235,
-      "leverage": 0.0727
+      "support": 0.0814,
+      "confidence": 0.5107,
+      "lift": 5.4194,
+      "leverage": 0.0664
     },
     {
       "antecedents": [
@@ -28,10 +39,10 @@
         "feature:organ_selection"
       ],
       "consequent": "feature:download_export",
-      "support": 0.0253,
-      "confidence": 0.4485,
-      "lift": 4.3223,
-      "leverage": 0.0195
+      "support": 0.0226,
+      "confidence": 0.4355,
+      "lift": 4.6219,
+      "leverage": 0.0177
     },
     {
       "antecedents": [
@@ -39,10 +50,10 @@
         "tool:KG Explorer"
       ],
       "consequent": "feature:download_export",
-      "support": 0.0424,
-      "confidence": 0.4376,
-      "lift": 4.2175,
-      "leverage": 0.0324
+      "support": 0.0414,
+      "confidence": 0.4294,
+      "lift": 4.5568,
+      "leverage": 0.0323
     },
     {
       "antecedents": [
@@ -50,9 +61,62 @@
         "tool:KG Explorer"
       ],
       "consequent": "feature:organ_selection",
-      "support": 0.0283,
-      "confidence": 0.312,
-      "lift": 3.6277,
+      "support": 0.0249,
+      "confidence": 0.3059,
+      "lift": 3.7284,
+      "leverage": 0.0182
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "feature:organ_selection"
+      ],
+      "consequent": "feature:download_export",
+      "support": 0.0282,
+      "confidence": 0.3468,
+      "lift": 3.6807,
+      "leverage": 0.0205
+    },
+    {
+      "antecedents": [
+        "event:pageView",
+        "tool:KG Explorer"
+      ],
+      "consequent": "feature:download_export",
+      "support": 0.0706,
+      "confidence": 0.3468,
+      "lift": 3.6803,
+      "leverage": 0.0514
+    },
+    {
+      "antecedents": [
+        "feature:organ_selection"
+      ],
+      "consequent": "feature:download_export",
+      "support": 0.0282,
+      "confidence": 0.3436,
+      "lift": 3.6462,
+      "leverage": 0.0205
+    },
+    {
+      "antecedents": [
+        "feature:download_export"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.0282,
+      "confidence": 0.2992,
+      "lift": 3.6462,
+      "leverage": 0.0205
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "feature:download_export"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.0282,
+      "confidence": 0.2992,
+      "lift": 3.6462,
       "leverage": 0.0205
     },
     {
@@ -61,63 +125,10 @@
         "tool:KG Explorer"
       ],
       "consequent": "feature:organ_selection",
-      "support": 0.03,
-      "confidence": 0.3096,
-      "lift": 3.5999,
-      "leverage": 0.0217
-    },
-    {
-      "antecedents": [
-        "event:click",
-        "feature:organ_selection"
-      ],
-      "consequent": "feature:download_export",
-      "support": 0.0316,
-      "confidence": 0.3702,
-      "lift": 3.5676,
-      "leverage": 0.0227
-    },
-    {
-      "antecedents": [
-        "feature:download_export"
-      ],
-      "consequent": "feature:organ_selection",
-      "support": 0.0316,
-      "confidence": 0.3045,
-      "lift": 3.5415,
-      "leverage": 0.0227
-    },
-    {
-      "antecedents": [
-        "event:click",
-        "feature:download_export"
-      ],
-      "consequent": "feature:organ_selection",
-      "support": 0.0316,
-      "confidence": 0.3045,
-      "lift": 3.5415,
-      "leverage": 0.0227
-    },
-    {
-      "antecedents": [
-        "feature:organ_selection"
-      ],
-      "consequent": "feature:download_export",
-      "support": 0.0316,
-      "confidence": 0.3675,
-      "lift": 3.5415,
-      "leverage": 0.0227
-    },
-    {
-      "antecedents": [
-        "event:pageView",
-        "tool:KG Explorer"
-      ],
-      "consequent": "feature:download_export",
-      "support": 0.0792,
-      "confidence": 0.3657,
-      "lift": 3.525,
-      "leverage": 0.0568
+      "support": 0.0282,
+      "confidence": 0.2927,
+      "lift": 3.5673,
+      "leverage": 0.0203
     },
     {
       "antecedents": [
@@ -125,10 +136,10 @@
         "tool:KG Explorer"
       ],
       "consequent": "feature:organ_selection",
-      "support": 0.0524,
-      "confidence": 0.3008,
-      "lift": 3.4981,
-      "leverage": 0.0374
+      "support": 0.0462,
+      "confidence": 0.2897,
+      "lift": 3.5312,
+      "leverage": 0.0331
     },
     {
       "antecedents": [
@@ -136,10 +147,10 @@
         "feature:download_export"
       ],
       "consequent": "feature:organ_selection",
-      "support": 0.0253,
-      "confidence": 0.2875,
-      "lift": 3.3433,
-      "leverage": 0.0177
+      "support": 0.0226,
+      "confidence": 0.2857,
+      "lift": 3.482,
+      "leverage": 0.0161
     },
     {
       "antecedents": [
@@ -147,21 +158,10 @@
         "feature:download_export"
       ],
       "consequent": "tool:KG Explorer",
-      "support": 0.0792,
-      "confidence": 0.9,
-      "lift": 3.2072,
-      "leverage": 0.0545
-    },
-    {
-      "antecedents": [
-        "feature:download_export",
-        "feature:organ_selection"
-      ],
-      "consequent": "tool:KG Explorer",
-      "support": 0.0283,
-      "confidence": 0.8955,
-      "lift": 3.1913,
-      "leverage": 0.0194
+      "support": 0.0706,
+      "confidence": 0.8932,
+      "lift": 3.2557,
+      "leverage": 0.0489
     },
     {
       "antecedents": [
@@ -169,20 +169,52 @@
         "feature:download_export"
       ],
       "consequent": "tool:KG Explorer",
-      "support": 0.0424,
-      "confidence": 0.894,
-      "lift": 3.186,
-      "leverage": 0.0291
+      "support": 0.0414,
+      "confidence": 0.8871,
+      "lift": 3.2333,
+      "leverage": 0.0286
+    },
+    {
+      "antecedents": [
+        "feature:download_export",
+        "feature:organ_selection"
+      ],
+      "consequent": "tool:KG Explorer",
+      "support": 0.0249,
+      "confidence": 0.8833,
+      "lift": 3.2195,
+      "leverage": 0.0172
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "feature:organ_selection"
+      ],
+      "consequent": "tool:EUI",
+      "support": 0.0223,
+      "confidence": 0.274,
+      "lift": 3.1612,
+      "leverage": 0.0152
+    },
+    {
+      "antecedents": [
+        "tool:KG Explorer"
+      ],
+      "consequent": "feature:download_export",
+      "support": 0.0814,
+      "confidence": 0.2967,
+      "lift": 3.1485,
+      "leverage": 0.0555
     },
     {
       "antecedents": [
         "feature:download_export"
       ],
       "consequent": "tool:KG Explorer",
-      "support": 0.0907,
-      "confidence": 0.8742,
-      "lift": 3.1154,
-      "leverage": 0.0616
+      "support": 0.0814,
+      "confidence": 0.8638,
+      "lift": 3.1485,
+      "leverage": 0.0555
     },
     {
       "antecedents": [
@@ -190,20 +222,30 @@
         "feature:download_export"
       ],
       "consequent": "tool:KG Explorer",
-      "support": 0.0907,
-      "confidence": 0.8742,
-      "lift": 3.1154,
-      "leverage": 0.0616
+      "support": 0.0814,
+      "confidence": 0.8638,
+      "lift": 3.1485,
+      "leverage": 0.0555
     },
     {
       "antecedents": [
-        "tool:KG Explorer"
+        "feature:organ_selection"
       ],
-      "consequent": "feature:download_export",
-      "support": 0.0907,
-      "confidence": 0.3232,
-      "lift": 3.1154,
-      "leverage": 0.0616
+      "consequent": "tool:EUI",
+      "support": 0.0223,
+      "confidence": 0.2714,
+      "lift": 3.1316,
+      "leverage": 0.0152
+    },
+    {
+      "antecedents": [
+        "tool:EUI"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.0223,
+      "confidence": 0.257,
+      "lift": 3.1316,
+      "leverage": 0.0152
     },
     {
       "antecedents": [
@@ -211,21 +253,10 @@
         "feature:organ_selection"
       ],
       "consequent": "tool:KG Explorer",
-      "support": 0.0451,
-      "confidence": 0.7994,
-      "lift": 2.8489,
-      "leverage": 0.0293
-    },
-    {
-      "antecedents": [
-        "event:pageView",
-        "tool:KG Explorer"
-      ],
-      "consequent": "feature:organ_selection",
-      "support": 0.0451,
-      "confidence": 0.2083,
-      "lift": 2.422,
-      "leverage": 0.0265
+      "support": 0.0404,
+      "confidence": 0.778,
+      "lift": 2.8358,
+      "leverage": 0.0261
     },
     {
       "antecedents": [
@@ -233,10 +264,21 @@
         "event:pageView"
       ],
       "consequent": "feature:download_export",
-      "support": 0.088,
-      "confidence": 0.2472,
-      "lift": 2.3829,
-      "leverage": 0.0511
+      "support": 0.0791,
+      "confidence": 0.2294,
+      "lift": 2.4345,
+      "leverage": 0.0466
+    },
+    {
+      "antecedents": [
+        "event:pageView",
+        "tool:KG Explorer"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.0404,
+      "confidence": 0.1982,
+      "lift": 2.4151,
+      "leverage": 0.0237
     },
     {
       "antecedents": [
@@ -244,10 +286,10 @@
         "event:hover"
       ],
       "consequent": "feature:organ_selection",
-      "support": 0.052,
-      "confidence": 0.1941,
-      "lift": 2.2576,
-      "leverage": 0.029
+      "support": 0.0522,
+      "confidence": 0.1943,
+      "lift": 2.3678,
+      "leverage": 0.0302
     },
     {
       "antecedents": [
@@ -255,10 +297,10 @@
         "tool:EUI"
       ],
       "consequent": "event:hover",
-      "support": 0.0363,
-      "confidence": 0.7778,
-      "lift": 2.2306,
-      "leverage": 0.02
+      "support": 0.0381,
+      "confidence": 0.7886,
+      "lift": 2.2751,
+      "leverage": 0.0213
     },
     {
       "antecedents": [
@@ -266,30 +308,30 @@
         "event:pageView"
       ],
       "consequent": "tool:CDE",
-      "support": 0.0225,
-      "confidence": 0.0631,
-      "lift": 2.2188,
-      "leverage": 0.0123
+      "support": 0.0262,
+      "confidence": 0.076,
+      "lift": 2.1662,
+      "leverage": 0.0141
     },
     {
       "antecedents": [
         "feature:organ_selection"
       ],
       "consequent": "tool:KG Explorer",
-      "support": 0.053,
-      "confidence": 0.6161,
-      "lift": 2.1955,
-      "leverage": 0.0288
+      "support": 0.047,
+      "confidence": 0.5722,
+      "lift": 2.0856,
+      "leverage": 0.0244
     },
     {
       "antecedents": [
         "tool:KG Explorer"
       ],
       "consequent": "feature:organ_selection",
-      "support": 0.053,
-      "confidence": 0.1888,
-      "lift": 2.1955,
-      "leverage": 0.0288
+      "support": 0.047,
+      "confidence": 0.1711,
+      "lift": 2.0856,
+      "leverage": 0.0244
     },
     {
       "antecedents": [
@@ -297,41 +339,10 @@
         "feature:organ_selection"
       ],
       "consequent": "tool:KG Explorer",
-      "support": 0.0524,
-      "confidence": 0.6133,
-      "lift": 2.1854,
-      "leverage": 0.0284
-    },
-    {
-      "antecedents": [
-        "event:hover",
-        "feature:organ_selection"
-      ],
-      "consequent": "tool:KG Explorer",
-      "support": 0.03,
-      "confidence": 0.5701,
-      "lift": 2.0318,
-      "leverage": 0.0152
-    },
-    {
-      "antecedents": [
-        "tool:EUI"
-      ],
-      "consequent": "event:hover",
-      "support": 0.056,
-      "confidence": 0.7078,
-      "lift": 2.0298,
-      "leverage": 0.0284
-    },
-    {
-      "antecedents": [
-        "event:hover"
-      ],
-      "consequent": "tool:EUI",
-      "support": 0.056,
-      "confidence": 0.1605,
-      "lift": 2.0298,
-      "leverage": 0.0284
+      "support": 0.0462,
+      "confidence": 0.5682,
+      "lift": 2.0709,
+      "leverage": 0.0239
     },
     {
       "antecedents": [
@@ -339,20 +350,20 @@
         "event:pageView"
       ],
       "consequent": "event:modelChange",
-      "support": 0.0286,
-      "confidence": 0.0804,
-      "lift": 1.9659,
-      "leverage": 0.0141
+      "support": 0.0296,
+      "confidence": 0.0859,
+      "lift": 2.0235,
+      "leverage": 0.015
     },
     {
       "antecedents": [
         "feature:download_export"
       ],
       "consequent": "event:click",
-      "support": 0.1038,
+      "support": 0.0942,
       "confidence": 1.0,
-      "lift": 1.9317,
-      "leverage": 0.05
+      "lift": 2.0062,
+      "leverage": 0.0473
     },
     {
       "antecedents": [
@@ -360,10 +371,10 @@
         "tool:KG Explorer"
       ],
       "consequent": "event:click",
-      "support": 0.0907,
+      "support": 0.0814,
       "confidence": 1.0,
-      "lift": 1.9317,
-      "leverage": 0.0438
+      "lift": 2.0062,
+      "leverage": 0.0408
     },
     {
       "antecedents": [
@@ -371,10 +382,10 @@
         "feature:download_export"
       ],
       "consequent": "event:click",
-      "support": 0.088,
+      "support": 0.0791,
       "confidence": 1.0,
-      "lift": 1.9317,
-      "leverage": 0.0425
+      "lift": 2.0062,
+      "leverage": 0.0397
     },
     {
       "antecedents": [
@@ -382,10 +393,10 @@
         "feature:download_export"
       ],
       "consequent": "event:click",
-      "support": 0.0475,
+      "support": 0.0466,
       "confidence": 1.0,
-      "lift": 1.9317,
-      "leverage": 0.0229
+      "lift": 2.0062,
+      "leverage": 0.0234
     },
     {
       "antecedents": [
@@ -393,20 +404,71 @@
         "feature:organ_selection"
       ],
       "consequent": "event:click",
-      "support": 0.0316,
+      "support": 0.0282,
       "confidence": 1.0,
-      "lift": 1.9317,
-      "leverage": 0.0152
+      "lift": 2.0062,
+      "leverage": 0.0141
+    },
+    {
+      "antecedents": [
+        "feature:organ_selection",
+        "tool:EUI"
+      ],
+      "consequent": "event:click",
+      "support": 0.0223,
+      "confidence": 1.0,
+      "lift": 2.0062,
+      "leverage": 0.0112
+    },
+    {
+      "antecedents": [
+        "feature:upload"
+      ],
+      "consequent": "event:click",
+      "support": 0.0203,
+      "confidence": 1.0,
+      "lift": 2.0062,
+      "leverage": 0.0102
     },
     {
       "antecedents": [
         "event:click"
       ],
       "consequent": "feature:download_export",
-      "support": 0.1038,
-      "confidence": 0.2004,
-      "lift": 1.9317,
-      "leverage": 0.05
+      "support": 0.0942,
+      "confidence": 0.189,
+      "lift": 2.0062,
+      "leverage": 0.0473
+    },
+    {
+      "antecedents": [
+        "event:click"
+      ],
+      "consequent": "feature:upload",
+      "support": 0.0203,
+      "confidence": 0.0407,
+      "lift": 2.0062,
+      "leverage": 0.0102
+    },
+    {
+      "antecedents": [
+        "feature:organ_selection"
+      ],
+      "consequent": "event:click",
+      "support": 0.0813,
+      "confidence": 0.9906,
+      "lift": 1.9874,
+      "leverage": 0.0404
+    },
+    {
+      "antecedents": [
+        "event:click"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.0813,
+      "confidence": 0.1631,
+      "lift": 1.9874,
+      "leverage": 0.0404
     },
     {
       "antecedents": [
@@ -414,30 +476,21 @@
         "feature:organ_selection"
       ],
       "consequent": "event:click",
-      "support": 0.0561,
-      "confidence": 0.9944,
-      "lift": 1.9209,
-      "leverage": 0.0269
+      "support": 0.0513,
+      "confidence": 0.9894,
+      "lift": 1.985,
+      "leverage": 0.0255
     },
     {
       "antecedents": [
+        "event:hover",
         "feature:organ_selection"
       ],
       "consequent": "event:click",
-      "support": 0.0854,
-      "confidence": 0.9927,
-      "lift": 1.9175,
-      "leverage": 0.0408
-    },
-    {
-      "antecedents": [
-        "event:click"
-      ],
-      "consequent": "feature:organ_selection",
-      "support": 0.0854,
-      "confidence": 0.1649,
-      "lift": 1.9175,
-      "leverage": 0.0408
+      "support": 0.0522,
+      "confidence": 0.9855,
+      "lift": 1.9771,
+      "leverage": 0.0258
     },
     {
       "antecedents": [
@@ -445,21 +498,125 @@
         "tool:KG Explorer"
       ],
       "consequent": "event:click",
-      "support": 0.0524,
-      "confidence": 0.9881,
-      "lift": 1.9087,
-      "leverage": 0.0249
+      "support": 0.0462,
+      "confidence": 0.9836,
+      "lift": 1.9734,
+      "leverage": 0.0228
     },
     {
       "antecedents": [
         "event:hover",
         "feature:organ_selection"
       ],
+      "consequent": "tool:KG Explorer",
+      "support": 0.0282,
+      "confidence": 0.5321,
+      "lift": 1.9394,
+      "leverage": 0.0137
+    },
+    {
+      "antecedents": [
+        "feature:organ_selection"
+      ],
+      "consequent": "event:hover",
+      "support": 0.053,
+      "confidence": 0.6457,
+      "lift": 1.8628,
+      "leverage": 0.0245
+    },
+    {
+      "antecedents": [
+        "event:hover"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.053,
+      "confidence": 0.1528,
+      "lift": 1.8628,
+      "leverage": 0.0245
+    },
+    {
+      "antecedents": [
+        "event:pageView",
+        "feature:organ_selection"
+      ],
+      "consequent": "event:hover",
+      "support": 0.0335,
+      "confidence": 0.6448,
+      "lift": 1.8602,
+      "leverage": 0.0155
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "feature:organ_selection"
+      ],
+      "consequent": "event:hover",
+      "support": 0.0522,
+      "confidence": 0.6424,
+      "lift": 1.8531,
+      "leverage": 0.024
+    },
+    {
+      "antecedents": [
+        "event:hover",
+        "event:pageView"
+      ],
+      "consequent": "feature:download_export",
+      "support": 0.0404,
+      "confidence": 0.1745,
+      "lift": 1.8518,
+      "leverage": 0.0186
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "event:hover"
+      ],
+      "consequent": "feature:download_export",
+      "support": 0.0466,
+      "confidence": 0.1735,
+      "lift": 1.8409,
+      "leverage": 0.0213
+    },
+    {
+      "antecedents": [
+        "event:modelChange"
+      ],
       "consequent": "event:click",
-      "support": 0.052,
-      "confidence": 0.9881,
-      "lift": 1.9086,
-      "leverage": 0.0248
+      "support": 0.0389,
+      "confidence": 0.9173,
+      "lift": 1.8403,
+      "leverage": 0.0178
+    },
+    {
+      "antecedents": [
+        "event:click"
+      ],
+      "consequent": "event:modelChange",
+      "support": 0.0389,
+      "confidence": 0.0781,
+      "lift": 1.8403,
+      "leverage": 0.0178
+    },
+    {
+      "antecedents": [
+        "tool:EUI"
+      ],
+      "consequent": "event:hover",
+      "support": 0.0551,
+      "confidence": 0.6354,
+      "lift": 1.8331,
+      "leverage": 0.025
+    },
+    {
+      "antecedents": [
+        "event:hover"
+      ],
+      "consequent": "tool:EUI",
+      "support": 0.0551,
+      "confidence": 0.1589,
+      "lift": 1.8331,
+      "leverage": 0.025
     },
     {
       "antecedents": [
@@ -467,30 +624,10 @@
         "event:pageView"
       ],
       "consequent": "feature:organ_selection",
-      "support": 0.0561,
-      "confidence": 0.1576,
-      "lift": 1.8329,
-      "leverage": 0.0255
-    },
-    {
-      "antecedents": [
-        "event:modelChange"
-      ],
-      "consequent": "event:click",
-      "support": 0.0382,
-      "confidence": 0.9346,
-      "lift": 1.8054,
-      "leverage": 0.017
-    },
-    {
-      "antecedents": [
-        "event:click"
-      ],
-      "consequent": "event:modelChange",
-      "support": 0.0382,
-      "confidence": 0.0738,
-      "lift": 1.8054,
-      "leverage": 0.017
+      "support": 0.0513,
+      "confidence": 0.1489,
+      "lift": 1.8147,
+      "leverage": 0.023
     },
     {
       "antecedents": [
@@ -498,153 +635,12 @@
         "event:pageView"
       ],
       "consequent": "event:click",
-      "support": 0.0286,
-      "confidence": 0.9146,
-      "lift": 1.7667,
-      "leverage": 0.0124
-    },
-    {
-      "antecedents": [
-        "feature:organ_selection"
-      ],
-      "consequent": "event:hover",
-      "support": 0.0527,
-      "confidence": 0.6124,
-      "lift": 1.7564,
-      "leverage": 0.0227
-    },
-    {
-      "antecedents": [
-        "event:hover"
-      ],
-      "consequent": "feature:organ_selection",
-      "support": 0.0527,
-      "confidence": 0.151,
-      "lift": 1.7564,
-      "leverage": 0.0227
-    },
-    {
-      "antecedents": [
-        "event:hover",
-        "event:pageView"
-      ],
-      "consequent": "feature:download_export",
-      "support": 0.0412,
-      "confidence": 0.1818,
-      "lift": 1.7523,
-      "leverage": 0.0177
-    },
-    {
-      "antecedents": [
-        "event:hover",
-        "event:pageView"
-      ],
-      "consequent": "feature:organ_selection",
-      "support": 0.0341,
-      "confidence": 0.1506,
-      "lift": 1.7512,
-      "leverage": 0.0146
-    },
-    {
-      "antecedents": [
-        "event:click",
-        "feature:organ_selection"
-      ],
-      "consequent": "event:hover",
-      "support": 0.052,
-      "confidence": 0.6096,
-      "lift": 1.7482,
-      "leverage": 0.0223
-    },
-    {
-      "antecedents": [
-        "event:pageView",
-        "feature:organ_selection"
-      ],
-      "consequent": "event:hover",
-      "support": 0.0341,
-      "confidence": 0.6045,
-      "lift": 1.7335,
-      "leverage": 0.0144
-    },
-    {
-      "antecedents": [
-        "event:click",
-        "event:hover"
-      ],
-      "consequent": "tool:EUI",
-      "support": 0.0363,
-      "confidence": 0.1355,
-      "lift": 1.7133,
-      "leverage": 0.0151
-    },
-    {
-      "antecedents": [
-        "event:click",
-        "event:hover"
-      ],
-      "consequent": "feature:download_export",
-      "support": 0.0475,
-      "confidence": 0.1771,
-      "lift": 1.7071,
-      "leverage": 0.0197
-    },
-    {
-      "antecedents": [
-        "event:hover",
-        "tool:KG Explorer"
-      ],
-      "consequent": "event:click",
-      "support": 0.0821,
-      "confidence": 0.846,
-      "lift": 1.6343,
-      "leverage": 0.0318
-    },
-    {
-      "antecedents": [
-        "event:hover",
-        "event:pageView"
-      ],
-      "consequent": "event:click",
-      "support": 0.1913,
-      "confidence": 0.8446,
-      "lift": 1.6314,
-      "leverage": 0.074
-    },
-    {
-      "antecedents": [
-        "event:click",
-        "tool:CDE"
-      ],
-      "consequent": "event:pageView",
-      "support": 0.0225,
-      "confidence": 0.9728,
-      "lift": 1.6288,
-      "leverage": 0.0087
-    },
-    {
-      "antecedents": [
-        "feature:organ_selection",
-        "tool:KG Explorer"
-      ],
-      "consequent": "event:hover",
-      "support": 0.03,
-      "confidence": 0.5668,
-      "lift": 1.6254,
-      "leverage": 0.0116
-    },
-    {
-      "antecedents": [
-        "event:pageView",
-        "tool:CDE"
-      ],
-      "consequent": "event:click",
-      "support": 0.0225,
-      "confidence": 0.8412,
-      "lift": 1.6249,
-      "leverage": 0.0086
+      "support": 0.0296,
+      "confidence": 0.9,
+      "lift": 1.8055,
+      "leverage": 0.0132
     }
   ],
-  "transaction_count": 6361,
+  "transaction_count": 9116,
   "method": "mlxtend_apriori"
 }

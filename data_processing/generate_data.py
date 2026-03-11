@@ -18,7 +18,7 @@ from pathlib import Path
 
 import duckdb
 
-PARQUET_DEFAULT = "data/2026-01-13_hra-logs.parquet"
+PARQUET_DEFAULT = "data/2026-02-22_hra-logs.parquet"
 OUT_DEFAULT = "public/data"
 
 TOOL_STEMS = "('/eui/','/rui/','/cde/','/ftu-explorer/','/kg-explorer/')"
@@ -597,6 +597,109 @@ def run(parquet: str, out: str) -> None:
         GROUP BY request_type
         ORDER BY count DESC
     """))
+
+    # ─── NEW: KG Explorer error rate per month ───────────────────────────────
+    kg_visits = {r[0]: r[1] for r in con.execute(f"""
+        SELECT strftime(date_trunc('month', date)::DATE, '%Y-%m'), count(*)::BIGINT
+        FROM {P} WHERE traffic_type='Likely Human' AND site='Apps'
+          AND cs_uri_stem='/kg-explorer/'
+        GROUP BY 1 ORDER BY 1""").fetchall()}
+    kg_errors = {r[0]: r[1] for r in con.execute(f"""
+        SELECT strftime(date_trunc('month', date)::DATE, '%Y-%m'), count(*)::BIGINT
+        FROM {P} WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+          AND query['event']='error' AND query['app']='kg-explorer'
+        GROUP BY 1 ORDER BY 1""").fetchall()}
+    write_json(f"{out}/kg_error_rate.json", [
+        {"month_year": m, "visits": kg_visits.get(m, 0), "errors": kg_errors.get(m, 0),
+         "rate": round(kg_errors.get(m, 0) * 100 / kg_visits[m], 1) if kg_visits.get(m) else 0.0}
+        for m in sorted(set(kg_visits) | set(kg_errors))
+    ])
+
+    # ─── NEW: Per-tool error rate long format (visits + errors + rate) ────────
+    TOOL_APP_KEYS = {
+        "EUI":          ("/eui/",          ("ccf-eui",)),
+        "RUI":          ("/rui/",          ("ccf-rui",)),
+        "CDE":          ("/cde/",          ("cde-ui",)),
+        "FTU Explorer": ("/ftu-explorer/", ("ftu-ui", "ftu-ui-small-wc")),
+        "KG Explorer":  ("/kg-explorer/",  ("kg-explorer",)),
+    }
+    tool_err_rows = []
+    for tool, (stem, app_keys) in TOOL_APP_KEYS.items():
+        app_list = ", ".join(f"'{k}'" for k in app_keys)
+        rows = con.execute(f"""
+            WITH months AS (
+                SELECT DATE_TRUNC('month', CAST(date AS DATE)) AS mo
+                FROM {P} WHERE site='Apps' AND cs_uri_stem='{stem}'
+                GROUP BY 1
+            ),
+            vis AS (
+                SELECT DATE_TRUNC('month', CAST(date AS DATE)) AS mo, COUNT(*)::BIGINT AS visits
+                FROM {P} WHERE site='Apps' AND cs_uri_stem='{stem}'
+                GROUP BY 1
+            ),
+            err AS (
+                SELECT DATE_TRUNC('month', CAST(date AS DATE)) AS mo, COUNT(*)::BIGINT AS errors
+                FROM {P} WHERE site='Events' AND query['app'] IN ({app_list})
+                  AND query['event']='error'
+                GROUP BY 1
+            )
+            SELECT STRFTIME(m.mo, '%Y-%m'),
+                   COALESCE(v.visits, 0), COALESCE(e.errors, 0),
+                   ROUND(COALESCE(e.errors,0)*100.0/NULLIF(COALESCE(v.visits,0),0),1)
+            FROM months m
+            LEFT JOIN vis v ON m.mo=v.mo
+            LEFT JOIN err e ON m.mo=e.mo
+            ORDER BY m.mo
+        """).fetchall()
+        for r in rows:
+            tool_err_rows.append({
+                "tool": tool, "month_year": r[0],
+                "visits": r[1], "errors": r[2],
+                "rate": r[3] if r[3] is not None else 0.0,
+            })
+    write_json(f"{out}/tool_error_rates_long.json", tool_err_rows)
+
+    # ─── NEW: Tool return rate (% of monthly visitors who returned) ───────────
+    rr_rows = con.execute(f"""
+        WITH um AS (
+            SELECT anon_id, {TOOL_CASE} AS tool, date_trunc('month', date)::DATE AS mo
+            FROM {P} WHERE site='Apps' AND traffic_type='Likely Human'
+              AND cs_uri_stem IN {TOOL_STEMS}
+              AND anon_id IS NOT NULL AND length(anon_id) >= 4
+            GROUP BY 1, 2, 3
+        ),
+        fs AS (SELECT anon_id, tool, MIN(mo) AS first FROM um GROUP BY 1, 2),
+        j  AS (SELECT m.anon_id, m.tool, m.mo, (m.mo > f.first) AS ret
+               FROM um m JOIN fs f USING (anon_id, tool))
+        SELECT strftime(mo, '%Y-%m'), tool,
+               count(DISTINCT anon_id)::BIGINT,
+               sum(CASE WHEN ret THEN 1 ELSE 0 END)::BIGINT,
+               round(100.0*sum(CASE WHEN ret THEN 1 ELSE 0 END)/count(DISTINCT anon_id), 1)
+        FROM j GROUP BY 1, 2 ORDER BY 1, 2
+    """).fetchall()
+    write_json(f"{out}/tool_return_rate.json", [
+        {"month_year": r[0], "tool": r[1], "users": r[2], "returning": r[3], "return_pct": float(r[4])}
+        for r in rr_rows
+    ])
+
+    # ─── NEW: Cross-tool sessions (users visiting ≥2 tools) ──────────────────
+    from collections import Counter
+    ct_rows = con.execute(f"""
+        SELECT anon_id, LIST(DISTINCT {TOOL_CASE} ORDER BY {TOOL_CASE}) AS tools
+        FROM {P} WHERE site='Apps' AND traffic_type='Likely Human'
+          AND cs_uri_stem IN {TOOL_STEMS}
+          AND anon_id IS NOT NULL AND length(anon_id) >= 4
+        GROUP BY anon_id HAVING count(DISTINCT cs_uri_stem) >= 2
+    """).fetchall()
+    cc: Counter = Counter()
+    for _, tools in ct_rows:
+        key = tuple(sorted(set(t for t in tools if t)))
+        if len(key) >= 2:
+            cc[key] += 1
+    write_json(f"{out}/cross_tool_sessions.json", [
+        {"combo_label": " + ".join(c), "count": n, "tools": list(c)}
+        for c, n in cc.most_common(12)
+    ])
 
     total = len(os.listdir(out))
     print(f"\nAll done — {total} files in {out}/")

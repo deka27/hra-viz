@@ -1,5 +1,6 @@
 import StatCard from "./components/StatCard";
 import ChartCard from "./components/ChartCard";
+import { Hc } from "./components/Hc";
 import ToolVisitsChart from "./components/charts/ToolVisitsChart";
 import TrafficDonut from "./components/charts/TrafficDonut";
 import TotalVisitsSparkline from "./components/charts/TotalVisitsSparkline";
@@ -41,6 +42,20 @@ const clickCount = eventTypes.find((d) => d.event === "click")?.count ?? 0;
 const clickPct = ((clickCount / totalEvents) * 100).toFixed(1);
 const opacityTotal = opacityData.reduce((s, d) => s + d.count, 0);
 const spatialTotal = spatialSearch.reduce((s, d) => s + d.count, 0);
+const ruiVisits = totalToolVisits.find((d) => d.tool === "RUI")?.visits ?? 0;
+const kgVisits = totalToolVisits.find((d) => d.tool === "KG Explorer")?.visits ?? 0;
+
+type MonthRow = { month_year: string; "KG Explorer": number };
+const kgPeakRow = (monthlyData as MonthRow[]).reduce(
+  (mx, d) => d["KG Explorer"] > mx["KG Explorer"] ? d : mx,
+  (monthlyData as MonthRow[])[0]
+);
+const kgPeakVisits = kgPeakRow?.["KG Explorer"] ?? 0;
+const kgPeakLabel = kgPeakRow ? (() => {
+  const [y, mo] = kgPeakRow.month_year.split("-");
+  const names = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return `${names[parseInt(mo)-1]} '${y.slice(2)}`;
+})() : "";
 
 function fmtCompact(value: number): string {
   if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(2)}M`;
@@ -142,7 +157,7 @@ export default function OverviewPage() {
 
       {/* Request funnel Sankey — first chart */}
       <ChartCard
-        title="From 12.78M Requests to 43K Tool Visits"
+        title={`From ${fmtCompact(totalRequests)} Requests to ${fmtCompact(totalVisits)} Tool Visits`}
         subtitle="4-level flow: all CloudFront traffic → traffic type → tracked vs. infra → individual tools"
       >
         <RequestFunnelInfographic trafficTypes={trafficTypes} totalVisits={totalVisits} toolVisits={totalToolVisits} requestTypes={requestTypeBreakdown} />
@@ -215,7 +230,7 @@ export default function OverviewPage() {
         <StatCard
           label="Spatial Searches (EUI)"
           value={spatialTotal.toLocaleString()}
-          sub="978 total interactions"
+          sub={`${spatialTotal.toLocaleString()} total interactions`}
           accent="text-blue-400"
         />
       </div>
@@ -264,7 +279,7 @@ export default function OverviewPage() {
           </div>
           <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
             EUI visits spiked from{" "}
-            <span className="text-zinc-800 dark:text-zinc-200 font-medium">171 → 7,140</span> in March 2024 —
+            <Hc>171 → 7,140</Hc>{" "}in March 2024 —
             a 41× jump. Probably an internal HuBMAP/HRA training session (no public record found).
           </p>
         </div>
@@ -275,7 +290,7 @@ export default function OverviewPage() {
           </div>
           <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
             RUI opacity controls used only{" "}
-            <span className="text-zinc-800 dark:text-zinc-200 font-medium">196 times</span> total across 5,161 visits — a powerful but buried feature.
+            <span className="text-zinc-800 dark:text-zinc-200 font-medium">{opacityTotal} times</span> total across {ruiVisits.toLocaleString()} visits — a powerful but buried feature.
           </p>
         </div>
         <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">
@@ -285,7 +300,7 @@ export default function OverviewPage() {
           </div>
           <p className="text-sm text-zinc-600 dark:text-zinc-400 leading-relaxed">
             KG Explorer launched Aug 2025 and hit{" "}
-            <span className="text-zinc-800 dark:text-zinc-200 font-medium">3,891 visits/mo</span> by October — now the most-visited HRA tool.
+            <span className="text-zinc-800 dark:text-zinc-200 font-medium">{kgPeakVisits.toLocaleString()} visits/mo</span> by {kgPeakLabel} — now the most-visited HRA tool with {kgVisits.toLocaleString()} total visits.
           </p>
         </div>
         <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-4 flex flex-col gap-1.5">

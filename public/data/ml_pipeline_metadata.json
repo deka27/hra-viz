@@ -1,13 +1,13 @@
 {
-  "generated_at_utc": "2026-02-25T19:01:51+00:00",
-  "input_parquet": "data/2026-01-13_hra-logs.parquet",
+  "generated_at_utc": "2026-03-11T05:58:21+00:00",
+  "input_parquet": "data/2026-02-22_hra-logs.parquet",
   "output_dir": "public/data",
   "forecast_horizon_months": 6,
   "rows": {
-    "monthly_points": 106,
-    "event_rows": 89930,
-    "sessions": 6361,
-    "transactions": 6361
+    "monthly_points": 111,
+    "event_rows": 126313,
+    "sessions": 9116,
+    "transactions": 9116
   },
   "outputs": [
     "forecast_tool_visits.json",

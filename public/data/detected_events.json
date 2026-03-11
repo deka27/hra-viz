@@ -64,6 +64,14 @@
     "to_value": 1254
   },
   {
+    "tool": "KG Explorer",
+    "month": "2026-01",
+    "event_type": "mom_spike",
+    "magnitude_pct": 177.1,
+    "from_value": 2977,
+    "to_value": 8248
+  },
+  {
     "tool": "FTU Explorer",
     "month": "2024-06",
     "event_type": "mom_spike",

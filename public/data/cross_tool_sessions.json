@@ -1,0 +1,105 @@
+[
+  {
+    "combo_label": "CDE + EUI + RUI",
+    "count": 551,
+    "tools": [
+      "CDE",
+      "EUI",
+      "RUI"
+    ]
+  },
+  {
+    "combo_label": "EUI + RUI",
+    "count": 333,
+    "tools": [
+      "EUI",
+      "RUI"
+    ]
+  },
+  {
+    "combo_label": "EUI + KG Explorer",
+    "count": 140,
+    "tools": [
+      "EUI",
+      "KG Explorer"
+    ]
+  },
+  {
+    "combo_label": "CDE + FTU Explorer",
+    "count": 136,
+    "tools": [
+      "CDE",
+      "FTU Explorer"
+    ]
+  },
+  {
+    "combo_label": "CDE + EUI",
+    "count": 134,
+    "tools": [
+      "CDE",
+      "EUI"
+    ]
+  },
+  {
+    "combo_label": "CDE + EUI + FTU Explorer + RUI",
+    "count": 128,
+    "tools": [
+      "CDE",
+      "EUI",
+      "FTU Explorer",
+      "RUI"
+    ]
+  },
+  {
+    "combo_label": "EUI + FTU Explorer",
+    "count": 113,
+    "tools": [
+      "EUI",
+      "FTU Explorer"
+    ]
+  },
+  {
+    "combo_label": "KG Explorer + RUI",
+    "count": 111,
+    "tools": [
+      "KG Explorer",
+      "RUI"
+    ]
+  },
+  {
+    "combo_label": "CDE + KG Explorer",
+    "count": 89,
+    "tools": [
+      "CDE",
+      "KG Explorer"
+    ]
+  },
+  {
+    "combo_label": "CDE + EUI + FTU Explorer + KG Explorer + RUI",
+    "count": 82,
+    "tools": [
+      "CDE",
+      "EUI",
+      "FTU Explorer",
+      "KG Explorer",
+      "RUI"
+    ]
+  },
+  {
+    "combo_label": "CDE + EUI + FTU Explorer",
+    "count": 81,
+    "tools": [
+      "CDE",
+      "EUI",
+      "FTU Explorer"
+    ]
+  },
+  {
+    "combo_label": "FTU Explorer + KG Explorer",
+    "count": 77,
+    "tools": [
+      "FTU Explorer",
+      "KG Explorer"
+    ]
+  }
+]

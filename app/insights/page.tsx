@@ -2,6 +2,10 @@ import StatCard from "../components/StatCard";
 import SessionDepthChart from "../components/charts/SessionDepthChart";
 
 import totalToolVisits from "../../public/data/total_tool_visits.json";
+import referrers from "../../public/data/referrers.json";
+import kgErrorRateData from "../../public/data/kg_error_rate.json";
+import toolReturnRateData from "../../public/data/tool_return_rate.json";
+import crossToolSessions from "../../public/data/cross_tool_sessions.json";
 import opacityData from "../../public/data/opacity_interactions.json";
 import cdeWorkflowData from "../../public/data/cde_workflow.json";
 import spatialSearch from "../../public/data/spatial_search.json";
@@ -12,6 +16,7 @@ import monthlyData from "../../public/data/tool_visits_by_month.json";
 import errorBreakdown from "../../public/data/error_breakdown.json";
 import topPathsByEvent from "../../public/data/top_paths_by_event.json";
 
+import { HcMark } from "../components/Hc";
 import {
   SpikeComparisonChart,
   AprilCoSpikeChart,
@@ -104,6 +109,56 @@ const ruiErrors = errSrc.find(d => d.tool === "RUI")?.errors ?? 0;
 const kgErrPct = Math.round((kgErrors / totalSrcErrors) * 100);
 const euiErrPct = Math.round((euiErrors / totalSrcErrors) * 100);
 
+// ID 5: KG Explorer trajectory (derived from monthly data)
+const kgMonths = monthly.filter(d => d["KG Explorer"] > 0);
+const kgPeakRow = kgMonths.reduce((mx, d) => d["KG Explorer"] > mx["KG Explorer"] ? d : mx, kgMonths[0]);
+const kgPeakVisits = kgPeakRow?.["KG Explorer"] ?? 0;
+const kgPeakMonthLabel = kgPeakRow ? fmtMY(kgPeakRow.month_year) : "";
+const kgLatestRow = monthly[monthly.length - 1];
+const kgLatestVisits = kgLatestRow?.["KG Explorer"] ?? 0;
+const kgLatestMonthLabel = kgLatestRow ? fmtMY(kgLatestRow.month_year) : "";
+const kgDeclinePct = kgPeakVisits > 0 ? Math.round(((kgLatestVisits - kgPeakVisits) / kgPeakVisits) * 100) : 0;
+
+// ID 18: External referrers (derived from referrers.json)
+type ReferrerRow = { name: string; value: number };
+const refArr = referrers as ReferrerRow[];
+const gtexReqs = refArr.find(d => d.name === "GTEx Portal")?.value ?? 0;
+const hubmapReqs = refArr.find(d => d.name === "HubMAP")?.value ?? 0;
+const sennetReqs = refArr.find(d => d.name === "SenNet")?.value ?? 0;
+const ebiReqs = refArr.find(d => d.name === "EBI")?.value ?? 0;
+function fmtM(n: number) { return n >= 1_000_000 ? `${(n/1_000_000).toFixed(2)}M` : `${(n/1000).toFixed(0)}K`; }
+
+// ID 13: Portal nav interactions (derived from topPathsByEvent click, humanatlas.* paths)
+const portalNavClicks = ((topPathsByEvent as Record<string, {path: string; count: number}[]>).click ?? [])
+  .filter(d => d.path.startsWith("humanatlas."))
+  .reduce((s, d) => s + d.count, 0);
+const appsNavClicks = ((topPathsByEvent as Record<string, {path: string; count: number}[]>).click ?? [])
+  .find(d => d.path === "humanatlas.header.navigation.applications")?.count ?? 0;
+const trainingNavClicks = ((topPathsByEvent as Record<string, {path: string; count: number}[]>).click ?? [])
+  .find(d => d.path === "humanatlas.header.navigation.training")?.count ?? 0;
+
+// IDs 21-23: New insights from Feb 2026 parquet
+type KgErrRow2 = { month_year: string; visits: number; errors: number; rate: number };
+const kgErrArr2 = (kgErrorRateData as KgErrRow2[]).filter((d) => d.visits > 0);
+const kgLaunchRateI = kgErrArr2[0]?.rate ?? 0;
+const kgCurrRateI   = kgErrArr2[kgErrArr2.length - 1]?.rate ?? 0;
+const kgRateDropI   = kgLaunchRateI > 0 ? Math.round(((kgLaunchRateI - kgCurrRateI) / kgLaunchRateI) * 100) : 0;
+const kgLaunchMonthI = kgErrArr2[0] ? fmtMY(kgErrArr2[0].month_year) : "";
+const kgCurrMonthI   = kgErrArr2.length > 0 ? fmtMY(kgErrArr2[kgErrArr2.length - 1].month_year) : "";
+
+type RetRow2 = { month_year: string; tool: string; return_pct: number };
+const retArr2 = toolReturnRateData as RetRow2[];
+const latestRetMonthI = retArr2.length > 0 ? retArr2[retArr2.length - 1].month_year : "";
+const latestRetsI = retArr2.filter((d) => d.month_year === latestRetMonthI);
+const ruiRetI = latestRetsI.find((d) => d.tool === "RUI")?.return_pct ?? 0;
+const euiRetI = latestRetsI.find((d) => d.tool === "EUI")?.return_pct ?? 0;
+const kgRetI  = latestRetsI.find((d) => d.tool === "KG Explorer")?.return_pct ?? 0;
+
+type CtRow2 = { combo_label: string; count: number; tools: string[] };
+const ctArr2 = crossToolSessions as CtRow2[];
+const topComboI = ctArr2[0];
+const multiTotalI = ctArr2.reduce((s, d) => s + d.count, 0);
+
 // ID 19: Nav clicks
 const navArr = navClicks as { label: string; count: number }[];
 const dataClicks = navArr.find(d => d.label === "Data")?.count ?? 0;
@@ -125,6 +180,10 @@ const bouncePct = Math.round((singleBounce / totalSessions) * 100);
 const deep11Pct = Math.round((deep11 / totalSessions) * 100);
 const deep20Pct = Math.round((deep20 / totalSessions) * 100);
 
+// ── Insight data type ─────────────────────────────────────────────────────────
+// hc: true means the value is hardcoded (historical observation, not derived from JSON).
+// These will render with an amber * marker. Find all with: grep -r "hc: true" app/
+
 // Compact charts for bento cards
 const INSIGHT_CHARTS: Record<number, React.ReactNode> = {
   1:  <SpikeComparisonChart compact />,
@@ -140,6 +199,7 @@ const INSIGHT_CHARTS: Record<number, React.ReactNode> = {
 const SECTION_GROUPS = [
   { name: "Events & Traffic Spikes",  ids: [1, 2, 3, 4]           },
   { name: "Tool Trajectories",        ids: [5, 6, 7]               },
+  { name: "Quality & Retention",      ids: [21, 22, 23]            },
   { name: "Feature Insights",         ids: [8, 9, 11, 10, 17, 12] },
   { name: "Portal & Ecosystem",       ids: [18, 13, 19, 14]        },
   { name: "Traffic & Geography",      ids: [20, 15, 16]            },
@@ -157,9 +217,9 @@ const insights = [
     implication:
       "No public record found for this event. Likely an internal HuBMAP/HRA training or course module. Reach out to the HRA team for records of any workshops or courses in March 2024.",
     data: [
-      { label: "EUI spike",         value: "+4,075%" },
-      { label: "FTU Explorer spike", value: "+5,673%" },
-      { label: "RUI spike",         value: "+1,564%" },
+      { label: "EUI spike",         value: "+4,075%",  hc: true },
+      { label: "FTU Explorer spike", value: "+5,673%", hc: true },
+      { label: "RUI spike",         value: "+1,564%",  hc: true },
     ],
   },
   {
@@ -172,9 +232,9 @@ const insights = [
     implication:
       "Probably the 'HRA: Powers of Ten' JumpStart workshop (Andreas Bueckle, IU CNS, NIH HuBMAP JumpStart Fellowship 2024–25). Lean into this by building a unified 'HRA Demo Mode' or guided multi-tool walkthrough that an instructor can run in one session.",
     data: [
-      { label: "CDE visits",  value: "1,218" },
-      { label: "EUI visits",  value: "1,254" },
-      { label: "RUI visits",  value: "1,253" },
+      { label: "CDE visits",  value: "1,218", hc: true },
+      { label: "EUI visits",  value: "1,254", hc: true },
+      { label: "RUI visits",  value: "1,253", hc: true },
     ],
   },
   {
@@ -187,9 +247,9 @@ const insights = [
     implication:
       "Probably an HRA working group session or training around a new HRA release. There are at least 3 distinct recurring event types — each warrants its own outreach strategy.",
     data: [
-      { label: "CDE Apr 2025",          value: "176 → 451 (+156%)" },
-      { label: "FTU Apr 2025",          value: "104 → 594 (+471%)" },
-      { label: "EUI Apr 2025 (flat)",   value: "228 → 240 (+5%)"   },
+      { label: "CDE Apr 2025",          value: "176 → 451 (+156%)", hc: true },
+      { label: "FTU Apr 2025",          value: "104 → 594 (+471%)", hc: true },
+      { label: "EUI Apr 2025 (flat)",   value: "228 → 240 (+5%)",   hc: true },
     ],
   },
   {
@@ -215,13 +275,13 @@ const insights = [
     dot: "bg-rose-500",
     tag: "Growth Story",
     title: "KG Explorer launched and immediately dominated — but is now declining",
-    metric: "Peak 3,891 in Oct '25 → 2,141 in Jan '26 (−45%)",
+    metric: `Peak ${kgPeakVisits.toLocaleString()} in ${kgPeakMonthLabel} → ${kgLatestVisits.toLocaleString()} in ${kgLatestMonthLabel} (${kgDeclinePct}%)`,
     implication:
-      "Monitor KG Explorer's February and March 2026 numbers closely. If decline continues past the seasonal dip, investigate whether users are hitting friction points.",
+      "Monitor KG Explorer's upcoming monthly numbers closely. If decline continues past the seasonal dip, investigate whether users are hitting friction points.",
     data: [
-      { label: "Oct '25 peak",     value: "3,891 visits"     },
-      { label: "Jan '26",          value: "2,141 (−45%)"     },
-      { label: "Growth at launch", value: "+90% MoM"         },
+      { label: `${kgPeakMonthLabel} peak`,    value: `${kgPeakVisits.toLocaleString()} visits`       },
+      { label: `${kgLatestMonthLabel}`,       value: `${kgLatestVisits.toLocaleString()} (${kgDeclinePct}%)` },
+      { label: "Growth at launch",            value: "+90% MoM", hc: true                             },
     ],
   },
   {
@@ -234,9 +294,9 @@ const insights = [
     implication:
       "Events are one of the highest-ROI growth strategies for HRA tools. Each major event leaves a lasting baseline increase. Doubling event frequency could compound baseline growth significantly.",
     data: [
-      { label: "Pre-event baseline",  value: "132 visits/mo"       },
-      { label: "Post-event baseline", value: "209 visits/mo"       },
-      { label: "Permanent lift",      value: "+58% (+77 users/mo)" },
+      { label: "Pre-event baseline",  value: "132 visits/mo",       hc: true },
+      { label: "Post-event baseline", value: "209 visits/mo",       hc: true },
+      { label: "Permanent lift",      value: "+58% (+77 users/mo)", hc: true },
     ],
   },
   {
@@ -249,9 +309,9 @@ const insights = [
     implication:
       "Cross-linking between tools could keep users in the HRA ecosystem rather than leaving after one tool. KG Explorer's success may be cannibalizing EUI and FTU traffic.",
     data: [
-      { label: "Non-KG H1 2025 avg",         value: "~779 visits/mo" },
-      { label: "Non-KG H2 2025 avg",         value: "~670 visits/mo" },
-      { label: "EUI 2025 vs 2024 (ex-spike)", value: "−16%"          },
+      { label: "Non-KG H1 2025 avg",         value: "~779 visits/mo", hc: true },
+      { label: "Non-KG H2 2025 avg",         value: "~670 visits/mo", hc: true },
+      { label: "EUI 2025 vs 2024 (ex-spike)", value: "−16%",          hc: true },
     ],
   },
 
@@ -353,14 +413,14 @@ const insights = [
     color: "border-l-teal-500",
     dot: "bg-teal-500",
     tag: "External Integration",
-    title: "GTEx Portal is HRA's largest external API consumer — 1.73M requests",
-    metric: "GTEx 1.73M · HubMAP 1.47M · SenNet 103K · EBI 97K",
+    title: `GTEx Portal is HRA's largest external API consumer — ${fmtM(gtexReqs)} requests`,
+    metric: `GTEx ${fmtM(gtexReqs)} · HubMAP ${fmtM(hubmapReqs)} · SenNet ${fmtM(sennetReqs)} · EBI ${fmtM(ebiReqs)}`,
     implication:
       "HRA is foundational API infrastructure for at least 4 major genomics platforms. Any breaking API changes need careful deprecation periods and partner notifications.",
     data: [
-      { label: "GTEx Portal",    value: "1.73M API requests" },
-      { label: "HubMAP",        value: "1.47M API requests" },
-      { label: "EBI + SenNet",  value: "200K combined"      },
+      { label: "GTEx Portal",    value: `${fmtM(gtexReqs)} API requests` },
+      { label: "HubMAP",        value: `${fmtM(hubmapReqs)} API requests` },
+      { label: "EBI + SenNet",  value: `${fmtM(ebiReqs + sennetReqs)} combined` },
     ],
   },
   {
@@ -369,13 +429,13 @@ const insights = [
     dot: "bg-sky-500",
     tag: "Discovery Path",
     title: "The HRA portal is the primary tool discovery mechanism",
-    metric: "6,620 portal navigation interactions in top 20 UI elements",
+    metric: `${portalNavClicks.toLocaleString()} portal navigation interactions in tracked UI elements`,
     implication:
-      "The portal's 'Applications' navigation link (1,442 interactions) is a critical funnel point. Ensure the tool listing page loads fast and is updated immediately when new tools launch.",
+      `The portal's 'Applications' navigation link (${appsNavClicks.toLocaleString()} interactions) is a critical funnel point. Ensure the tool listing page loads fast and is updated immediately when new tools launch.`,
     data: [
-      { label: "Portal nav interactions", value: "6,620"          },
-      { label: "Applications link",       value: "1,442 clicks"   },
-      { label: "Training link",           value: "882 clicks"     },
+      { label: "Portal nav interactions", value: portalNavClicks.toLocaleString()  },
+      { label: "Applications link",       value: `${appsNavClicks.toLocaleString()} clicks`  },
+      { label: "Training link",           value: `${trainingNavClicks.toLocaleString()} clicks` },
     ],
   },
   {
@@ -403,9 +463,56 @@ const insights = [
     implication:
       "FTU Explorer has a very focused use case. Double down on the bar graph: add filtering, export, and comparison features. Consider it as a standalone embeddable widget.",
     data: [
-      { label: "Bar graph interactions",       value: "2,387"    },
-      { label: "Rank among all elements",      value: "#2 overall" },
-      { label: "Other FTU elements in top 20", value: "None"     },
+      { label: "Bar graph interactions",       value: "2,387",     hc: true },
+      { label: "Rank among all elements",      value: "#2 overall", hc: true },
+      { label: "Other FTU elements in top 20", value: "None"               },
+    ],
+  },
+
+  // ── QUALITY & RETENTION (new Feb 2026) ────────────────────────────────────
+  {
+    id: 21,
+    color: "border-l-emerald-500",
+    dot: "bg-emerald-500",
+    tag: "Quality Improvement",
+    title: `KG Explorer error rate fell ${kgRateDropI}% from launch — fixes are working`,
+    metric: `${kgLaunchRateI} errors/100 visits at launch (${kgLaunchMonthI}) → ${kgCurrRateI} by ${kgCurrMonthI}`,
+    implication:
+      "CDN icon path fixes and CORS improvements are measurably reducing the error rate despite growing visit volume. Complete the technology-names API CORS fix to push below 5 errors/100 visits.",
+    data: [
+      { label: `${kgLaunchMonthI} (launch)`,  value: `${kgLaunchRateI} errors / 100 visits` },
+      { label: `${kgCurrMonthI} (current)`,   value: `${kgCurrRateI} errors / 100 visits`   },
+      { label: "Improvement",                  value: `${kgRateDropI}% reduction`             },
+    ],
+  },
+  {
+    id: 22,
+    color: "border-l-violet-500",
+    dot: "bg-violet-500",
+    tag: "Retention Signal",
+    title: "User return rates are climbing — habitual use is forming across all tools",
+    metric: `RUI ${ruiRetI}% · EUI ${euiRetI}% · KG Explorer ${kgRetI}% in ${fmtMY(latestRetMonthI)}`,
+    implication:
+      "RUI's high return rate reflects tissue registration as a professional recurring task. KG Explorer building from near-zero to meaningful return rates in months is strong. Invest in bookmarking, sharing, and keyboard shortcuts to deepen these habits.",
+    data: [
+      { label: "RUI return rate",         value: `${ruiRetI}%`  },
+      { label: "EUI return rate",         value: `${euiRetI}%`  },
+      { label: "KG Explorer return rate", value: `${kgRetI}%`   },
+    ],
+  },
+  {
+    id: 23,
+    color: "border-l-sky-400",
+    dot: "bg-sky-400",
+    tag: "Power Users",
+    title: `Top cross-tool combo: ${topComboI?.combo_label ?? "—"} — the full atlas workflow`,
+    metric: `${multiTotalI.toLocaleString()} users visited 2+ tools · top combo: ${topComboI?.count ?? 0} users`,
+    implication:
+      "Power users who chain multiple tools are your highest-value audience. Surface contextual deep-links between the top 3 combos (CDE+EUI+RUI, EUI+RUI, EUI+KG) directly in each tool's UI. Even a 5% increase in the multi-tool rate would represent hundreds of higher-engagement sessions.",
+    data: [
+      { label: "Top combo",              value: topComboI?.combo_label ?? "—"              },
+      { label: "Top combo users",        value: (topComboI?.count ?? 0).toLocaleString()    },
+      { label: "Total multi-tool users", value: multiTotalI.toLocaleString()                },
     ],
   },
 
@@ -472,7 +579,7 @@ export default function InsightsPage() {
         <div className="text-xs font-medium text-zinc-500 uppercase tracking-wider">Key Insights</div>
         <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">What the Data Tells Us</h1>
         <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-2xl">
-          20 actionable findings derived from CloudFront log analysis across{" "}
+          23 actionable findings derived from CloudFront log analysis across{" "}
           <span className="text-zinc-700 dark:text-zinc-300 font-medium">{monthCount} months</span> ({dataRange}) of HRA tool usage data, covering
           traffic patterns, feature adoption, user behavior, and geographic distribution.
         </p>
@@ -480,10 +587,10 @@ export default function InsightsPage() {
 
       {/* Summary stats */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
-        <StatCard label="Total Insights" value="20" sub="Across 5 categories"           accent="text-blue-400"   />
-        <StatCard label="Event Patterns"  value="4"  sub="Systemic academic cycle"       accent="text-amber-400"  />
-        <StatCard label="Hidden Features" value="2"  sub="Opacity controls, CDE export" accent="text-violet-400" />
-        <StatCard label="Quality Issues"  value="3"  sub="Errors, declining KG, anomalies" accent="text-red-400" />
+        <StatCard label="Total Insights" value="23" sub="Across 6 categories"              accent="text-blue-400"   />
+        <StatCard label="Event Patterns"  value="4"  sub="Systemic academic cycle"          accent="text-amber-400"  />
+        <StatCard label="Hidden Features" value="2"  sub="Opacity controls, CDE export"    accent="text-violet-400" />
+        <StatCard label="Quality Issues"  value="3"  sub="Errors, error rate drop, anomalies" accent="text-red-400" />
       </div>
 
       {/* Bento grid — uniform col-span-1 cards */}
@@ -536,7 +643,9 @@ export default function InsightsPage() {
                   {insight.data.map((d) => (
                     <div key={d.label} className="flex justify-between items-baseline gap-2 bg-zinc-100 dark:bg-zinc-800/40 rounded px-2.5 py-1.5">
                       <span className="text-[10px] text-zinc-500 leading-tight">{d.label}</span>
-                      <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 tabular-nums shrink-0">{d.value}</span>
+                      <span className="text-xs font-semibold text-zinc-800 dark:text-zinc-200 tabular-nums shrink-0 flex items-baseline gap-0">
+                        {d.value}{"hc" in d && d.hc && <HcMark />}
+                      </span>
                     </div>
                   ))}
                 </div>

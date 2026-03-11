@@ -1316,7 +1316,7 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description="Generate ML insight JSON files from HRA parquet logs")
     parser.add_argument(
         "--input-parquet",
-        default="data/2026-01-13_hra-logs.parquet",
+        default="data/2026-02-22_hra-logs.parquet",
         help="Path to source parquet log file",
     )
     parser.add_argument(

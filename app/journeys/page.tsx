@@ -1,11 +1,13 @@
 import ChartCard from "../components/ChartCard";
 import StatCard from "../components/StatCard";
+import CrossToolSessionsChart from "../components/charts/CrossToolSessionsChart";
 import EUISpatialFunnelChart from "../components/charts/EUISpatialFunnelChart";
 import CDESankeyChart from "../components/charts/CDESankeyChart";
 import ToolCorrelationHeatmap from "../components/charts/ToolCorrelationHeatmap";
 import ToolCorrelationGraph from "../components/charts/ToolCorrelationGraph";
 import ToolTransitionFlowChart from "../components/charts/ToolTransitionFlowChart";
 
+import crossToolSessions from "../../public/data/cross_tool_sessions.json";
 import spatialSearch from "../../public/data/spatial_search.json";
 import cdeWorkflow from "../../public/data/cde_workflow.json";
 import opacityData from "../../public/data/opacity_interactions.json";
@@ -26,6 +28,11 @@ const cdeDropoffs = cdeUploads - cdeVisualizations;
 const opacityPanelOpens = opacityData.find((d) => d.path === "rui.left-sidebar.opacity-settings.toggle")?.count ?? 0;
 const pct = (value: number, total: number, digits = 2) => (total > 0 ? ((value / total) * 100).toFixed(digits) : "0.00");
 const pctRounded = (value: number, total: number) => (total > 0 ? Math.round((value / total) * 100) : 0);
+type CrossToolRow = { combo_label: string; count: number; tools: string[] };
+const ctArr = crossToolSessions as CrossToolRow[];
+const topCombo = ctArr[0];
+const multiToolTotal = ctArr.reduce((s, d) => s + d.count, 0);
+
 const recs = (crossToolRecommendations as {
   recommendations?: Array<{ source_tool: string; recommended_tool: string; co_sessions: number; lift: number }>;
 }).recommendations ?? [];
@@ -309,6 +316,36 @@ export default function OpportunitiesPage() {
             Most cross-tool sessions involve KG Explorer + CDE ({recs.find((r) => r.source_tool === "CDE" && r.recommended_tool === "KG Explorer")?.co_sessions ?? 0} sessions).
             Use lightweight cross-links in context rather than aggressive handoff prompts.
           </p>
+        </div>
+      </ChartCard>
+
+      {/* Actual cross-tool usage combos */}
+      <ChartCard
+        title="Who Actually Uses Multiple Tools?"
+        subtitle={`${multiToolTotal.toLocaleString()} users visited 2+ tools across their full history · top combo: ${topCombo?.combo_label ?? "—"} (${topCombo?.count ?? 0} users)`}
+        badge="Real Cross-Tool Usage"
+        badgeColor="bg-sky-500/10 text-sky-400 border-sky-500/20"
+      >
+        <CrossToolSessionsChart data={ctArr} />
+        <div className="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">The Full Atlas Workflow</span>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
+              The top combo — <span className="text-sky-400 font-semibold">{topCombo?.combo_label}</span> — is the &ldquo;full atlas&rdquo; power user workflow: data upload, 3D exploration, and registration in one session. These {topCombo?.count ?? 0} users are your highest-value audience.
+            </p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">KG Explorer Integrating</span>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
+              KG Explorer already appears in cross-tool combos with EUI and RUI despite launching only in Aug 2025. This confirms it&apos;s being adopted as a complementary lookup tool, not a standalone replacement.
+            </p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Design Implication</span>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
+              Surface contextual links between the top 3 combos in each tool&apos;s UI. Even a 5% increase in the multi-tool rate would represent hundreds of higher-engagement sessions per month.
+            </p>
+          </div>
         </div>
       </ChartCard>
 

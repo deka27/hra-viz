@@ -3,98 +3,98 @@
     {
       "from_tool": "KG Explorer",
       "to_tool": "CDE",
-      "count": 17,
-      "probability": 0.425
+      "count": 18,
+      "probability": 0.4
+    },
+    {
+      "from_tool": "FTU Explorer",
+      "to_tool": "KG Explorer",
+      "count": 16,
+      "probability": 0.5517
     },
     {
       "from_tool": "KG Explorer",
       "to_tool": "FTU Explorer",
-      "count": 14,
-      "probability": 0.35
+      "count": 15,
+      "probability": 0.3333
     },
     {
-      "from_tool": "FTU Explorer",
+      "from_tool": "CDE",
       "to_tool": "KG Explorer",
       "count": 14,
       "probability": 0.8235
     },
     {
-      "from_tool": "CDE",
-      "to_tool": "KG Explorer",
+      "from_tool": "RUI",
+      "to_tool": "EUI",
       "count": 12,
-      "probability": 0.8
+      "probability": 0.9231
     },
     {
       "from_tool": "KG Explorer",
       "to_tool": "EUI",
-      "count": 8,
-      "probability": 0.2
-    },
-    {
-      "from_tool": "RUI",
-      "to_tool": "EUI",
-      "count": 8,
-      "probability": 0.8889
+      "count": 10,
+      "probability": 0.2222
     },
     {
       "from_tool": "EUI",
       "to_tool": "RUI",
-      "count": 6,
-      "probability": 0.5
-    },
-    {
-      "from_tool": "EUI",
-      "to_tool": "KG Explorer",
-      "count": 3,
-      "probability": 0.25
+      "count": 8,
+      "probability": 0.381
     },
     {
       "from_tool": "EUI",
       "to_tool": "FTU Explorer",
-      "count": 2,
-      "probability": 0.1667
+      "count": 7,
+      "probability": 0.3333
     },
     {
       "from_tool": "FTU Explorer",
       "to_tool": "EUI",
+      "count": 7,
+      "probability": 0.2414
+    },
+    {
+      "from_tool": "FTU Explorer",
+      "to_tool": "CDE",
+      "count": 6,
+      "probability": 0.2069
+    },
+    {
+      "from_tool": "EUI",
+      "to_tool": "KG Explorer",
+      "count": 5,
+      "probability": 0.2381
+    },
+    {
+      "from_tool": "CDE",
+      "to_tool": "FTU Explorer",
       "count": 2,
       "probability": 0.1176
     },
     {
-      "from_tool": "CDE",
-      "to_tool": "FTU Explorer",
+      "from_tool": "KG Explorer",
+      "to_tool": "RUI",
       "count": 2,
-      "probability": 0.1333
+      "probability": 0.0444
     },
     {
       "from_tool": "EUI",
       "to_tool": "CDE",
       "count": 1,
-      "probability": 0.0833
-    },
-    {
-      "from_tool": "FTU Explorer",
-      "to_tool": "CDE",
-      "count": 1,
-      "probability": 0.0588
+      "probability": 0.0476
     },
     {
       "from_tool": "CDE",
       "to_tool": "RUI",
       "count": 1,
-      "probability": 0.0667
-    },
-    {
-      "from_tool": "KG Explorer",
-      "to_tool": "RUI",
-      "count": 1,
-      "probability": 0.025
+      "probability": 0.0588
     },
     {
       "from_tool": "RUI",
       "to_tool": "KG Explorer",
       "count": 1,
-      "probability": 0.1111
+      "probability": 0.0769
     }
   ],
   "top_paths": [
@@ -103,11 +103,27 @@
       "count": 8
     },
     {
+      "path": "FTU Explorer -> CDE",
+      "count": 6
+    },
+    {
+      "path": "CDE -> KG Explorer",
+      "count": 5
+    },
+    {
+      "path": "KG Explorer -> EUI",
+      "count": 5
+    },
+    {
       "path": "KG Explorer -> FTU Explorer",
       "count": 5
     },
     {
-      "path": "CDE -> KG Explorer",
+      "path": "RUI -> EUI",
+      "count": 4
+    },
+    {
+      "path": "KG Explorer -> FTU Explorer -> KG Explorer",
       "count": 4
     },
     {
@@ -115,27 +131,27 @@
       "count": 4
     },
     {
-      "path": "KG Explorer -> EUI",
-      "count": 4
-    },
-    {
       "path": "KG Explorer -> CDE -> KG Explorer",
       "count": 3
     },
     {
-      "path": "KG Explorer -> FTU Explorer -> KG Explorer",
+      "path": "EUI -> RUI -> EUI",
       "count": 3
     },
     {
-      "path": "RUI -> EUI",
-      "count": 2
+      "path": "FTU Explorer -> EUI",
+      "count": 3
     },
     {
-      "path": "EUI -> RUI -> EUI",
+      "path": "EUI -> KG Explorer",
       "count": 2
     },
     {
       "path": "FTU Explorer -> KG Explorer -> FTU Explorer -> KG Explorer",
+      "count": 2
+    },
+    {
+      "path": "RUI -> EUI -> RUI",
       "count": 2
     },
     {
@@ -147,11 +163,11 @@
       "count": 1
     },
     {
-      "path": "FTU Explorer -> EUI",
+      "path": "EUI -> CDE",
       "count": 1
     },
     {
-      "path": "EUI -> CDE",
+      "path": "KG Explorer -> EUI -> FTU Explorer -> EUI -> FTU Explorer",
       "count": 1
     },
     {
@@ -171,7 +187,7 @@
       "count": 1
     },
     {
-      "path": "FTU Explorer -> CDE",
+      "path": "FTU Explorer -> KG Explorer -> CDE -> KG Explorer",
       "count": 1
     },
     {
@@ -179,25 +195,9 @@
       "count": 1
     },
     {
-      "path": "CDE -> KG Explorer -> CDE -> RUI",
-      "count": 1
-    },
-    {
-      "path": "RUI -> EUI -> RUI -> EUI -> RUI -> EUI -> RUI",
-      "count": 1
-    },
-    {
-      "path": "EUI -> KG Explorer -> EUI -> KG Explorer -> RUI -> KG Explorer",
-      "count": 1
-    },
-    {
-      "path": "FTU Explorer -> KG Explorer -> FTU Explorer -> KG Explorer -> FTU Explorer",
-      "count": 1
-    },
-    {
-      "path": "KG Explorer -> CDE -> FTU Explorer -> EUI -> FTU Explorer",
+      "path": "KG Explorer -> RUI",
       "count": 1
     }
   ],
-  "sessions_with_sequences": 54
+  "sessions_with_sequences": 75
 }

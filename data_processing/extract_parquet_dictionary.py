@@ -10,7 +10,7 @@ from pathlib import Path
 
 import duckdb
 
-DEFAULT_PARQUET = Path("data/2026-01-13_hra-logs.parquet")
+DEFAULT_PARQUET = Path("data/2026-02-22_hra-logs.parquet")
 DEFAULT_OUT = Path("public/data/parquet_field_dictionary.json")
 
 # If a parquet has extra fields not listed here, those fields are still added

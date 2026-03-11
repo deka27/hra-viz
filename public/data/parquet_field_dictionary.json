@@ -1,7 +1,7 @@
 {
-  "generated_at_utc": "2026-03-03T06:48:57+00:00",
-  "parquet_path": "data/2026-01-13_hra-logs.parquet",
-  "row_count": 12779123,
+  "generated_at_utc": "2026-03-11T05:57:37+00:00",
+  "parquet_path": "data/2026-02-22_hra-logs.parquet",
+  "row_count": 14276729,
   "fields": [
     {
       "field": "anon_id",
