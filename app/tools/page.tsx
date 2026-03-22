@@ -24,6 +24,9 @@ import errorClusters from "../../public/data/error_clusters.json";
 import monthlyErrorData from "../../public/data/monthly_error_trend.json";
 import errorBreakdown from "../../public/data/error_breakdown.json";
 import errorRootCauseBreakdown from "../../public/data/error_root_cause_breakdown.json";
+import externalEvents from "../../public/data/external_events.json";
+import hraReleases from "../../public/data/hra_releases.json";
+import publicationsData from "../../public/data/publications.json";
 
 const TOOL_CARD_COLORS: Record<string, string> = {
   "KG Explorer": "text-rose-400",
@@ -75,7 +78,7 @@ const kgErrActive = errLong.filter((d) => d.tool === "KG Explorer" && d.visits >
 function toolPeakRate(tool: string) { const rows = errLong.filter(d => d.tool === tool && d.visits > 0); return rows.reduce((mx, d) => d.rate > mx.rate ? d : mx, rows[0] ?? { rate: 0, month_year: "" }); }
 function toolLatestRate(tool: string) { const rows = errLong.filter(d => d.tool === tool && d.visits > 0); return rows[rows.length - 1] ?? { rate: 0, month_year: "" }; }
 
-const euiPeak = toolPeakRate("EUI"); const euiLatest = toolLatestRate("EUI");
+const euiPeak = toolPeakRate("EUI");
 const cdePeak = toolPeakRate("CDE"); const cdeLatest = toolLatestRate("CDE");
 const ruiPeak = toolPeakRate("RUI");
 const ftuPeak = toolPeakRate("FTU Explorer");
@@ -97,6 +100,46 @@ const ruiRetPct = latestRets.find((d) => d.tool === "RUI")?.return_pct ?? 0;
 const euiRetPct = latestRets.find((d) => d.tool === "EUI")?.return_pct ?? 0;
 const kgRetPct = latestRets.find((d) => d.tool === "KG Explorer")?.return_pct ?? 0;
 const rootCauseBuckets = (errorRootCauseBreakdown as { by_bucket: { bucket: string; errors: number }[] }).by_bucket;
+
+// ── Release impact: compare total visits in release month vs prior month ──
+type MonthRow = typeof monthlyData[number];
+const TOOL_KEYS = ["EUI", "RUI", "CDE", "FTU Explorer", "KG Explorer"] as const;
+function monthTotal(row: MonthRow) { return TOOL_KEYS.reduce((s, k) => s + (row[k] ?? 0), 0); }
+const releaseImpacts = hraReleases
+  .filter((r) => {
+    const label = fmtMonth(r.date);
+    return monthlyData.some((d) => fmtMonth(d.month_year) === label);
+  })
+  .map((r) => {
+    const idx = monthlyData.findIndex((d) => fmtMonth(d.month_year) === fmtMonth(r.date));
+    const releaseVisits = monthTotal(monthlyData[idx]);
+    const priorVisits = idx > 0 ? monthTotal(monthlyData[idx - 1]) : 0;
+    const delta = priorVisits > 0 ? Math.round(((releaseVisits - priorVisits) / priorVisits) * 100) : 0;
+    return { ...r, releaseVisits, priorVisits, delta, month: fmtMonth(r.date) };
+  });
+// ── Publication impact: months with papers vs months without ──
+type PubEntry = { pmid: string; title: string; pub_date: string; doi: string; journal: string; authors: string[] };
+const pubsTyped = publicationsData as PubEntry[];
+const pubCountByMonth = new Map<string, number>();
+for (const p of pubsTyped) {
+  if (p.pub_date.length < 7) continue;
+  const label = fmtMonth(p.pub_date.slice(0, 7));
+  pubCountByMonth.set(label, (pubCountByMonth.get(label) ?? 0) + 1);
+}
+// Compare average visits in pub months vs non-pub months (within our data range)
+const pubMonthVisits: number[] = [];
+const noPubMonthVisits: number[] = [];
+for (const row of monthlyData) {
+  const label = fmtMonth(row.month_year);
+  const total = monthTotal(row);
+  if (pubCountByMonth.has(label)) pubMonthVisits.push(total);
+  else noPubMonthVisits.push(total);
+}
+const avgPubMonth = pubMonthVisits.length > 0 ? Math.round(pubMonthVisits.reduce((a, b) => a + b, 0) / pubMonthVisits.length) : 0;
+const avgNoPubMonth = noPubMonthVisits.length > 0 ? Math.round(noPubMonthVisits.reduce((a, b) => a + b, 0) / noPubMonthVisits.length) : 0;
+const pubLift = avgNoPubMonth > 0 ? Math.round(((avgPubMonth - avgNoPubMonth) / avgNoPubMonth) * 100) : 0;
+const totalPubCount = [...pubCountByMonth.values()].reduce((a, b) => a + b, 0);
+
 const topRootCauseFixes = [...rootCauseBuckets]
   .sort((a, b) => b.errors - a.errors)
   .slice(0, 4)
@@ -173,8 +216,76 @@ export default function ToolsPage() {
         badge={`${numMonths} months`}
         badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
       >
-        <MonthlyTrendsChart data={monthlyData} />
+        <MonthlyTrendsChart
+          data={monthlyData}
+          events={externalEvents as { date: string; type: "release" | "workshop" | "publication" | "social"; title: string }[]}
+          publications={publicationsData as { pmid: string; title: string; pub_date: string; doi: string; journal: string; authors: string[] }[]}
+        />
       </ChartCard>
+
+      {/* Release impact + Publication correlation */}
+      <div className="grid grid-cols-1 gap-4">
+        {/* Release impact */}
+        {releaseImpacts.length > 0 && (
+          <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6">
+            <div className="flex items-center gap-2 mb-5">
+              <div className="w-1 h-5 rounded-full bg-cyan-400" />
+              <span className="text-base font-semibold text-zinc-200">HRA Release Impact</span>
+              <span className="text-xs text-zinc-600 ml-2">Visits in release month vs prior month</span>
+            </div>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
+              {releaseImpacts.map((r) => (
+                <div key={r.date} className="bg-zinc-800/40 rounded-lg p-4 flex flex-col gap-2">
+                  <div className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-cyan-400" />
+                    <span className="text-sm font-bold text-cyan-300">{r.version}</span>
+                    <span className="text-xs text-zinc-500">{r.month}</span>
+                  </div>
+                  <div className="flex items-baseline gap-2">
+                    <span className="text-2xl font-bold text-zinc-100 tabular-nums">{r.releaseVisits.toLocaleString()}</span>
+                    <span className={`text-sm font-semibold ${r.delta >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+                      {r.delta >= 0 ? "+" : ""}{r.delta}%
+                    </span>
+                  </div>
+                  <p className="text-[11px] text-zinc-500 leading-snug">{r.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Publication correlation */}
+        {totalPubCount > 0 && (
+          <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6">
+            <div className="flex items-center gap-2 mb-5">
+              <div className="w-1 h-5 rounded-full bg-violet-400" />
+              <span className="text-base font-semibold text-zinc-200">Publication ↔ Traffic Correlation</span>
+              <span className="text-xs text-zinc-600 ml-2">{totalPubCount} papers across {pubCountByMonth.size} months</span>
+            </div>
+            <div className="grid grid-cols-3 gap-4 mb-5">
+              <div className="bg-zinc-800/40 rounded-lg p-4 text-center">
+                <span className="text-3xl font-bold text-violet-400 tabular-nums">{avgPubMonth.toLocaleString()}</span>
+                <span className="block text-xs text-zinc-500 mt-1">avg visits (pub months)</span>
+              </div>
+              <div className="bg-zinc-800/40 rounded-lg p-4 text-center">
+                <span className="text-3xl font-bold text-zinc-500 tabular-nums">{avgNoPubMonth.toLocaleString()}</span>
+                <span className="block text-xs text-zinc-500 mt-1">avg visits (no pubs)</span>
+              </div>
+              <div className="bg-zinc-800/40 rounded-lg p-4 text-center">
+                <span className={`text-3xl font-bold tabular-nums ${pubLift >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+                  {pubLift >= 0 ? "+" : ""}{pubLift}%
+                </span>
+                <span className="block text-xs text-zinc-500 mt-1">publication lift</span>
+              </div>
+            </div>
+            <p className="text-sm text-zinc-500 leading-relaxed">
+              {pubLift > 0
+                ? `Months with publications see ${pubLift}% more traffic on average. Correlation is suggestive but confounders (releases, workshops) often overlap with publication months.`
+                : "No clear lift detected — publications may coincide with other traffic drivers."}
+            </p>
+          </div>
+        )}
+      </div>
 
       {/* Yearly + tool share */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">

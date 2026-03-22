@@ -64,7 +64,6 @@ export default function ToolCorrelationHeatmap() {
         color: "#a1a1aa",
         fontSize: 12,
         fontWeight: "bold" as const,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         rich: Object.fromEntries(TOOLS.map((t, i) => [TOOL_LABELS[i], { color: TOOL_COLORS[t], fontWeight: "bold" }])),
       },
       splitArea: { show: true, areaStyle: { color: ["#18181b", "#1c1c1f"] } },

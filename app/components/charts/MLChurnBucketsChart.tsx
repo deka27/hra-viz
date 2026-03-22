@@ -85,7 +85,3 @@ export default function MLChurnBucketsChart({ data }: { data: ChurnBucket[] }) {
 
   return <ThemedEChart option={option} style={{ height: "320px", width: "100%" }} opts={{ renderer: "canvas" }} />;
 }
-
-function pms(value: string): string {
-  return value.replace(" - ", " to ");
-}

@@ -1,0 +1,137 @@
+[
+  {
+    "date": "2023-12",
+    "type": "release",
+    "title": "HRA v2.0 — 6th release"
+  },
+  {
+    "date": "2023-12",
+    "type": "publication",
+    "title": "Correlating Deep Learning-Based Automated Referenc…"
+  },
+  {
+    "date": "2024-03",
+    "type": "workshop",
+    "title": "HuBMAP Training + Demo Day (Ana G. Mendez / Orlando)"
+  },
+  {
+    "date": "2024-05",
+    "type": "publication",
+    "title": "2 papers incl. The ANTsX Ecosystem for Mapping the Mouse Brain."
+  },
+  {
+    "date": "2024-06",
+    "type": "release",
+    "title": "HRA v2.1 — 7th release"
+  },
+  {
+    "date": "2024-06",
+    "type": "publication",
+    "title": "Publication, funding, and experimental data in sup…"
+  },
+  {
+    "date": "2024-07",
+    "type": "publication",
+    "title": "GWAS advancements to investigate disease associati…"
+  },
+  {
+    "date": "2024-08",
+    "type": "publication",
+    "title": "3 papers incl. Vasculature segmentation in 3D hierarchical phase-…"
+  },
+  {
+    "date": "2024-09",
+    "type": "publication",
+    "title": "HuBMAPR: an R Client for the HuBMAP Data Portal."
+  },
+  {
+    "date": "2024-10",
+    "type": "workshop",
+    "title": "HRA Powers of Ten Workshop (NIAID Biovisualization Lab)"
+  },
+  {
+    "date": "2024-10",
+    "type": "publication",
+    "title": "Developmental mouse brain common coordinate framew…"
+  },
+  {
+    "date": "2024-11",
+    "type": "publication",
+    "title": "Mapping the Anatomy of the Human Lymphatic System."
+  },
+  {
+    "date": "2024-12",
+    "type": "release",
+    "title": "HRA v2.2 — 8th release"
+  },
+  {
+    "date": "2024-12",
+    "type": "publication",
+    "title": "MatriCom: a scRNA-Seq data mining tool to infer EC…"
+  },
+  {
+    "date": "2025-02",
+    "type": "publication",
+    "title": "3 papers incl. Construction, Deployment, and Usage of the Human R…"
+  },
+  {
+    "date": "2025-03",
+    "type": "publication",
+    "title": "2 papers incl. Systematic evaluation of single-cell multimodal da…"
+  },
+  {
+    "date": "2025-04",
+    "type": "workshop",
+    "title": "HuBMAP Jr. Investigator Mtg (Rockville) + Annual Mtg (Philly)"
+  },
+  {
+    "date": "2025-04",
+    "type": "publication",
+    "title": "2 papers incl. Benchmarking single cell transcriptome matching me…"
+  },
+  {
+    "date": "2025-06",
+    "type": "release",
+    "title": "HRA v2.3 — 9th release (expected)"
+  },
+  {
+    "date": "2025-07",
+    "type": "publication",
+    "title": "Construction, Deployment, and Usage of the Human R…"
+  },
+  {
+    "date": "2025-08",
+    "type": "publication",
+    "title": "3 papers incl. A general strategy for generating expert-guided, s…"
+  },
+  {
+    "date": "2025-09",
+    "type": "publication",
+    "title": "FUSION: a web-based application for in-depth explo…"
+  },
+  {
+    "date": "2025-10",
+    "type": "publication",
+    "title": "2 papers incl. Interactive visualization of kidney micro-compartm…"
+  },
+  {
+    "date": "2025-11",
+    "type": "publication",
+    "title": "The ANTsX ecosystem for mapping the mouse brain."
+  },
+  {
+    "date": "2026-01",
+    "type": "publication",
+    "title": "A general strategy for generating expert-guided, s…"
+  },
+  {
+    "date": "2026-02",
+    "type": "publication",
+    "title": "SenNet Portal: Build, Optimization and Usage."
+  },
+  {
+    "date": "2026-03",
+    "type": "publication",
+    "title": "Cell Type Populations for 3D Anatomical Structures…"
+  }
+]

@@ -3,7 +3,6 @@ import ChartCard from "./components/ChartCard";
 import { Hc } from "./components/Hc";
 import ToolVisitsChart from "./components/charts/ToolVisitsChart";
 import TrafficDonut from "./components/charts/TrafficDonut";
-import TotalVisitsSparkline from "./components/charts/TotalVisitsSparkline";
 import HourlyTrafficChart from "./components/charts/HourlyTrafficChart";
 import RequestFunnelInfographic from "./components/RequestFunnelInfographic";
 import EventTypesChart from "./components/charts/EventTypesChart";
@@ -33,7 +32,6 @@ const humanPct = ((humanCount / totalRequests) * 100).toFixed(1);
 const numTools = totalToolVisits.length;
 const countryCount = geoData.filter((d) => d.c_country !== "-").length;
 const dateRange = `${fmtMonth(monthlyData[0].month_year)} – ${fmtMonth(monthlyData[monthlyData.length - 1].month_year)}`;
-const numMonths = monthlyData.length;
 const gtexRequests = referrers.find((d) => d.name === "GTEx Portal")?.value ?? 0;
 const hubmapRequests = referrers.find((d) => d.name === "HubMAP")?.value ?? 0;
 const totalEvents = eventTypes.reduce((s, d) => s + d.count, 0);
@@ -163,17 +161,6 @@ export default function OverviewPage() {
         <RequestFunnelInfographic trafficTypes={trafficTypes} totalVisits={totalVisits} toolVisits={totalToolVisits} requestTypes={requestTypeBreakdown} />
       </ChartCard>
 
-
-
-      {/* Monthly sparkline */}
-      <ChartCard
-        title="Total Tool Visits by Month"
-        subtitle={`Combined visits across all ${numTools} HRA tools, ${dateRange}`}
-        badge={`${numMonths} months`}
-        badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
-      >
-        <TotalVisitsSparkline data={monthlyData} />
-      </ChartCard>
 
       {/* Charts row */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">

@@ -1,6 +1,7 @@
 "use client";
 
 import ThemedEChart from "../ThemedEChart";
+import { TOOL_COLORS } from "../../lib/chartTheme";
 import { useEffect, useState } from "react";
 import * as echarts from "echarts";
 
@@ -45,14 +46,6 @@ const CODE_TO_NAME: Record<string, string> = {
   CG: "Congo",           GA: "Gabon",             CM: "Cameroon",
 };
 
-
-const TOOL_COLORS: Record<string, string> = {
-  "KG Explorer":  "#f43f5e",
-  "EUI":          "#3b82f6",
-  "RUI":          "#8b5cf6",
-  "CDE":          "#f59e0b",
-  "FTU Explorer": "#10b981",
-};
 
 interface GeoItem     { c_country: string; visits: number; }
 interface ToolPrefItem { c_country: string; top_tool: string; top_tool_visits: number; total_visits: number; }
@@ -150,9 +143,16 @@ export default function WorldMapChart({ data, toolPref, botData }: Props) {
       type:       "continuous",
       min:        0,
       max:        2500,          // cap so mid-tier countries get visible colour
-      show:       false,
+      show:       true,
       seriesIndex: 0,
-      inRange:    { color: ["#1f1f23", "#3f3f46", "#71717a", "#a1a1aa", "#e4e4e7"] },
+      inRange:    { color: ["#164e63", "#0e7490", "#06b6d4", "#22d3ee", "#67e8f9", "#a5f3fc"] },
+      left:       16,
+      bottom:     16,
+      itemWidth:  12,
+      itemHeight: 120,
+      textStyle:  { color: "#a1a1aa", fontSize: 10 },
+      text:       ["2,500+", "0"],
+      textGap:    8,
     },
     tooltip: {
       trigger:        "item",
@@ -205,8 +205,8 @@ export default function WorldMapChart({ data, toolPref, botData }: Props) {
     );
   }
 
-  // Tool legend entries (only tools present in this dataset)
-  const toolsPresent = [...new Set(toolPref.map((d) => d.top_tool))];
+  // Always show all 5 tools in legend
+  const allTools = ["KG Explorer", "EUI", "RUI", "CDE", "FTU Explorer"];
 
   return (
     <div className="flex flex-col gap-3">
@@ -219,7 +219,7 @@ export default function WorldMapChart({ data, toolPref, botData }: Props) {
       {/* Tool colour legend + hint */}
       <div className="flex flex-wrap items-center justify-between gap-3 pt-2 border-t border-zinc-800">
         <div className="flex flex-wrap gap-x-5 gap-y-1.5">
-          {toolsPresent.map((tool) => (
+          {allTools.map((tool) => (
             <div key={tool} className="flex items-center gap-1.5">
               <div
                 className="w-2.5 h-2.5 rounded-full flex-shrink-0"
