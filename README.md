@@ -1,77 +1,124 @@
 # HRA Analytics Dashboard
 
-CloudFront log analytics. Covers 27 months of usage data across KG Explorer, EUI, RUI, CDE, and FTU Explorer.
+Usage analytics for the [Human Reference Atlas](https://humanatlas.io/) portal tools, derived from Amazon CloudFront access logs.
 
-**Stack:** Next.js · TypeScript · Tailwind v4 · ECharts 6 · DuckDB (pipeline)
+**Live:** Deployed on Vercel (main branch)
 
 ---
 
-## Pages & Charts
+## What It Does
 
-### `/` — Overview
-Headline KPIs (total visits, human traffic %, month count, country count), monthly sparkline, tool visit bar chart, traffic type donut, and callout cards for notable findings (GTEx integration, March 2024 spike, academic seasonality, error rate).
+Analyzes ~14.8M CloudFront log entries to surface usage patterns, error trends, geographic distribution, and ML-driven insights across five HRA tools: **EUI**, **RUI**, **CDE**, **FTU Explorer**, and **KG Explorer**.
 
-### `/tools` — Tool Analytics
-Per-tool stat cards, multi-line monthly trends with annotations (MonthlyTrendsChart), yearly grouped bar, tool share donut, hourly usage heatmap (ToolHourlyHeatmap), and day-of-week stacked bar (TrafficByDowChart) with DOW insights panel.
+### Pages
 
-### `/features` — Feature Adoption
-Interaction type breakdown (EventTypesChart), error root cause analysis with two-panel layout (ErrorBreakdownChart — source vs. NLP clusters), monthly error trend (MonthlyErrorTrendChart), top UI elements drilldown by event type (TopPathsByEventChart), RUI 3D keyboard navigation heatmap (RUIKeyboardChart), CDE workflow funnel (CDEWorkflowChart) with tab usage chips, EUI spatial search funnel (SpatialSearchChart), RUI opacity controls (OpacityChart), and KG Explorer content selection bar (OrgContentSelectChart).
+| Page | Path | What It Shows |
+|------|------|---------------|
+| Overview | `/` | Stat cards, request funnel, tool bar chart, traffic donut, hourly patterns |
+| Usage + Reliability | `/tools` | Monthly trends with release/publication overlays, yearly breakdown, error rates, return rates |
+| Tool Behaviour | `/features` | Per-tool interaction analysis (spatial search, keyboard nav, CDE workflow, opacity toggles) |
+| Geography | `/geo` | World map, top countries, tool preference by region, bot traffic analysis |
+| Journeys | `/journeys` | UX gaps, cross-tool correlation heatmap, transition flows, Sankey diagrams |
+| ML Insights | `/ml` | Forecasts, spike detection, cohort retention, session segments, churn model |
+| Key Insights | `/insights` | 19 data-driven insight cards with embedded charts |
+| Field Dictionary | `/help` | Parquet schema reference |
 
-### `/geo` — Geography
-Interactive world map (WorldMapChart), top-20 country bar chart colored by region (GeoBarChart), 100% stacked tool preference by country (GeoToolPreferenceChart), dual-axis bot traffic chart (GeoBotChart), regional breakdown donut, US vs. international donut, and country callout cards.
+---
 
-### `/network` — UX Gaps & Journeys
-Gap stats and gap cards, EUI spatial search funnel (EUISpatialFunnelChart), CDE Sankey diagram of user flow (CDESankeyChart), tool correlation heatmap + force graph (ToolCorrelationHeatmap / ToolCorrelationGraph), and tool transition flow (ToolTransitionFlowChart — directed force graph of cross-tool journeys).
+## Tech Stack
 
-### `/insights` — Key Insights
-20 bento-grid insight cards grouped into 5 categories (Events & Spikes, Tool Trajectories, Feature Insights, Portal & Ecosystem, Traffic & Geography). Eight cards include embedded compact charts; all numeric values are data-driven from JSON.
+- **Framework:** Next.js 16 (App Router, static export)
+- **Charts:** ECharts 6 + echarts-for-react
+- **Styling:** Tailwind CSS v4
+- **Data:** Pre-processed JSON files from DuckDB SQL on parquet
 
-### `/ml` — Machine Learning View
-Prophet traffic forecasts (MLForecastChart), anomaly/spike event timeline (MLSpikeEventsChart), user segment donut + churn risk buckets (MLChurnBucketsChart), monthly cohort retention heatmap (CohortRetentionChart), tool transition heatmap (MLTransitionHeatmap), association rule lift chart (MLRuleLiftChart), NLP error clusters (MLErrorClustersChart), and geographic anomaly scores (MLGeoAnomalyChart).
+---
+
+## Project Structure
+
+```
+app/
+  page.tsx                       # Overview
+  tools/page.tsx                 # Usage + Reliability
+  features/page.tsx              # Per-tool interaction behaviour
+  geo/page.tsx                   # Geographic distribution
+  journeys/page.tsx              # UX gaps & cross-tool flows
+  ml/page.tsx                    # Machine learning insights
+  insights/page.tsx              # Key insight cards
+  help/page.tsx                  # Field dictionary
+  components/
+    charts/                      # 49 chart components ('use client' + ssr:false)
+    ChartCard.tsx                # Card wrapper with title/subtitle/badge
+    StatCard.tsx                 # Metric card with accent color
+    Navbar.tsx                   # Sticky top nav
+    Hc.tsx                       # Hardcoded value marker
+  lib/
+    chartTheme.ts                # TOOL_COLORS, tooltip/axis styles, helpers
+
+public/data/                     # 51 pre-processed JSON files (build-time imports)
+
+data_processing/
+  generate_data.py               # DuckDB pipeline -> 51 JSON aggregations
+  ml_insights.py                 # ML pipeline (Prophet, clustering, churn, bot detection)
+  fetch_publications.py          # PubMed E-utilities API -> publications.json
+  extract_parquet_dictionary.py  # Parquet schema extractor
+
+data/                            # Source parquet files (not committed)
+```
 
 ---
 
 ## Data Pipeline
 
-All charts read from pre-built JSON files in `public/data/`. To regenerate from a new parquet log:
-
-### 1. Place the parquet file
-
-Drop the CloudFront parquet log into the `data/` directory at the project root:
+All data flows from a single CloudFront parquet file through Python scripts into JSON files consumed by Next.js at build time. Both scripts auto-deduplicate the parquet on load.
 
 ```
-data/
-  2026-01-13_hra-logs.parquet   ← put it here
+CloudFront parquet
+    |
+    +-- generate_data.py       -> 51 JSON files (visits, errors, geo, events, etc.)
+    +-- ml_insights.py         -> 10 JSON files (forecasts, segments, clusters, etc.)
+    +-- fetch_publications.py  -> publications.json (from PubMed API)
 ```
 
-### 2. Install Python dependencies
+### Running the pipeline
 
 ```bash
-pip install duckdb pandas numpy scikit-learn prophet
-```
-
-### 3. Run the main aggregation pipeline
-
-```bash
+# 1. Data aggregations (requires: duckdb)
 python data_processing/generate_data.py \
-  --parquet data/2026-01-13_hra-logs.parquet \
+  --parquet data/2026-03-09_hra-logs.parquet \
   --out public/data
-```
 
-Rewrites all 18 aggregation JSON files in `public/data/`.
-
-### 4. Run the ML pipeline
-
-```bash
+# 2. ML insights (requires: duckdb, pandas, numpy, scikit-learn, prophet)
 python data_processing/ml_insights.py \
-  --input-parquet data/2026-01-13_hra-logs.parquet \
-  --output-dir public/data \
-  --forecast-horizon 6
+  --input-parquet data/2026-03-09_hra-logs.parquet \
+  --output-dir public/data
+
+# 3. Fetch publications from PubMed (requires: stdlib only)
+python data_processing/fetch_publications.py --out public/data
 ```
 
-Generates forecasts, spike events, user segments, cohort retention, bot scores, and more.
+After running, restart the dev server or rebuild to pick up updated JSON.
 
-After both scripts complete, restart the dev server to pick up the new JSON files.
+---
+
+## Event Overlay System
+
+The monthly trends chart supports data-driven event annotations stored in `public/data/external_events.json`:
+
+| Type | Visual | Example |
+|------|--------|---------|
+| `release` | Cyan dashed line | HRA v2.2 (Dec 2024) |
+| `workshop` | Red shaded area | HuBMAP Training + Demo Day (Mar 2024) |
+| `publication` | Purple bars (right axis) | 3 papers incl. HRA KG paper (Feb 2025) |
+| `social` | Green markers | (placeholder, needs client data) |
+
+To add a new event:
+
+```json
+{ "date": "2025-01", "type": "social", "title": "AnVIL post about HRA v2.2" }
+```
+
+Publications also have a click-to-show panel below the chart with paper titles linking to DOI/PubMed.
 
 ---
 
@@ -79,14 +126,9 @@ After both scripts complete, restart the dev server to pick up the new JSON file
 
 ```bash
 npm install
-npm run dev
-```
-
-Open [http://localhost:3000](http://localhost:3000).
-
-```bash
-npm run build   # production build
-npm run lint    # lint check
+npm run dev       # http://localhost:3000
+npm run build     # Static export
+npm run lint      # ESLint (0 errors, 0 warnings)
 ```
 
 ---

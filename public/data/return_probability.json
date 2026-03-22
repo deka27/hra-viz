@@ -2,54 +2,54 @@
   "metrics": {
     "sessions_used": 10418,
     "positive_rate": 0.5701,
-    "accuracy": 0.6154,
-    "precision": 0.6667,
+    "accuracy": 0.615,
+    "precision": 0.6662,
     "recall": 0.6505,
-    "f1": 0.6585,
+    "f1": 0.6583,
     "roc_auc": 0.6411
   },
   "top_positive_features": [
     {
       "feature": "early_pageView",
-      "weight": 0.339363866752862
+      "weight": 0.33941572211585286
     },
     {
       "feature": "early_events",
-      "weight": 0.13770958049155094
+      "weight": 0.13636248815331747
     },
     {
       "feature": "unique_tools",
-      "weight": 0.070788664805079
+      "weight": 0.07088822099148058
     },
     {
       "feature": "start_hour_utc",
-      "weight": 0.037594895457719484
+      "weight": 0.03744397308162088
     },
     {
       "feature": "early_click",
-      "weight": 0.0346809774416649
+      "weight": 0.03588098192432502
     },
     {
       "feature": "early_hover",
-      "weight": 0.02836671301818165
+      "weight": 0.028326123166911136
     }
   ],
   "top_negative_features": [
     {
       "feature": "early_error",
-      "weight": -0.191435107884332
+      "weight": -0.1908091490339231
     },
     {
       "feature": "is_weekend",
-      "weight": -0.15751927500405985
+      "weight": -0.1576071839516157
     },
     {
       "feature": "duration_min",
-      "weight": -0.07335983556636738
+      "weight": -0.07326748523149672
     },
     {
       "feature": "early_unique_paths",
-      "weight": -0.056520913344922596
+      "weight": -0.056171825168476755
     },
     {
       "feature": "early_keyboard",
@@ -57,7 +57,7 @@
     },
     {
       "feature": "events",
-      "weight": 0.010276807027303029
+      "weight": 0.01025855021550423
     }
   ],
   "probability_buckets": [
@@ -73,38 +73,38 @@
     },
     {
       "probability_bucket": "(0.2, 0.3]",
-      "sessions": 343,
-      "observed_return_rate": 0.1983
+      "sessions": 340,
+      "observed_return_rate": 0.2
     },
     {
       "probability_bucket": "(0.3, 0.4]",
-      "sessions": 2379,
-      "observed_return_rate": 0.4266
+      "sessions": 2377,
+      "observed_return_rate": 0.4257
     },
     {
       "probability_bucket": "(0.4, 0.5]",
-      "sessions": 1848,
-      "observed_return_rate": 0.507
+      "sessions": 1841,
+      "observed_return_rate": 0.5073
     },
     {
       "probability_bucket": "(0.5, 0.6]",
-      "sessions": 3510,
-      "observed_return_rate": 0.6467
+      "sessions": 3533,
+      "observed_return_rate": 0.6465
     },
     {
       "probability_bucket": "(0.6, 0.7]",
-      "sessions": 1570,
-      "observed_return_rate": 0.7019
+      "sessions": 1565,
+      "observed_return_rate": 0.7022
     },
     {
       "probability_bucket": "(0.7, 0.8]",
-      "sessions": 707,
-      "observed_return_rate": 0.7185
+      "sessions": 698,
+      "observed_return_rate": 0.7178
     },
     {
       "probability_bucket": "(0.8, 0.9]",
-      "sessions": 57,
-      "observed_return_rate": 0.6491
+      "sessions": 60,
+      "observed_return_rate": 0.65
     },
     {
       "probability_bucket": "(0.9, 1.0]",

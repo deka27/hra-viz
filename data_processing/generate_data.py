@@ -69,9 +69,17 @@ def write_json(path: str, data: object) -> None:
 
 def run(parquet: str, out: str) -> None:
     os.makedirs(out, exist_ok=True)
-    P = f"read_parquet('{parquet}')"
     con = duckdb.connect()
     con.execute("PRAGMA threads=4")
+
+    # Deduplicate parquet on load — CloudFront log delivery can produce exact dupes
+    raw_count = con.execute(f"SELECT count(*) FROM read_parquet('{parquet}')").fetchone()[0]
+    con.execute(f"CREATE TEMP VIEW logs AS SELECT DISTINCT * FROM read_parquet('{parquet}')")
+    deduped_count = con.execute("SELECT count(*) FROM logs").fetchone()[0]
+    dupes = raw_count - deduped_count
+    if dupes > 0:
+        print(f"⚠ Removed {dupes:,} duplicate rows ({dupes/raw_count*100:.2f}%) — {deduped_count:,} rows remain")
+    P = "logs"
 
     def q(sql: str):
         return con.execute(sql).df().to_dict(orient="records")

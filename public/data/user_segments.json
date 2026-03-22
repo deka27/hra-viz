@@ -1,11 +1,11 @@
 {
   "segments": [
     {
-      "cluster_id": 1,
-      "size": 6912,
-      "pct": 66.35,
-      "avg_events": 8.83,
-      "avg_depth": 8.83,
+      "cluster_id": 2,
+      "size": 6911,
+      "pct": 66.34,
+      "avg_events": 8.82,
+      "avg_depth": 8.82,
       "avg_duration_min": 0.41,
       "avg_unique_tools": 0.45,
       "bounce_rate": 0.0,
@@ -16,9 +16,9 @@
       "name": "Regular Researchers"
     },
     {
-      "cluster_id": 3,
-      "size": 2968,
-      "pct": 28.49,
+      "cluster_id": 0,
+      "size": 2969,
+      "pct": 28.5,
       "avg_events": 1.0,
       "avg_depth": 1.0,
       "avg_duration_min": 0.0,
@@ -31,11 +31,11 @@
       "name": "Single-Page Visits"
     },
     {
-      "cluster_id": 0,
+      "cluster_id": 1,
       "size": 493,
       "pct": 4.73,
-      "avg_events": 129.67,
-      "avg_depth": 129.67,
+      "avg_events": 129.65,
+      "avg_depth": 129.65,
       "avg_duration_min": 20.26,
       "avg_unique_tools": 0.84,
       "bounce_rate": 0.0,
@@ -46,7 +46,7 @@
       "name": "Power Researchers"
     },
     {
-      "cluster_id": 2,
+      "cluster_id": 3,
       "size": 45,
       "pct": 0.43,
       "avg_events": 309.33,

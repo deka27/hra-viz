@@ -174,7 +174,7 @@ def load_monthly_tool_visits(con: duckdb.DuckDBPyConnection, parquet_path: Path)
         WHEN '/kg-explorer/' THEN 'KG Explorer'
       END AS tool,
       count(*)::BIGINT AS visits
-    FROM read_parquet('{str(parquet_path).replace("'", "''")}')
+    FROM logs
     WHERE traffic_type='Likely Human'
       AND site='Apps'
       AND cs_uri_stem IN ('/eui/','/rui/','/cde/','/ftu-explorer/','/kg-explorer/')
@@ -378,7 +378,7 @@ def load_event_rows(con: duckdb.DuckDBPyConnection, parquet_path: Path) -> pd.Da
       query['e.reason.message'] AS e_reason_message,
       query['e.reason.stack'] AS e_reason_stack,
       query['e.path'] AS e_path
-    FROM read_parquet('{str(parquet_path).replace("'", "''")}')
+    FROM logs
     WHERE site='Events'
       AND cs_uri_stem='/tr'
       AND traffic_type='Likely Human'
@@ -909,7 +909,7 @@ def train_bot_model(con: duckdb.DuckDBPyConnection, parquet_path: Path, session_
       length(coalesce(cs_referer, '')) AS referer_len,
       try_cast(substr(time, 1, 2) AS INTEGER) AS hour_utc,
       lower(coalesce(cs_user_agent, '')) AS ua_lower
-    FROM read_parquet('{str(parquet_path).replace("'", "''")}')
+    FROM logs
     WHERE traffic_type IN ('Likely Human', 'Bot', 'AI-Assistant / Bot')
       AND abs(hash(x_edge_request_id)) % 1000 < 10
     """
@@ -1001,7 +1001,7 @@ def train_bot_model(con: duckdb.DuckDBPyConnection, parquet_path: Path, session_
           length(coalesce(cs_referer, '')) AS referer_len,
           try_cast(substr(time, 1, 2) AS INTEGER) AS hour_utc,
           lower(coalesce(cs_user_agent, '')) AS ua_lower
-        FROM read_parquet('{str(parquet_path).replace("'", "''")}')
+        FROM logs
         WHERE site='Events'
           AND cs_uri_stem='/tr'
           AND traffic_type='Likely Human'
@@ -1156,7 +1156,7 @@ def detect_geo_anomalies(con: duckdb.DuckDBPyConnection, parquet_path: Path, ses
       count(DISTINCT cs_user_agent)::BIGINT AS ua_cardinality,
       avg(time_taken) AS avg_time_taken,
       avg(sc_bytes) AS avg_sc_bytes
-    FROM read_parquet('{str(parquet_path).replace("'", "''")}')
+    FROM logs
     WHERE c_country IS NOT NULL
       AND c_country <> '-'
     GROUP BY 1
@@ -1250,6 +1250,13 @@ def detect_geo_anomalies(con: duckdb.DuckDBPyConnection, parquet_path: Path, ses
 def run_pipeline(parquet_path: Path, output_dir: Path, forecast_horizon: int) -> dict[str, Any]:
     con = duckdb.connect()
     con.execute("PRAGMA threads=4")
+
+    # Deduplicate on load — CloudFront log delivery can produce exact dupes
+    raw = con.execute(f"SELECT count(*) FROM read_parquet('{parquet_path}')").fetchone()[0]
+    con.execute(f"CREATE TEMP VIEW logs AS SELECT DISTINCT * FROM read_parquet('{parquet_path}')")
+    deduped = con.execute("SELECT count(*) FROM logs").fetchone()[0]
+    if raw - deduped > 0:
+        print(f"⚠ Removed {raw - deduped:,} duplicate rows ({(raw-deduped)/raw*100:.2f}%)")
 
     monthly_visits = load_monthly_tool_visits(con, parquet_path)
     piv = monthly_pivot(monthly_visits)
