@@ -180,9 +180,41 @@ def fetch_all() -> list[dict]:
         articles.extend(efetch_batch(batch))
         time.sleep(0.4)
 
+    # Deduplicate: when both a preprint (bioRxiv/arXiv) and a journal version
+    # exist for the same paper, keep only the journal version.
+    preprint_journals = {"biorxiv", "arxiv", "medrxiv"}
+
+    def _norm_title(t: str) -> str:
+        return t.lower().rstrip(".").strip()
+
+    from collections import defaultdict
+    by_title: dict[str, list[dict]] = defaultdict(list)
+    for a in articles:
+        by_title[_norm_title(a["title"])].append(a)
+
+    deduped: list[dict] = []
+    for group in by_title.values():
+        if len(group) == 1:
+            deduped.append(group[0])
+        else:
+            # Prefer journal version over preprint
+            journal_versions = [a for a in group if not any(
+                p in a.get("journal", "").lower() for p in preprint_journals
+            )]
+            if journal_versions:
+                deduped.append(journal_versions[0])
+            else:
+                # All preprints — keep the most recent
+                group.sort(key=lambda a: a.get("pub_date", ""), reverse=True)
+                deduped.append(group[0])
+
+    removed = len(articles) - len(deduped)
+    if removed:
+        print(f"  Deduplicated: removed {removed} preprint duplicates")
+
     # Sort by publication date descending
-    articles.sort(key=lambda a: a.get("pub_date", ""), reverse=True)
-    return articles
+    deduped.sort(key=lambda a: a.get("pub_date", ""), reverse=True)
+    return deduped
 
 
 def main():

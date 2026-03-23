@@ -119,21 +119,6 @@
     ]
   },
   {
-    "pmid": "39763856",
-    "title": "A general strategy for generating expert-guided, simplified views of ontologies.",
-    "pub_date": "2025-08-29",
-    "doi": "10.1101/2024.12.13.628309",
-    "journal": "bioRxiv : the preprint server for biology",
-    "authors": [
-      "Caron AR",
-      "Puig-Barbe A",
-      "Quardokus EM",
-      "Balhoff JP",
-      "Belfiore J",
-      "et al."
-    ]
-  },
-  {
     "pmid": "39605651",
     "title": "Generalized cell phenotyping for spatial proteomics with language-informed vision models.",
     "pub_date": "2025-08-22",
@@ -357,20 +342,6 @@
     ]
   },
   {
-    "pmid": "39386647",
-    "title": "HuBMAPR: an R Client for the HuBMAP Data Portal.",
-    "pub_date": "2024-09-27",
-    "doi": "10.1101/2024.09.26.615227",
-    "journal": "bioRxiv : the preprint server for biology",
-    "authors": [
-      "Hou C",
-      "Ghazanfar S",
-      "Marini F",
-      "Morgan M",
-      "Hicks SC"
-    ]
-  },
-  {
     "pmid": "39253466",
     "title": "Vasculature segmentation in 3D hierarchical phase-contrast tomography images of human kidneys.",
     "pub_date": "2024-08-26",
@@ -401,21 +372,6 @@
     ]
   },
   {
-    "pmid": "38826261",
-    "title": "Human BioMolecular Atlas Program (HuBMAP): 3D Human Reference Atlas Construction and Usage.",
-    "pub_date": "2024-08-14",
-    "doi": "10.1101/2024.03.27.587041",
-    "journal": "bioRxiv : the preprint server for biology",
-    "authors": [
-      "Börner K",
-      "Blood PD",
-      "Silverstein JC",
-      "Ruffalo M",
-      "Satija R",
-      "et al."
-    ]
-  },
-  {
     "pmid": "38737752",
     "title": "GWAS advancements to investigate disease associations and biological mechanisms.",
     "pub_date": "2024-07",
@@ -439,21 +395,6 @@
     "authors": [
       "Kong Y",
       "Börner K"
-    ]
-  },
-  {
-    "pmid": "38746199",
-    "title": "The ANTsX Ecosystem for Mapping the Mouse Brain.",
-    "pub_date": "2024-05-01",
-    "doi": "10.1101/2024.05.01.592056",
-    "journal": "bioRxiv : the preprint server for biology",
-    "authors": [
-      "Tustison NJ",
-      "Chen M",
-      "Kronman FN",
-      "Duda JT",
-      "Gamlin C",
-      "et al."
     ]
   },
   {
@@ -487,21 +428,6 @@
     ]
   },
   {
-    "pmid": "37905079",
-    "title": "Functional Tissue Units in the Human Reference Atlas.",
-    "pub_date": "2023-10-26",
-    "doi": "10.1101/2023.10.16.562593",
-    "journal": "bioRxiv : the preprint server for biology",
-    "authors": [
-      "Bidanta S",
-      "Börner K",
-      "Herr BW",
-      "Nagy M",
-      "Gustilo KS",
-      "et al."
-    ]
-  },
-  {
     "pmid": "37735467",
     "title": "DeepSlice: rapid fully automatic registration of mouse brain imaging to a volumetric atlas.",
     "pub_date": "2023-09-21",
@@ -513,21 +439,6 @@
       "Martin L",
       "Saleeba C",
       "Turner AJ",
-      "et al."
-    ]
-  },
-  {
-    "pmid": "37745386",
-    "title": "Developmental Mouse Brain Common Coordinate Framework.",
-    "pub_date": "2023-09-15",
-    "doi": "10.1101/2023.09.14.557789",
-    "journal": "bioRxiv : the preprint server for biology",
-    "authors": [
-      "Kronman FA",
-      "Liwang JK",
-      "Betty R",
-      "Vanselow DJ",
-      "Wu YT",
       "et al."
     ]
   },
@@ -649,21 +560,6 @@
     ]
   },
   {
-    "pmid": "36824790",
-    "title": "The HRA Organ Gallery Affords Immersive Superpowers for Building and Exploring the Human Reference Atlas with Virtual Reality.",
-    "pub_date": "2023-02-15",
-    "doi": "10.1101/2023.02.13.528002",
-    "journal": "bioRxiv : the preprint server for biology",
-    "authors": [
-      "Bueckle A",
-      "Qing C",
-      "Luley S",
-      "Kumar Y",
-      "Pandey N",
-      "et al."
-    ]
-  },
-  {
     "pmid": "36229990",
     "title": "Optimized decision support for selection of transoral robotic surgery or (chemo)radiation therapy based on posttreatment swallowing toxicity.",
     "pub_date": "2023-02",
@@ -675,21 +571,6 @@
       "Mohamed ASR",
       "van Dijk LV",
       "Moreno AC",
-      "et al."
-    ]
-  },
-  {
-    "pmid": "36711953",
-    "title": "Segmenting functional tissue units across human organs using community-driven development of generalizable machine learning algorithms.",
-    "pub_date": "2023-01-06",
-    "doi": "10.1101/2023.01.05.522764",
-    "journal": "bioRxiv : the preprint server for biology",
-    "authors": [
-      "Jain Y",
-      "Godwin LL",
-      "Joshi S",
-      "Mandarapu S",
-      "Le T",
       "et al."
     ]
   },
