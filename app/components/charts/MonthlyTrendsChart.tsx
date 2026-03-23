@@ -196,11 +196,11 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
         type: "bar",
         yAxisIndex: 1,
         data: pubBarData,
-        barWidth: 6,
+        barWidth: 14,
         barGap: "-100%",
-        itemStyle: { color: "rgba(167,139,250,0.35)", borderRadius: [2, 2, 0, 0] },
+        itemStyle: { color: "rgba(167,139,250,0.3)", borderRadius: [2, 2, 0, 0] },
         emphasis: { itemStyle: { color: "rgba(167,139,250,0.6)" } },
-        z: 0,
+        z: 10,
       });
     }
 
