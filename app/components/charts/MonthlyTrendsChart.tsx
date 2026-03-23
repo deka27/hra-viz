@@ -146,6 +146,19 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const releaseLines: any[] = [];
 
+        // Short labels for workshops
+        const shortWorkshopLabel = (title: string) => {
+          if (title.includes("Training") || title.includes("Demo Day")) return "Training";
+          if (title.includes("Powers of Ten")) return "Powers of Ten";
+          if (title.includes("Jr. Investigator") || title.includes("Annual")) return "HuBMAP Mtgs";
+          if (title.includes("Hackathon")) return "Hackathon";
+          if (title.includes("IEEE")) return "IEEE VIS";
+          if (title.includes("Workshop") && title.includes("NLM")) return "HRA Workshop";
+          return title.split("(")[0].replace(/^HuBMAP /, "").trim();
+        };
+
+        // Stagger release labels to avoid overlap
+        let releaseIdx = 0;
         for (const [monthLabel, evs] of eventsByMonth) {
           for (const ev of evs) {
             const style = EVENT_STYLE[ev.type] || EVENT_STYLE.social;
@@ -156,16 +169,15 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
                 {
                   xAxis: monthLabel,
                   itemStyle: { color: style.bgColor, borderColor: style.borderColor, borderWidth: 1 },
-                  label: { show: true, position: "insideTopRight", formatter: ev.title.split("(")[0].replace(/^HuBMAP /, "").trim(), color: style.color, fontSize: 10, lineHeight: 14 },
+                  label: { show: true, position: "insideRight", formatter: shortWorkshopLabel(ev.title), color: style.color, fontSize: 9, rotate: 90, offset: [0, -10] },
                 },
                 { xAxis: nextMonth },
               ]);
             } else if (ev.type === "release") {
-              // Only releases get labeled markLines — publications are shown via bars + panel
               releaseLines.push({
                 xAxis: monthLabel,
                 lineStyle: { color: style.color, type: "dashed" as const, width: 1 },
-                label: { show: true, formatter: ev.title.split(" — ")[0], color: style.color, fontSize: 9, position: "insideEndTop" },
+                label: { show: true, formatter: ev.title.split(" — ")[0], color: style.color, fontSize: 9, position: "insideEndTop", rotate: 90 },
               });
             }
           }
@@ -304,7 +316,7 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
           {eventTypesPresent.map((t) => (
             <div key={t} className="flex items-center gap-1.5">
               <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: EVENT_STYLE[t]?.color ?? "#71717a" }} />
-              <span className="text-[11px] text-zinc-500 capitalize">{t}</span>
+              <span className="text-[11px] text-zinc-500 capitalize">{t === "workshop" ? "Workshop / Events" : t}</span>
             </div>
           ))}
           {hasPubs && (
@@ -314,7 +326,7 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
             </div>
           )}
           {eventTypesPresent.length > 0 && (
-            <span className="text-[11px] text-zinc-600 ml-auto">Dashed lines = releases · Shaded areas = workshops</span>
+            <span className="text-[11px] text-zinc-600 ml-auto">Dashed lines = releases · Shaded areas = workshops / events</span>
           )}
         </div>
       )}

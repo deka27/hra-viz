@@ -92,12 +92,22 @@
   {
     "date": "2025-06",
     "type": "release",
-    "title": "HRA v2.3 — 9th release (expected)"
+    "title": "HRA v2.3 — 9th release"
+  },
+  {
+    "date": "2025-06",
+    "type": "workshop",
+    "title": "HRA Workshop (NLM, JCVI, HuBMAP — Jun 23-24)"
   },
   {
     "date": "2025-07",
     "type": "publication",
     "title": "Construction, Deployment, and Usage of the Human R…"
+  },
+  {
+    "date": "2025-08",
+    "type": "workshop",
+    "title": "HRA Hackathon (KPMP, HPO, HuBMAP — Aug 25-26)"
   },
   {
     "date": "2025-08",
@@ -116,8 +126,18 @@
   },
   {
     "date": "2025-11",
+    "type": "workshop",
+    "title": "IEEE VIS Panel: Theory-Grounded Data Viz in XR (Nov 5)"
+  },
+  {
+    "date": "2025-11",
     "type": "publication",
     "title": "The ANTsX ecosystem for mapping the mouse brain."
+  },
+  {
+    "date": "2025-12",
+    "type": "release",
+    "title": "HRA v2.4 — 10th release"
   },
   {
     "date": "2026-01",

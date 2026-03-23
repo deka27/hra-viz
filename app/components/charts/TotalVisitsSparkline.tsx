@@ -92,6 +92,7 @@ export default function TotalVisitsSparkline({ data, events = [], publications =
     const lines: any[] = [];
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const areas: any[] = [];
+    let releaseIdx = 0;
     for (const ev of events) {
       const label = formatMonth(ev.date);
       const color = EVENT_COLORS[ev.type] ?? "#71717a";
@@ -107,12 +108,12 @@ export default function TotalVisitsSparkline({ data, events = [], publications =
           { xAxis: next },
         ]);
       } else if (ev.type === "release") {
-        // Only releases get labeled markLines — publications shown via bars + panel
         lines.push({
           xAxis: label,
           lineStyle: { color, type: "dashed" as const, width: 1 },
-          label: { show: true, formatter: ev.title.split(" — ")[0], color, fontSize: 10, position: "insideEndTop" },
+          label: { show: true, formatter: ev.title.split(" — ")[0], color, fontSize: 9, position: "insideEndTop", rotate: 90 },
         });
+        releaseIdx++;
       }
     }
     return { releaseLines: lines, workshopAreas: areas };
@@ -233,7 +234,7 @@ export default function TotalVisitsSparkline({ data, events = [], publications =
           {eventTypesPresent.map((t) => (
             <div key={t} className="flex items-center gap-1.5">
               <div className="w-1.5 h-1.5 rounded-full flex-shrink-0" style={{ backgroundColor: EVENT_COLORS[t] ?? "#71717a" }} />
-              <span className="text-[10px] text-zinc-500 capitalize">{t}</span>
+              <span className="text-[10px] text-zinc-500 capitalize">{t === "workshop" ? "Workshop / Events" : t}</span>
             </div>
           ))}
           {hasPubs && (

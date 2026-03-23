@@ -1,7 +1,8 @@
 [
   { "date": "2023-06", "version": "v1.4", "description": "5th release: 31 organs, 4,279 anatomical structures, 1,210 cell types" },
   { "date": "2023-12", "version": "v2.0", "description": "6th release: 33 ASCT+B tables, 65 3D reference objects, systems graph added" },
-  { "date": "2024-06", "version": "v2.1", "description": "7th release" },
+  { "date": "2024-06", "version": "v2.1", "description": "7th release: 8 new OMAPs, ~100 new dataset-to-HRA mappings, terminology expansions" },
   { "date": "2024-12", "version": "v2.2", "description": "8th release: HRA Knowledge Graph covers all digital objects with provenance" },
-  { "date": "2025-06", "version": "v2.3", "description": "9th release (expected)" }
+  { "date": "2025-06", "version": "v2.3", "description": "9th release: 73 organs, HRApop v1.0, 662 datasets across 17 organs, 26 FTUs" },
+  { "date": "2025-12", "version": "v2.4", "description": "10th release: 77 3D ref objects, 4,810 AS, 1,334 CT, 2,070 biomarkers, KG app + HRApop Visualizer launched" }
 ]
