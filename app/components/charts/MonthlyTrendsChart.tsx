@@ -377,7 +377,7 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
           ) : (
             <div className="flex items-center gap-2.5 px-4 py-3 text-zinc-600">
               <div className="w-1 h-4 rounded-full bg-violet-400/20" />
-              <span className="text-xs">Click on the chart to see {totalPubs} HRA-related publications for that month</span>
+              <span className="text-xs">Click on the chart to see {totalPubs} HRA-related publications in this date range</span>
             </div>
           )}
         </div>
