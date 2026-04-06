@@ -33,6 +33,7 @@ interface Publication {
 interface PubRef {
   title: string;
   url: string;
+  preprint?: boolean;
 }
 
 interface PubMonth {
@@ -62,8 +63,11 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
 
   const months = useMemo(() => data.map((d) => formatMonth(d.month_year)), [data]);
 
-  // Aggregate publications by month
-  const { pubsByMonth, pubBarData, maxPubs, totalPubs } = useMemo(() => {
+  // Aggregate publications by month, split by preprint vs published
+  const PREPRINT_JOURNALS = ["biorxiv", "arxiv", "medrxiv"];
+  const isPreprint = (journal: string) => PREPRINT_JOURNALS.some((p) => journal.toLowerCase().includes(p));
+
+  const { pubsByMonth, pubBarPublished, pubBarPreprint, maxPubs, totalPubs } = useMemo(() => {
     const map = new Map<string, PubMonth>();
     for (const pub of publications) {
       if (pub.pub_date.length < 7) continue;
@@ -73,14 +77,18 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
       entry.pubs.push({
         title: pub.title.length > 60 ? pub.title.slice(0, 57) + "…" : pub.title,
         url: pub.doi ? `https://doi.org/${pub.doi}` : `https://pubmed.ncbi.nlm.nih.gov/${pub.pmid}/`,
+        preprint: isPreprint(pub.journal),
       });
       map.set(label, entry);
     }
-    const barData = months.map((m) => map.get(m)?.count ?? 0);
+    const published = months.map((m) => map.get(m)?.pubs.filter((p) => !p.preprint).length ?? 0);
+    const preprint = months.map((m) => map.get(m)?.pubs.filter((p) => p.preprint).length ?? 0);
+    const combined = months.map((_, i) => published[i] + preprint[i]);
     return {
       pubsByMonth: map,
-      pubBarData: barData,
-      maxPubs: Math.max(...barData, 1),
+      pubBarPublished: published,
+      pubBarPreprint: preprint,
+      maxPubs: Math.max(...combined, 1),
       totalPubs: [...map.values()].reduce((s, e) => s + e.count, 0),
     };
   }, [publications, months]);
@@ -192,22 +200,37 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
 
     if (hasPubs) {
       series.push({
-        name: "Publications",
+        name: "Published",
         type: "bar",
+        stack: "pubs",
         yAxisIndex: 1,
-        data: pubBarData,
+        data: pubBarPublished,
         barWidth: 14,
         barGap: "-100%",
-        itemStyle: { color: "rgba(167,139,250,0.3)", borderRadius: [2, 2, 0, 0] },
+        itemStyle: { color: "rgba(167,139,250,0.35)", borderRadius: [0, 0, 0, 0] },
         emphasis: { itemStyle: { color: "rgba(167,139,250,0.6)" } },
+        z: 10,
+      });
+      series.push({
+        name: "Preprint",
+        type: "bar",
+        stack: "pubs",
+        yAxisIndex: 1,
+        data: pubBarPreprint,
+        barWidth: 14,
+        barGap: "-100%",
+        itemStyle: { color: "rgba(251,191,36,0.35)", borderRadius: [2, 2, 0, 0] },
+        emphasis: { itemStyle: { color: "rgba(251,191,36,0.6)" } },
         z: 10,
       });
     }
 
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const tooltipFormatter = (params: any[]) => {
-      const pubParam = params.find((p: { seriesName: string }) => p.seriesName === "Publications");
-      const toolParams = params.filter((p: { seriesName: string }) => p.seriesName !== "Publications");
+      const publishedParam = params.find((p: { seriesName: string }) => p.seriesName === "Published");
+      const preprintParam = params.find((p: { seriesName: string }) => p.seriesName === "Preprint");
+      const pubTotal = (publishedParam?.value ?? 0) + (preprintParam?.value ?? 0);
+      const toolParams = params.filter((p: { seriesName: string }) => !["Published", "Preprint"].includes(p.seriesName));
       const month = params[0]?.axisValue ?? "";
       const sorted = [...toolParams].filter((p) => p.value > 0).sort((a, b) => b.value - a.value);
       const rows = sorted.map(
@@ -220,13 +243,20 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
             <span style="font-weight:600;color:#fafafa">${Number(p.value).toLocaleString()}</span>
           </div>`
       ).join("");
-      const pubRow = pubParam && pubParam.value > 0
+      const pubRow = pubTotal > 0
         ? `<div style="display:flex;align-items:center;justify-content:space-between;gap:20px;margin:3px 0;padding-top:5px;border-top:1px solid #3f3f46">
             <span style="display:flex;align-items:center;gap:7px;color:#a1a1aa">
               <span style="width:8px;height:8px;border-radius:2px;background:#a78bfa;flex-shrink:0;display:inline-block"></span>
-              Publications
+              Published
             </span>
-            <span style="font-weight:600;color:#a78bfa">${pubParam.value}</span>
+            <span style="font-weight:600;color:#a78bfa">${publishedParam?.value ?? 0}</span>
+          </div>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:20px;margin:3px 0">
+            <span style="display:flex;align-items:center;gap:7px;color:#a1a1aa">
+              <span style="width:8px;height:8px;border-radius:2px;background:#fbbf24;flex-shrink:0;display:inline-block"></span>
+              Preprint
+            </span>
+            <span style="font-weight:600;color:#fbbf24">${preprintParam?.value ?? 0}</span>
           </div>`
         : "";
       // Show events (releases, workshops) for this month
@@ -284,7 +314,7 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
       ],
       series,
     };
-  }, [data, months, events, eventsByMonth, hasPubs, pubBarData, maxPubs]);
+  }, [data, months, events, eventsByMonth, hasPubs, pubBarPublished, pubBarPreprint, maxPubs]);
 
   // Click to select a month — click again to deselect
   const handleClick = useCallback((params: { dataIndex?: number }) => {
@@ -320,10 +350,16 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
             </div>
           ))}
           {hasPubs && (
-            <div className="flex items-center gap-1.5">
-              <div className="w-2 h-2 rounded-sm flex-shrink-0" style={{ backgroundColor: "#a78bfa" }} />
-              <span className="text-[11px] text-zinc-500">Publications (right axis)</span>
-            </div>
+            <>
+              <div className="flex items-center gap-1.5">
+                <div className="w-2 h-2 rounded-sm flex-shrink-0" style={{ backgroundColor: "#a78bfa" }} />
+                <span className="text-[11px] text-zinc-500">Published (right axis)</span>
+              </div>
+              <div className="flex items-center gap-1.5">
+                <div className="w-2 h-2 rounded-sm flex-shrink-0" style={{ backgroundColor: "#fbbf24" }} />
+                <span className="text-[11px] text-zinc-500">Preprint</span>
+              </div>
+            </>
           )}
           {eventTypesPresent.length > 0 && (
             <span className="text-[11px] text-zinc-600 ml-auto">Dashed lines = releases · Shaded areas = workshops / events</span>
@@ -358,7 +394,10 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 px-4 py-2 hover:bg-violet-500/5 transition-colors group"
                   >
-                    <span className="flex-1 text-xs text-zinc-400 group-hover:text-violet-300 transition-colors leading-snug">{pub.title}</span>
+                    <span className="flex-1 text-xs text-zinc-400 group-hover:text-violet-300 transition-colors leading-snug">
+                      {pub.title}
+                      {pub.preprint && <span className="ml-1.5 text-[9px] font-medium text-amber-400/80 bg-amber-400/10 px-1.5 py-0.5 rounded">preprint</span>}
+                    </span>
                     <span className="text-[10px] text-zinc-600 group-hover:text-violet-400 shrink-0 transition-colors">Open</span>
                   </a>
                 ))}
