@@ -101,10 +101,17 @@ const euiRetPct = latestRets.find((d) => d.tool === "EUI")?.return_pct ?? 0;
 const kgRetPct = latestRets.find((d) => d.tool === "KG Explorer")?.return_pct ?? 0;
 const rootCauseBuckets = (errorRootCauseBreakdown as { by_bucket: { bucket: string; errors: number }[] }).by_bucket;
 
-// ── Release impact: compare total visits in release month vs prior month ──
+// ── Release impact: avg 2 months after vs avg 2 months before ──
 type MonthRow = typeof monthlyData[number];
 const TOOL_KEYS = ["EUI", "RUI", "CDE", "FTU Explorer", "KG Explorer"] as const;
 function monthTotal(row: MonthRow) { return TOOL_KEYS.reduce((s, k) => s + (row[k] ?? 0), 0); }
+function avgWindow(start: number, count: number) {
+  const vals: number[] = [];
+  for (let i = start; i < start + count && i < monthlyData.length; i++) {
+    if (i >= 0) vals.push(monthTotal(monthlyData[i]));
+  }
+  return vals.length > 0 ? vals.reduce((a, b) => a + b, 0) / vals.length : 0;
+}
 const releaseImpacts = hraReleases
   .filter((r) => {
     const label = fmtMonth(r.date);
@@ -112,10 +119,11 @@ const releaseImpacts = hraReleases
   })
   .map((r) => {
     const idx = monthlyData.findIndex((d) => fmtMonth(d.month_year) === fmtMonth(r.date));
-    const releaseVisits = monthTotal(monthlyData[idx]);
-    const priorVisits = idx > 0 ? monthTotal(monthlyData[idx - 1]) : 0;
-    const delta = priorVisits > 0 ? Math.round(((releaseVisits - priorVisits) / priorVisits) * 100) : 0;
-    return { ...r, releaseVisits, priorVisits, delta, month: fmtMonth(r.date) };
+    const afterAvg = avgWindow(idx, 2);       // release month + 1 month after
+    const beforeAvg = avgWindow(idx - 2, 2);  // 2 months before release
+    const releaseVisits = Math.round(afterAvg);
+    const delta = beforeAvg > 0 ? Math.round(((afterAvg - beforeAvg) / beforeAvg) * 100) : 0;
+    return { ...r, releaseVisits, priorVisits: Math.round(beforeAvg), delta, month: fmtMonth(r.date) };
   });
 // ── Publication impact: months with papers vs months without ──
 type PubEntry = { pmid: string; title: string; pub_date: string; doi: string; journal: string; authors: string[] };
@@ -231,7 +239,7 @@ export default function ToolsPage() {
             <div className="flex items-center gap-2 mb-5">
               <div className="w-1 h-5 rounded-full bg-cyan-400" />
               <span className="text-base font-semibold text-zinc-200">HRA Release Impact</span>
-              <span className="text-xs text-zinc-600 ml-2">Visits in release month vs prior month</span>
+              <span className="text-xs text-zinc-600 ml-2">Avg visits (release month + 1 after) vs avg (2 months before)</span>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {releaseImpacts.map((r) => (
