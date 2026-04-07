@@ -369,13 +369,13 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
 
       {/* Click-to-show publication panel */}
       {hasPubs && (
-        <div className="mt-2 rounded-xl border border-zinc-800 bg-zinc-900/50 overflow-hidden">
+        <div className="mt-2 rounded-xl border border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900/50 overflow-hidden">
           {activePubs ? (
             <div>
-              <div className="flex items-center justify-between px-4 py-2.5 bg-violet-500/5 border-b border-zinc-800">
+              <div className="flex items-center justify-between px-4 py-2.5 bg-violet-500/5 border-b border-zinc-200 dark:border-zinc-800">
                 <div className="flex items-center gap-2.5">
                   <div className="w-1 h-4 rounded-full bg-violet-400" />
-                  <span className="text-xs font-semibold text-violet-300">{activeMonth}</span>
+                  <span className="text-xs font-semibold text-violet-600 dark:text-violet-300">{activeMonth}</span>
                   <span className="text-xs text-zinc-500">{activePubs.count} paper{activePubs.count > 1 ? "s" : ""}</span>
                 </div>
                 <button
@@ -385,7 +385,7 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
                   clear
                 </button>
               </div>
-              <div className="divide-y divide-zinc-800/60">
+              <div className="divide-y divide-zinc-200/60 dark:divide-zinc-800/60">
                 {activePubs.pubs.map((pub, i) => (
                   <a
                     key={i}
@@ -394,7 +394,7 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 px-4 py-2 hover:bg-violet-500/5 transition-colors group"
                   >
-                    <span className="flex-1 text-xs text-zinc-400 group-hover:text-violet-300 transition-colors leading-snug">
+                    <span className="flex-1 text-xs text-zinc-600 dark:text-zinc-400 group-hover:text-violet-600 dark:group-hover:text-violet-300 transition-colors leading-snug">
                       {pub.title}
                       {pub.preprint && <span className="ml-1.5 text-[9px] font-medium text-amber-400/80 bg-amber-400/10 px-1.5 py-0.5 rounded">preprint</span>}
                     </span>

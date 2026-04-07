@@ -238,20 +238,20 @@ export default function ToolsPage() {
           <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6">
             <div className="flex items-center gap-2 mb-5">
               <div className="w-1 h-5 rounded-full bg-cyan-400" />
-              <span className="text-base font-semibold text-zinc-200">HRA Release Impact</span>
-              <span className="text-xs text-zinc-600 ml-2">Avg visits (release month + 1 after) vs avg (2 months before)</span>
+              <span className="text-base font-semibold text-zinc-800 dark:text-zinc-200">HRA Release Impact</span>
+              <span className="text-xs text-zinc-500 dark:text-zinc-600 ml-2">Avg visits (release month + 1 after) vs avg (2 months before)</span>
             </div>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
               {releaseImpacts.map((r) => (
-                <div key={r.date} className="bg-zinc-800/40 rounded-lg p-4 flex flex-col gap-2">
+                <div key={r.date} className="bg-zinc-100 dark:bg-zinc-800/40 border border-zinc-200 dark:border-transparent rounded-lg p-4 flex flex-col gap-2">
                   <div className="flex items-center gap-2">
-                    <div className="w-2 h-2 rounded-full bg-cyan-400" />
-                    <span className="text-sm font-bold text-cyan-300">{r.version}</span>
+                    <div className="w-2 h-2 rounded-full bg-cyan-500 dark:bg-cyan-400" />
+                    <span className="text-sm font-bold text-cyan-600 dark:text-cyan-300">{r.version}</span>
                     <span className="text-xs text-zinc-500">{r.month}</span>
                   </div>
                   <div className="flex items-baseline gap-2">
-                    <span className="text-2xl font-bold text-zinc-100 tabular-nums">{r.releaseVisits.toLocaleString()}</span>
-                    <span className={`text-sm font-semibold ${r.delta >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+                    <span className="text-2xl font-bold text-zinc-900 dark:text-zinc-100 tabular-nums">{r.releaseVisits.toLocaleString()}</span>
+                    <span className={`text-sm font-semibold ${r.delta >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"}`}>
                       {r.delta >= 0 ? "+" : ""}{r.delta}%
                     </span>
                   </div>
@@ -267,20 +267,20 @@ export default function ToolsPage() {
           <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-6">
             <div className="flex items-center gap-2 mb-5">
               <div className="w-1 h-5 rounded-full bg-violet-400" />
-              <span className="text-base font-semibold text-zinc-200">Publication ↔ Traffic Correlation</span>
-              <span className="text-xs text-zinc-600 ml-2">{totalPubCount} papers across {pubCountByMonth.size} months</span>
+              <span className="text-base font-semibold text-zinc-800 dark:text-zinc-200">Publication ↔ Traffic Correlation</span>
+              <span className="text-xs text-zinc-500 dark:text-zinc-600 ml-2">{totalPubCount} papers across {pubCountByMonth.size} months</span>
             </div>
             <div className="grid grid-cols-3 gap-4 mb-5">
-              <div className="bg-zinc-800/40 rounded-lg p-4 text-center">
-                <span className="text-3xl font-bold text-violet-400 tabular-nums">{avgPubMonth.toLocaleString()}</span>
+              <div className="bg-zinc-100 dark:bg-zinc-800/40 border border-zinc-200 dark:border-transparent rounded-lg p-4 text-center">
+                <span className="text-3xl font-bold text-violet-600 dark:text-violet-400 tabular-nums">{avgPubMonth.toLocaleString()}</span>
                 <span className="block text-xs text-zinc-500 mt-1">avg visits (pub months)</span>
               </div>
-              <div className="bg-zinc-800/40 rounded-lg p-4 text-center">
-                <span className="text-3xl font-bold text-zinc-500 tabular-nums">{avgNoPubMonth.toLocaleString()}</span>
+              <div className="bg-zinc-100 dark:bg-zinc-800/40 border border-zinc-200 dark:border-transparent rounded-lg p-4 text-center">
+                <span className="text-3xl font-bold text-zinc-600 dark:text-zinc-500 tabular-nums">{avgNoPubMonth.toLocaleString()}</span>
                 <span className="block text-xs text-zinc-500 mt-1">avg visits (no pubs)</span>
               </div>
-              <div className="bg-zinc-800/40 rounded-lg p-4 text-center">
-                <span className={`text-3xl font-bold tabular-nums ${pubLift >= 0 ? "text-emerald-400" : "text-red-400"}`}>
+              <div className="bg-zinc-100 dark:bg-zinc-800/40 border border-zinc-200 dark:border-transparent rounded-lg p-4 text-center">
+                <span className={`text-3xl font-bold tabular-nums ${pubLift >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400"}`}>
                   {pubLift >= 0 ? "+" : ""}{pubLift}%
                 </span>
                 <span className="block text-xs text-zinc-500 mt-1">publication lift</span>
