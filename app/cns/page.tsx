@@ -119,12 +119,13 @@ const funderCounts = funding.reduce<Record<string, number>>((acc, d) => {
   return acc;
 }, {});
 const topFunder = Object.entries(funderCounts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? "N/A";
-const FUNDER_SHORT: Record<string, string> = {
-  "National Science Foundation": "NSF",
-  "National Institutes of Health": "NIH",
-  "National Academy of Sciences": "NAS",
+const FUNDER_MAP: Record<string, { short: string; accent: string }> = {
+  "National Science Foundation": { short: "NSF", accent: "text-blue-400" },
+  "National Institutes of Health": { short: "NIH", accent: "text-emerald-400" },
+  "National Academy of Sciences": { short: "NAS", accent: "text-violet-400" },
 };
-const topFunderShort = FUNDER_SHORT[topFunder] ?? (topFunder.length > 20 ? topFunder.slice(0, 18) + "…" : topFunder);
+const topFunderInfo = FUNDER_MAP[topFunder] ?? { short: topFunder.length > 20 ? topFunder.slice(0, 18) + "…" : topFunder, accent: "text-zinc-400" };
+const topFunderShort = topFunderInfo.short;
 
 function fmtDollars(value: number): string {
   if (value >= 1_000_000) return `$${(value / 1_000_000).toFixed(1)}M`;
@@ -272,7 +273,7 @@ export default function CNSOverviewPage() {
           label="Top Funder"
           value={topFunderShort}
           sub={`${funderCounts[topFunder]} grants`}
-          accent="text-violet-400"
+          accent={topFunderInfo.accent}
         />
         <StatCard
           label="Grant Count"
