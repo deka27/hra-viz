@@ -18,6 +18,7 @@ interface Props {
 
 export default function DonutChart({ data, unit = "visits", height = 280 }: Props) {
   const total = data.reduce((s, d) => s + d.value, 0);
+  const many = data.length > 6;
 
   const option = {
     backgroundColor: "transparent",
@@ -31,7 +32,20 @@ export default function DonutChart({ data, unit = "visits", height = 280 }: Prop
           <div style="color:#71717a">${p.percent.toFixed(1)}%</div>
         </div>`,
     },
-    legend: {
+    legend: many ? {
+      orient: "horizontal",
+      bottom: 0,
+      left: "center",
+      itemWidth: 10,
+      itemHeight: 10,
+      itemGap: 12,
+      textStyle: { color: "#a1a1aa", fontSize: 11 },
+      formatter: (name: string) => {
+        const item = data.find((d) => d.name === name);
+        const pct = item ? ((item.value / total) * 100).toFixed(1) : "0";
+        return `${name} ${pct}%`;
+      },
+    } : {
       orient: "vertical",
       right: 0,
       top: "middle",
@@ -47,8 +61,8 @@ export default function DonutChart({ data, unit = "visits", height = 280 }: Prop
     series: [
       {
         type: "pie",
-        radius: ["52%", "75%"],
-        center: ["38%", "50%"],
+        radius: many ? ["40%", "65%"] : ["52%", "75%"],
+        center: many ? ["50%", "40%"] : ["38%", "50%"],
         avoidLabelOverlap: false,
         label: { show: false },
         emphasis: { label: { show: false }, scaleSize: 5 },
@@ -61,10 +75,12 @@ export default function DonutChart({ data, unit = "visits", height = 280 }: Prop
     ],
   };
 
+  const effectiveHeight = many ? Math.max(height, 380) : height;
+
   return (
     <ThemedEChart
       option={option}
-      style={{ height: `${height}px`, width: "100%" }}
+      style={{ height: `${effectiveHeight}px`, width: "100%" }}
       opts={{ renderer: "canvas" }}
     />
   );

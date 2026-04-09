@@ -1,28 +1,37 @@
 "use client";
 
 import ThemedEChart from "../ThemedEChart";
-import referrersData from "../../../public/data/referrers.json";
-import navClicksData from "../../../public/data/nav_clicks.json";
-import topPathsByEvent from "../../../public/data/top_paths_by_event.json";
+import { tooltipStyle } from "../../lib/chartTheme";
+import { useMemo } from "react";
 
+interface ReferrerRow {
+  name: string;
+  value: number;
+}
+
+interface NavClickRow {
+  label: string;
+  count: number;
+}
+
+type EventPathRow = { path: string; count: number };
 
 const TOOLTIP = {
-  backgroundColor: "#18181b",
-  borderColor: "#3f3f46",
-  borderWidth: 1,
+  ...tooltipStyle,
   textStyle: { color: "#fafafa", fontSize: 12 },
   extraCssText: "box-shadow:0 4px 20px rgba(0,0,0,0.5);border-radius:8px;padding:8px 12px;",
 };
 
-const ruiKeyboardRows = ((topPathsByEvent as { keyboard?: { path: string; count: number }[] }).keyboard ?? [])
-  .filter((d) => d.path.startsWith("rui.stage-content.directional-controls.keyboard."));
-const ruiKeyCount = (key: string) =>
-  ruiKeyboardRows
-    .filter((d) => d.path.toLowerCase().endsWith(`.${key.toLowerCase()}`))
-    .reduce((sum, d) => sum + d.count, 0);
-
 // ── INSIGHT 10 ───────────────────────────────────────────────────────────────
-export function KeyboardAsymmetryChart({ compact }: { compact?: boolean }) {
+export function KeyboardAsymmetryChart({ compact, topPathsByEvent }: { compact?: boolean; topPathsByEvent: Record<string, EventPathRow[]> }) {
+  const ruiKeyCount = useMemo(() => {
+    const ruiKeyboardRows = ((topPathsByEvent as { keyboard?: EventPathRow[] }).keyboard ?? [])
+      .filter((d) => d.path.startsWith("rui.stage-content.directional-controls.keyboard."));
+    return (key: string) =>
+      ruiKeyboardRows
+        .filter((d) => d.path.toLowerCase().endsWith(`.${key.toLowerCase()}`))
+        .reduce((sum, d) => sum + d.count, 0);
+  }, [topPathsByEvent]);
   const keyData = [
     { key: "A (left)", value: ruiKeyCount("a") },
     { key: "D (right)", value: ruiKeyCount("d") },
@@ -130,7 +139,7 @@ export function CDEEntrySplitChart() {
 
 // ── INSIGHT 18 ───────────────────────────────────────────────────────────────
 // External referrers by API request volume (from cs_referer analysis)
-export function ReferrerEcosystemChart({ compact }: { compact?: boolean }) {
+export function ReferrerEcosystemChart({ compact, referrersData }: { compact?: boolean; referrersData: ReferrerRow[] }) {
   const COLORS: Record<string, string> = {
     "GTEx Portal": "#2dd4bf",
     "HubMAP":      "#3b82f6",
@@ -198,7 +207,7 @@ export function ReferrerEcosystemChart({ compact }: { compact?: boolean }) {
 
 // ── INSIGHT 19 ───────────────────────────────────────────────────────────────
 // Portal navigation clicks (e.label) — top nav items on humanatlas.io
-export function NavClicksChart({ compact }: { compact?: boolean }) {
+export function NavClicksChart({ compact, navClicksData }: { compact?: boolean; navClicksData: NavClickRow[] }) {
   // Top 5, sorted ascending for horizontal bar
   const top5 = [...navClicksData]
     .sort((a, b) => a.count - b.count)

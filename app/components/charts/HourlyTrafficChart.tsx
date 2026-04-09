@@ -2,9 +2,12 @@
 
 import ThemedEChart from "../ThemedEChart";
 import { useTheme } from "next-themes";
-import hourlyData from "../../../public/data/hourly_traffic.json";
+import { useMemo } from "react";
 
-const total = hourlyData.reduce((s, d) => s + d.count, 0);
+interface HourlyTrafficRow {
+  hour: number;
+  count: number;
+}
 
 function toEasternHour(utcHour: number, utcOffset: number): string {
   const h = (utcHour + utcOffset + 24) % 24;
@@ -13,9 +16,11 @@ function toEasternHour(utcHour: number, utcOffset: number): string {
   return `${display}${period}`;
 }
 
-export default function HourlyTrafficChart() {
+export default function HourlyTrafficChart({ data: hourlyData }: { data: HourlyTrafficRow[] }) {
   const { resolvedTheme } = useTheme();
   const isLight = resolvedTheme === "light";
+
+  const total = useMemo(() => hourlyData.reduce((s, d) => s + d.count, 0), [hourlyData]);
 
   const tooltipColors = isLight
     ? {

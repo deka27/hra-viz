@@ -2,42 +2,62 @@
 
 import ThemedEChart from "../ThemedEChart";
 import { TOOL_COLORS } from "../../lib/chartTheme";
-import transitionData from "../../../public/data/transition_matrix.json";
-import totalToolVisits from "../../../public/data/total_tool_visits.json";
+import { useMemo } from "react";
 
+interface TransitionRow {
+  from_tool: string;
+  to_tool: string;
+  count: number;
+  probability: number;
+}
 
-const totalVisitsByTool = Object.fromEntries(totalToolVisits.map((d) => [d.tool, d.visits] as const));
-const allTools = Array.from(
-  new Set([
-    ...Object.keys(totalVisitsByTool),
-    ...transitionData.transitions.flatMap((t) => [t.from_tool, t.to_tool]),
-  ])
-);
+interface TransitionData {
+  transitions: TransitionRow[];
+}
 
-const visitValues = allTools.map((tool) => totalVisitsByTool[tool] ?? 0);
-const MIN_V = Math.min(...visitValues);
-const MAX_V = Math.max(...visitValues);
-const scaleNode = (v: number) => {
-  if (MAX_V === MIN_V) return 46;
-  return 28 + ((v - MIN_V) / (MAX_V - MIN_V)) * 36;
-};
+interface ToolVisitRow {
+  tool: string;
+  visits: number;
+}
 
-const NODES = allTools.map((name) => {
-  const visits = totalVisitsByTool[name] ?? 0;
-  const color = TOOL_COLORS[name] ?? "#a1a1aa";
-  return {
-    name,
-    symbolSize: scaleNode(visits),
-    itemStyle: {
-      color,
-      shadowBlur: 12,
-      shadowColor: `${color}44`,
-    },
-    label: { show: true, color: "#fafafa", fontSize: 11, fontWeight: 700 as const, position: "bottom" as const },
-  };
-});
+interface ToolTransitionFlowProps {
+  transitionData: TransitionData;
+  totalToolVisits: ToolVisitRow[];
+}
 
-export default function ToolTransitionFlowChart() {
+export default function ToolTransitionFlowChart({ transitionData, totalToolVisits }: ToolTransitionFlowProps) {
+  const { NODES, totalVisitsByTool } = useMemo(() => {
+    const visitsByTool = Object.fromEntries(totalToolVisits.map((d) => [d.tool, d.visits] as const));
+    const allTools = Array.from(
+      new Set([
+        ...Object.keys(visitsByTool),
+        ...transitionData.transitions.flatMap((t) => [t.from_tool, t.to_tool]),
+      ])
+    );
+    const visitValues = allTools.map((tool) => visitsByTool[tool] ?? 0);
+    const MIN_V = Math.min(...visitValues);
+    const MAX_V = Math.max(...visitValues);
+    const scaleNode = (v: number) => {
+      if (MAX_V === MIN_V) return 46;
+      return 28 + ((v - MIN_V) / (MAX_V - MIN_V)) * 36;
+    };
+    const nodes = allTools.map((name) => {
+      const visits = visitsByTool[name] ?? 0;
+      const color = TOOL_COLORS[name] ?? "#a1a1aa";
+      return {
+        name,
+        symbolSize: scaleNode(visits),
+        itemStyle: {
+          color,
+          shadowBlur: 12,
+          shadowColor: `${color}44`,
+        },
+        label: { show: true, color: "#fafafa", fontSize: 11, fontWeight: 700 as const, position: "bottom" as const },
+      };
+    });
+    return { NODES: nodes, totalVisitsByTool: visitsByTool };
+  }, [transitionData, totalToolVisits]);
+
   const maxCount = Math.max(...transitionData.transitions.map((t) => t.count));
 
   const option = {

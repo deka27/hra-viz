@@ -1,0 +1,1232 @@
+[
+  {
+    "slug": "991sxu2vfgd3va1sut4ok",
+    "name": "NIH 1U24AT013504-01",
+    "title": "Whole Person Reference Physiome Research and Coordination Center",
+    "funder": "National Institutes of Health",
+    "amount": 6476031,
+    "received_amount": 0,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2025-08-08",
+    "date_end": "2028-07-31",
+    "type": "research"
+  },
+  {
+    "slug": "av5ngl80iqd71kwa6ag1x",
+    "name": "NIH 1OT2OD033756-01",
+    "title": "3D Multiscale Biomolecular Human Reference Atlas Construction, Visualization and Usage",
+    "funder": "National Institutes of Health",
+    "amount": 1827384,
+    "received_amount": 0,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2022-08-01",
+    "date_end": "2026-07-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-78",
+    "name": "NSF DMS-1839167",
+    "title": "TRIPODS+X:RES:Collaborative Research: Multi-Level Graph Representation for Exploring Big Data",
+    "funder": "National Science Foundation",
+    "amount": 300000,
+    "received_amount": 300000,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2018-10-01",
+    "date_end": "2021-09-30",
+    "type": "research"
+  },
+  {
+    "slug": "fun-81",
+    "name": "NIH 1OT2OD026671-01",
+    "title": "The Human Body Atlas: High-Resolution, Functional Mapping of Voxel, Vector, and Meta Datasets",
+    "funder": "National Institutes of Health",
+    "amount": 330000,
+    "received_amount": 330000,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2018-09-21",
+    "date_end": "2022-09-20",
+    "type": "research"
+  },
+  {
+    "slug": "fun-80",
+    "name": "NIH 1R01LM012832-01A1",
+    "title": "MyAura: Personalized Web Service for Epilepsy Management",
+    "funder": "National Institutes of Health",
+    "amount": 336733,
+    "received_amount": 336733,
+    "investigators": [
+      "luis-rocha",
+      "katy-borner"
+    ],
+    "date_start": "2018-09-10",
+    "date_end": "2022-05-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-79",
+    "name": "NSF DGE-1735095",
+    "title": "NRT: Interdisciplinary Training in Complex Networks and Systems",
+    "funder": "National Science Foundation",
+    "amount": 2999845,
+    "received_amount": 2999845,
+    "investigators": [
+      "luis-rocha",
+      "armando-razo",
+      "bernice-pescosolido",
+      "katy-borner",
+      "olaf-sporns"
+    ],
+    "date_start": "2017-09-01",
+    "date_end": "2022-08-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-76",
+    "name": "NSF DRL-1713567 Award",
+    "title": "Data Visualization Literacy: Research and Tools that Advance Public Understanding of Scientific Data",
+    "funder": "National Science Foundation",
+    "amount": 1355236,
+    "received_amount": 1355236,
+    "investigators": [
+      "katy-borner",
+      "kylie-peppler",
+      "brian-kennedy",
+      "stephen-miles-uzzo",
+      "joe-e-heimlich"
+    ],
+    "date_start": "2017-08-01",
+    "date_end": "2021-07-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-72",
+    "name": "NSF 1546824 Award",
+    "title": "Conference on Modelling Science, Technology, and Innovation, May 2016",
+    "funder": "National Science Foundation",
+    "amount": 48750,
+    "received_amount": 0,
+    "investigators": [
+      "katy-borner",
+      "stasa-milojevic"
+    ],
+    "date_start": "2015-09-01",
+    "date_end": "2016-08-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-75",
+    "name": "NCSE-1538763",
+    "title": "Measuring and visualizing STEM pathways",
+    "funder": "National Science Foundation",
+    "amount": 149451,
+    "received_amount": 149451,
+    "investigators": [
+      "adam-v-maltese",
+      "katy-borner"
+    ],
+    "date_start": "2015-08-15",
+    "date_end": "2017-01-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-71",
+    "name": "NIH 1U01CA198934-01",
+    "title": "Visualizing healthcare system dynamics in biomedical Big Data",
+    "funder": "National Institutes of Health",
+    "amount": 537387,
+    "received_amount": 537387,
+    "investigators": [
+      "griffin-weber",
+      "katy-borner"
+    ],
+    "date_start": "2015-06-01",
+    "date_end": "2018-05-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-73",
+    "name": "Tides Foundation 066656-00002B",
+    "title": "MOOC Visual Analytics",
+    "funder": "Tides Foundation",
+    "amount": 50000,
+    "received_amount": 0,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2015-04-03",
+    "date_end": "2016-08-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-70",
+    "name": "NIH/NCAT",
+    "title": "SMS-VAT: A Scalable Multi-Scale Visual Analytical Tool",
+    "funder": "National Institutes of Health",
+    "amount": 300000,
+    "received_amount": 300000,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2014-09-01",
+    "date_end": "2016-07-30",
+    "type": "research"
+  },
+  {
+    "slug": "fun-68",
+    "name": "Econ P01 National Bureau of Economic Research",
+    "title": "Innovation in an Aging Society",
+    "funder": "National Institutes of Health",
+    "amount": 650000,
+    "received_amount": 369438,
+    "investigators": [
+      "bruce-weinberg",
+      "gerald-marschke",
+      "katy-borner"
+    ],
+    "date_start": "2013-09-01",
+    "date_end": "2018-08-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-69",
+    "name": "NIH/SBIR",
+    "title": "Visualizing Biomedical Research Characteristics",
+    "funder": "NET ESOLUTIONS CORPORATION (NETE) ",
+    "amount": 400282,
+    "received_amount": 0,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2013-09-01",
+    "date_end": "2014-08-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-58",
+    "name": "Google Inc.",
+    "title": "MOOC Extension in Support of Student-Client Projects",
+    "funder": "Google Inc.",
+    "amount": 50000,
+    "received_amount": 50000,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2013-01-01",
+    "date_end": "2013-12-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-62",
+    "name": "BBSRC Evidence Team Phase 1",
+    "title": "Introducing the Science of Science (Sci2) Tool to the BBSRC Policy Evidence Team",
+    "funder": "BBSRC",
+    "amount": 0,
+    "received_amount": 0,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2013-01-01",
+    "date_end": "2013-05-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-74",
+    "name": "NSF 1227110",
+    "title": "Network for Computational Nanotechnology Cyber Platform",
+    "funder": "National Science Foundation",
+    "amount": 13799392,
+    "received_amount": 0,
+    "investigators": [
+      "gerhard-kilmeck"
+    ],
+    "date_start": "2012-12-01",
+    "date_end": "2017-11-30",
+    "type": "research"
+  },
+  {
+    "slug": "fun-60",
+    "name": "NAS",
+    "title": "National Academy of Science Exhibit Display",
+    "funder": "National Academy of Sciences",
+    "amount": 0,
+    "received_amount": 0,
+    "investigators": [
+      "katy-borner",
+      "chin-hua-kong"
+    ],
+    "date_start": "2012-11-01",
+    "date_end": "2013-01-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-59",
+    "name": "BBSRC Evidence Team Phase 2",
+    "title": "Introducing the Science of Science (Sci2) Tool",
+    "funder": "BBSRC",
+    "amount": 0,
+    "received_amount": 0,
+    "investigators": [
+      "katy-borner",
+      "robert-light"
+    ],
+    "date_start": "2012-10-19",
+    "date_end": "2013-01-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-61",
+    "name": "NSF ISE DRL-1223698 Award",
+    "title": "Pathways: Sense-Making of Big Data",
+    "funder": "National Science Foundation",
+    "amount": 250000,
+    "received_amount": 0,
+    "investigators": [
+      "katy-borner",
+      "adam-v-maltese",
+      "joe-e-heimlich",
+      "stephen-miles-uzzo",
+      "paul-martin",
+      "sasha-palmquist"
+    ],
+    "date_start": "2012-07-01",
+    "date_end": "2015-06-30",
+    "type": "research"
+  },
+  {
+    "slug": "fun-63",
+    "name": "Digging Into Data - NSF, NEH, JISC Award",
+    "title": "Digging by Debating: Linking Massive Datasets to Specific Arguments",
+    "funder": "National Science Foundation",
+    "amount": 62500,
+    "received_amount": 150000,
+    "investigators": [
+      "colin-allen",
+      "katy-borner",
+      "chris-reed",
+      "andrew-ravenscroft",
+      "david-bourget"
+    ],
+    "date_start": "2012-04-01",
+    "date_end": "2014-01-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-64",
+    "name": " Indiana Economic Development Corporation IEDC FAST-10-R-0004 award. IEDC's Indiana 21st Century Research and Technology Fund",
+    "title": "Increasing SBIR Commercial Success: Actively Embedding SBIR/STTR Commercialization Processes into Indiana's Innovation Network",
+    "funder": " Indiana Economic Development Corporation",
+    "amount": 71776,
+    "received_amount": 241776,
+    "investigators": [
+      "aditya-p-mathur",
+      "katy-borner"
+    ],
+    "date_start": "2012-01-01",
+    "date_end": "2013-12-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-65",
+    "name": "NSF OCI-0940824 DataNet award ",
+    "title": "SEAD Sustainable Environment Through Actionable Data",
+    "funder": "National Science Foundation",
+    "amount": 188432,
+    "received_amount": 8000000,
+    "investigators": [
+      "margaret-hedstrom",
+      "myron-p-gutmann",
+      "praveen-kumar",
+      "jim-myers",
+      "beth-plale"
+    ],
+    "date_start": "2011-10-01",
+    "date_end": "2015-03-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-66",
+    "name": "NIH U01 GM098959-01 Award",
+    "title": "Monitoring, Modeling, and Forecasting Tools for Fostering an Innovative S&T Workforce",
+    "funder": "National Institutes of Health",
+    "amount": 746758,
+    "received_amount": 1087943,
+    "investigators": [
+      "katy-borner",
+      "james-p-crutchfield"
+    ],
+    "date_start": "2011-09-01",
+    "date_end": "2015-08-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-67",
+    "name": "NEH Award Subcontract to Brown University",
+    "title": "A Journal-Driven Bibliography of Digital Humanities",
+    "funder": "National Endowment for the Humanities",
+    "amount": 15000,
+    "received_amount": 0,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2011-01-01",
+    "date_end": "2013-06-30",
+    "type": "research"
+  },
+  {
+    "slug": "fun-48",
+    "name": "Data Visualization and Knowledge Management Putting USDA Science on the Map",
+    "title": "USDA Contract Phase II",
+    "funder": "United States Department of Agriculture",
+    "amount": 13346,
+    "received_amount": 0,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2010-09-01",
+    "date_end": "2010-11-30",
+    "type": "research"
+  },
+  {
+    "slug": "fun-54",
+    "name": "Bill & Melinda Gates Foundation ",
+    "title": "Scaling Philanthropy: Providing New Insight About Million Dollar Gifts",
+    "funder": "The Bill and Melinda Gates Foundation",
+    "amount": 147790,
+    "received_amount": 753474,
+    "investigators": [
+      "una-o-osili",
+      "patrick-rooney",
+      "katy-borner"
+    ],
+    "date_start": "2010-08-01",
+    "date_end": "2013-09-30",
+    "type": "research"
+  },
+  {
+    "slug": "fun-50",
+    "name": "Intergovernmental Personnel Act Agreement",
+    "title": "National Institutes of Health",
+    "funder": "National Institutes of Health",
+    "amount": 10156,
+    "received_amount": 10156,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2010-07-05",
+    "date_end": "2010-07-28",
+    "type": "research"
+  },
+  {
+    "slug": "fun-44",
+    "name": "Exhibit lnterface for Browsing a Collection of Letters",
+    "title": "Republic of Letters",
+    "funder": "Royal Netherlands Academy of Arts and Sciences (KNAW)",
+    "amount": 13472,
+    "received_amount": 0,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2010-07-01",
+    "date_end": "2010-12-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-45",
+    "name": "2010 CACR Internal Research Gran",
+    "title": "Sourcing the Experts: Distributed Social Networks for Privacy-Aware Knowledge Sharing",
+    "funder": "Indiana University",
+    "amount": 50000,
+    "received_amount": 19998,
+    "investigators": [
+      "apu-kapadia",
+      "katy-borner",
+      "johan-bollen",
+      "fillipo-menczer"
+    ],
+    "date_start": "2010-07-01",
+    "date_end": "2011-06-30",
+    "type": "research"
+  },
+  {
+    "slug": "fun-47",
+    "name": "Data Visualization and Knowledge Management: Putting USDA Science on the Map",
+    "title": "USDA Contract Phase I",
+    "funder": "United States Department of Agriculture",
+    "amount": 16425,
+    "received_amount": 16425,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2010-04-19",
+    "date_end": "2010-08-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-46",
+    "name": "NSF Contract",
+    "title": "Analyzing and Mapping the Interdisciplinarity of NSF Proposals",
+    "funder": "National Science Foundation Contract",
+    "amount": 24900,
+    "received_amount": 0,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2010-04-01",
+    "date_end": "2010-10-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-43",
+    "name": "NIH 1U24RR029822-01",
+    "title": "The National Research Network: VIVO: Enabling National Networking of Scientists",
+    "funder": "National Institutes of Health",
+    "amount": 958608,
+    "received_amount": 12300000,
+    "investigators": [
+      "mike-conlon",
+      "jon-corson-rikert",
+      "katy-borner"
+    ],
+    "date_start": "2009-09-01",
+    "date_end": "2012-08-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-51",
+    "name": "NSF SES-0925915 ",
+    "title": "Faculty mentor for Mapping the International Evolution of Collaboration Networks on Patents Granted to Universities around the World",
+    "funder": "National Science Foundation",
+    "amount": 239642,
+    "received_amount": 0,
+    "investigators": [
+      "margaret-clements"
+    ],
+    "date_start": "2009-09-01",
+    "date_end": "2011-08-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-52",
+    "name": "NIH SBIR PHS 2009-1 (Topic 012) Contract ",
+    "title": "Accuracy of Models for Mapping the Medical Sciences",
+    "funder": "National Institutes of Health",
+    "amount": 240713,
+    "received_amount": 73389,
+    "investigators": [
+      "kevin-w-boyack",
+      "richard-klavans",
+      "katy-borner"
+    ],
+    "date_start": "2009-09-01",
+    "date_end": "2010-02-28",
+    "type": "research"
+  },
+  {
+    "slug": "fun-53",
+    "name": "NIH 5R01MH079068-02 award",
+    "title": "Informatics Infrastructure for Vector-Based Neuroanatomical Atlases",
+    "funder": "National Institutes of Health",
+    "amount": 245736,
+    "received_amount": 1629141,
+    "investigators": [
+      "gully-apc-burns",
+      "richard-thompson",
+      "larry-swanson",
+      "david-newman",
+      "seth-ruffins",
+      "katy-borner"
+    ],
+    "date_start": "2009-06-01",
+    "date_end": "2014-01-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-40",
+    "name": "NSF CBET-0831636 ",
+    "title": "SGER/Collaborative Research: Mapping the Structure and Evolution of Sustainability Science Research",
+    "funder": "National Science Foundation",
+    "amount": 104197,
+    "received_amount": 0,
+    "investigators": [
+      "katy-borner",
+      "luis-m-a-bettencourt"
+    ],
+    "date_start": "2009-01-01",
+    "date_end": "2010-12-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-41",
+    "name": "James S. McDonnell Foundation grant in area 21st Century Science-Special Initiative/Studying Complex Systems ",
+    "title": "Mapping the Emergence and Development of Scientific Disciplines",
+    "funder": "James S. McDonnell Foundation",
+    "amount": 364787,
+    "received_amount": 0,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2009-01-01",
+    "date_end": "2013-12-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-57",
+    "name": "NIH/NCI Contract",
+    "title": "Evaluating Large, Interdisciplinary Research Initiatives",
+    "funder": "National Institutes of Health",
+    "amount": 40000,
+    "received_amount": 40000,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2008-09-01",
+    "date_end": "2009-08-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-55",
+    "name": "NIH/NINDS Contract 127571",
+    "title": "Statistical Modeling Interactive Tool for Research Grant Data Analysis",
+    "funder": "National Institutes of Health",
+    "amount": 33711,
+    "received_amount": 33711,
+    "investigators": [
+      "katy-borner",
+      "bruce-w-herr-ii"
+    ],
+    "date_start": "2008-08-06",
+    "date_end": "2008-11-04",
+    "type": "research"
+  },
+  {
+    "slug": "fun-56",
+    "name": "NIH/NINDS Contract 127571 Continuation",
+    "title": "Statistical Modeling Interactive Tool for Research Grant Data Analysis",
+    "funder": "National Institutes of Health",
+    "amount": 38445,
+    "received_amount": 38445,
+    "investigators": [
+      "katy-borner",
+      "bruce-w-herr-ii"
+    ],
+    "date_start": "2008-08-06",
+    "date_end": "2008-11-04",
+    "type": "research"
+  },
+  {
+    "slug": "fun-36",
+    "name": "NSF SBE-0738111 Award",
+    "title": "TLS: Towards a Macroscope for Science Policy Decision Making",
+    "funder": "National Science Foundation",
+    "amount": 399870,
+    "received_amount": 299870,
+    "investigators": [
+      "katy-borner",
+      "weixia-bonnie-huang",
+      "kevin-w-boyack",
+      "mark-price",
+      "lokman-meho",
+      "micah-linnemeier",
+      "qizheng-stanley-bao",
+      "shreyas-ahir"
+    ],
+    "date_start": "2008-01-01",
+    "date_end": "2009-12-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-38",
+    "name": "NSF IIS-0750993 Award",
+    "title": "NSF Workshop on Knowledge Management and Visualization Tools in Support of Discovery",
+    "funder": "National Science Foundation",
+    "amount": 49461,
+    "received_amount": 49461,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2008-01-01",
+    "date_end": "2008-12-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-39",
+    "name": "NIH R21DA024259 award",
+    "title": "EpiC: A Cyberinfrastructure That Supports the Plug-and-Play of Datasets and Algorithms Needed for the Study and Analysis of Epidemic Processes",
+    "funder": "National Institutes of Health",
+    "amount": 487120,
+    "received_amount": 0,
+    "investigators": [
+      "steven-j-sherman",
+      "alessandro-vespignani",
+      "katy-borner"
+    ],
+    "date_start": "2007-09-01",
+    "date_end": "2012-12-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-37",
+    "name": "NSF IIS-0737783 Supplement",
+    "title": "TSEEN China",
+    "funder": "National Science Foundation",
+    "amount": 49989,
+    "received_amount": 49989,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2007-08-01",
+    "date_end": "2008-07-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-33",
+    "name": "NSF IIS-0715303 Award",
+    "title": "Creative Metaphors to Stimulate New Approaches to Visualizing, Understanding, and Rethinking Large Repositories of Scholarly Data",
+    "funder": "National Science Foundation",
+    "amount": 198812,
+    "received_amount": 198812,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2007-07-01",
+    "date_end": "2009-05-01",
+    "type": "research"
+  },
+  {
+    "slug": "fun-32",
+    "name": "NSF IIS-0724282 Award",
+    "title": "I-IKM: \"Visualizing Network Dynamics\" Competition at the International Conference on Network Science 2007",
+    "funder": "National Science Foundation",
+    "amount": 11890,
+    "received_amount": 11890,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2007-04-01",
+    "date_end": "2008-03-01",
+    "type": "research"
+  },
+  {
+    "slug": "fun-34",
+    "name": "NSF CHE-0723989 Award",
+    "title": "Mapping Science Exhibit at the 233rd National Meeting & Exposition of the American Chemical Society, Chicago",
+    "funder": "National Science Foundation",
+    "amount": 75708,
+    "received_amount": 75708,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2007-03-15",
+    "date_end": "2008-03-14",
+    "type": "research"
+  },
+  {
+    "slug": "fun-42",
+    "name": "Mapping Science Exhibit at the 233rd National Meeting and Exposition of the American Chemical Society in Chicago, IL",
+    "title": "CHE Standard Grant",
+    "funder": "National Science Foundation",
+    "amount": 75708,
+    "received_amount": 75708,
+    "investigators": [],
+    "date_start": "2007-03-15",
+    "date_end": "2008-02-29",
+    "type": "research"
+  },
+  {
+    "slug": "fun-3",
+    "name": "Collaborative Systems NSF IIS-0534909 Grant",
+    "title": "Collaborative Research: Social Networking Tools to Enable Collaboration in the Tobacco Surveillance, Epidemiology, and Evaluation Network (TSEEN)",
+    "funder": "National Science Foundation",
+    "amount": 197591,
+    "received_amount": 197591,
+    "investigators": [
+      "katy-borner",
+      "noshir-s-contractor",
+      "thomas-finholt",
+      "gary-giovino"
+    ],
+    "date_start": "2006-03-15",
+    "date_end": "2009-02-28",
+    "type": "research"
+  },
+  {
+    "slug": "fun-1",
+    "name": "NSF-IIS Supplement",
+    "title": "Mapping Science Exhibit at the New York Public Library",
+    "funder": "National Science Foundation",
+    "amount": 15000,
+    "received_amount": 15000,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2006-01-01",
+    "date_end": "2006-12-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-2",
+    "name": "NSF-CHEM Supplement",
+    "title": "Mapping Science Exhibit at the New York Public Library",
+    "funder": "National Science Foundation",
+    "amount": 15000,
+    "received_amount": 15000,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2006-01-01",
+    "date_end": "2006-12-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-35",
+    "name": "NSF-IIS Supplement",
+    "title": "Mapping Chemistry",
+    "funder": "National Science Foundation",
+    "amount": 75250,
+    "received_amount": 50000,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2006-01-01",
+    "date_end": "2007-01-01",
+    "type": "research"
+  },
+  {
+    "slug": "fun-5",
+    "name": "James S. McDonnell Foundation Grant in Area Studying Complex Systems",
+    "title": "Modeling the Structure and Evolution of Scholarly Knowledge",
+    "funder": "James S. McDonnell Foundation",
+    "amount": 420164,
+    "received_amount": 420164,
+    "investigators": [
+      "katy-borner",
+      "robert-goldstone"
+    ],
+    "date_start": "2006-01-01",
+    "date_end": "2010-12-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-6",
+    "name": "NSF SES-0527638 Award",
+    "title": "2006 International Workshop and Conference",
+    "funder": "National Science Foundation",
+    "amount": 99837,
+    "received_amount": 99837,
+    "investigators": [
+      "stanley-wasserman",
+      "katy-borner",
+      "albert-laszlo-barabasi",
+      "alessandro-vespignani",
+      "noshir-s-contractor"
+    ],
+    "date_start": "2005-11-01",
+    "date_end": "2006-10-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-7",
+    "name": "NSF IIS-0513650 Award",
+    "title": "SEI: NetWorkBench: A Large-Scale Network Analysis, Modeling and Visualization Toolkit for Biomedical, Social Science and Physics Research",
+    "funder": "National Science Foundation",
+    "amount": 1120926,
+    "received_amount": 550000,
+    "investigators": [
+      "katy-borner",
+      "albert-laszlo-barabasi",
+      "santiago-schnell",
+      "alessandro-vespignani",
+      "stanley-wasserman",
+      "eric-wernert"
+    ],
+    "date_start": "2005-09-01",
+    "date_end": "2009-08-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-4",
+    "name": "NSF CHE-0524661 Award",
+    "title": "Mapping Chemistry",
+    "funder": "National Science Foundation",
+    "amount": 182415,
+    "received_amount": 90000,
+    "investigators": [
+      "katy-borner",
+      "kevin-w-boyack"
+    ],
+    "date_start": "2005-08-01",
+    "date_end": "2006-07-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-9",
+    "name": "21st Century Grant",
+    "title": "Mapping Indiana's Intellectual Space",
+    "funder": "21th Century",
+    "amount": 7200,
+    "received_amount": 72000,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2005-07-01",
+    "date_end": "2005-07-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-8",
+    "name": "NSF SCI-0533892 Award",
+    "title": "SCI: Collaborative Workshop: The Role of Social Network Research in Enabling Cyberinfrastructure and the Role of Cyberinfrastructure in Enabling Social Network Research",
+    "funder": "National Science Foundation",
+    "amount": 50000,
+    "received_amount": 25000,
+    "investigators": [
+      "noshir-s-contractor",
+      "katy-borner"
+    ],
+    "date_start": "2005-06-01",
+    "date_end": "2005-12-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-10",
+    "name": "Equipment Grant by 21st Century",
+    "title": "Mapping Indiana's Intellectual Space",
+    "funder": "21th Century",
+    "amount": 95000,
+    "received_amount": 95000,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2005-04-01",
+    "date_end": "2005-04-30",
+    "type": "research"
+  },
+  {
+    "slug": "fun-11",
+    "name": "Equipment Grant by UITS",
+    "title": "Cyberinfrastructure for Network Analysis",
+    "funder": "UITS, Indiana University",
+    "amount": 157925,
+    "received_amount": 15925,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2005-01-01",
+    "date_end": "2005-01-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-12",
+    "name": "21st Century Grant",
+    "title": "Center of Excellence for Computational Diagnostics",
+    "funder": "21th Century",
+    "amount": 1994951,
+    "received_amount": 133985,
+    "investigators": [
+      "susanne-ragg",
+      "david-e-clemmer",
+      "sven-rahmann",
+      "ilka-ott",
+      "terry-vik",
+      "clement-j-mcdonald",
+      "munro-peacock",
+      "zina-ben-miled",
+      "katy-borner"
+    ],
+    "date_start": "2004-09-01",
+    "date_end": "2008-08-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-13",
+    "name": "NSF Role-0411846 Award",
+    "title": "Quest Atlantis: Advancing a Socially-Responsive Meta-Game for Learning",
+    "funder": "National Science Foundation",
+    "amount": 1516075,
+    "received_amount": 15000,
+    "investigators": [
+      "sasha-barab",
+      "susan-c-herring",
+      "daniel-hickey",
+      "william-blanton",
+      "katy-borner"
+    ],
+    "date_start": "2004-09-01",
+    "date_end": "2007-08-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-14",
+    "name": "SUN Microsystems Grant",
+    "title": "Sun Center of Excellence in Knowledge Management and Discovery",
+    "funder": "SUN Microsystems",
+    "amount": 0,
+    "received_amount": 0,
+    "investigators": [
+      "stephanie-burks",
+      "katy-borner",
+      "zina-ben-miled"
+    ],
+    "date_start": "2004-04-01",
+    "date_end": "2004-04-30",
+    "type": "research"
+  },
+  {
+    "slug": "fun-15",
+    "name": "IU Grant",
+    "title": "Outstanding Junior Faculty Award",
+    "funder": "UITS, Indiana University",
+    "amount": 14000,
+    "received_amount": 14000,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2004-01-01",
+    "date_end": "2004-12-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-16",
+    "name": "Pervasive Technology Labs Fellowship",
+    "title": "Data-Code-Computing Infrastructure for Data Mining, Modeling, and Visualization Research and Education",
+    "funder": "Pervasive Technology Labs",
+    "amount": 48750,
+    "received_amount": 48750,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2003-09-01",
+    "date_end": "2004-08-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-17",
+    "name": "NSF IIS-0238261 Award",
+    "title": "CAREER: Visualizing Knowledge Domains",
+    "funder": "National Science Foundation",
+    "amount": 536250,
+    "received_amount": 446000,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2003-09-01",
+    "date_end": "2008-08-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-18",
+    "name": "NSF DUE-0333623 Award",
+    "title": "Project ENABLE: Learning Through Associations in a Grid Based Bioinformatics Digital Library",
+    "funder": "National Science Foundation",
+    "amount": 449562,
+    "received_amount": 275156,
+    "investigators": [
+      "javed-mostafa",
+      "katy-borner",
+      "donald-g-gilbert",
+      "snehasis-mukhopadhyay",
+      "mathew-j-palakal"
+    ],
+    "date_start": "2003-09-01",
+    "date_end": "2005-08-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-21",
+    "name": "National Academy of Sciences Grant",
+    "title": "Arthur M. Sackler Colloquium on Mapping Knowledge Domains",
+    "funder": "National Academy of Sciences",
+    "amount": 50000,
+    "received_amount": 50000,
+    "investigators": [
+      "richard-m-shiffrin",
+      "katy-borner"
+    ],
+    "date_start": "2003-05-09",
+    "date_end": "2003-05-11",
+    "type": "research"
+  },
+  {
+    "slug": "fun-19",
+    "name": "AT&T (formerly SBC, formerly Ameritech) Fellow Grant",
+    "title": "Information Visualization Learning Modules",
+    "funder": "SBC (formerly Ameritech)",
+    "amount": 15000,
+    "received_amount": 15000,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2003-05-01",
+    "date_end": "2004-06-30",
+    "type": "research"
+  },
+  {
+    "slug": "fun-20",
+    "name": "Center for Innovative Learning Technologies (CILT) Grant no. EIA-0124012 from the National Science Foundation to SRI International under subcontract to Indiana University",
+    "title": "Building Blocks for Virtual Worlds: Design Principles for a Starter Kit for Educational Virtual Worlds",
+    "funder": "Center for Innovative Learning Technologies (CILT)",
+    "amount": 9999,
+    "received_amount": 9999,
+    "investigators": [
+      "katy-borner",
+      "margaret-corbit",
+      "bonnie-jean-devarco"
+    ],
+    "date_start": "2002-08-01",
+    "date_end": "2003-03-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-22",
+    "name": "NSF/BCS-0215738 Major Research Instrumentation Grant",
+    "title": "Development of a Spatial-Experimental Laboratory for Research and Policy Analysis Related to Complex Systems",
+    "funder": "National Science Foundation",
+    "amount": 847874,
+    "received_amount": 0,
+    "investigators": [
+      "elinor-ostrom",
+      "jerome-busemeyer",
+      "tom-evans",
+      "robert-huckfeldt",
+      "james-walker",
+      "katy-borner"
+    ],
+    "date_start": "2002-08-01",
+    "date_end": "2007-07-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-23",
+    "name": "NIH Demo Fund",
+    "title": "Mapping Aging Research",
+    "funder": "National Institutes of Health",
+    "amount": 11400,
+    "received_amount": 11400,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2001-08-01",
+    "date_end": "2002-12-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-24",
+    "name": "Academic Equipment Grant EDUD-7824-010346-US, SUN Microsystems",
+    "title": "Creating a 3-D Collaborative Information Universe",
+    "funder": "SUN Microsystems",
+    "amount": 30007,
+    "received_amount": 30007,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2001-04-01",
+    "date_end": "2001-04-30",
+    "type": "research"
+  },
+  {
+    "slug": "fun-25",
+    "name": "Indiana University's High Performance Network Applications Program",
+    "title": "iUniverse: Creating a Collaborative Information Universe for IU",
+    "funder": "Indiana University's High Performance Network Applications Program",
+    "amount": 20000,
+    "received_amount": 20000,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "2000-09-01",
+    "date_end": "2001-08-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-27",
+    "name": "Indiana University High Performance Network Applications Program",
+    "title": "LVis: Digital Library Visualizer",
+    "funder": "Indiana University's High Performance Network Applications Program",
+    "amount": 20000,
+    "received_amount": 20000,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "1999-09-01",
+    "date_end": "2000-08-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-26",
+    "name": "Postdoc Fellowship from the German Academic Exchange Center (DAAD)",
+    "title": "Smart Virtual Environments",
+    "funder": "German Academic Exchange Center (DAAD)",
+    "amount": 28000,
+    "received_amount": 28000,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "1998-09-01",
+    "date_end": "1999-08-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-28",
+    "name": "NRW Grant (Germany)",
+    "title": "AkuVis: Interactive Visualization of Acoustic Data",
+    "funder": "Institute of Public Health NRW",
+    "amount": 0,
+    "received_amount": 0,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "1998-01-01",
+    "date_end": "1998-01-01",
+    "type": "research"
+  },
+  {
+    "slug": "fun-31",
+    "name": "Forschungs- und Innovationsfond Grant",
+    "title": "Interaction Metaphors in VR Worlds",
+    "funder": "Forschungs- und Innovationsfond",
+    "amount": 0,
+    "received_amount": 0,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "1998-01-01",
+    "date_end": "1998-12-31",
+    "type": "research"
+  },
+  {
+    "slug": "fun-30",
+    "name": "JISTEC Grant",
+    "title": "Research and Work in Japan Grant",
+    "funder": "Japan International Science and Technology Exchange Center (JISTEC)",
+    "amount": 0,
+    "received_amount": 0,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "1995-08-01",
+    "date_end": "1995-09-30",
+    "type": "research"
+  },
+  {
+    "slug": "fun-29",
+    "name": "German Academic Exchange Center Grant (DAAD)",
+    "title": "Grant for Ph.D. Research in US",
+    "funder": "German Academic Exchange Center (DAAD)",
+    "amount": 28000,
+    "received_amount": 0,
+    "investigators": [
+      "katy-borner"
+    ],
+    "date_start": "1995-07-01",
+    "date_end": "1995-08-31",
+    "type": "research"
+  }
+]

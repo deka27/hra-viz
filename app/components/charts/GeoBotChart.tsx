@@ -36,6 +36,10 @@ export default function GeoBotChart({ data }: { data: Row[] }) {
     : v >= 1000 ? `${(v / 1000).toFixed(0)}K`
     : `${v}`;
 
+  // Compute a clean max for the percentage axis so no data goes out of bounds
+  const maxPct = Math.max(...sorted.map((d) => d.bot_pct));
+  const pctAxisMax = Math.ceil(maxPct / 10) * 10; // round up to next 10
+
   const option = {
     backgroundColor: "transparent",
     tooltip: {
@@ -89,7 +93,7 @@ export default function GeoBotChart({ data }: { data: Row[] }) {
         name: "Bot %",
         nameTextStyle: { color: "#71717a", fontSize: 10 },
         min: 0,
-        max: 40,
+        max: pctAxisMax,
         axisLabel: {
           color: "#71717a",
           fontSize: 10,

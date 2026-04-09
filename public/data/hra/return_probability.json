@@ -1,0 +1,115 @@
+{
+  "metrics": {
+    "sessions_used": 12591,
+    "positive_rate": 0.5672,
+    "accuracy": 0.6194,
+    "precision": 0.6723,
+    "recall": 0.6422,
+    "f1": 0.6569,
+    "roc_auc": 0.6413
+  },
+  "top_positive_features": [
+    {
+      "feature": "early_pageView",
+      "weight": 0.6299341136285059
+    },
+    {
+      "feature": "early_click",
+      "weight": 0.4359036808375064
+    },
+    {
+      "feature": "early_hover",
+      "weight": 0.33485936015992185
+    },
+    {
+      "feature": "early_error",
+      "weight": 0.27875777553223974
+    },
+    {
+      "feature": "early_keyboard",
+      "weight": 0.2005241173527943
+    },
+    {
+      "feature": "unique_tools",
+      "weight": 0.048374317129928325
+    }
+  ],
+  "top_negative_features": [
+    {
+      "feature": "early_events",
+      "weight": -0.20751050723703865
+    },
+    {
+      "feature": "is_weekend",
+      "weight": -0.13110821571787798
+    },
+    {
+      "feature": "duration_min",
+      "weight": -0.08708743020088187
+    },
+    {
+      "feature": "early_unique_paths",
+      "weight": -0.016970670174803422
+    },
+    {
+      "feature": "events",
+      "weight": 0.001208141636027382
+    },
+    {
+      "feature": "start_hour_utc",
+      "weight": 0.041574538689113406
+    }
+  ],
+  "probability_buckets": [
+    {
+      "probability_bucket": "(-0.001, 0.1]",
+      "sessions": 4,
+      "observed_return_rate": 0.5
+    },
+    {
+      "probability_bucket": "(0.1, 0.2]",
+      "sessions": 4,
+      "observed_return_rate": 0.25
+    },
+    {
+      "probability_bucket": "(0.2, 0.3]",
+      "sessions": 228,
+      "observed_return_rate": 0.1491
+    },
+    {
+      "probability_bucket": "(0.3, 0.4]",
+      "sessions": 2818,
+      "observed_return_rate": 0.428
+    },
+    {
+      "probability_bucket": "(0.4, 0.5]",
+      "sessions": 2765,
+      "observed_return_rate": 0.5027
+    },
+    {
+      "probability_bucket": "(0.5, 0.6]",
+      "sessions": 3856,
+      "observed_return_rate": 0.633
+    },
+    {
+      "probability_bucket": "(0.6, 0.7]",
+      "sessions": 2014,
+      "observed_return_rate": 0.7075
+    },
+    {
+      "probability_bucket": "(0.7, 0.8]",
+      "sessions": 831,
+      "observed_return_rate": 0.7124
+    },
+    {
+      "probability_bucket": "(0.8, 0.9]",
+      "sessions": 70,
+      "observed_return_rate": 0.7143
+    },
+    {
+      "probability_bucket": "(0.9, 1.0]",
+      "sessions": 1,
+      "observed_return_rate": 1.0
+    }
+  ]
+}

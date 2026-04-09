@@ -1,0 +1,148 @@
+{
+  "suspicious_countries": [
+    {
+      "c_country": "FI",
+      "anomaly_score": 0.6432,
+      "total_requests": 43647,
+      "human_requests": 28748,
+      "bot_requests": 14899,
+      "ai_bot_requests": 0,
+      "bot_ratio": 0.3414,
+      "session_count": 18.0,
+      "avg_session_depth": 10.88888888888889,
+      "likely_artifact": true
+    },
+    {
+      "c_country": "JM",
+      "anomaly_score": 0.5664,
+      "total_requests": 1515,
+      "human_requests": 1236,
+      "bot_requests": 279,
+      "ai_bot_requests": 0,
+      "bot_ratio": 0.1842,
+      "session_count": 1.0,
+      "avg_session_depth": 2.0,
+      "likely_artifact": true
+    },
+    {
+      "c_country": "SD",
+      "anomaly_score": 0.5521,
+      "total_requests": 352,
+      "human_requests": 352,
+      "bot_requests": 0,
+      "ai_bot_requests": 0,
+      "bot_ratio": 0.0,
+      "session_count": 1.0,
+      "avg_session_depth": 90.0,
+      "likely_artifact": true
+    },
+    {
+      "c_country": "MG",
+      "anomaly_score": 0.5093,
+      "total_requests": 2023,
+      "human_requests": 2023,
+      "bot_requests": 0,
+      "ai_bot_requests": 0,
+      "bot_ratio": 0.0,
+      "session_count": 11.0,
+      "avg_session_depth": 37.36363636363637,
+      "likely_artifact": true
+    },
+    {
+      "c_country": "GT",
+      "anomaly_score": 0.4911,
+      "total_requests": 1118,
+      "human_requests": 1117,
+      "bot_requests": 1,
+      "ai_bot_requests": 0,
+      "bot_ratio": 0.0009,
+      "session_count": 3.0,
+      "avg_session_depth": 72.33333333333333,
+      "likely_artifact": true
+    },
+    {
+      "c_country": "AU",
+      "anomaly_score": 0.6168,
+      "total_requests": 93504,
+      "human_requests": 90298,
+      "bot_requests": 77,
+      "ai_bot_requests": 3129,
+      "bot_ratio": 0.0343,
+      "session_count": 68.0,
+      "avg_session_depth": 103.97058823529412,
+      "likely_artifact": false
+    },
+    {
+      "c_country": "PL",
+      "anomaly_score": 0.5884,
+      "total_requests": 46746,
+      "human_requests": 43553,
+      "bot_requests": 50,
+      "ai_bot_requests": 3143,
+      "bot_ratio": 0.0683,
+      "session_count": 61.0,
+      "avg_session_depth": 11.737704918032787,
+      "likely_artifact": false
+    },
+    {
+      "c_country": "NZ",
+      "anomaly_score": 0.5595,
+      "total_requests": 14455,
+      "human_requests": 13654,
+      "bot_requests": 1,
+      "ai_bot_requests": 800,
+      "bot_ratio": 0.0554,
+      "session_count": 56.0,
+      "avg_session_depth": 9.5,
+      "likely_artifact": false
+    },
+    {
+      "c_country": "PT",
+      "anomaly_score": 0.5406,
+      "total_requests": 17639,
+      "human_requests": 15522,
+      "bot_requests": 2117,
+      "ai_bot_requests": 0,
+      "bot_ratio": 0.12,
+      "session_count": 109.0,
+      "avg_session_depth": 5.394495412844036,
+      "likely_artifact": false
+    },
+    {
+      "c_country": "EC",
+      "anomaly_score": 0.4991,
+      "total_requests": 116413,
+      "human_requests": 116400,
+      "bot_requests": 13,
+      "ai_bot_requests": 0,
+      "bot_ratio": 0.0001,
+      "session_count": 154.0,
+      "avg_session_depth": 40.824675324675326,
+      "likely_artifact": false
+    },
+    {
+      "c_country": "IE",
+      "anomaly_score": 0.4862,
+      "total_requests": 94606,
+      "human_requests": 92374,
+      "bot_requests": 1924,
+      "ai_bot_requests": 308,
+      "bot_ratio": 0.0236,
+      "session_count": 33.0,
+      "avg_session_depth": 12.909090909090908,
+      "likely_artifact": false
+    },
+    {
+      "c_country": "BR",
+      "anomaly_score": 0.4829,
+      "total_requests": 63413,
+      "human_requests": 60693,
+      "bot_requests": 1232,
+      "ai_bot_requests": 1488,
+      "bot_ratio": 0.0429,
+      "session_count": 168.0,
+      "avg_session_depth": 11.380952380952381,
+      "likely_artifact": false
+    }
+  ]
+}

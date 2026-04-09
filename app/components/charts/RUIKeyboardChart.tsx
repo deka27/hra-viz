@@ -1,8 +1,12 @@
 "use client";
 
-import topPathsByEvent from "../../../public/data/top_paths_by_event.json";
+import { useMemo } from "react";
 
 type EventPathRow = { path: string; count: number };
+
+interface RUIKeyboardProps {
+  data: Record<string, EventPathRow[]>;
+}
 
 const KEY_ACTIONS: Record<string, string> = {
   A: "Move Left",
@@ -15,26 +19,6 @@ const KEY_ACTIONS: Record<string, string> = {
 
 const DISPLAY_KEYS = ["A", "E", "Q", "W", "D", "S"] as const;
 
-const keyboardRows = ((topPathsByEvent as { keyboard?: EventPathRow[] }).keyboard ?? [])
-  .filter((row) => row.path.startsWith("rui.stage-content.directional-controls.keyboard."));
-
-const keyCounts = keyboardRows.reduce<Record<string, number>>((acc, row) => {
-  const key = row.path.split(".").pop()?.toUpperCase();
-  if (!key || !(key in KEY_ACTIONS)) return acc;
-  acc[key] = (acc[key] ?? 0) + row.count;
-  return acc;
-}, {});
-
-const HEAT: Record<string, { count: number; action: string }> = Object.fromEntries(
-  DISPLAY_KEYS.map((key) => [
-    key,
-    { count: keyCounts[key] ?? 0, action: KEY_ACTIONS[key] },
-  ]),
-) as Record<string, { count: number; action: string }>;
-
-const MAX   = Math.max(...Object.values(HEAT).map((d) => d.count));
-const TOTAL = Object.values(HEAT).reduce((s, d) => s + d.count, 0);
-
 function heatRGB(t: number): [number, number, number] {
   return [
     Math.round(76  + t * 63),
@@ -43,11 +27,11 @@ function heatRGB(t: number): [number, number, number] {
   ];
 }
 
-function keyStyle(key: string) {
-  const d = HEAT[key];
+function keyStyle(key: string, heat: Record<string, { count: number; action: string }>, max: number) {
+  const d = heat[key];
   if (!d)         return { fill: "var(--kb-key-fill)", stroke: "var(--kb-key-stroke)", text: "var(--kb-key-text)" };
   if (d.count === 0) return { fill: "var(--kb-key-zero-fill)", stroke: "var(--kb-key-zero-stroke)", text: "var(--kb-key-zero-text)" };
-  const t = d.count / MAX;
+  const t = d.count / max;
   const [r, g, b] = heatRGB(t);
   return {
     fill:   `rgb(${r},${g},${b})`,
@@ -83,7 +67,26 @@ const KB_H  = ROWS.length * (KH + G) - G;  // 226px
 const SVG_W = KB_W + PAD * 2;               // 672px
 const SVG_H = KB_H + PAD * 2;               // 242px
 
-export default function RUIKeyboardChart() {
+export default function RUIKeyboardChart({ data: topPathsByEvent }: RUIKeyboardProps) {
+  const { HEAT, MAX, TOTAL } = useMemo(() => {
+    const keyboardRows = ((topPathsByEvent as { keyboard?: EventPathRow[] }).keyboard ?? [])
+      .filter((row) => row.path.startsWith("rui.stage-content.directional-controls.keyboard."));
+    const keyCounts = keyboardRows.reduce<Record<string, number>>((acc, row) => {
+      const key = row.path.split(".").pop()?.toUpperCase();
+      if (!key || !(key in KEY_ACTIONS)) return acc;
+      acc[key] = (acc[key] ?? 0) + row.count;
+      return acc;
+    }, {});
+    const heat: Record<string, { count: number; action: string }> = Object.fromEntries(
+      DISPLAY_KEYS.map((key) => [
+        key,
+        { count: keyCounts[key] ?? 0, action: KEY_ACTIONS[key] },
+      ]),
+    ) as Record<string, { count: number; action: string }>;
+    const max = Math.max(...Object.values(heat).map((d) => d.count));
+    const total = Object.values(heat).reduce((s, d) => s + d.count, 0);
+    return { HEAT: heat, MAX: max, TOTAL: total };
+  }, [topPathsByEvent]);
   return (
     <div className="flex flex-col gap-3 w-full [--kb-plate:#eff1f6] [--kb-key-fill:#ffffff] [--kb-key-stroke:#d4d4db] [--kb-key-text:#71717a] [--kb-key-zero-fill:#e9ecf3] [--kb-key-zero-stroke:#cdd3de] [--kb-key-zero-text:#6b7280] [--kb-count-text:#ddd6fe] dark:[--kb-plate:#0d0d0f] dark:[--kb-key-fill:#1c1c1f] dark:[--kb-key-stroke:#282828] dark:[--kb-key-text:#343438] dark:[--kb-key-zero-fill:#252527] dark:[--kb-key-zero-stroke:#333336] dark:[--kb-key-zero-text:#52525b] dark:[--kb-count-text:#ddd6fe]">
       {/* ── Keyboard SVG ── */}
@@ -105,7 +108,7 @@ export default function RUIKeyboardChart() {
             const kw = w * PITCH - G;
             cx += w * PITCH;
 
-            const s = keyStyle(key);
+            const s = keyStyle(key, HEAT, MAX);
             const hd = HEAT[key];
             const isHeat   = hd !== undefined;
             const hasCount = isHeat && hd.count > 0;

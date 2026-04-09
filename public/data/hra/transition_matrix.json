@@ -1,0 +1,227 @@
+{
+  "transitions": [
+    {
+      "from_tool": "KG Explorer",
+      "to_tool": "CDE",
+      "count": 28,
+      "probability": 0.3944
+    },
+    {
+      "from_tool": "FTU Explorer",
+      "to_tool": "KG Explorer",
+      "count": 27,
+      "probability": 0.5
+    },
+    {
+      "from_tool": "KG Explorer",
+      "to_tool": "FTU Explorer",
+      "count": 23,
+      "probability": 0.3239
+    },
+    {
+      "from_tool": "CDE",
+      "to_tool": "KG Explorer",
+      "count": 19,
+      "probability": 0.5278
+    },
+    {
+      "from_tool": "KG Explorer",
+      "to_tool": "EUI",
+      "count": 17,
+      "probability": 0.2394
+    },
+    {
+      "from_tool": "FTU Explorer",
+      "to_tool": "CDE",
+      "count": 15,
+      "probability": 0.2778
+    },
+    {
+      "from_tool": "RUI",
+      "to_tool": "EUI",
+      "count": 14,
+      "probability": 0.8235
+    },
+    {
+      "from_tool": "EUI",
+      "to_tool": "FTU Explorer",
+      "count": 12,
+      "probability": 0.3243
+    },
+    {
+      "from_tool": "EUI",
+      "to_tool": "KG Explorer",
+      "count": 12,
+      "probability": 0.3243
+    },
+    {
+      "from_tool": "FTU Explorer",
+      "to_tool": "EUI",
+      "count": 11,
+      "probability": 0.2037
+    },
+    {
+      "from_tool": "EUI",
+      "to_tool": "RUI",
+      "count": 9,
+      "probability": 0.2432
+    },
+    {
+      "from_tool": "CDE",
+      "to_tool": "FTU Explorer",
+      "count": 8,
+      "probability": 0.2222
+    },
+    {
+      "from_tool": "CDE",
+      "to_tool": "EUI",
+      "count": 7,
+      "probability": 0.1944
+    },
+    {
+      "from_tool": "EUI",
+      "to_tool": "CDE",
+      "count": 4,
+      "probability": 0.1081
+    },
+    {
+      "from_tool": "KG Explorer",
+      "to_tool": "RUI",
+      "count": 3,
+      "probability": 0.0423
+    },
+    {
+      "from_tool": "CDE",
+      "to_tool": "RUI",
+      "count": 2,
+      "probability": 0.0556
+    },
+    {
+      "from_tool": "RUI",
+      "to_tool": "CDE",
+      "count": 1,
+      "probability": 0.0588
+    },
+    {
+      "from_tool": "RUI",
+      "to_tool": "KG Explorer",
+      "count": 1,
+      "probability": 0.0588
+    },
+    {
+      "from_tool": "FTU Explorer",
+      "to_tool": "RUI",
+      "count": 1,
+      "probability": 0.0185
+    },
+    {
+      "from_tool": "RUI",
+      "to_tool": "FTU Explorer",
+      "count": 1,
+      "probability": 0.0588
+    }
+  ],
+  "top_paths": [
+    {
+      "path": "FTU Explorer -> CDE",
+      "count": 13
+    },
+    {
+      "path": "KG Explorer -> CDE",
+      "count": 11
+    },
+    {
+      "path": "FTU Explorer -> KG Explorer",
+      "count": 8
+    },
+    {
+      "path": "CDE -> KG Explorer",
+      "count": 7
+    },
+    {
+      "path": "KG Explorer -> FTU Explorer",
+      "count": 7
+    },
+    {
+      "path": "KG Explorer -> EUI",
+      "count": 7
+    },
+    {
+      "path": "RUI -> EUI",
+      "count": 6
+    },
+    {
+      "path": "FTU Explorer -> EUI",
+      "count": 5
+    },
+    {
+      "path": "CDE -> FTU Explorer",
+      "count": 5
+    },
+    {
+      "path": "KG Explorer -> FTU Explorer -> KG Explorer",
+      "count": 4
+    },
+    {
+      "path": "KG Explorer -> CDE -> KG Explorer",
+      "count": 3
+    },
+    {
+      "path": "EUI -> RUI -> EUI",
+      "count": 3
+    },
+    {
+      "path": "FTU Explorer -> KG Explorer -> FTU Explorer",
+      "count": 3
+    },
+    {
+      "path": "EUI -> FTU Explorer",
+      "count": 3
+    },
+    {
+      "path": "EUI -> KG Explorer",
+      "count": 2
+    },
+    {
+      "path": "EUI -> CDE",
+      "count": 2
+    },
+    {
+      "path": "CDE -> EUI",
+      "count": 2
+    },
+    {
+      "path": "FTU Explorer -> KG Explorer -> FTU Explorer -> KG Explorer",
+      "count": 2
+    },
+    {
+      "path": "CDE -> KG Explorer -> CDE",
+      "count": 2
+    },
+    {
+      "path": "FTU Explorer -> EUI -> FTU Explorer",
+      "count": 2
+    },
+    {
+      "path": "RUI -> EUI -> RUI",
+      "count": 2
+    },
+    {
+      "path": "KG Explorer -> EUI -> FTU Explorer",
+      "count": 1
+    },
+    {
+      "path": "KG Explorer -> CDE -> EUI",
+      "count": 1
+    },
+    {
+      "path": "EUI -> KG Explorer -> EUI",
+      "count": 1
+    },
+    {
+      "path": "CDE -> EUI -> CDE -> RUI -> CDE",
+      "count": 1
+    }
+  ],
+  "sessions_with_sequences": 121
+}

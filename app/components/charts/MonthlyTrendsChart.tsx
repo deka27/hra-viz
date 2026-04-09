@@ -109,6 +109,16 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
   // Exclude "publication" from event legend — already shown via purple bars
   const eventTypesPresent = useMemo(() => [...new Set(events.map((e) => e.type))].filter((t) => t !== "publication"), [events]);
 
+  // Detect partial (incomplete) last month: if its total is < 50% of the prior month
+  const isLastMonthPartial = useMemo(() => {
+    if (data.length < 2) return false;
+    const total = (d: MonthData) =>
+      (d.CDE ?? 0) + (d.EUI ?? 0) + (d["FTU Explorer"] ?? 0) + (d["KG Explorer"] ?? 0) + (d.RUI ?? 0);
+    const last = total(data[data.length - 1]);
+    const prev = total(data[data.length - 2]);
+    return prev > 0 && last < prev * 0.5;
+  }, [data]);
+
   // Build chart option
   const option = useMemo(() => {
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -225,6 +235,40 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
       });
     }
 
+    // Mark the last month as partial if it's incomplete
+    if (isLastMonthPartial && series.length > 0) {
+      const lastMonth = months[months.length - 1];
+      // Attach markArea to the first tool series (visual overlay spanning last month)
+      const firstTool = series[0];
+      const existingAreas = firstTool.markArea?.data ?? [];
+      firstTool.markArea = {
+        silent: true,
+        data: [
+          ...existingAreas,
+          [
+            {
+              xAxis: lastMonth,
+              itemStyle: {
+                color: "rgba(251,191,36,0.06)",
+                borderColor: "rgba(251,191,36,0.35)",
+                borderWidth: 1,
+                borderType: "dashed",
+              },
+              label: {
+                show: true,
+                position: "insideTop",
+                formatter: "Partial month",
+                color: "#fbbf24",
+                fontSize: 10,
+                fontStyle: "italic",
+              },
+            },
+            { xAxis: lastMonth },
+          ],
+        ],
+      };
+    }
+
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const tooltipFormatter = (params: any[]) => {
       const publishedParam = params.find((p: { seriesName: string }) => p.seriesName === "Published");
@@ -269,19 +313,29 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
           return `<div style="margin:2px 0;padding:3px 0;font-size:11px;color:${color}">${icon} ${ev.title}</div>`;
         }).join("");
       const eventBlock = eventRows ? `<div style="padding-top:5px;margin-top:3px;border-top:1px solid #3f3f46">${eventRows}</div>` : "";
-      return `<div style="padding:4px 2px"><div style="font-weight:600;color:#fafafa;margin-bottom:8px;font-size:13px">${month}</div>${rows}${pubRow}${eventBlock}</div>`;
+      const lastMonthLabel = months[months.length - 1];
+      const partialNote = isLastMonthPartial && month === lastMonthLabel
+        ? `<div style="margin-top:6px;padding-top:5px;border-top:1px solid #3f3f46;font-size:10px;color:#fbbf24;font-style:italic">⚠ Partial month — data collection still in progress</div>`
+        : "";
+      return `<div style="padding:4px 2px"><div style="font-weight:600;color:#fafafa;margin-bottom:8px;font-size:13px">${month}</div>${rows}${pubRow}${eventBlock}${partialNote}</div>`;
     };
 
     return {
       backgroundColor: "transparent",
       tooltip: { trigger: "axis", ...tooltipStyle, formatter: tooltipFormatter },
+      graphic: [{
+        type: "text",
+        left: "center",
+        bottom: 42,
+        style: { text: "Drag handles to adjust timeline", fill: "#52525b", fontSize: 10 },
+      }],
       legend: {
         top: 0, right: 0, itemWidth: 16, itemHeight: 4, borderRadius: 2,
         textStyle: { color: "#a1a1aa", fontSize: 12 },
         // Hide "Publications" from legend since it's shown in the panel legend below
         data: TOOLS.map((t) => t),
       },
-      grid: { top: 36, left: 8, right: hasPubs ? 32 : 8, bottom: 56, containLabel: true },
+      grid: { top: 36, left: 8, right: hasPubs ? 32 : 8, bottom: 72, containLabel: true },
       xAxis: {
         type: "category", data: months, boundaryGap: false,
         ...axisStyle,
@@ -302,19 +356,30 @@ export default function MonthlyTrendsChart({ data, events = [], publications = [
       ],
       dataZoom: [
         {
-          type: "slider", bottom: 0, height: 20,
+          type: "slider", bottom: 0, height: 36,
           borderColor: "#3f3f46", backgroundColor: "#18181b",
-          fillerColor: "rgba(59,130,246,0.12)",
-          handleStyle: { color: "#3b82f6", borderColor: "#3b82f6" },
+          fillerColor: "rgba(59,130,246,0.08)",
+          selectedDataBackground: {
+            lineStyle: { color: "#3b82f6", width: 1 },
+            areaStyle: { color: "rgba(59,130,246,0.15)" },
+          },
+          dataBackground: {
+            lineStyle: { color: "#52525b", width: 0.5 },
+            areaStyle: { color: "rgba(82,82,91,0.15)" },
+          },
+          handleIcon: "path://M-9.35,34.56V42m0-40V9.5m-2,0h4a2,2,0,0,1,2,2v21a2,2,0,0,1,-2,2h-4a2,2,0,0,1,-2,-2v-21a2,2,0,0,1,2,-2Z",
+          handleSize: "110%",
+          handleStyle: { color: "#3b82f6", borderColor: "#2563eb", borderWidth: 1, shadowBlur: 4, shadowColor: "rgba(59,130,246,0.3)" },
           moveHandleStyle: { color: "#3b82f6" },
-          textStyle: { color: "#71717a", fontSize: 9 },
+          emphasis: { handleStyle: { color: "#60a5fa", borderColor: "#3b82f6" } },
+          textStyle: { color: "#a1a1aa", fontSize: 10 },
           brushSelect: false,
         },
         { type: "inside" },
       ],
       series,
     };
-  }, [data, months, events, eventsByMonth, hasPubs, pubBarPublished, pubBarPreprint, maxPubs]);
+  }, [data, months, events, eventsByMonth, hasPubs, pubBarPublished, pubBarPreprint, maxPubs, isLastMonthPartial]);
 
   // Click to select a month — click again to deselect
   const handleClick = useCallback((params: { dataIndex?: number }) => {

@@ -1,0 +1,1 @@
+[{"signal_type": "Path traversal", "count": 195163}, {"signal_type": "Admin panel probe", "count": 192461}, {"signal_type": "WordPress brute force", "count": 62422}, {"signal_type": "XSS attempt", "count": 58493}, {"signal_type": "SQL injection", "count": 44669}, {"signal_type": "Config/debug probe", "count": 35845}, {"signal_type": "Log4Shell (JNDI injection)", "count": 14983}]

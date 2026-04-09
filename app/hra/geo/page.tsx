@@ -1,0 +1,281 @@
+import ChartCard from "../../components/ChartCard";
+import StatCard from "../../components/StatCard";
+import GeoBarChart from "../../components/charts/GeoBarChart";
+import GeoRegionDonut from "../../components/charts/GeoRegionDonut";
+import DonutChart from "../../components/charts/DonutChart";
+import WorldMapChart from "../../components/charts/WorldMapChart";
+import GeoToolPreferenceChart from "../../components/charts/GeoToolPreferenceChart";
+import GeoBotChart from "../../components/charts/GeoBotChart";
+import GeoTopCountryByToolChart from "../../components/charts/GeoTopCountryByToolChart";
+
+import geoData from "../../../public/data/hra/geo_distribution.json";
+import geoToolPref from "../../../public/data/hra/geo_tool_preference.json";
+import geoToolBreakdown from "../../../public/data/hra/geo_tool_breakdown.json";
+import geoBotData from "../../../public/data/hra/geo_bot_traffic.json";
+
+const COUNTRY_NAMES: Record<string, string> = {
+  US: "United States", HK: "Hong Kong", SG: "Singapore", JP: "Japan", CN: "China",
+  IE: "Ireland", KR: "South Korea", DE: "Germany", EC: "Ecuador", GB: "United Kingdom",
+  NL: "Netherlands", IN: "India", CA: "Canada", IR: "Iran", FR: "France",
+  AT: "Austria", BR: "Brazil", BG: "Bulgaria", FI: "Finland", CH: "Switzerland",
+  AU: "Australia", HU: "Hungary", SE: "Sweden", ES: "Spain", RU: "Russia",
+  SC: "Seychelles", MX: "Mexico", PL: "Poland", VN: "Vietnam", IT: "Italy",
+};
+
+type GeoToolBreakdownRow = {
+  c_country: string;
+  total: number;
+  EUI: number;
+  RUI: number;
+  CDE: number;
+  "FTU Explorer": number;
+  "KG Explorer": number;
+};
+
+function countryName(code?: string): string {
+  if (!code) return "Unknown";
+  return COUNTRY_NAMES[code] ?? code;
+}
+
+const filtered = geoData.filter((d) => d.c_country !== "-");
+const total = filtered.reduce((s, d) => s + d.visits, 0);
+const usVisits = filtered.find((d) => d.c_country === "US")?.visits ?? 0;
+const intlVisits = total - usVisits;
+const countryCount = filtered.length;
+const asiaCodes = ["HK","SG","JP","CN","KR","AU","IN","VN","TW","PH","ID","MY","TH","BD","NZ","PK"];
+const apTotal = filtered.filter((d) => asiaCodes.includes(d.c_country)).reduce((s, d) => s + d.visits, 0);
+
+// Tool preference insights
+const kgDominantCount = geoToolPref.filter((d) => d.c_country !== "US" && d.top_tool === "KG Explorer").length;
+const intlCountries = geoToolPref.filter((d) => d.c_country !== "US").length;
+
+// Bot insights
+const topBotCountry = geoBotData[0];
+const highBotRateCountries = [...geoBotData]
+  .filter((d) => d.c_country !== "US")
+  .sort((a, b) => b.bot_pct - a.bot_pct)
+  .slice(0, 2);
+const highBotRateA = highBotRateCountries[0];
+const highBotRateB = highBotRateCountries[1];
+const toolBreakdownRows = geoToolBreakdown as GeoToolBreakdownRow[];
+
+// HK: 99.2% human traffic (computed from geoBotData)
+const hkBot = geoBotData.find((d) => d.c_country === "HK");
+const hkBotPct = hkBot?.bot_pct ?? 0.8;
+const hkHumanPct = (100 - hkBotPct).toFixed(1);
+
+// CDE Asia-Pacific share (tool breakdown by country)
+const asiaCdeCodes = ["HK","SG","JP","CN","KR","AU","IN","VN","TW","PH","ID","MY","TH","BD","NZ","PK"];
+const totalCde = toolBreakdownRows.reduce((s, r) => s + r.CDE, 0);
+const asiaCde = toolBreakdownRows
+  .filter((r) => asiaCdeCodes.includes(r.c_country))
+  .reduce((s, r) => s + r.CDE, 0);
+const asiaCdePct = totalCde > 0 ? ((asiaCde / totalCde) * 100).toFixed(1) : "0.0";
+
+export default function GeoPage() {
+  return (
+    <div className="flex flex-col gap-8">
+      {/* Header */}
+      <div className="flex flex-col gap-1">
+        <div className="text-xs font-medium text-zinc-500 uppercase tracking-wider">Geographic Distribution</div>
+        <h1 className="text-2xl font-bold text-zinc-900 dark:text-zinc-50 tracking-tight">Global Reach of HRA Tools</h1>
+        <p className="text-zinc-600 dark:text-zinc-400 text-sm max-w-2xl">
+          HRA tools are accessed from {countryCount} countries. While the US dominates overall visits,
+          KG Explorer has captured {kgDominantCount} of {intlCountries} international markets.
+        </p>
+      </div>
+
+      {/* Stats */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        <StatCard label="Countries" value={countryCount.toString()} sub="Countries with recorded visits" accent="text-blue-400" />
+        <StatCard label="US Visits" value={usVisits.toLocaleString()} sub={`${((usVisits / total) * 100).toFixed(1)}% of total`} accent="text-blue-400" />
+        <StatCard label="International" value={intlVisits.toLocaleString()} sub={`${((intlVisits / total) * 100).toFixed(1)}% from outside US`} />
+        <StatCard label="Asia-Pacific" value={apTotal.toLocaleString()} sub={`${((apTotal / total) * 100).toFixed(1)}% of total visits`} accent="text-rose-400" />
+      </div>
+
+      {/* World map */}
+      <ChartCard
+        title="World Map — Visits by Country"
+        subtitle="Scroll or pinch to zoom · Hover a country for details · Fill intensity = visit count"
+        badge={`${countryCount} countries`}
+        badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
+      >
+        <WorldMapChart data={geoData} toolPref={geoToolPref} botData={geoBotData} />
+      </ChartCard>
+
+      {/* Top countries bar */}
+      <ChartCard
+        title="Top 20 Countries by Visits"
+        subtitle="Color-coded by region: blue = Americas, violet = Europe, rose = Asia-Pacific, amber = Middle East & Africa"
+        badge="Top 20"
+        badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
+      >
+        <GeoBarChart data={geoData} />
+      </ChartCard>
+
+      {/* Tool preference by country */}
+      <ChartCard
+        title="Which Tool Does Each Country Favor?"
+        subtitle="Bar length = total visits · Color = most-used tool · Label = dominant tool + its % share · Top 30 countries"
+        badge="Tool Preference"
+        badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
+      >
+        <GeoToolPreferenceChart data={geoToolBreakdown} />
+        <div className="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">US vs. World</span>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
+              The <span className="text-blue-400 font-semibold">US prefers EUI</span> (42% of visits) —
+              reflecting its long-established role as the primary spatial exploration tool.
+              Every other top-30 country except Ecuador favors KG Explorer.
+            </p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">KG Explorer&apos;s International Capture</span>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
+              <span className="text-rose-400 font-semibold">KG Explorer dominates {kgDominantCount} of {intlCountries} international markets</span> —
+              launched Aug 2025, it became the default entry point for new international users
+              within months.
+            </p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Near-Exclusive Adoption</span>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
+              Hong Kong (98%), Japan (93%), South Korea (94%), and Ireland (86%) show
+              near-exclusive KG Explorer preference — suggesting a{" "}
+              <span className="text-rose-400 font-semibold">specific international research community</span> driving adoption.
+            </p>
+          </div>
+        </div>
+      </ChartCard>
+
+      <ChartCard
+        title="Top 10 Countries by Tool (Vertical Bars)"
+        subtitle="Five charts (one per tool) · x-axis is country code · y-axis is visits"
+        badge="Bar view"
+        badgeColor="bg-zinc-100 text-zinc-600 border-zinc-300 dark:bg-zinc-800 dark:text-zinc-400 dark:border-zinc-700"
+      >
+        <GeoTopCountryByToolChart data={toolBreakdownRows} />
+        <div className="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800">
+          <p className="text-sm text-zinc-700 dark:text-zinc-300">
+            These rankings are calculated independently per tool, so you can compare how country usage differs
+            between EUI, RUI, CDE, FTU Explorer, and KG Explorer.
+          </p>
+        </div>
+      </ChartCard>
+
+      {/* Bot traffic by country */}
+      <ChartCard
+        title="Bot Traffic by Country"
+        subtitle="Bot + AI-crawler requests per country · bar = volume · label = bot rate % of all requests from that country"
+        badge="Traffic Quality"
+        badgeColor="bg-red-500/10 text-red-400 border-red-500/20"
+      >
+        <GeoBotChart data={geoBotData} />
+        <div className="mt-4 pt-4 border-t border-zinc-200 dark:border-zinc-800 grid grid-cols-1 sm:grid-cols-3 gap-4">
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Volume vs Rate</span>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
+              {countryName(topBotCountry?.c_country)} has the highest bot volume ({topBotCountry?.bot_pct}% rate), while
+              <span className="text-red-400 font-semibold"> {countryName(highBotRateA?.c_country)} ({highBotRateA?.bot_pct}%) and {countryName(highBotRateB?.c_country)} ({highBotRateB?.bot_pct}%)</span>{" "}
+              show the highest bot-rate share among non-US countries.
+            </p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Likely AI Crawlers</span>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
+              The &ldquo;AI-Assistant Bot&rdquo; category captures LLM training crawlers.
+              {countryName(highBotRateA?.c_country)} and {countryName(highBotRateB?.c_country)} cloud regions
+              appear to host many such crawlers targeting open scientific data APIs.
+            </p>
+          </div>
+          <div className="flex flex-col gap-1">
+            <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Clean Traffic</span>
+            <p className="text-sm text-zinc-700 dark:text-zinc-300">
+              Hong Kong (1.1%) and Ireland (1.9%) have very low bot rates despite high human visit volumes —
+              predominantly genuine research traffic.
+            </p>
+          </div>
+        </div>
+      </ChartCard>
+
+      {/* Regional breakdown + US vs Intl */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <ChartCard title="Regional Breakdown" subtitle="Visit share by world region">
+          <GeoRegionDonut data={geoData} />
+        </ChartCard>
+
+        <ChartCard title="US vs. International" subtitle="Domestic vs. global visit split">
+          <DonutChart
+            data={[
+              { name: "United States", value: usVisits, color: "#3b82f6" },
+              { name: "International", value: intlVisits, color: "#52525b" },
+            ]}
+            unit="visits"
+          />
+        </ChartCard>
+      </div>
+
+      {/* New signal callouts */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="bg-white dark:bg-zinc-900 border border-emerald-500/20 rounded-xl p-5 flex flex-col gap-3">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Signal · Hong Kong</span>
+            <span className="text-2xl font-bold text-emerald-400">{hkHumanPct}%</span>
+          </div>
+          <div className="flex flex-col gap-1">
+            <p className="text-sm font-semibold text-zinc-800 dark:text-zinc-100">Hong Kong: Cleanest Human Traffic in the Dataset</p>
+            <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              HK has a <span className="text-emerald-400 font-semibold">{hkHumanPct}% human traffic rate</span> — among the highest in the dataset. Traffic spikes in Jan 2026 (129K requests), Mar and Jun 2025, and Oct 2025 correlate with specific academic events rather than crawlers, confirming this as a genuine biomedical research community.
+            </p>
+          </div>
+        </div>
+
+        <div className="bg-white dark:bg-zinc-900 border border-amber-500/20 rounded-xl p-5 flex flex-col gap-3">
+          <div className="flex items-center justify-between">
+            <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-400 border border-amber-500/20">Signal · CDE + Asia</span>
+            <span className="text-2xl font-bold text-amber-400">{asiaCdePct}%</span>
+          </div>
+          <div className="flex flex-col gap-1">
+            <p className="text-sm font-semibold text-zinc-800 dark:text-zinc-100">CDE Has Disproportionate Asia-Pacific Adoption</p>
+            <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
+              <span className="text-amber-400 font-semibold">{asiaCdePct}% of all CDE visits</span> originate from Asia-Pacific — a higher share than any other tool. CDE&apos;s peak usage hour is 05:00 UTC (1pm IST / 1pm CST), pointing to Asian research labs doing cell data mapping during their business hours.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      {/* Notable country callouts */}
+      <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-5">
+        <h2 className="text-sm font-semibold text-zinc-800 dark:text-zinc-200 mb-4">Notable Country Patterns</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          {[
+            { flag: "🇭🇰", country: "Hong Kong", code: "HK", color: "text-rose-400",
+              note: "#2 globally — disproportionately high given population. Likely strong research institution usage." },
+            { flag: "🇸🇬", country: "Singapore", code: "SG", color: "text-rose-400",
+              note: "#3 globally — Singapore's biomedical research community is actively using HRA tools." },
+            { flag: "🇯🇵", country: "Japan", code: "JP", color: "text-rose-400",
+              note: "Strong engagement — Japan has a large bioinformatics research community aligned with HRA's goals." },
+            { flag: "🇮🇪", country: "Ireland", code: "IE", color: "text-violet-400",
+              note: "Higher than expected — possible datacenter/proxy traffic or cloud research infrastructure." },
+            { flag: "🇩🇪", country: "Germany", code: "DE", color: "text-violet-400",
+              note: "Consistent European usage. Germany is a major player in open biomedical data initiatives." },
+            { flag: "🇪🇨", country: "Ecuador", code: "EC", color: "text-blue-400",
+              note: "Unexpectedly high for South America — possibly a research collaboration or CDN proxy traffic." },
+          ].map((c) => (
+            <div key={c.country} className="flex flex-col gap-2 p-3 bg-zinc-200/70 dark:bg-zinc-800/40 rounded-lg">
+              <div className="flex items-center gap-2">
+                <span className="text-xl">{c.flag}</span>
+                <div>
+                  <span className={`text-sm font-semibold ${c.color}`}>{c.country}</span>
+                  <span className="text-xs text-zinc-500 ml-2">{(filtered.find((d) => d.c_country === c.code)?.visits ?? 0).toLocaleString()} visits</span>
+                </div>
+              </div>
+              <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">{c.note}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+}

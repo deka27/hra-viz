@@ -1,7 +1,7 @@
 "use client";
 
 import ThemedEChart from "../ThemedEChart";
-import { axisStyle, tooltipStyle } from "../../lib/chartTheme";
+import { TOOL_COLORS, axisStyle, tooltipStyle } from "../../lib/chartTheme";
 
 
 export interface SpikeRow {
@@ -13,14 +13,6 @@ export interface SpikeRow {
   from_value?: number;
   to_value?: number;
 }
-
-const TOOL_COLORS: Record<string, string> = {
-  "KG Explorer": "#f43f5e",
-  EUI: "#3b82f6",
-  RUI: "#8b5cf6",
-  CDE: "#f59e0b",
-  "FTU Explorer": "#10b981",
-};
 
 function visitJump(event: SpikeRow): number {
   if (typeof event.to_value === "number" && typeof event.from_value === "number") {

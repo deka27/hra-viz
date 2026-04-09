@@ -1,0 +1,648 @@
+{
+  "rules": [
+    {
+      "antecedents": [
+        "feature:organ_selection",
+        "tool:KG Explorer"
+      ],
+      "consequent": "feature:download_export",
+      "support": 0.0243,
+      "confidence": 0.5312,
+      "lift": 5.9299,
+      "leverage": 0.0202
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "tool:EUI"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.0251,
+      "confidence": 0.4773,
+      "lift": 5.67,
+      "leverage": 0.0207
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "tool:KG Explorer"
+      ],
+      "consequent": "feature:download_export",
+      "support": 0.0753,
+      "confidence": 0.4948,
+      "lift": 5.5229,
+      "leverage": 0.0617
+    },
+    {
+      "antecedents": [
+        "event:hover",
+        "tool:KG Explorer"
+      ],
+      "consequent": "feature:download_export",
+      "support": 0.0403,
+      "confidence": 0.4349,
+      "lift": 4.8548,
+      "leverage": 0.032
+    },
+    {
+      "antecedents": [
+        "event:pageView",
+        "feature:organ_selection"
+      ],
+      "consequent": "feature:download_export",
+      "support": 0.0223,
+      "confidence": 0.4343,
+      "lift": 4.8479,
+      "leverage": 0.0177
+    },
+    {
+      "antecedents": [
+        "event:hover",
+        "feature:organ_selection"
+      ],
+      "consequent": "tool:EUI",
+      "support": 0.0214,
+      "confidence": 0.3799,
+      "lift": 4.405,
+      "leverage": 0.0165
+    },
+    {
+      "antecedents": [
+        "event:hover",
+        "tool:EUI"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.0214,
+      "confidence": 0.368,
+      "lift": 4.3711,
+      "leverage": 0.0165
+    },
+    {
+      "antecedents": [
+        "feature:download_export",
+        "tool:KG Explorer"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.0243,
+      "confidence": 0.3228,
+      "lift": 3.8341,
+      "leverage": 0.018
+    },
+    {
+      "antecedents": [
+        "event:pageView",
+        "tool:KG Explorer"
+      ],
+      "consequent": "feature:download_export",
+      "support": 0.065,
+      "confidence": 0.3332,
+      "lift": 3.7192,
+      "leverage": 0.0475
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "feature:organ_selection"
+      ],
+      "consequent": "feature:download_export",
+      "support": 0.0274,
+      "confidence": 0.3283,
+      "lift": 3.6641,
+      "leverage": 0.0199
+    },
+    {
+      "antecedents": [
+        "feature:organ_selection"
+      ],
+      "consequent": "feature:download_export",
+      "support": 0.0274,
+      "confidence": 0.3255,
+      "lift": 3.633,
+      "leverage": 0.0199
+    },
+    {
+      "antecedents": [
+        "feature:download_export"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.0274,
+      "confidence": 0.3059,
+      "lift": 3.633,
+      "leverage": 0.0199
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "feature:download_export"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.0274,
+      "confidence": 0.3059,
+      "lift": 3.633,
+      "leverage": 0.0199
+    },
+    {
+      "antecedents": [
+        "event:hover",
+        "tool:KG Explorer"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.0281,
+      "confidence": 0.3031,
+      "lift": 3.6001,
+      "leverage": 0.0203
+    },
+    {
+      "antecedents": [
+        "event:pageView",
+        "feature:download_export"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.0223,
+      "confidence": 0.2986,
+      "lift": 3.5471,
+      "leverage": 0.016
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "tool:KG Explorer"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.045,
+      "confidence": 0.2959,
+      "lift": 3.5151,
+      "leverage": 0.0322
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "feature:organ_selection"
+      ],
+      "consequent": "tool:EUI",
+      "support": 0.0251,
+      "confidence": 0.3007,
+      "lift": 3.4859,
+      "leverage": 0.0179
+    },
+    {
+      "antecedents": [
+        "feature:organ_selection"
+      ],
+      "consequent": "tool:EUI",
+      "support": 0.0251,
+      "confidence": 0.2981,
+      "lift": 3.4563,
+      "leverage": 0.0178
+    },
+    {
+      "antecedents": [
+        "tool:EUI"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.0251,
+      "confidence": 0.291,
+      "lift": 3.4563,
+      "leverage": 0.0178
+    },
+    {
+      "antecedents": [
+        "feature:download_export",
+        "feature:organ_selection"
+      ],
+      "consequent": "tool:KG Explorer",
+      "support": 0.0243,
+      "confidence": 0.887,
+      "lift": 3.2502,
+      "leverage": 0.0168
+    },
+    {
+      "antecedents": [
+        "event:pageView",
+        "feature:download_export"
+      ],
+      "consequent": "tool:KG Explorer",
+      "support": 0.065,
+      "confidence": 0.8693,
+      "lift": 3.1854,
+      "leverage": 0.0446
+    },
+    {
+      "antecedents": [
+        "event:hover",
+        "feature:download_export"
+      ],
+      "consequent": "tool:KG Explorer",
+      "support": 0.0403,
+      "confidence": 0.8552,
+      "lift": 3.1339,
+      "leverage": 0.0275
+    },
+    {
+      "antecedents": [
+        "feature:download_export"
+      ],
+      "consequent": "tool:KG Explorer",
+      "support": 0.0753,
+      "confidence": 0.8404,
+      "lift": 3.0797,
+      "leverage": 0.0508
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "feature:download_export"
+      ],
+      "consequent": "tool:KG Explorer",
+      "support": 0.0753,
+      "confidence": 0.8404,
+      "lift": 3.0797,
+      "leverage": 0.0508
+    },
+    {
+      "antecedents": [
+        "tool:KG Explorer"
+      ],
+      "consequent": "feature:download_export",
+      "support": 0.0753,
+      "confidence": 0.2759,
+      "lift": 3.0797,
+      "leverage": 0.0508
+    },
+    {
+      "antecedents": [
+        "event:pageView",
+        "feature:organ_selection"
+      ],
+      "consequent": "tool:KG Explorer",
+      "support": 0.039,
+      "confidence": 0.7589,
+      "lift": 2.7809,
+      "leverage": 0.025
+    },
+    {
+      "antecedents": [
+        "feature:organ_selection",
+        "tool:EUI"
+      ],
+      "consequent": "event:hover",
+      "support": 0.0214,
+      "confidence": 0.8513,
+      "lift": 2.4863,
+      "leverage": 0.0128
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "event:pageView"
+      ],
+      "consequent": "feature:download_export",
+      "support": 0.0747,
+      "confidence": 0.2198,
+      "lift": 2.4536,
+      "leverage": 0.0443
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "event:hover"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.0555,
+      "confidence": 0.206,
+      "lift": 2.4464,
+      "leverage": 0.0328
+    },
+    {
+      "antecedents": [
+        "event:pageView",
+        "tool:KG Explorer"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.039,
+      "confidence": 0.2,
+      "lift": 2.3757,
+      "leverage": 0.0226
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "tool:EUI"
+      ],
+      "consequent": "event:hover",
+      "support": 0.0413,
+      "confidence": 0.7855,
+      "lift": 2.2942,
+      "leverage": 0.0233
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "event:pageView"
+      ],
+      "consequent": "event:modelChange",
+      "support": 0.0317,
+      "confidence": 0.0932,
+      "lift": 2.1106,
+      "leverage": 0.0167
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "event:pageView"
+      ],
+      "consequent": "tool:CDE",
+      "support": 0.0261,
+      "confidence": 0.0766,
+      "lift": 2.0657,
+      "leverage": 0.0134
+    },
+    {
+      "antecedents": [
+        "event:hover",
+        "event:pageView"
+      ],
+      "consequent": "event:modelChange",
+      "support": 0.0208,
+      "confidence": 0.0909,
+      "lift": 2.0587,
+      "leverage": 0.0107
+    },
+    {
+      "antecedents": [
+        "feature:download_export"
+      ],
+      "consequent": "event:click",
+      "support": 0.0896,
+      "confidence": 1.0,
+      "lift": 2.0246,
+      "leverage": 0.0453
+    },
+    {
+      "antecedents": [
+        "feature:download_export",
+        "tool:KG Explorer"
+      ],
+      "consequent": "event:click",
+      "support": 0.0753,
+      "confidence": 1.0,
+      "lift": 2.0246,
+      "leverage": 0.0381
+    },
+    {
+      "antecedents": [
+        "event:pageView",
+        "feature:download_export"
+      ],
+      "consequent": "event:click",
+      "support": 0.0747,
+      "confidence": 1.0,
+      "lift": 2.0246,
+      "leverage": 0.0378
+    },
+    {
+      "antecedents": [
+        "event:hover",
+        "feature:download_export"
+      ],
+      "consequent": "event:click",
+      "support": 0.0472,
+      "confidence": 1.0,
+      "lift": 2.0246,
+      "leverage": 0.0239
+    },
+    {
+      "antecedents": [
+        "feature:download_export",
+        "feature:organ_selection"
+      ],
+      "consequent": "event:click",
+      "support": 0.0274,
+      "confidence": 1.0,
+      "lift": 2.0246,
+      "leverage": 0.0139
+    },
+    {
+      "antecedents": [
+        "feature:organ_selection",
+        "tool:EUI"
+      ],
+      "consequent": "event:click",
+      "support": 0.0251,
+      "confidence": 1.0,
+      "lift": 2.0246,
+      "leverage": 0.0127
+    },
+    {
+      "antecedents": [
+        "event:click"
+      ],
+      "consequent": "feature:download_export",
+      "support": 0.0896,
+      "confidence": 0.1814,
+      "lift": 2.0246,
+      "leverage": 0.0453
+    },
+    {
+      "antecedents": [
+        "event:pageView",
+        "feature:organ_selection"
+      ],
+      "consequent": "event:click",
+      "support": 0.051,
+      "confidence": 0.9923,
+      "lift": 2.009,
+      "leverage": 0.0256
+    },
+    {
+      "antecedents": [
+        "feature:organ_selection"
+      ],
+      "consequent": "event:click",
+      "support": 0.0835,
+      "confidence": 0.9915,
+      "lift": 2.0074,
+      "leverage": 0.0419
+    },
+    {
+      "antecedents": [
+        "event:click"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.0835,
+      "confidence": 0.169,
+      "lift": 2.0074,
+      "leverage": 0.0419
+    },
+    {
+      "antecedents": [
+        "event:hover",
+        "feature:organ_selection"
+      ],
+      "consequent": "event:click",
+      "support": 0.0555,
+      "confidence": 0.9873,
+      "lift": 1.9989,
+      "leverage": 0.0277
+    },
+    {
+      "antecedents": [
+        "event:hover",
+        "event:pageView"
+      ],
+      "consequent": "feature:download_export",
+      "support": 0.0409,
+      "confidence": 0.1787,
+      "lift": 1.9946,
+      "leverage": 0.0204
+    },
+    {
+      "antecedents": [
+        "feature:organ_selection",
+        "tool:KG Explorer"
+      ],
+      "consequent": "event:click",
+      "support": 0.045,
+      "confidence": 0.9844,
+      "lift": 1.993,
+      "leverage": 0.0224
+    },
+    {
+      "antecedents": [
+        "feature:organ_selection"
+      ],
+      "consequent": "tool:KG Explorer",
+      "support": 0.0457,
+      "confidence": 0.5434,
+      "lift": 1.9912,
+      "leverage": 0.0228
+    },
+    {
+      "antecedents": [
+        "tool:KG Explorer"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.0457,
+      "confidence": 0.1676,
+      "lift": 1.9912,
+      "leverage": 0.0228
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "feature:organ_selection"
+      ],
+      "consequent": "tool:KG Explorer",
+      "support": 0.045,
+      "confidence": 0.5395,
+      "lift": 1.9769,
+      "leverage": 0.0223
+    },
+    {
+      "antecedents": [
+        "tool:EUI"
+      ],
+      "consequent": "event:hover",
+      "support": 0.0581,
+      "confidence": 0.6731,
+      "lift": 1.9659,
+      "leverage": 0.0285
+    },
+    {
+      "antecedents": [
+        "event:hover"
+      ],
+      "consequent": "tool:EUI",
+      "support": 0.0581,
+      "confidence": 0.1696,
+      "lift": 1.9659,
+      "leverage": 0.0285
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "event:hover"
+      ],
+      "consequent": "feature:download_export",
+      "support": 0.0472,
+      "confidence": 0.175,
+      "lift": 1.9536,
+      "leverage": 0.023
+    },
+    {
+      "antecedents": [
+        "event:hover"
+      ],
+      "consequent": "feature:organ_selection",
+      "support": 0.0562,
+      "confidence": 0.1642,
+      "lift": 1.9508,
+      "leverage": 0.0274
+    },
+    {
+      "antecedents": [
+        "feature:organ_selection"
+      ],
+      "consequent": "event:hover",
+      "support": 0.0562,
+      "confidence": 0.6679,
+      "lift": 1.9508,
+      "leverage": 0.0274
+    },
+    {
+      "antecedents": [
+        "event:click",
+        "feature:organ_selection"
+      ],
+      "consequent": "event:hover",
+      "support": 0.0555,
+      "confidence": 0.6651,
+      "lift": 1.9425,
+      "leverage": 0.0269
+    },
+    {
+      "antecedents": [
+        "event:pageView",
+        "feature:organ_selection"
+      ],
+      "consequent": "event:hover",
+      "support": 0.0341,
+      "confidence": 0.6631,
+      "lift": 1.9366,
+      "leverage": 0.0165
+    },
+    {
+      "antecedents": [
+        "event:modelChange"
+      ],
+      "consequent": "event:click",
+      "support": 0.0403,
+      "confidence": 0.9137,
+      "lift": 1.8498,
+      "leverage": 0.0185
+    },
+    {
+      "antecedents": [
+        "event:click"
+      ],
+      "consequent": "event:modelChange",
+      "support": 0.0403,
+      "confidence": 0.0817,
+      "lift": 1.8498,
+      "leverage": 0.0185
+    },
+    {
+      "antecedents": [
+        "event:hover",
+        "feature:organ_selection"
+      ],
+      "consequent": "tool:KG Explorer",
+      "support": 0.0281,
+      "confidence": 0.5,
+      "lift": 1.8322,
+      "leverage": 0.0128
+    }
+  ],
+  "transaction_count": 12591,
+  "method": "mlxtend_apriori"
+}

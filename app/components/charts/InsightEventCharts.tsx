@@ -1,13 +1,11 @@
 "use client";
 
 import ThemedEChart from "../ThemedEChart";
-import { TOOL_COLORS } from "../../lib/chartTheme";
+import { TOOL_COLORS, tooltipStyle } from "../../lib/chartTheme";
 
 
 const TOOLTIP = {
-  backgroundColor: "#18181b",
-  borderColor: "#3f3f46",
-  borderWidth: 1,
+  ...tooltipStyle,
   textStyle: { color: "#fafafa", fontSize: 12 },
   extraCssText: "box-shadow:0 4px 20px rgba(0,0,0,0.5);border-radius:8px;padding:8px 12px;",
 };

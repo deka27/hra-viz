@@ -1,0 +1,842 @@
+#!/usr/bin/env python3
+"""
+DuckDB-native data pipeline for HRA Analytics Dashboard.
+
+Reads the CloudFront parquet directly — no full pandas load.
+All aggregations run as SQL on the columnar file, then results are
+written to public/data/hra/*.json for Next.js to import at build time.
+
+New outputs vs the pandas version:
+  cohort_retention.json    — monthly cohort × months-since-first-visit retention
+  tool_hourly_heatmap.json — per-tool event counts by hour of day (UTC)
+"""
+
+import json
+import os
+import argparse
+from pathlib import Path
+
+import duckdb
+
+def _latest_parquet(directory: str, pattern: str = "*.parquet") -> str:
+    """Find the most recently modified parquet in a directory."""
+    import glob
+    files = sorted(glob.glob(os.path.join(directory, pattern)), key=os.path.getmtime, reverse=True)
+    return files[0] if files else ""
+
+PARQUET_DEFAULT = _latest_parquet("data/hra") or "data/hra/2026-04-06_hra-logs.parquet"
+OUT_DEFAULT = "public/data/hra"
+
+TOOL_STEMS = "('/eui/','/rui/','/cde/','/ftu-explorer/','/kg-explorer/')"
+TOOL_CASE = """CASE cs_uri_stem
+    WHEN '/eui/'          THEN 'EUI'
+    WHEN '/rui/'          THEN 'RUI'
+    WHEN '/cde/'          THEN 'CDE'
+    WHEN '/ftu-explorer/' THEN 'FTU Explorer'
+    WHEN '/kg-explorer/'  THEN 'KG Explorer'
+END"""
+
+APP_TOOL_CASE = """CASE query['app']
+    WHEN 'ccf-eui'          THEN 'EUI'
+    WHEN 'ccf-rui'          THEN 'RUI'
+    WHEN 'cde-ui'           THEN 'CDE'
+    WHEN 'ftu-ui'           THEN 'FTU Explorer'
+    WHEN 'ftu-ui-small-wc'  THEN 'FTU Explorer'
+    WHEN 'kg-explorer'      THEN 'KG Explorer'
+END"""
+
+ERROR_BUCKET_CASE = """CASE
+    WHEN query['e.reason.message'] ILIKE '%/api/v1/technology-names%' THEN 'Net/CORS: technology list API'
+    WHEN query['e.reason.message'] ILIKE 'Error retrieving icon%' THEN 'Icon retrieval failures'
+    WHEN query['e.reason.message'] ILIKE 'Cannot read properties of null (reading ''0'')%' THEN 'Null selection read'
+    WHEN query['e.reason.message'] = '[object Object]' THEN 'Unreadable structured error object'
+    WHEN query['e.reason.message'] ILIKE '%data.yaml%'
+      OR query['e.reason.message'] ILIKE '%links.yml%'
+      OR query['e.reason.message'] ILIKE '%resources.yml%' THEN 'Content file fetch failures'
+    WHEN query['e.reason.message'] ILIKE '%127.0.0.1%'
+      OR query['e.reason.message'] ILIKE '%localhost%' THEN 'Local development request noise'
+    ELSE 'Other'
+END"""
+
+STATIC_FILTER = r"NOT regexp_matches(cs_uri_stem, '\.(js|css|svg|png|ico|woff2?|ttf|jpe?g|webp)$')"
+
+SESSION_FILTER = """
+    query['sessionId'] IS NOT NULL
+    AND query['sessionId'] NOT IN ('', '-', 'TODO', 'null', 'None', 'nan')
+    AND length(query['sessionId']) >= 4
+"""
+
+
+def write_json(path: str, data: object) -> None:
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=True)
+    print(f"✓ {os.path.basename(path)}")
+
+
+def run(parquet: str, out: str) -> None:
+    os.makedirs(out, exist_ok=True)
+    con = duckdb.connect()
+    con.execute("PRAGMA threads=4")
+
+    # Deduplicate parquet on load — CloudFront log delivery can produce exact dupes
+    raw_count = con.execute(f"SELECT count(*) FROM read_parquet('{parquet}')").fetchone()[0]
+    con.execute(f"CREATE TEMP VIEW logs AS SELECT DISTINCT * FROM read_parquet('{parquet}')")
+    deduped_count = con.execute("SELECT count(*) FROM logs").fetchone()[0]
+    dupes = raw_count - deduped_count
+    if dupes > 0:
+        print(f"⚠ Removed {dupes:,} duplicate rows ({dupes/raw_count*100:.2f}%) — {deduped_count:,} rows remain")
+    P = "logs"
+
+    def q(sql: str):
+        return con.execute(sql).df().to_dict(orient="records")
+
+    # ─── 0. Data metadata (exact date range) ─────────────────────────────────
+    date_range = con.execute(f"""
+        SELECT
+            MIN(date)::VARCHAR AS first_date,
+            MAX(date)::VARCHAR AS last_date
+        FROM {P}
+        WHERE site = 'Apps'
+    """).fetchone()
+    write_json(f"{out}/data_metadata.json", {
+        "first_date": date_range[0],
+        "last_date":  date_range[1],
+    })
+
+    # ─── 1. Tool visits by year (wide format) ────────────────────────────────
+    write_json(f"{out}/tool_visits_by_year.json", q(f"""
+        SELECT
+            year,
+            SUM(CASE WHEN cs_uri_stem='/eui/'          THEN 1 ELSE 0 END)::BIGINT AS EUI,
+            SUM(CASE WHEN cs_uri_stem='/rui/'          THEN 1 ELSE 0 END)::BIGINT AS RUI,
+            SUM(CASE WHEN cs_uri_stem='/cde/'          THEN 1 ELSE 0 END)::BIGINT AS CDE,
+            SUM(CASE WHEN cs_uri_stem='/ftu-explorer/' THEN 1 ELSE 0 END)::BIGINT AS "FTU Explorer",
+            SUM(CASE WHEN cs_uri_stem='/kg-explorer/'  THEN 1 ELSE 0 END)::BIGINT AS "KG Explorer"
+        FROM {P}
+        WHERE traffic_type='Likely Human'
+          AND site='Apps'
+          AND cs_uri_stem IN {TOOL_STEMS}
+        GROUP BY year ORDER BY year
+    """))
+
+    # ─── 2. Tool visits by month (wide format) ────────────────────────────────
+    write_json(f"{out}/tool_visits_by_month.json", q(f"""
+        SELECT
+            strftime(date_trunc('month', date)::DATE, '%Y-%m') AS month_year,
+            SUM(CASE WHEN cs_uri_stem='/eui/'          THEN 1 ELSE 0 END)::BIGINT AS EUI,
+            SUM(CASE WHEN cs_uri_stem='/rui/'          THEN 1 ELSE 0 END)::BIGINT AS RUI,
+            SUM(CASE WHEN cs_uri_stem='/cde/'          THEN 1 ELSE 0 END)::BIGINT AS CDE,
+            SUM(CASE WHEN cs_uri_stem='/ftu-explorer/' THEN 1 ELSE 0 END)::BIGINT AS "FTU Explorer",
+            SUM(CASE WHEN cs_uri_stem='/kg-explorer/'  THEN 1 ELSE 0 END)::BIGINT AS "KG Explorer"
+        FROM {P}
+        WHERE traffic_type='Likely Human'
+          AND site='Apps'
+          AND cs_uri_stem IN {TOOL_STEMS}
+        GROUP BY month_year ORDER BY month_year
+    """))
+
+    # ─── 3. Total tool visits ─────────────────────────────────────────────────
+    write_json(f"{out}/total_tool_visits.json", q(f"""
+        SELECT {TOOL_CASE} AS tool, count(*)::BIGINT AS visits
+        FROM {P}
+        WHERE traffic_type='Likely Human'
+          AND site='Apps'
+          AND cs_uri_stem IN {TOOL_STEMS}
+        GROUP BY tool ORDER BY visits DESC
+    """))
+
+    # ─── 4. Event types distribution ──────────────────────────────────────────
+    write_json(f"{out}/event_types.json", q(f"""
+        SELECT query['event'] AS event, count(*)::BIGINT AS count
+        FROM {P}
+        WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+          AND query['event'] IS NOT NULL
+        GROUP BY event ORDER BY count DESC
+    """))
+
+    # ─── 5. Top 20 UI paths ───────────────────────────────────────────────────
+    write_json(f"{out}/top_ui_paths.json", q(f"""
+        SELECT query['path'] AS path, count(*)::BIGINT AS count
+        FROM {P}
+        WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+          AND query['path'] IS NOT NULL
+        GROUP BY path ORDER BY count DESC LIMIT 20
+    """))
+
+    # ─── 6. Opacity interactions ──────────────────────────────────────────────
+    write_json(f"{out}/opacity_interactions.json", q(f"""
+        SELECT query['path'] AS path, count(*)::BIGINT AS count
+        FROM {P}
+        WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+          AND lower(query['path']) LIKE '%opaci%'
+        GROUP BY path ORDER BY count DESC
+    """))
+
+    # ─── 7. Spatial search interactions ───────────────────────────────────────
+    write_json(f"{out}/spatial_search.json", q(f"""
+        SELECT query['path'] AS path, count(*)::BIGINT AS count
+        FROM {P}
+        WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+          AND lower(query['path']) LIKE '%spatial%'
+        GROUP BY path ORDER BY count DESC
+    """))
+
+    # ─── 8. Geographic distribution ───────────────────────────────────────────
+    # Count tool page visits per country (not CDN hops, not event pings)
+    write_json(f"{out}/geo_distribution.json", q(f"""
+        SELECT c_country, count(*)::BIGINT AS visits
+        FROM {P}
+        WHERE traffic_type='Likely Human'
+          AND site='Apps'
+          AND cs_uri_stem IN {TOOL_STEMS}
+          AND c_country IS NOT NULL AND c_country <> '-'
+        GROUP BY c_country ORDER BY visits DESC
+    """))
+
+    # ─── 9. Traffic type breakdown (all rows) ─────────────────────────────────
+    write_json(f"{out}/traffic_types.json", q(f"""
+        SELECT traffic_type AS type, count(*)::BIGINT AS count
+        FROM {P}
+        WHERE traffic_type IS NOT NULL
+        GROUP BY traffic_type ORDER BY count DESC
+    """))
+
+    # ─── 10. CDE workflow funnel ──────────────────────────────────────────────
+    write_json(f"{out}/cde_workflow.json", q(f"""
+        SELECT query['path'] AS path, count(*)::BIGINT AS count
+        FROM {P}
+        WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+          AND query['app'] = 'cde-ui'
+          AND query['path'] IS NOT NULL
+        GROUP BY path ORDER BY count DESC LIMIT 15
+    """))
+
+    # ─── 11. External referrer ecosystem ──────────────────────────────────────
+    write_json(f"{out}/referrers.json", q(f"""
+        SELECT name, sum(n)::BIGINT AS value
+        FROM (
+            SELECT
+                CASE
+                    WHEN cs_referer LIKE '%gtexportal.org%'              THEN 'GTEx Portal'
+                    WHEN cs_referer LIKE '%hubmapconsortium.org%'
+                      OR cs_referer LIKE '%hubmapconsortium.github.io%'  THEN 'HubMAP'
+                    WHEN cs_referer LIKE '%ebi.ac.uk%'                   THEN 'EBI'
+                    WHEN cs_referer LIKE '%sennetconsortium.org%'        THEN 'SenNet'
+                    WHEN cs_referer LIKE '%vitessce.io%'                 THEN 'Vitessce'
+                    WHEN cs_referer LIKE '%google.com%'                  THEN 'Google'
+                END AS name,
+                count(*) AS n
+            FROM {P}
+            WHERE cs_referer IS NOT NULL
+              AND cs_referer NOT IN ('', '-')
+              AND cs_referer NOT LIKE '%humanatlas.io%'
+              AND cs_referer NOT LIKE '%localhost%'
+              AND cs_referer NOT LIKE '%cloudfront.net%'
+            GROUP BY name
+        )
+        WHERE name IS NOT NULL
+        GROUP BY name ORDER BY value DESC
+    """))
+
+    # ─── 12. Portal navigation clicks (e.label) ───────────────────────────────
+    write_json(f"{out}/nav_clicks.json", q(f"""
+        SELECT query['e.label'] AS label, count(*)::BIGINT AS count
+        FROM {P}
+        WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+          AND query['e.label'] IS NOT NULL
+        GROUP BY label ORDER BY count DESC LIMIT 15
+    """))
+
+    # ─── 13. CDE tab usage (e.tab) ────────────────────────────────────────────
+    write_json(f"{out}/cde_tabs.json", q(f"""
+        SELECT query['e.tab'] AS tab, count(*)::BIGINT AS count
+        FROM {P}
+        WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+          AND query['e.tab'] IS NOT NULL
+        GROUP BY tab ORDER BY count DESC
+    """))
+
+    # ─── 14. Sidebar / panel actions (e.action) ───────────────────────────────
+    write_json(f"{out}/sidebar_actions.json", q(f"""
+        SELECT query['e.action'] AS action, count(*)::BIGINT AS count
+        FROM {P}
+        WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+          AND query['e.action'] IS NOT NULL
+        GROUP BY action ORDER BY count DESC
+    """))
+
+    # ─── 15. Organ / view selections (e.value) ────────────────────────────────
+    # Exclude coordinate strings (CenterY_global_px style) and long UUIDs
+    write_json(f"{out}/organ_selections.json", q(f"""
+        SELECT query['e.value'] AS selection, count(*)::BIGINT AS count
+        FROM {P}
+        WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+          AND query['e.value'] IS NOT NULL
+          AND length(query['e.value']) < 60
+          AND NOT regexp_matches(query['e.value'], '^[A-Z][a-zA-Z]+_')
+        GROUP BY selection ORDER BY count DESC LIMIT 20
+    """))
+
+    # ─── 16. Hourly traffic distribution (UTC) ────────────────────────────────
+    write_json(f"{out}/hourly_traffic.json", q(f"""
+        SELECT
+            try_cast(split_part(time, ':', 1) AS INTEGER) AS hour,
+            count(*)::BIGINT AS count
+        FROM {P}
+        WHERE traffic_type='Likely Human'
+          AND time IS NOT NULL
+        GROUP BY hour
+        HAVING hour IS NOT NULL
+        ORDER BY hour
+    """))
+
+    # ─── 17. Monthly unique sessions ──────────────────────────────────────────
+    write_json(f"{out}/monthly_unique_users.json", q(f"""
+        SELECT
+            strftime(date_trunc('month', date)::DATE, '%Y-%m') AS month_year,
+            count(DISTINCT query['sessionId'])::BIGINT AS unique_sessions
+        FROM {P}
+        WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+          AND {SESSION_FILTER}
+        GROUP BY month_year ORDER BY month_year
+    """))
+
+    # ─── 18. Session depth distribution ───────────────────────────────────────
+    depth_raw = q(f"""
+        WITH session_depths AS (
+            SELECT query['sessionId'] AS sid, count(*)::BIGINT AS n
+            FROM {P}
+            WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+              AND {SESSION_FILTER}
+            GROUP BY sid
+        )
+        SELECT
+            CASE
+                WHEN n = 1    THEN '1'
+                WHEN n = 2    THEN '2'
+                WHEN n <= 5   THEN '3–5'
+                WHEN n <= 10  THEN '6–10'
+                WHEN n <= 20  THEN '11–20'
+                ELSE '20+'
+            END AS depth,
+            count(*)::BIGINT AS sessions
+        FROM session_depths
+        GROUP BY depth
+    """)
+    order = ['1', '2', '3–5', '6–10', '11–20', '20+']
+    depth_map = {d['depth']: d['sessions'] for d in depth_raw}
+    write_json(f"{out}/session_depth.json", [
+        {'depth': k, 'sessions': depth_map.get(k, 0)} for k in order if k in depth_map
+    ])
+
+    # ─── 19. Error breakdown (source + root cause) ────────────────────────────
+    # Uses the same data that powers the Features page error charts.
+    # Source = which app; root cause = top error message patterns.
+    write_json(f"{out}/error_breakdown.json", {
+        "by_source": q(f"""
+            SELECT COALESCE({APP_TOOL_CASE}, 'Portal/Other') AS tool, count(*)::BIGINT AS errors
+            FROM {P}
+            WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+              AND query['event'] = 'error'
+            GROUP BY tool
+            ORDER BY errors DESC
+        """),
+        "by_message": q(f"""
+            SELECT query['e.reason.message'] AS message, count(*)::BIGINT AS errors
+            FROM {P}
+            WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+              AND query['event'] = 'error'
+              AND query['e.reason.message'] IS NOT NULL
+            GROUP BY message ORDER BY errors DESC LIMIT 20
+        """),
+    })
+
+    # ─── 20. Error root-cause buckets by source (tools + Portal/Other) ───────
+    write_json(f"{out}/error_root_cause_breakdown.json", {
+        "by_source_bucket": q(f"""
+            SELECT
+                COALESCE({APP_TOOL_CASE}, 'Portal/Other') AS source,
+                {ERROR_BUCKET_CASE} AS bucket,
+                count(*)::BIGINT AS errors
+            FROM {P}
+            WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+              AND query['event'] = 'error'
+            GROUP BY source, bucket
+            ORDER BY source, errors DESC
+        """),
+        "by_source": q(f"""
+            SELECT
+                COALESCE({APP_TOOL_CASE}, 'Portal/Other') AS source,
+                count(*)::BIGINT AS errors
+            FROM {P}
+            WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+              AND query['event'] = 'error'
+            GROUP BY source
+            ORDER BY errors DESC
+        """),
+        "by_bucket": q(f"""
+            SELECT
+                {ERROR_BUCKET_CASE} AS bucket,
+                count(*)::BIGINT AS errors
+            FROM {P}
+            WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+              AND query['event'] = 'error'
+            GROUP BY bucket
+            ORDER BY errors DESC
+        """),
+    })
+
+    # ─── NEW: Cohort retention matrix ─────────────────────────────────────────
+    # For each monthly cohort (first-seen month), how many users were active
+    # at months 0, 1, 2, … after first visit?
+    # Uses anon_id (persistent cookie) — not sessionId (ephemeral per-tab ID).
+    write_json(f"{out}/cohort_retention.json", q(f"""
+        WITH user_activity AS (
+            SELECT
+                anon_id,
+                date_trunc('month', date)::DATE AS active_month
+            FROM {P}
+            WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+              AND anon_id IS NOT NULL
+              AND anon_id NOT IN ('', '-', 'TODO', 'null', 'None', 'nan')
+              AND length(anon_id) >= 4
+            GROUP BY 1, 2
+        ),
+        cohorts AS (
+            SELECT anon_id, MIN(active_month) AS cohort_month
+            FROM user_activity
+            GROUP BY anon_id
+        ),
+        cohort_sizes AS (
+            SELECT cohort_month, count(*) AS cohort_size
+            FROM cohorts GROUP BY cohort_month
+        ),
+        joined AS (
+            SELECT
+                c.cohort_month,
+                ua.active_month,
+                datediff('month', c.cohort_month, ua.active_month) AS months_since_first,
+                count(DISTINCT ua.anon_id) AS retained_users
+            FROM cohorts c
+            JOIN user_activity ua USING (anon_id)
+            GROUP BY 1, 2, 3
+        )
+        SELECT
+            strftime(j.cohort_month, '%Y-%m') AS cohort_month,
+            j.months_since_first,
+            j.retained_users AS retained_sessions,
+            cs.cohort_size,
+            round(100.0 * j.retained_users / cs.cohort_size, 1) AS retention_pct
+        FROM joined j
+        JOIN cohort_sizes cs ON j.cohort_month = cs.cohort_month
+        WHERE j.months_since_first >= 0
+        ORDER BY j.cohort_month, j.months_since_first
+    """))
+
+    # ─── NEW: Top UI paths broken down by event type ──────────────────────────
+    # click/hover/keyboard use query['path'] (UI element path)
+    # pageView uses query['e.path'] (URL path)
+    # error uses query['e.reason.message'] (error message)
+    paths_raw = q(f"""
+        SELECT
+            query['event'] AS event,
+            CASE query['event']
+                WHEN 'pageView' THEN query['e.path']
+                WHEN 'error'    THEN query['e.reason.message']
+                ELSE                 query['path']
+            END AS path,
+            count(*)::BIGINT AS count
+        FROM {P}
+        WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+          AND query['event'] IN ('click','hover','error','keyboard','pageView')
+        GROUP BY event, path
+        HAVING path IS NOT NULL
+        ORDER BY event, count DESC
+    """)
+    from collections import defaultdict
+    by_event: dict = defaultdict(list)
+    for row in paths_raw:
+        by_event[row["event"]].append({"path": row["path"], "count": row["count"]})
+    write_json(f"{out}/top_paths_by_event.json", {
+        evt: rows[:20] for evt, rows in by_event.items()
+    })
+
+    # ─── NEW: Tool preference per country ────────────────────────────────────
+    write_json(f"{out}/geo_tool_preference.json", q(f"""
+        WITH counts AS (
+            SELECT c_country, {TOOL_CASE} AS tool, count(*)::BIGINT AS visits
+            FROM {P}
+            WHERE traffic_type='Likely Human'
+              AND site='Apps'
+              AND cs_uri_stem IN {TOOL_STEMS}
+              AND c_country IS NOT NULL AND c_country NOT IN ('-','')
+            GROUP BY c_country, tool
+        ),
+        totals AS (
+            SELECT c_country, SUM(visits)::BIGINT AS total_visits FROM counts GROUP BY c_country
+        ),
+        ranked AS (
+            SELECT c.*, t.total_visits,
+                   ROW_NUMBER() OVER (PARTITION BY c.c_country ORDER BY c.visits DESC) AS rn
+            FROM counts c JOIN totals t USING (c_country)
+        )
+        SELECT c_country, tool AS top_tool, visits AS top_tool_visits, total_visits
+        FROM ranked WHERE rn = 1
+        ORDER BY total_visits DESC LIMIT 30
+    """))
+
+    # ─── NEW: Per-country per-tool visit breakdown (wide, for stacked bar) ───
+    write_json(f"{out}/geo_tool_breakdown.json", q(f"""
+        WITH counts AS (
+            SELECT c_country, {TOOL_CASE} AS tool, count(*)::BIGINT AS visits
+            FROM {P}
+            WHERE traffic_type='Likely Human'
+              AND site='Apps'
+              AND cs_uri_stem IN {TOOL_STEMS}
+              AND c_country IS NOT NULL AND c_country NOT IN ('-','')
+            GROUP BY c_country, tool
+        ),
+        totals AS (
+            SELECT c_country, SUM(visits)::BIGINT AS total FROM counts GROUP BY c_country
+        )
+        SELECT
+            c.c_country,
+            SUM(CASE WHEN tool='EUI'          THEN visits ELSE 0 END)::BIGINT AS EUI,
+            SUM(CASE WHEN tool='RUI'          THEN visits ELSE 0 END)::BIGINT AS RUI,
+            SUM(CASE WHEN tool='CDE'          THEN visits ELSE 0 END)::BIGINT AS CDE,
+            SUM(CASE WHEN tool='FTU Explorer' THEN visits ELSE 0 END)::BIGINT AS "FTU Explorer",
+            SUM(CASE WHEN tool='KG Explorer'  THEN visits ELSE 0 END)::BIGINT AS "KG Explorer",
+            t.total
+        FROM counts c JOIN totals t USING (c_country)
+        GROUP BY c.c_country, t.total
+        ORDER BY t.total DESC LIMIT 30
+    """))
+
+    # ─── NEW: Bot traffic by country ─────────────────────────────────────────
+    write_json(f"{out}/geo_bot_traffic.json", q(f"""
+        SELECT
+            c_country,
+            SUM(CASE WHEN traffic_type IN ('Bot','AI-Assistant / Bot') THEN 1 ELSE 0 END)::BIGINT AS bot_visits,
+            count(*)::BIGINT AS total_requests,
+            round(100.0 * SUM(CASE WHEN traffic_type IN ('Bot','AI-Assistant / Bot') THEN 1 ELSE 0 END)
+                  / count(*), 1) AS bot_pct
+        FROM {P}
+        WHERE c_country IS NOT NULL AND c_country NOT IN ('-','')
+        GROUP BY c_country
+        HAVING bot_visits > 100
+        ORDER BY bot_visits DESC
+        LIMIT 25
+    """))
+
+    # ─── NEW: Per-tool hourly event heatmap ───────────────────────────────────
+    # Shows which tools get used at which hours of the day.
+    # Much richer than the total hourly_traffic.json.
+    write_json(f"{out}/tool_hourly_heatmap.json", q(f"""
+        SELECT
+            {APP_TOOL_CASE} AS tool,
+            try_cast(split_part(time, ':', 1) AS INTEGER) AS hour_utc,
+            count(*)::BIGINT AS events
+        FROM {P}
+        WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+          AND query['app'] IS NOT NULL
+          AND time IS NOT NULL
+        GROUP BY tool, hour_utc
+        HAVING tool IS NOT NULL AND hour_utc IS NOT NULL
+        ORDER BY tool, hour_utc
+    """))
+
+    # ─── NEW: Visits by day of week per tool ─────────────────────────────────
+    write_json(f"{out}/traffic_by_dow.json", q(f"""
+        SELECT
+            dayofweek(date) AS dow_num,
+            strftime(date, '%A') AS day_name,
+            {TOOL_CASE} AS tool,
+            count(*)::BIGINT AS visits
+        FROM {P}
+        WHERE traffic_type='Likely Human'
+          AND site='Apps'
+          AND cs_uri_stem IN {TOOL_STEMS}
+        GROUP BY dow_num, day_name, tool
+        ORDER BY dow_num, tool
+    """))
+
+    # ─── NEW: Monthly error trend by tool ────────────────────────────────────
+    error_by_tool = q(f"""
+        SELECT
+            strftime(date_trunc('month', date)::DATE, '%Y-%m') AS month_year,
+            COALESCE({APP_TOOL_CASE}, 'Unknown') AS tool,
+            count(*)::BIGINT AS errors
+        FROM {P}
+        WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+          AND query['event'] = 'error'
+        GROUP BY month_year, tool
+        ORDER BY month_year, tool
+    """)
+    error_by_month = q(f"""
+        SELECT
+            strftime(date_trunc('month', date)::DATE, '%Y-%m') AS month_year,
+            count(*)::BIGINT AS total_errors
+        FROM {P}
+        WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+          AND query['event'] = 'error'
+        GROUP BY month_year ORDER BY month_year
+    """)
+    write_json(f"{out}/monthly_error_trend.json", {
+        "by_tool": error_by_tool,
+        "by_month": error_by_month,
+    })
+
+    # ─── NEW: Human request type breakdown (for Sankey infra bifurcation) ──────
+    # Categorises every human CloudFront row that is NOT an event ping (/tr)
+    # by the type of asset being fetched, so the Sankey can split "Infra Requests"
+    # into meaningful sub-nodes (JS bundles, API calls, fonts, etc.)
+    write_json(f"{out}/request_type_breakdown.json", q(f"""
+        SELECT
+            CASE
+                WHEN cs_uri_stem LIKE '%.js'
+                  OR cs_uri_stem LIKE '%.js.map'       THEN 'JS Bundles'
+                WHEN cs_uri_stem LIKE '%.css'
+                  OR cs_uri_stem LIKE '%.css.map'      THEN 'Stylesheets'
+                WHEN cs_uri_stem LIKE '%.woff'
+                  OR cs_uri_stem LIKE '%.woff2'
+                  OR cs_uri_stem LIKE '%.ttf'
+                  OR cs_uri_stem LIKE '%.otf'
+                  OR cs_uri_stem LIKE '%.eot'          THEN 'Fonts'
+                WHEN cs_uri_stem LIKE '/api/%'
+                  OR cs_uri_stem LIKE '%.graphql'      THEN 'API Calls'
+                WHEN cs_uri_stem LIKE '%.json'
+                  OR cs_uri_stem LIKE '%.geojson'      THEN 'Data Files'
+                WHEN cs_uri_stem LIKE '%.png'
+                  OR cs_uri_stem LIKE '%.jpg'
+                  OR cs_uri_stem LIKE '%.jpeg'
+                  OR cs_uri_stem LIKE '%.svg'
+                  OR cs_uri_stem LIKE '%.ico'
+                  OR cs_uri_stem LIKE '%.webp'         THEN 'Images'
+                WHEN cs_uri_stem LIKE '%.html'
+                  OR cs_uri_stem = '/'
+                  OR cs_uri_stem LIKE '%/'             THEN 'HTML Pages'
+                ELSE                                        'Other'
+            END AS request_type,
+            count(*)::BIGINT AS count
+        FROM {P}
+        WHERE traffic_type = 'Likely Human'
+          AND cs_uri_stem != '/tr'
+        GROUP BY request_type
+        ORDER BY count DESC
+    """))
+
+    # ─── NEW: KG Explorer error rate per month ───────────────────────────────
+    kg_visits = {r[0]: r[1] for r in con.execute(f"""
+        SELECT strftime(date_trunc('month', date)::DATE, '%Y-%m'), count(*)::BIGINT
+        FROM {P} WHERE traffic_type='Likely Human' AND site='Apps'
+          AND cs_uri_stem='/kg-explorer/'
+        GROUP BY 1 ORDER BY 1""").fetchall()}
+    kg_errors = {r[0]: r[1] for r in con.execute(f"""
+        SELECT strftime(date_trunc('month', date)::DATE, '%Y-%m'), count(*)::BIGINT
+        FROM {P} WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+          AND query['event']='error' AND query['app']='kg-explorer'
+        GROUP BY 1 ORDER BY 1""").fetchall()}
+    write_json(f"{out}/kg_error_rate.json", [
+        {"month_year": m, "visits": kg_visits.get(m, 0), "errors": kg_errors.get(m, 0),
+         "rate": round(kg_errors.get(m, 0) * 100 / kg_visits[m], 1) if kg_visits.get(m) else 0.0}
+        for m in sorted(set(kg_visits) | set(kg_errors))
+    ])
+
+    # ─── NEW: Per-tool error rate long format (visits + errors + rate) ────────
+    TOOL_APP_KEYS = {
+        "EUI":          ("/eui/",          ("ccf-eui",)),
+        "RUI":          ("/rui/",          ("ccf-rui",)),
+        "CDE":          ("/cde/",          ("cde-ui",)),
+        "FTU Explorer": ("/ftu-explorer/", ("ftu-ui", "ftu-ui-small-wc")),
+        "KG Explorer":  ("/kg-explorer/",  ("kg-explorer",)),
+    }
+    tool_err_rows = []
+    for tool, (stem, app_keys) in TOOL_APP_KEYS.items():
+        app_list = ", ".join(f"'{k}'" for k in app_keys)
+        rows = con.execute(f"""
+            WITH months AS (
+                SELECT DATE_TRUNC('month', CAST(date AS DATE)) AS mo
+                FROM {P} WHERE site='Apps' AND cs_uri_stem='{stem}'
+                GROUP BY 1
+            ),
+            vis AS (
+                SELECT DATE_TRUNC('month', CAST(date AS DATE)) AS mo, COUNT(*)::BIGINT AS visits
+                FROM {P} WHERE site='Apps' AND cs_uri_stem='{stem}'
+                GROUP BY 1
+            ),
+            err AS (
+                SELECT DATE_TRUNC('month', CAST(date AS DATE)) AS mo, COUNT(*)::BIGINT AS errors
+                FROM {P} WHERE site='Events' AND query['app'] IN ({app_list})
+                  AND query['event']='error'
+                GROUP BY 1
+            )
+            SELECT STRFTIME(m.mo, '%Y-%m'),
+                   COALESCE(v.visits, 0), COALESCE(e.errors, 0),
+                   ROUND(COALESCE(e.errors,0)*100.0/NULLIF(COALESCE(v.visits,0),0),1)
+            FROM months m
+            LEFT JOIN vis v ON m.mo=v.mo
+            LEFT JOIN err e ON m.mo=e.mo
+            ORDER BY m.mo
+        """).fetchall()
+        for r in rows:
+            tool_err_rows.append({
+                "tool": tool, "month_year": r[0],
+                "visits": r[1], "errors": r[2],
+                "rate": r[3] if r[3] is not None else 0.0,
+            })
+    write_json(f"{out}/tool_error_rates_long.json", tool_err_rows)
+
+    # ─── NEW: Tool return rate (% of monthly visitors who returned) ───────────
+    rr_rows = con.execute(f"""
+        WITH um AS (
+            SELECT anon_id, {TOOL_CASE} AS tool, date_trunc('month', date)::DATE AS mo
+            FROM {P} WHERE site='Apps' AND traffic_type='Likely Human'
+              AND cs_uri_stem IN {TOOL_STEMS}
+              AND anon_id IS NOT NULL AND length(anon_id) >= 4
+            GROUP BY 1, 2, 3
+        ),
+        fs AS (SELECT anon_id, tool, MIN(mo) AS first FROM um GROUP BY 1, 2),
+        j  AS (SELECT m.anon_id, m.tool, m.mo, (m.mo > f.first) AS ret
+               FROM um m JOIN fs f USING (anon_id, tool))
+        SELECT strftime(mo, '%Y-%m'), tool,
+               count(DISTINCT anon_id)::BIGINT,
+               sum(CASE WHEN ret THEN 1 ELSE 0 END)::BIGINT,
+               round(100.0*sum(CASE WHEN ret THEN 1 ELSE 0 END)/count(DISTINCT anon_id), 1)
+        FROM j GROUP BY 1, 2 ORDER BY 1, 2
+    """).fetchall()
+    write_json(f"{out}/tool_return_rate.json", [
+        {"month_year": r[0], "tool": r[1], "users": r[2], "returning": r[3], "return_pct": float(r[4])}
+        for r in rr_rows
+    ])
+
+    # ─── NEW: Cross-tool sessions (users visiting ≥2 tools) ──────────────────
+    from collections import Counter
+    ct_rows = con.execute(f"""
+        SELECT anon_id, LIST(DISTINCT {TOOL_CASE} ORDER BY {TOOL_CASE}) AS tools
+        FROM {P} WHERE site='Apps' AND traffic_type='Likely Human'
+          AND cs_uri_stem IN {TOOL_STEMS}
+          AND anon_id IS NOT NULL AND length(anon_id) >= 4
+        GROUP BY anon_id HAVING count(DISTINCT cs_uri_stem) >= 2
+    """).fetchall()
+    cc: Counter = Counter()
+    for _, tools in ct_rows:
+        key = tuple(sorted(set(t for t in tools if t)))
+        if len(key) >= 2:
+            cc[key] += 1
+    write_json(f"{out}/cross_tool_sessions.json", [
+        {"combo_label": " + ".join(c), "count": n, "tools": list(c)}
+        for c, n in cc.most_common(12)
+    ])
+
+    # ─── NEW: Top errors per tool (drill-down) ────────────────────────────────
+    import re as _re
+    BUCKET_CASE_ERR = """CASE
+        WHEN msg ILIKE '%/api/v1/technology-names%'        THEN 'CORS: technology list API'
+        WHEN msg ILIKE '%Http failure%' AND msg ILIKE '%/api/%' THEN 'API failure'
+        WHEN msg ILIKE '%Http failure%' AND (msg ILIKE '%127.0.0.1%' OR msg ILIKE '%localhost%') THEN 'Dev noise'
+        WHEN msg ILIKE '%Http failure%' AND (msg ILIKE '%.yml%' OR msg ILIKE '%.yaml%') THEN 'Content fetch failure'
+        WHEN msg ILIKE '%Http failure%'                    THEN 'CDN / HTTP failure'
+        WHEN msg ILIKE 'Error retrieving icon%'            THEN 'CDN icon failure'
+        WHEN msg ILIKE 'Cannot read properties of null%'
+          OR msg ILIKE 'Cannot read properties of undefined%'
+          OR msg ILIKE '%is undefined%'
+          OR msg ILIKE 'can''t access property%'           THEN 'Null-ref error'
+        WHEN msg ILIKE 'NG0%'                              THEN 'Angular DI error'
+        WHEN msg ILIKE '%is not a function%'               THEN 'Runtime type error'
+        ELSE 'Other'
+    END"""
+
+    def _clean_msg(msg: str) -> str:
+        msg = _re.sub(r'Http failure (response|during parsing) for (https?://[^\s:]+)[^:]*',
+                      lambda m: f"Http failure: {m.group(2).replace('https://','').replace('http://','')}", msg)
+        msg = _re.sub(r'Error retrieving icon ([^!]+)!.*', r'Icon failure: \1', msg)
+        msg = _re.sub(r'(NG\d+:[^.]+)\..*', r'\1', msg)
+        return msg[:90]
+
+    TOOL_APP_KEYS_ERR = {
+        "EUI":          ["ccf-eui"],
+        "RUI":          ["ccf-rui"],
+        "CDE":          ["cde-ui"],
+        "FTU Explorer": ["ftu-ui", "ftu-ui-small-wc"],
+        "KG Explorer":  ["kg-explorer"],
+    }
+    top_err_results = []
+    for tool, app_keys in TOOL_APP_KEYS_ERR.items():
+        app_list = ", ".join(f"'{k}'" for k in app_keys)
+        # All-time top errors
+        all_time = con.execute(f"""
+            SELECT query['e.reason.message'] AS msg, COUNT(*)::BIGINT AS cnt,
+                   {BUCKET_CASE_ERR} AS bucket
+            FROM {P}
+            WHERE site='Events' AND query['event']='error'
+              AND query['app'] IN ({app_list})
+              AND query['e.reason.message'] IS NOT NULL
+            GROUP BY 1 ORDER BY cnt DESC LIMIT 10
+        """).fetchall()
+        # Per-month top errors
+        months_with_errors = con.execute(f"""
+            SELECT DISTINCT strftime(date_trunc('month', date)::DATE, '%Y-%m') AS mo
+            FROM {P}
+            WHERE site='Events' AND query['event']='error'
+              AND query['app'] IN ({app_list})
+            ORDER BY mo
+        """).fetchall()
+        by_month = {}
+        for (mo,) in months_with_errors:
+            mrows = con.execute(f"""
+                SELECT query['e.reason.message'] AS msg, COUNT(*)::BIGINT AS cnt,
+                       {BUCKET_CASE_ERR} AS bucket
+                FROM {P}
+                WHERE site='Events' AND query['event']='error'
+                  AND query['app'] IN ({app_list})
+                  AND query['e.reason.message'] IS NOT NULL
+                  AND strftime(date_trunc('month', date)::DATE, '%Y-%m') = '{mo}'
+                GROUP BY 1 ORDER BY cnt DESC LIMIT 10
+            """).fetchall()
+            if mrows:
+                by_month[mo] = [{"message": _clean_msg(r[0]), "count": r[1], "bucket": r[2]} for r in mrows]
+        top_err_results.append({
+            "tool": tool,
+            "all_time": [{"message": _clean_msg(r[0]), "count": r[1], "bucket": r[2]} for r in all_time],
+            "by_month": by_month,
+        })
+    write_json(f"{out}/top_errors_by_tool.json", top_err_results)
+
+    # ─── NEW: All-tool error rate summary ───────────────────────────────────
+    write_json(f"{out}/all_tool_error_rates.json", q(f"""
+        WITH visits AS (
+            SELECT {TOOL_CASE} AS tool, count(*)::BIGINT AS visits
+            FROM {P}
+            WHERE traffic_type='Likely Human' AND site='Apps'
+              AND cs_uri_stem IN {TOOL_STEMS}
+            GROUP BY tool
+        ),
+        errors AS (
+            SELECT COALESCE({APP_TOOL_CASE}, 'Portal/Other') AS tool, count(*)::BIGINT AS errors
+            FROM {P}
+            WHERE site='Events' AND cs_uri_stem='/tr' AND traffic_type='Likely Human'
+              AND query['event'] = 'error'
+            GROUP BY tool
+        )
+        SELECT v.tool, v.visits, COALESCE(e.errors, 0)::BIGINT AS errors,
+               CASE WHEN v.visits > 0 THEN round(100.0 * COALESCE(e.errors, 0) / v.visits, 1) ELSE 0 END AS error_rate
+        FROM visits v LEFT JOIN errors e ON v.tool = e.tool
+        ORDER BY error_rate DESC
+    """))
+
+    total = len(os.listdir(out))
+    print(f"\nAll done — {total} files in {out}/")
+
+
+def parse_args():
+    p = argparse.ArgumentParser(description="Generate dashboard JSON files from HRA parquet logs (DuckDB)")
+    p.add_argument("--parquet", default=PARQUET_DEFAULT, help="Path to source parquet")
+    p.add_argument("--out",     default=OUT_DEFAULT,     help="Output directory for JSON files")
+    return p.parse_args()
+
+
+if __name__ == "__main__":
+    args = parse_args()
+    if not os.path.exists(args.parquet):
+        raise FileNotFoundError(f"Parquet not found: {args.parquet}")
+    run(args.parquet, args.out)

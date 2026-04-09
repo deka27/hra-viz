@@ -1,0 +1,73 @@
+{
+  "clusters": [
+    {
+      "cluster_id": 2,
+      "label": "HTTP network failure",
+      "count": 22299,
+      "pct": 49.93,
+      "top_terms": [
+        "error http",
+        "error",
+        "response",
+        "failure response",
+        "http failure",
+        "failure",
+        "http",
+        "response unknown"
+      ],
+      "sample_error": "Http failure response for https://humanatlas.io/assets/content/landing-page/data.yaml: 0 Unknown Error"
+    },
+    {
+      "cluster_id": 0,
+      "label": "KG Explorer icon network error",
+      "count": 8300,
+      "pct": 18.58,
+      "top_terms": [
+        "ph",
+        "error",
+        "ph error",
+        "_error ph",
+        "error ph",
+        "ph _error",
+        "_error",
+        "error error"
+      ],
+      "sample_error": "Error retrieving icon product:schema! Http failure response for https://cdn.humanatlas.io/ui/kg-explorer/assets/icons/product/schema.svg: 0 Unknown Error"
+    },
+    {
+      "cluster_id": 1,
+      "label": "HRA Pop Visualizer crash",
+      "count": 7523,
+      "pct": 16.85,
+      "top_terms": [
+        "hra pop",
+        "pop visualizer",
+        "visualizer bar",
+        "chart element",
+        "chart",
+        "bar graph",
+        "bar",
+        "pop"
+      ],
+      "sample_error": "nan"
+    },
+    {
+      "cluster_id": 3,
+      "label": "KG Explorer icon 404",
+      "count": 6538,
+      "pct": 14.64,
+      "top_terms": [
+        "_error error",
+        "error _error",
+        "error",
+        "_error",
+        "error error",
+        "_updatesvgicon _currenticonfetch",
+        "_currenticonfetch",
+        "_currenticonfetch error"
+      ],
+      "sample_error": "Error retrieving icon organ:lung! Http failure response for https://cdn.humanatlas.io/ui/ccf-organ-info/assets/icons/organ/lung.svg: 404 OK"
+    }
+  ],
+  "total_error_rows": 44660
+}

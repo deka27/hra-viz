@@ -1,0 +1,76 @@
+{
+  "recommendations": [
+    {
+      "source_tool": "CDE",
+      "recommended_tool": "FTU Explorer",
+      "support": 0.0045,
+      "confidence": 0.0514,
+      "lift": 0.9678,
+      "co_sessions": 24,
+      "basis": "confidence_fallback"
+    },
+    {
+      "source_tool": "CDE",
+      "recommended_tool": "KG Explorer",
+      "support": 0.0063,
+      "confidence": 0.0728,
+      "lift": 0.1137,
+      "co_sessions": 34,
+      "basis": "confidence_fallback"
+    },
+    {
+      "source_tool": "EUI",
+      "recommended_tool": "FTU Explorer",
+      "support": 0.003,
+      "confidence": 0.0147,
+      "lift": 0.2774,
+      "co_sessions": 16,
+      "basis": "confidence_fallback"
+    },
+    {
+      "source_tool": "EUI",
+      "recommended_tool": "KG Explorer",
+      "support": 0.0034,
+      "confidence": 0.0166,
+      "lift": 0.0259,
+      "co_sessions": 18,
+      "basis": "confidence_fallback"
+    },
+    {
+      "source_tool": "FTU Explorer",
+      "recommended_tool": "CDE",
+      "support": 0.0045,
+      "confidence": 0.0842,
+      "lift": 0.9678,
+      "co_sessions": 24,
+      "basis": "confidence_fallback"
+    },
+    {
+      "source_tool": "FTU Explorer",
+      "recommended_tool": "KG Explorer",
+      "support": 0.006,
+      "confidence": 0.1123,
+      "lift": 0.1754,
+      "co_sessions": 32,
+      "basis": "confidence_fallback"
+    },
+    {
+      "source_tool": "RUI",
+      "recommended_tool": "EUI",
+      "support": 0.003,
+      "confidence": 0.0693,
+      "lift": 0.3423,
+      "co_sessions": 16,
+      "basis": "confidence_fallback"
+    },
+    {
+      "source_tool": "RUI",
+      "recommended_tool": "KG Explorer",
+      "support": 0.0007,
+      "confidence": 0.0173,
+      "lift": 0.027,
+      "co_sessions": 4,
+      "basis": "confidence_fallback"
+    }
+  ]
+}

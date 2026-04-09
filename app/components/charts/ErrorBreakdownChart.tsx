@@ -1,15 +1,19 @@
 "use client";
 
 import ThemedEChart from "../ThemedEChart";
-import { TOOL_COLORS } from "../../lib/chartTheme";
-import errorBreakdown from "../../../public/data/error_breakdown.json";
-import errorClusters from "../../../public/data/error_clusters.json";
+import { TOOL_COLORS, tooltipStyle } from "../../lib/chartTheme";
+import { useMemo } from "react";
 
+interface ErrorBreakdownData {
+  by_source: { tool: string; errors: number }[];
+}
+
+interface ErrorClustersData {
+  clusters: { label: string; count: number }[];
+}
 
 const TOOLTIP = {
-  backgroundColor: "#18181b",
-  borderColor: "#3f3f46",
-  borderWidth: 1,
+  ...tooltipStyle,
   textStyle: { color: "#fafafa", fontSize: 12 },
   extraCssText: "box-shadow:0 4px 20px rgba(0,0,0,0.5);border-radius:8px;padding:8px 12px;",
 };
@@ -19,30 +23,33 @@ const SOURCE_COLORS: Record<string, string> = {
   "Portal/Other": "#71717a",
 };
 
-// Sorted ascending for horizontal bar (lowest → highest)
-const BY_SOURCE = [...errorBreakdown.by_source]
-  .sort((a, b) => a.errors - b.errors)
-  .map((d) => ({
-    app: d.tool,
-    errors: d.errors,
-    color: SOURCE_COLORS[d.tool] ?? "#52525b",
-  }));
+function buildBySource(errorBreakdown: ErrorBreakdownData) {
+  return [...errorBreakdown.by_source]
+    .sort((a, b) => a.errors - b.errors)
+    .map((d) => ({
+      app: d.tool,
+      errors: d.errors,
+      color: SOURCE_COLORS[d.tool] ?? "#52525b",
+    }));
+}
 
-// Clusters sorted ascending for horizontal bar
-const BY_CAUSE = [...errorClusters.clusters]
-  .sort((a, b) => a.count - b.count)
-  .map((d) => ({
-    cause: d.label,
-    count: d.count,
-    color: d.label.startsWith("KG Explorer") ? TOOL_COLORS["KG Explorer"]
-         : d.label.startsWith("HTTP") ? "#a78bfa"
-         : d.label.startsWith("HRA Pop") ? "#06b6d4"
-         : d.label.startsWith("Malformed") ? "#d97706"
-         : d.label.startsWith("Dev") ? "#52525b"
-         : "#52525b",
-  }));
+function buildByCause(errorClusters: ErrorClustersData) {
+  return ([...errorClusters.clusters] as { label: string; count: number }[])
+    .sort((a, b) => a.count - b.count)
+    .map((d) => ({
+      cause: d.label,
+      count: d.count,
+      color: d.label.startsWith("KG Explorer") ? TOOL_COLORS["KG Explorer"]
+           : d.label.startsWith("HTTP") ? "#a78bfa"
+           : d.label.startsWith("HRA Pop") ? "#06b6d4"
+           : d.label.startsWith("Malformed") ? "#d97706"
+           : d.label.startsWith("Dev") ? "#52525b"
+           : "#52525b",
+    }));
+}
 
-export function ErrorSourceChart() {
+export function ErrorSourceChart({ errorBreakdown }: { errorBreakdown: ErrorBreakdownData }) {
+  const BY_SOURCE = useMemo(() => buildBySource(errorBreakdown), [errorBreakdown]);
   const maxErrors = Math.max(...BY_SOURCE.map((d) => d.errors));
   const option = {
     backgroundColor: "transparent",
@@ -89,7 +96,8 @@ export function ErrorSourceChart() {
   );
 }
 
-export function ErrorCauseChart() {
+export function ErrorCauseChart({ errorClusters }: { errorClusters: ErrorClustersData }) {
+  const BY_CAUSE = useMemo(() => buildByCause(errorClusters), [errorClusters]);
   const total = BY_CAUSE.reduce((s, d) => s + d.count, 0);
   const maxCount = Math.max(...BY_CAUSE.map((d) => d.count));
   const option = {

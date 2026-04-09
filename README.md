@@ -1,138 +1,99 @@
-# HRA Analytics Dashboard
+# HRA + CNS Analytics Dashboard
 
-Usage analytics for the [Human Reference Atlas](https://humanatlas.io/) portal tools, derived from Amazon CloudFront access logs.
+Interactive web dashboard for analyzing Amazon CloudFront logs across two Indiana University platforms:
 
-**Live:** Deployed on Vercel (main branch)
+- **HRA** ([humanatlas.io](https://humanatlas.io)) — Human Reference Atlas tool usage analytics
+- **CNS** ([cns.iu.edu](https://cns.iu.edu)) — Cyberinfrastructure for Network Science website analytics
 
----
-
-## What It Does
-
-Analyzes ~14.8M CloudFront log entries to surface usage patterns, error trends, geographic distribution, and ML-driven insights across five HRA tools: **EUI**, **RUI**, **CDE**, **FTU Explorer**, and **KG Explorer**.
-
-### Pages
-
-| Page | Path | What It Shows |
-|------|------|---------------|
-| Overview | `/` | Stat cards, request funnel, tool bar chart, traffic donut, hourly patterns |
-| Usage + Reliability | `/tools` | Monthly trends with release/publication overlays, yearly breakdown, error rates, return rates |
-| Tool Behaviour | `/features` | Per-tool interaction analysis (spatial search, keyboard nav, CDE workflow, opacity toggles) |
-| Geography | `/geo` | World map, top countries, tool preference by region, bot traffic analysis |
-| Journeys | `/journeys` | UX gaps, cross-tool correlation heatmap, transition flows, Sankey diagrams |
-| ML Insights | `/ml` | Forecasts, spike detection, cohort retention, session segments, churn model |
-| Key Insights | `/insights` | 19 data-driven insight cards with embedded charts |
-| Field Dictionary | `/help` | Parquet schema reference |
-
----
+**Live:** [hra-viz.vercel.app](https://hra-viz.vercel.app)
 
 ## Tech Stack
 
-- **Framework:** Next.js 16 (App Router, static export)
-- **Charts:** ECharts 6 + echarts-for-react
-- **Styling:** Tailwind CSS v4
-- **Data:** Pre-processed JSON files from DuckDB SQL on parquet
-
----
+| Layer | Technology |
+|-------|-----------|
+| Frontend | Next.js 16 (App Router) + TypeScript + Tailwind CSS v4 |
+| Charts | Apache ECharts 6 via echarts-for-react |
+| Data Processing | DuckDB (SQL on Parquet) + Python |
+| ML Pipeline | Prophet, scikit-learn, NLP clustering |
+| External Data | PubMed API, GitHub API (cns-iu/cns-website repo) |
+| Deployment | Vercel (static export) |
 
 ## Project Structure
 
 ```
 app/
-  page.tsx                       # Overview
-  tools/page.tsx                 # Usage + Reliability
-  features/page.tsx              # Per-tool interaction behaviour
-  geo/page.tsx                   # Geographic distribution
-  journeys/page.tsx              # UX gaps & cross-tool flows
-  ml/page.tsx                    # Machine learning insights
-  insights/page.tsx              # Key insight cards
-  help/page.tsx                  # Field dictionary
-  components/
-    charts/                      # 49 chart components ('use client' + ssr:false)
-    ChartCard.tsx                # Card wrapper with title/subtitle/badge
-    StatCard.tsx                 # Metric card with accent color
-    Navbar.tsx                   # Sticky top nav
-    Hc.tsx                       # Hardcoded value marker
-  lib/
-    chartTheme.ts                # TOOL_COLORS, tooltip/axis styles, helpers
-
-public/data/                     # 51 pre-processed JSON files (build-time imports)
+  page.tsx                 # Landing page (pick HRA or CNS)
+  hra/                     # HRA dashboard (7 pages)
+    page.tsx               #   Overview
+    tools/page.tsx         #   Usage + Reliability
+    features/page.tsx      #   Tool Behaviour
+    geo/page.tsx           #   Geography
+    journeys/page.tsx      #   Journeys & Opportunities
+    insights/page.tsx      #   Data-Driven Insights
+    ml/page.tsx            #   ML Lab
+  cns/                     # CNS dashboard (6 pages)
+    page.tsx               #   Overview
+    traffic/page.tsx       #   Traffic Trends
+    content/page.tsx       #   Content & Documents
+    geo/page.tsx           #   Geography
+    errors/page.tsx        #   Errors + Security
+    referrers/page.tsx     #   Referrer Analysis
+  components/              # Shared components
+    charts/                #   70+ chart components
+    Navbar.tsx             #   Site toggle + nav links
+  lib/chartTheme.ts        # Colors, tooltip styles, helpers
 
 data_processing/
-  generate_data.py               # DuckDB pipeline -> 51 JSON aggregations
-  ml_insights.py                 # ML pipeline (Prophet, clustering, churn, bot detection)
-  fetch_publications.py          # PubMed E-utilities API -> publications.json
-  extract_parquet_dictionary.py  # Parquet schema extractor
+  generate_hra_data.py     # HRA: DuckDB SQL -> 51 JSON files
+  hra_ml_insights.py       # HRA: Prophet forecasts, clustering, churn
+  fetch_hra_publications.py # HRA: PubMed API -> publications.json
+  generate_cns_data.py     # CNS: DuckDB SQL -> 25 JSON files
+  fetch_cns_github.py      # CNS: GitHub API -> pubs, events, funding, news
+  run_all.sh               # Run entire pipeline
+  requirements.txt         # Python dependencies
 
-data/                            # Source parquet files (not committed)
+tests/
+  test_data_integrity.py   # 58 pytest tests (data shapes, cross-checks, file existence)
+
+data/                        # Place parquet files here (auto-detected by scripts)
+  hra/                     # HRA CloudFront parquet logs
+  cns/                     # CNS CloudFront parquet logs
+
+public/data/
+  hra/                     # HRA JSON output (generated by pipeline)
+  cns/                     # CNS JSON output (generated by pipeline)
 ```
 
----
-
-## Data Pipeline
-
-All data flows from a single CloudFront parquet file through Python scripts into JSON files consumed by Next.js at build time. Both scripts auto-deduplicate the parquet on load.
-
-```
-CloudFront parquet
-    |
-    +-- generate_data.py       -> 51 JSON files (visits, errors, geo, events, etc.)
-    +-- ml_insights.py         -> 10 JSON files (forecasts, segments, clusters, etc.)
-    +-- fetch_publications.py  -> publications.json (from PubMed API)
-```
-
-### Running the pipeline
+## Quick Start
 
 ```bash
-# 1. Data aggregations (requires: duckdb)
-python data_processing/generate_data.py \
-  --parquet data/2026-03-09_hra-logs.parquet \
-  --out public/data
-
-# 2. ML insights (requires: duckdb, pandas, numpy, scikit-learn, prophet)
-python data_processing/ml_insights.py \
-  --input-parquet data/2026-03-09_hra-logs.parquet \
-  --output-dir public/data
-
-# 3. Fetch publications from PubMed (requires: stdlib only)
-python data_processing/fetch_publications.py --out public/data
-```
-
-After running, restart the dev server or rebuild to pick up updated JSON.
-
----
-
-## Event Overlay System
-
-The monthly trends chart supports data-driven event annotations stored in `public/data/external_events.json`:
-
-| Type | Visual | Example |
-|------|--------|---------|
-| `release` | Cyan dashed line | HRA v2.2 (Dec 2024) |
-| `workshop` | Red shaded area | HuBMAP Training + Demo Day (Mar 2024) |
-| `publication` | Purple bars (right axis) | 3 papers incl. HRA KG paper (Feb 2025) |
-| `social` | Green markers | (placeholder, needs client data) |
-
-To add a new event:
-
-```json
-{ "date": "2025-01", "type": "social", "title": "AnVIL post about HRA v2.2" }
-```
-
-Publications also have a click-to-show panel below the chart with paper titles linking to DOI/PubMed.
-
----
-
-## Development
-
-```bash
+# Install
 npm install
-npm run dev       # http://localhost:3000
-npm run build     # Static export
-npm run lint      # ESLint (0 errors, 0 warnings)
+pip install -r data_processing/requirements.txt
+
+# Run full pipeline (data + build)
+./data_processing/run_all.sh
+
+# Or selectively
+./data_processing/run_all.sh --hra-only
+./data_processing/run_all.sh --cns-only
+./data_processing/run_all.sh --skip-fetch   # skip PubMed/GitHub API calls
+
+# Development
+npm run dev
+
+# Testing (58 data integrity tests)
+pytest tests/ -v
+pytest tests/ -k "hra"       # HRA only
+pytest tests/ -k "cns"       # CNS only
 ```
 
----
+## Data Sources
 
-## Deploy
-
-Deployed on Vercel from the `main` branch. Push to `main` to trigger a redeploy. No environment variables required — all data is served as static JSON.
+| Source | Script | Output |
+|--------|--------|--------|
+| HRA CloudFront logs (15.8M rows) | `generate_hra_data.py` | 51 JSON files |
+| HRA ML pipeline | `hra_ml_insights.py` | 10 JSON files |
+| PubMed (NCBI E-utilities) | `fetch_hra_publications.py` | 54 publications |
+| CNS CloudFront logs (16.4M rows) | `generate_cns_data.py` | 25 JSON files |
+| cns-iu/cns-website GitHub repo | `fetch_cns_github.py` | 405 pubs, 999 events, 81 grants, 187 news |

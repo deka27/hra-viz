@@ -1,0 +1,5803 @@
+[
+  {
+    "slug": "pub-485",
+    "title": "Preparing the next generation of Complex Networks and Systems scientists: Evaluation results for the Complex Networks and Systems NSF research training program at Indiana University",
+    "pub_date": "2026-01-27",
+    "doi": "10.1371/journal.pone.0334779",
+    "journal": "PLOS One",
+    "authors": [
+      "Michael Ginda",
+      "Katy Borner",
+      "Olga Scrivner",
+      "William Trochim",
+      "Luis M Rocha",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1371/journal.pone.0334779"
+  },
+  {
+    "slug": "pub-484",
+    "title": "A general strategy for generating expert-guided, simplified views of ontologies",
+    "pub_date": "2026-01-09",
+    "doi": "10.1101/2024.12.13.628309",
+    "journal": "Nature Scientific Data",
+    "authors": [
+      "Anita R Caron",
+      "Aleix Puig Barbe",
+      "Ellen M Quardokus",
+      "James P Balhoff",
+      "Jasmine Belfiore",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1101/2024.12.13.628309"
+  },
+  {
+    "slug": "pub-478",
+    "title": "CellSAM: A Foundation Model for Cell Segmentation",
+    "pub_date": "2025-12-08",
+    "doi": "10.1038/s41592-025-02879-w",
+    "journal": "Nature Methods",
+    "authors": [
+      "Markus Marks",
+      "Uriah Israel",
+      "Rohit Dilip",
+      "Qilin Li",
+      "Changhua Yu",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s41592-025-02879-w"
+  },
+  {
+    "slug": "pub-479",
+    "title": "Cell type populations for 3D anatomical structures of the Human Reference Atlas",
+    "pub_date": "2025-12-05",
+    "doi": "10.1101/2025.08.14.670406",
+    "journal": "bioRxiv",
+    "authors": [
+      "Andreas Bueckle",
+      "Bruce W Herr Ii",
+      "Lu Chen",
+      "Daniel Bolin",
+      "Danial Qaurooni",
+      "et al."
+    ],
+    "type": "manuscript",
+    "url": "https://doi.org/10.1101/2025.08.14.670406"
+  },
+  {
+    "slug": "pub-477",
+    "title": " Atlas of Macroscopes: Interactive Data Visualizations",
+    "pub_date": "2025-09-30",
+    "doi": "",
+    "journal": "Cambridge, MA: The MIT Press",
+    "authors": [
+      "Katy Borner",
+      "Elizabeth G Record",
+      "Todd Theriault"
+    ],
+    "type": "book",
+    "url": "https://mitpress.mit.edu/9780262049924/atlas-of-macroscopes/"
+  },
+  {
+    "slug": "pub-482",
+    "title": "Exploring endothelial cell environments across organs in spatially resolved omics data",
+    "pub_date": "2025-09-25",
+    "doi": "10.1101/2025.09.23.678129",
+    "journal": "bioRxiv",
+    "authors": [
+      "Yashvardhan Jain",
+      "Jodie Jepson",
+      "Roy Chen",
+      "Elizabeth Maier",
+      "Bruce W Herr Ii",
+      "et al."
+    ],
+    "type": "manuscript",
+    "url": "https://doi.org/10.1101/2025.09.23.678129"
+  },
+  {
+    "slug": "pub-481",
+    "title": "AI-Supported Extraction of Functional Tissue Unit Properties for Human Reference Atlas Construction",
+    "pub_date": "2025-09-13",
+    "doi": "10.1101/2025.09.11.675730",
+    "journal": "bioRxiv",
+    "authors": [
+      "Yongxin Kong",
+      "Katy Borner"
+    ],
+    "type": "manuscript",
+    "url": "https://doi.org/10.1101/2025.09.11.675730"
+  },
+  {
+    "slug": "pub-480",
+    "title": "A general strategy for generating expert-guided, simplified views of ontologies",
+    "pub_date": "2025-08-29",
+    "doi": "10.1101/2024.12.13.628309",
+    "journal": "manuscript",
+    "authors": [
+      "Anita R Caron",
+      "Aleix Puig Barbe",
+      "Ellen M Quardokus",
+      "James P Balhoff",
+      "Jasmine Belfiore",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1101/2024.12.13.628309"
+  },
+  {
+    "slug": "pub-483",
+    "title": "Ontology-supported Integration of Gene Expression Data from Heterogeneous Subjects  in KPMP and HuBMAP Resources for Systematic Kidney Disease Analysis",
+    "pub_date": "2025-08-03",
+    "doi": "",
+    "journal": "International Conference on Intelligent, Biology and Medicine (ICIBM), Columbus, Ohio ",
+    "authors": [
+      "Ruopeng Wu",
+      "Yichao Chen",
+      "Feng Yu Leo Yeh",
+      "Jie Zheng",
+      "Nikki Bonevich",
+      "et al."
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/ICIBM_2025_Poster_Ruopeng_Wu.pdf"
+  },
+  {
+    "slug": "pub-459",
+    "title": "Construction, Deployment, and Usage of the Human Reference Atlas Knowledge Graph",
+    "pub_date": "2025-07-01",
+    "doi": "10.1038/s41597-025-05183-6",
+    "journal": "Nature Scientific Data",
+    "authors": [
+      "Andreas Bueckle",
+      "Bruce W Herr Ii",
+      "Josef Hardi",
+      "Ellen M Quardokus",
+      "Mark A Musen",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s41597-025-05183-6"
+  },
+  {
+    "slug": "pub-476",
+    "title": "Chinese Human Reference Atlas Mirror: Setup, Localization, and Usage",
+    "pub_date": "2025-06-11",
+    "doi": "",
+    "journal": "Human Cell Atlas General Meeting, Singapore",
+    "authors": [
+      "Bruce W Herr Ii",
+      "Lei Liu",
+      "Roland Eils",
+      "Lei Gu",
+      "Feizhen Wu",
+      "et al."
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/25GM-HRA-Mirror-Poster.pdf"
+  },
+  {
+    "slug": "pub-466",
+    "title": "Benchmarking single cell transcriptome matching methods for incremental growth of reference atlases",
+    "pub_date": "2025-04-16",
+    "doi": "10.1101/2025.04.10.648034",
+    "journal": "bioRxiv",
+    "authors": [
+      "Joyce Hu",
+      "Beverly Peng",
+      "Ajith V Pankajam",
+      "Bingfang Xu",
+      "Vikrant Deshpande",
+      "et al."
+    ],
+    "type": "manuscript",
+    "url": "https://doi.org/10.1101/2025.04.10.648034"
+  },
+  {
+    "slug": "pub-464",
+    "title": "The IBEX Knowledge-Base: A central resource for multiplexed imaging techniques",
+    "pub_date": "2025-03-19",
+    "doi": "10.1371/journal.pbio.3003070",
+    "journal": "PLOS Biology",
+    "authors": [
+      "Andrea J Radtke",
+      "Ifeanyichukwu U Anidi",
+      "Leanne Arakkal",
+      "Armando Arroyo Mejias",
+      "Rebecca T Beuschel",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1371/journal.pbio.3003070"
+  },
+  {
+    "slug": "pub-434",
+    "title": "Human BioMolecular Atlas Program (HuBMAP): 3D Human Reference Atlas Construction and Usage",
+    "pub_date": "2025-03-13",
+    "doi": "10.1038/s41592-024-02563-5",
+    "journal": "Nature Methods.",
+    "authors": [
+      "Katy Borner",
+      "Philip Blood",
+      "Jonathan C Silverstein",
+      "Matthew Ruffalo",
+      "Sarah A Teichmann",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s41592-024-02563-5"
+  },
+  {
+    "slug": "pub-469",
+    "title": "Ensuring Adherence to Standards in Experiment-Related Metadata Entered Via Spreadsheets",
+    "pub_date": "2025-02-14",
+    "doi": "10.1038/s41597-025-04589-6",
+    "journal": "Scientific Data",
+    "authors": [
+      "Martin J Oconnor",
+      "Josef Hardi",
+      "Marcos Martinez Romero",
+      "Sowmya Somasundaram",
+      "Brendan Honick",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s41597-025-04589-6"
+  },
+  {
+    "slug": "pub-462",
+    "title": "Functional tissue units in the Human Reference Atlas",
+    "pub_date": "2025-02-11",
+    "doi": "10.1038/s41467-024-54591-6",
+    "journal": "Nature Communications",
+    "authors": [
+      "Supriya Bidanta",
+      "Katy Borner",
+      "Bruce W Herr Ii",
+      "Ellen M Quardokus",
+      "Marcell Nagy",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s41467-024-54591-6"
+  },
+  {
+    "slug": "pub-468",
+    "title": "Symposia Report of The Annual Biological Sciences Section Meeting of the Gerontological Society of America 2023, Tampa, Florida",
+    "pub_date": "2025-02-11",
+    "doi": "10.1093/gerona/glaf026",
+    "journal": "The Journals of Gerontology: Series A",
+    "authors": [
+      "Rogina Blanka",
+      "Rozalyn Anderson",
+      "Nathan K Lebrasseur",
+      "Sean P Curran",
+      "Matthew J Yousefzadeh",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1093/gerona/glaf026"
+  },
+  {
+    "slug": "pub-460",
+    "title": "myAURA: a personalized health library for epilepsy management via knowledge graph sparsification and visualization ",
+    "pub_date": "2025-01-31",
+    "doi": "10.1093/jamia/ocaf012",
+    "journal": "Journal of the American Medical Informatics Association",
+    "authors": [
+      "Rion Brattig Correia",
+      "Jordan C Rozum",
+      "Leonard Cross",
+      "Jack Felag",
+      "Michael Gallant",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1093/jamia/ocaf012"
+  },
+  {
+    "slug": "pub-443",
+    "title": "Generalized cell phenotyping for spatial proteomics with language-informed vision models",
+    "pub_date": "2024-11-17",
+    "doi": "10.1101/2024.11.02.621624",
+    "journal": "bioRxiv",
+    "authors": [
+      "Xuefei Julie Wang",
+      "Rohit Dilip",
+      "Yuval Bussi",
+      "Caitlin Brown",
+      "Elora Pradhan",
+      "et al."
+    ],
+    "type": "manuscript",
+    "url": "https://doi.org/10.1101/2024.11.02.621624"
+  },
+  {
+    "slug": "pub-461",
+    "title": "Deep learning for 3D vascular segmentation in hierarchical phase contrast tomography: a case study on kidney",
+    "pub_date": "2024-11-08",
+    "doi": "10.1038/s41598-024-77582-5",
+    "journal": "Nature Scientific Reports",
+    "authors": [
+      "Ekin Yagis",
+      "Shahab Aslani",
+      "Yashvardhan Jain",
+      "Yang Zhou",
+      "Shahrokh Rahmani",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s41598-024-77582-5"
+  },
+  {
+    "slug": "pub-472",
+    "title": " 19th International Conference on Scientometrics & Informetrics (ISSI) 2023 editorial",
+    "pub_date": "2024-11-05",
+    "doi": "10.1007/s11192-024-05185-y",
+    "journal": "Scientometrics",
+    "authors": [],
+    "type": "periodical",
+    "url": "https://doi.org/10.1007/s11192-024-05185-y"
+  },
+  {
+    "slug": "pub-463",
+    "title": "Vasculature segmentation in 3D hierarchical phase-contrast tomography images of human kidneys",
+    "pub_date": "2024-08-26",
+    "doi": "10.1101/2024.08.25.609595",
+    "journal": "bioRxiv",
+    "authors": [
+      "Yashvardhan Jain",
+      "Claire L Walsh",
+      "Ekin Yagis",
+      "Shahab Aslani",
+      "Sonal Nandanwar",
+      "et al."
+    ],
+    "type": "manuscript",
+    "url": "https://doi.org/10.1101/2024.08.25.609595"
+  },
+  {
+    "slug": "pub-442",
+    "title": "Enabling Global Image Data Sharing in the Life Sciences",
+    "pub_date": "2024-08-09",
+    "doi": "10.48550/arXiv.2401.13023",
+    "journal": "Arxiv- Quantitative Biology",
+    "authors": [
+      "Peter Bajcsy",
+      "Screenivas Bhattiprolu",
+      "Katy Borner",
+      "Beth A Cimini",
+      "Lucy Collinson",
+      "et al."
+    ],
+    "type": "manuscript",
+    "url": "https://doi.org/10.48550/arXiv.2401.13023"
+  },
+  {
+    "slug": "pub-441",
+    "title": "Ontology-based modeling, integration, and analysis of heterogeneous clinical, pathological, and molecular kidney data for precision medicine",
+    "pub_date": "2024-08-04",
+    "doi": "",
+    "journal": "AMIA Annual Symposium Proceedings",
+    "authors": [
+      "Yongqun He",
+      "Laura Barisoni",
+      "Avi Z Rosenberg",
+      "Peter N Robinson",
+      "Alexander D Diehl",
+      "et al."
+    ],
+    "type": "paper-conference",
+    "url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12099421/"
+  },
+  {
+    "slug": "pub-465",
+    "title": "Data Visualizations that improve the segmentation of medical images",
+    "pub_date": "2024-07-28",
+    "doi": "",
+    "journal": "Thesis, Doctor of Philosophy: Katy Börner, David Crandall, Minje Kim, Ariful Azad. Indiana University, Bloomington, IN.",
+    "authors": [
+      "Yingnan Ju"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/Yingnan_s_Dissertation_submit_revised_1.pdf"
+  },
+  {
+    "slug": "pub-440",
+    "title": "The IBEX Knowledge-Base: Achieving more together with open science",
+    "pub_date": "2024-07-26",
+    "doi": "10.48550/arXiv.2407.19059",
+    "journal": "Arxiv- Quantitative Biology",
+    "authors": [
+      "Andrea J Radtke",
+      "Ifeanyichukwu Anidi",
+      "Leanne Arakkal",
+      "Armando Arroyo Mejias",
+      "Rebecca T Beuschel",
+      "et al."
+    ],
+    "type": "manuscript",
+    "url": "https://doi.org/10.48550/arXiv.2407.19059"
+  },
+  {
+    "slug": "pub-438",
+    "title": "Publication, funding, and experimental data in support of Human Reference Atlas construction and usage",
+    "pub_date": "2024-06-04",
+    "doi": "10.1038/s41597-024-03416-8",
+    "journal": "Nature Scientific Data",
+    "authors": [
+      "Yongxin Kong",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s41597-024-03416-8"
+  },
+  {
+    "slug": "pub-439",
+    "title": "SenNet recommendations for detecting senescent cells in different tissues",
+    "pub_date": "2024-06-03",
+    "doi": "10.1038/s41580-024-00738-8",
+    "journal": "Nature Reviews Molecular Cell Biology",
+    "authors": [
+      "Vidyani Suryadevara",
+      "Adam D Hudgins",
+      "Adarsh Rajesh",
+      "Alberto Pappalardo",
+      "Alla Karpova",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s41580-024-00738-8"
+  },
+  {
+    "slug": "pub-433",
+    "title": "Interactive Network visualization of opiod crisis research: a tool for reinforcing data linkage skills for public health policy researchers",
+    "pub_date": "2024-04-05",
+    "doi": "10.3389/frai.2024.1208874",
+    "journal": "Frontiers in Artificial Intelligence",
+    "authors": [
+      "Olga Scrivner",
+      "Thuy D Nguyen",
+      "Michael Ginda",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.3389/frai.2024.1208874"
+  },
+  {
+    "slug": "pub-449",
+    "title": "Interactive network visualization of opioid crisis research: a tool for reinforcing data linkage skills for public health policy researchers",
+    "pub_date": "2024-04-04",
+    "doi": "10.3389/frai.2024.1208874",
+    "journal": "Frontiers In Artificial Intelligence",
+    "authors": [
+      "Olga Scrivner",
+      "Thuy Nguyen",
+      "Michael Ginda",
+      "Kosali Simon",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.3389/frai.2024.1208874"
+  },
+  {
+    "slug": "pub-436",
+    "title": "Scholarly publications and data set evidence for the Human Reference Atlas",
+    "pub_date": "2024-03-01",
+    "doi": "10.1162/qss_a_00299",
+    "journal": "Quantitative Science Studies",
+    "authors": [
+      "Yongxin Kong",
+      "Vicky Amar Daiya",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1162/qss_a_00299"
+  },
+  {
+    "slug": "pub-445",
+    "title": "Precision Medicine in Nephrology: An Integrative Framework of Multidimensional Data in the Kidney Precision Medicine Project",
+    "pub_date": "2024-03-01",
+    "doi": "10.1053/j.ajkd.2023.08.015",
+    "journal": "American Journal of Kidney Diseases",
+    "authors": [
+      "Tarek M El Achkar",
+      "Michael T Eadon",
+      "Matthias Kretzler",
+      "Jonathan Himmelfarb",
+      "Kidney Precision Medicine Project"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1053/j.ajkd.2023.08.015"
+  },
+  {
+    "slug": "pub-446",
+    "title": "Molecular Signatures of Glomerular Neovascularization in a Patient with Diabetic Kidney Disease",
+    "pub_date": "2024-02-01",
+    "doi": "",
+    "journal": "Clinical Journal of the American Society of Nephrology",
+    "authors": [
+      "Michael J Ferkowicz",
+      "Daria Barwinska",
+      "Ricardo Melo Ferreira",
+      "Joel M Henderson",
+      "Mary Kirkpatrick",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://journals.lww.com/cjasn/abstract/2024/02000/molecular_signatures_of_glomerular.21.aspx"
+  },
+  {
+    "slug": "pub-432",
+    "title": "Visual Analytics for Data-Driven Understanding of the Substance Use Disorder Epidemic",
+    "pub_date": "2024-01-28",
+    "doi": "10.1177/00469580241227020",
+    "journal": "Sage Journals",
+    "authors": [
+      "Danial Qaurooni",
+      "Bruce W Herr Ii",
+      "Sarah Renee Zappone",
+      "Klaudia Wojciechowska",
+      "Katy Borner",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1177/00469580241227020"
+  },
+  {
+    "slug": "pub-447",
+    "title": "Uncertainty in humanities network visualization",
+    "pub_date": "2024-01-11",
+    "doi": "10.3389/fcomm.2023.1305137",
+    "journal": "Frontiers In Communication",
+    "authors": [
+      "Melanie Conroy",
+      "Christina Gillmann",
+      "Francis Harvey",
+      "Tamara Mchedlidze",
+      "Sara Irina Fabrikant",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.3389/fcomm.2023.1305137"
+  },
+  {
+    "slug": "pub-431",
+    "title": "Opioid Prescriptions Prior to Emergency Department Dental Visits: A Comparison of Dental Health Professional Shortage Areas (DPSAs) and Non-DPSAs Using Electronic Health Records",
+    "pub_date": "2023-12-24",
+    "doi": "10.1177/00469580231218440",
+    "journal": "Sage Journals",
+    "authors": [
+      "Mallory Dreyer",
+      "Aunbhuti Shukla",
+      "Juyee Sabade",
+      "Meghana Bibireddy",
+      "Katy Borner",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1177/00469580231218440"
+  },
+  {
+    "slug": "pub-467",
+    "title": "Building a Human Reference Atlas",
+    "pub_date": "2023-12-21",
+    "doi": "10.1093/geroni/igad104.1556",
+    "journal": "Innovation in Aging 7(Supplement_1): 473 ",
+    "authors": [
+      "Andreas Bueckle"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1093/geroni/igad104.1556"
+  },
+  {
+    "slug": "pub-419",
+    "title": "Segmenting functional tissue units across human organs using community-driven development of generalizable machine learning algorithms",
+    "pub_date": "2023-08-03",
+    "doi": "10.1038/s41467-023-40291-0",
+    "journal": "Nature Communications",
+    "authors": [
+      "Yashvardhan Jain",
+      "Leah L Godwin",
+      "Sripad Joshi",
+      "Shriya Mandarapu",
+      "Trang Le",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s41467-023-40291-0"
+  },
+  {
+    "slug": "pub-410",
+    "title": "Segmentation of human functional tissue units in support of a Human Reference Atlas",
+    "pub_date": "2023-07-19",
+    "doi": "10.1038/s42003-023-04848-5",
+    "journal": "Nature Communications Biology",
+    "authors": [
+      "Yashvardhan Jain",
+      "Leah L Godwin",
+      "Yingnan Ju",
+      "Naveksha Sood",
+      "Ellen M Quardokus",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s42003-023-04848-5"
+  },
+  {
+    "slug": "pub-414",
+    "title": "3D reconstruction of skin and spatial mapping of immune cell density, vascular distance and effects of sun exposure and aging",
+    "pub_date": "2023-07-19",
+    "doi": "10.1038/s42003-023-04991-z",
+    "journal": "Nature Communications Biology",
+    "authors": [
+      "Soumya Ghose",
+      "Yingnan Ju",
+      "Elizabeth Mcdonough",
+      "Jonhan Ho",
+      "Arivarasan Karunamurthy",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s42003-023-04991-z"
+  },
+  {
+    "slug": "pub-420",
+    "title": "Anatomical structures, cell types, and biomarkers of the healthy human blood vasculature",
+    "pub_date": "2023-07-19",
+    "doi": "10.1038/s41597-023-02018-0",
+    "journal": "Nature Scientific Data",
+    "authors": [
+      "Avinash Boppana",
+      "Sujin Lee",
+      "Rajeev Malhotra",
+      "Marc Halushka",
+      "Katherine S Gustilo",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s41597-023-02018-0"
+  },
+  {
+    "slug": "pub-425",
+    "title": "Advances and prospects for the Human BioMolecular Atlas Program (HuBMAP)",
+    "pub_date": "2023-07-19",
+    "doi": "10.1038/s41556-023-01194-w",
+    "journal": "Nature Cell Biology",
+    "authors": [
+      "Sanjay Jain",
+      "Liming Pei",
+      "Jeffrey M Spraggins",
+      "Michael Angelo",
+      "James P Carson",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s41556-023-01194-w"
+  },
+  {
+    "slug": "pub-426",
+    "title": "Organ Mapping Antibody Panels: a community resource for standardized multiplexed tissue imaging",
+    "pub_date": "2023-07-19",
+    "doi": "10.1038/s41592-023-01846-7",
+    "journal": "Nature Methods",
+    "authors": [
+      "Ellen M Quardokus",
+      "Diane C Saunders",
+      "Elizabeth Mcdonough",
+      "John W Hickey",
+      "Christopher Werlein",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s41592-023-01846-7"
+  },
+  {
+    "slug": "pub-428",
+    "title": "Museum Visitor Comfort When Sharing Personal Information for Evaluation",
+    "pub_date": "2023-07-11",
+    "doi": "10.1080/10598650.2022.2135353",
+    "journal": "Journal of Museum Education",
+    "authors": [
+      "Justin Reeves Meyer",
+      "Joe E Heimlich",
+      "E Elaine T Horr",
+      "Rebecca F Kemper",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1080/10598650.2022.2135353"
+  },
+  {
+    "slug": "pub-427",
+    "title": "Scholarly publications and dataset evidence for the human reference atlas",
+    "pub_date": "2023-07-03",
+    "doi": "",
+    "journal": "19th International Conference on Scientometrics and Informetrics (ISSI 2023), Bloomington, IN",
+    "authors": [
+      "Yongxin Kong",
+      "Vicky Amar Daiya",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2023-Kong_Scholarly-publications (ISSI).pdf"
+  },
+  {
+    "slug": "pub-430",
+    "title": "Introducing the Open Biomedical Map of Science (OBMS)",
+    "pub_date": "2023-07-03",
+    "doi": "",
+    "journal": "19th International Conference on Scientometrics and Informetrics (ISSI 2023), Bloomington, IN",
+    "authors": [
+      "Michael Ginda",
+      "Bruce W Herr Ii",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2023-Ginda_Introducing-the-OBMS.pdf"
+  },
+  {
+    "slug": "pub-423",
+    "title": "A Scalable Method for Readable Tree Layouts",
+    "pub_date": "2023-05-17",
+    "doi": "10.1109/TVCG.2023.3274572",
+    "journal": "IEEE Transactions on Visualization and Computer Graphics.",
+    "authors": [
+      "Kathryn Gray",
+      "Mingwei Li",
+      "Reyan Ahmed",
+      "Md Khaledur Rahman",
+      "Ariful Azad",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1109/TVCG.2023.3274572"
+  },
+  {
+    "slug": "pub-421",
+    "title": "The HRA Organ Gallery affords immersive superpowers for building and exploring the Human Reference Atlas with virtual reality",
+    "pub_date": "2023-04-27",
+    "doi": "10.3389/fbinf.2023.1162723",
+    "journal": "Frontiers in Bioinformatics",
+    "authors": [
+      "Andreas Bueckle",
+      "Catherine Qing",
+      "Shefali Luley",
+      "Yash Kumar",
+      "Naval Pandey",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.3389/fbinf.2023.1162723"
+  },
+  {
+    "slug": "pub-422",
+    "title": "Understanding Contexts and Challenges of Information Management for Epilepsy Care",
+    "pub_date": "2023-04-19",
+    "doi": "10.1145/3544548.3580949",
+    "journal": "CHI '23: Proceedings of the 2023 CHI Conference on Human Factors in Computing Systems",
+    "authors": [
+      "Aehong Min",
+      "Wendy R Miller",
+      "Luis M Rocha",
+      "Katy Borner",
+      "Rion Brattig Correia",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1145/3544548.3580949"
+  },
+  {
+    "slug": "pub-424",
+    "title": "Specimen, biological structure, and spatial ontologies in support of a Human Reference Atlas",
+    "pub_date": "2023-03-27",
+    "doi": "10.1038/s41597-023-01993-8",
+    "journal": "Nature Scientific Data",
+    "authors": [
+      "Bruce W Herr Ii",
+      "Josef Hardi",
+      "Ellen M Quardokus",
+      "Andreas Bueckle",
+      "Lu Chen",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s41597-023-01993-8"
+  },
+  {
+    "slug": "pub-429",
+    "title": "Mapping the lymphatic system across body scales and expertise domains: A report from the 2021 National Heart, Lung, and Blood Institute workshop at the Boston Lymphatic Symposium",
+    "pub_date": "2023-02-06",
+    "doi": "10.3389/fphys.2023.1099403",
+    "journal": "Frontiers in Physiology",
+    "authors": [
+      "Dhruv Singhal",
+      "Katy Borner",
+      "Elliot L Chaikof",
+      "Michael Detmar",
+      "Maija Hollmen",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.3389/fphys.2023.1099403"
+  },
+  {
+    "slug": "pub-416",
+    "title": "NIH SenNet Consortium to map senescent cells throughout the human lifespan to understand physiological health",
+    "pub_date": "2022-12-20",
+    "doi": "10.1038/s43587-022-00326-5",
+    "journal": "Nature Aging",
+    "authors": [
+      "Patty J Lee",
+      "Christopher C Benz",
+      "Philip Blood",
+      "Katy Borner",
+      "Judith Campisi",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s43587-022-00326-5"
+  },
+  {
+    "slug": "pub-413",
+    "title": "Tissue registration and exploration user interfaces in support of a human reference atlas",
+    "pub_date": "2022-12-13",
+    "doi": "10.1101/2021.12.30.474265",
+    "journal": "Nature Communications Biology",
+    "authors": [
+      "Katy Borner",
+      "Andreas Bueckle",
+      "Bruce W Herr Ii",
+      "Leonard E Cross",
+      "Ellen M Quardokus",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1101/2021.12.30.474265"
+  },
+  {
+    "slug": "pub-437",
+    "title": "Multi-scalar data integration links glomerular angiopoietin-tie signaling pathway activation with progression of diabetic kidney disease",
+    "pub_date": "2022-12-01",
+    "doi": "10.2337/db22-0169",
+    "journal": "Diabetes",
+    "authors": [
+      "Jiahao Liu",
+      "Viji Nair",
+      "Yi Yang Zhao",
+      "Dong Yuan Chang",
+      "Christine Limonte",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.2337/db22-0169"
+  },
+  {
+    "slug": "pub-417",
+    "title": "Real-Time Spatial Registration for 3D Human Atlas",
+    "pub_date": "2022-11-03",
+    "doi": "10.1145/3557917.3567618",
+    "journal": "BigSpatial '22: Proceedings of the 10th ACM SIGSPATIAL International Workshop on Analytics for Big Geospatial Data",
+    "authors": [
+      "Lu Chen",
+      "Dejun Teng",
+      "Tian Zhu",
+      "Jun Kong",
+      "Bruce W Herr Ii",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1145/3557917.3567618"
+  },
+  {
+    "slug": "pub-451",
+    "title": "A user-friendly tool for cloud-based whole slide image segmentation with examples from renal histopathology",
+    "pub_date": "2022-08-19",
+    "doi": "",
+    "journal": "",
+    "authors": [
+      "Brendon Lutnick",
+      "David Manthey",
+      "Jan U Becker",
+      "Brandon Ginley",
+      "Katharina Moos",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://www.nature.com/articles/s43856-022-00138-z"
+  },
+  {
+    "slug": "pub-450",
+    "title": "Anatomical Structures Object Library of the Human Reference Atlas.",
+    "pub_date": "2022-05-13",
+    "doi": "10.1096/fasebj.2022.36.S1.R2809",
+    "journal": "The Faseb Journal",
+    "authors": [
+      "Katy Borner",
+      "Ellen M Quardokus",
+      "Kristen Browne"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1096/fasebj.2022.36.S1.R2809"
+  },
+  {
+    "slug": "pub-390",
+    "title": "Viv: multiscale visualization of high-resolution multiplexed bioimaging data on the web",
+    "pub_date": "2022-05-11",
+    "doi": "10.1038/s41592-022-01482-7",
+    "journal": "Nature Methods",
+    "authors": [
+      "Trevor Manz",
+      "Ilan Gold",
+      "Nathan Heath Patterson",
+      "Chuck Mccallum",
+      "Mark S Keller",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s41592-022-01482-7"
+  },
+  {
+    "slug": "pub-415",
+    "title": "A biomedical open knowledge network harnesses the power of AI to understand deep human biology",
+    "pub_date": "2022-03-31",
+    "doi": "10.1002/aaai.12037",
+    "journal": "AI Magazine",
+    "authors": [
+      "Sergio E Baranzini",
+      "Katy Borner",
+      "John Morris",
+      "Charlotte A Nelson",
+      "Karthik Soman",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1002/aaai.12037"
+  },
+  {
+    "slug": "pub-411",
+    "title": "Leveraging online shopping behaviors as a proxy for personal lifestyle choices: New insights into chronic disease prevention literacy",
+    "pub_date": "2022-03-28",
+    "doi": "10.1177/20552076221089092",
+    "journal": "DIGITAL HEALTH",
+    "authors": [
+      "Yongzhen Wang",
+      "Xiaozhong Liu",
+      "Katy Borner",
+      "Jun Lin",
+      "Yingnan Ju",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1177/20552076221089092"
+  },
+  {
+    "slug": "pub-412",
+    "title": "Optimizing Performance and Satisfaction in Matching and Movement Tasks in Virtual Reality with Interventions Using the Data Visualization Literacy Framework",
+    "pub_date": "2022-01-21",
+    "doi": "10.3389/frvir.2021.727344",
+    "journal": "Frontiers in Virtual Reality",
+    "authors": [
+      "Andreas Bueckle",
+      "Kilian Buehling",
+      "Patrick C Shih",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.3389/frvir.2021.727344"
+  },
+  {
+    "slug": "pub-398",
+    "title": "Anatomical structures, cell types and biomarkers of the Human Reference Atlas",
+    "pub_date": "2021-11-08",
+    "doi": "10.1038/s41556-021-00788-6",
+    "journal": "Nature Cell Biology",
+    "authors": [
+      "Katy Borner",
+      "Sarah A Teichmann",
+      "Ellen M Quardokus",
+      "James Gee",
+      "Kristen Browne",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s41556-021-00788-6"
+  },
+  {
+    "slug": "pub-409",
+    "title": "3D virtual reality vs. 2D desktop registration user interface comparison",
+    "pub_date": "2021-10-27",
+    "doi": "10.1371/journal.pone.0258103",
+    "journal": "PLOS One",
+    "authors": [
+      "Andreas Bueckle",
+      "Kilian Buehling",
+      "Patrick C Shih",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1371/journal.pone.0258103"
+  },
+  {
+    "slug": "pub-404",
+    "title": "Visualizing big science projects",
+    "pub_date": "2021-09-28",
+    "doi": "10.1038/s42254-021-00374-7",
+    "journal": "Nature Reviews Physics",
+    "authors": [
+      "Katy Borner",
+      "Filipi Nascimento Silva",
+      "Stasa Milojevic"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s42254-021-00374-7"
+  },
+  {
+    "slug": "pub-403",
+    "title": "Foreword",
+    "pub_date": "2021-09-12",
+    "doi": "",
+    "journal": "Envisioning the Framework: A Graphic Guide to Information Literacy",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2021-Borner-Foreword-Envisioning-the-Framework.pdf"
+  },
+  {
+    "slug": "pub-402",
+    "title": "Multi-Level Graph Representation for Big Data Arising in Science Mapping (Dagstuhl Seminar 21152)",
+    "pub_date": "2021-09-07",
+    "doi": "10.4230/DagRep.11.3.1",
+    "journal": "Dagstuhl Reports",
+    "authors": [
+      "Katy Ed Borner",
+      "Stephen Kobourov Ed"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.4230/DagRep.11.3.1"
+  },
+  {
+    "slug": "pub-399",
+    "title": "Atlas of Forecasts: Modeling and Mapping Desirable Futures",
+    "pub_date": "2021-08-31",
+    "doi": "",
+    "journal": "Cambridge, MA: The MIT Press",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "book",
+    "url": "https://mitpress.mit.edu/books/atlas-forecasts"
+  },
+  {
+    "slug": "pub-435",
+    "title": "Cadherin-11, Sparc-related modular calcium binding protein-2, and Pigment epithelium-derived factor are promising non-invasive biomarkers of kidney fibrosis",
+    "pub_date": "2021-08-19",
+    "doi": "10.1016/j.kint.2021.04.037",
+    "journal": "Kidney International",
+    "authors": [
+      "Insa M Schmidt",
+      "Mia R Colona",
+      "Bryan R Kestenbaum",
+      "Leonidas G Alexopoulos",
+      "Ragnar Palsson",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1016/j.kint.2021.04.037"
+  },
+  {
+    "slug": "pub-405",
+    "title": "Chinese E-Romance: Analyzing and Visualizing 7.92 Million Alibaba Valentine's Day Purchases",
+    "pub_date": "2021-08-17",
+    "doi": "10.2478/dim-2021-0006",
+    "journal": "Data and Information Management",
+    "authors": [
+      "Yongzhen Wang",
+      "Xiaozhong Liu",
+      "Yingnan Ju",
+      "Katy Borner",
+      "Jun Lin",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.2478/dim-2021-0006"
+  },
+  {
+    "slug": "pub-401",
+    "title": "Optimizing Performance and Satisfaction in Virtual Reality Environments with Interventions using the Data Visualization Literacy Framework",
+    "pub_date": "2021-07-30",
+    "doi": "10.13140/RG.2.2.33214.00328",
+    "journal": "Thesis, Doctor of Philosophy: Katy Börner, Patrick Shih, John Walsh, Rob Montoya. Indiana University, Bloomington, IN.",
+    "authors": [
+      "Andreas Bueckle"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.13140/RG.2.2.33214.00328"
+  },
+  {
+    "slug": "pub-406",
+    "title": "Just In Time: Challenges and Opportunities of First Aid Care Information Sharing for Supporting Epileptic Seizure Response",
+    "pub_date": "2021-04-22",
+    "doi": "10.1145/3449187",
+    "journal": "Proceedings of the ACM on Human-Computer Interaction",
+    "authors": [
+      "Aehong Min",
+      "Wendy Miller",
+      "Luis M Rocha",
+      "Katy Borner",
+      "Rion Brattig Correia",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1145/3449187"
+  },
+  {
+    "slug": "pub-470",
+    "title": "Visualization Literacy for General Audiences - Can We Make A Difference?",
+    "pub_date": "2021-03-01",
+    "doi": "",
+    "journal": "IEEE Vis",
+    "authors": [
+      "Alark Joshi",
+      "Katy Borner",
+      "Robert S Laramee",
+      "Lane Harrison",
+      "Elif E Firat",
+      "et al."
+    ],
+    "type": "manuscript",
+    "url": "https://people.cs.nott.ac.uk/blaramee/research/panel/joshi21visualization.pdf"
+  },
+  {
+    "slug": "pub-397",
+    "title": "Comparing Completion Time, Accuracy, and Satisfaction in Virtual Reality vs. Desktop Implementation of the Common Coordinate Framework Registration User Interface (CCF RUI)",
+    "pub_date": "2021-02-24",
+    "doi": "",
+    "journal": "arXiv:2102.12030v1 [cs.HC]",
+    "authors": [
+      "Andreas Bueckle",
+      "Kilian Buehling",
+      "Patrick C Shih",
+      "Katy Borner"
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2021-Bueckle-Comparing-Completion-Time.pdf"
+  },
+  {
+    "slug": "pub-396",
+    "title": "Interactive Network Visualization of Opioid Crisis Related Data- Policy, Pharmaceutical, Training, and More",
+    "pub_date": "2021-02-10",
+    "doi": "",
+    "journal": "arXiv:2102.05596v1 [econ.EM]",
+    "authors": [
+      "Olga Scrivner",
+      "Elizabeth Mcavoy",
+      "Thuy Nguyen",
+      "Tenzin Choeden",
+      "Kosali Simon",
+      "et al."
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2021-Scrivner-Interactive-Network-Vis.pdf"
+  },
+  {
+    "slug": "pub-408",
+    "title": "Maps of Science, Technology, and Education",
+    "pub_date": "2021-01-01",
+    "doi": "10.1093/oxfordhb/9780190251765.013.3",
+    "journal": "The Oxford Handbook of Social Networks",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://doi.org/10.1093/oxfordhb/9780190251765.013.3"
+  },
+  {
+    "slug": "pub-395",
+    "title": "Modeling and Envisioning Complex Systems",
+    "pub_date": "2020-12-18",
+    "doi": "",
+    "journal": "Winter Issue of The Bridge on Complex Unifiable Systems",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/20-Bridge-Complex-Systems.pdf"
+  },
+  {
+    "slug": "pub-388",
+    "title": "Mapping the co-evolution of artificial intelligence, robotics, and the internet of things over 20 years (1998-2017)",
+    "pub_date": "2020-12-02",
+    "doi": "10.1371/journal.pone.0242984",
+    "journal": "PLOS One",
+    "authors": [
+      "Katy Borner",
+      "Olga Scrivner",
+      "Leonard Cross",
+      "Mike Gallant",
+      "Shutian Ma",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1371/journal.pone.0242984"
+  },
+  {
+    "slug": "pub-392",
+    "title": "'Then and Now,' Mapping the 25 Year Evolution and Impact of North American Vascular Biology Organization Science Through Publications of its Founding and Current Members",
+    "pub_date": "2020-11-12",
+    "doi": "10.3389/frma.2020.591090",
+    "journal": "Frontiers in Research Metrics and Analytics",
+    "authors": [
+      "Zorina S Galis",
+      "Bruce W Herr Ii",
+      "Santoshmurti S Daptardar",
+      "Medina Sydykanova",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.3389/frma.2020.591090"
+  },
+  {
+    "slug": "pub-407",
+    "title": "Community-based data integration of course and job data in support of personalized career-education recommendations",
+    "pub_date": "2020-10-22",
+    "doi": "10.1002/pra2.324",
+    "journal": "Proceedings of the Association for Information Science and Technology",
+    "authors": [
+      "Guoqing Zhu",
+      "Naga Anjaneyulu Kopalle",
+      "Yongzhen Wang",
+      "Xiaozhong Liu",
+      "Kemi Jona",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1002/pra2.324"
+  },
+  {
+    "slug": "pub-370",
+    "title": "The impact of air transport availability on research collaboration: A case study of four universities",
+    "pub_date": "2020-09-04",
+    "doi": "10.1371/journal.pone.0238360",
+    "journal": "PLOS One",
+    "authors": [
+      "Adam Ploszaj",
+      "Xiaoran Yan",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1371/journal.pone.0238360"
+  },
+  {
+    "slug": "pub-391",
+    "title": "Key principles for workforce upskilling via online learning: a learning analytics study of a professional course in addictive manufacturing",
+    "pub_date": "2020-08-15",
+    "doi": "",
+    "journal": "arXiv:2008.06610v1 [cs.HC]",
+    "authors": [
+      "Kylie Peppler",
+      "Joey Huang",
+      "Michael C Richey",
+      "Michael Ginda",
+      "Katy Borner",
+      "et al."
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2020-Peppler-Key-Principles.pdf"
+  },
+  {
+    "slug": "pub-393",
+    "title": "Construction and Usage of a Human Body Common Coordinate Framework Comprising Clinical, Semantic, and Spatial Ontologies",
+    "pub_date": "2020-07-28",
+    "doi": "",
+    "journal": "arXiv:2007.14474v1 [q-bio.QM]",
+    "authors": [
+      "Katy Borner",
+      "Ellen M Quardokus",
+      "Bruce W Herr Ii",
+      "Leonard E Cross",
+      "Elizabeth G Record",
+      "et al."
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2020-Borner-Human-Body-CCF.pdf"
+  },
+  {
+    "slug": "pub-389",
+    "title": "Back to Business and (Re)employing Workers? Labor Market Activity During State COVID-19 Reopenings",
+    "pub_date": "2020-06-01",
+    "doi": "10.3386/w27419",
+    "journal": "The National Bureau of Economic Research",
+    "authors": [
+      "Wei Cheng",
+      "Patrick Carlin",
+      "Joanna Carroll",
+      "Sumedha Gupta",
+      "Felipe Lozano Rojas",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.3386/w27419"
+  },
+  {
+    "slug": "pub-387",
+    "title": "Considerations for Using the Vasculature as a Coordinate System to Map All the Cells in the Human Body",
+    "pub_date": "2020-03-13",
+    "doi": "10.3389/fcvm.2020.00029",
+    "journal": "Frontiers in Cardiovascular Medicine",
+    "authors": [
+      "Griffin M Weber",
+      "Yingnan Ju",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.3389/fcvm.2020.00029"
+  },
+  {
+    "slug": "pub-386",
+    "title": "Job postings in the substance use disorder treatment related sector during the first five years of Medicaid expansion",
+    "pub_date": "2020-01-30",
+    "doi": "10.1371/journal.pone.0228394",
+    "journal": "PLOS One",
+    "authors": [
+      "Olga Scrivner",
+      "Thuy Nguyen",
+      "Kosali Simon",
+      "Esme Middaugh",
+      "Bledi Taska",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1371/journal.pone.0228394"
+  },
+  {
+    "slug": "pub-384",
+    "title": "Open Access journals need to become first choice, in invasion ecology and beyond",
+    "pub_date": "2019-11-04",
+    "doi": "10.3897/neobiota.52.39542",
+    "journal": "NeoBiota",
+    "authors": [
+      "Jonathan M Jeschke",
+      "Katy Borner",
+      "Victoria Stodden",
+      "Klement Tockner"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.3897/neobiota.52.39542"
+  },
+  {
+    "slug": "pub-452",
+    "title": "VIS Keynote Address: Data Visualization Literacy",
+    "pub_date": "2019-10-25",
+    "doi": "10.1109/VAST47406.2019.8986914",
+    "journal": "IEEE",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://doi.org/10.1109/VAST47406.2019.8986914"
+  },
+  {
+    "slug": "pub-383",
+    "title": "The human body at cellular resolution: the NIH Human Biomolecular Atlas Program",
+    "pub_date": "2019-10-10",
+    "doi": "10.1038/s41586-019-1629-x",
+    "journal": "Nature",
+    "authors": [
+      "Michael P Snyder",
+      "Shin Lin",
+      "Amanda Posgai",
+      "Mark Atkinson",
+      "Aviv Regev",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/s41586-019-1629-x"
+  },
+  {
+    "slug": "pub-382",
+    "title": "Hiring in the substance use disorder treatment related sector during the first five years of Medicaid expansion",
+    "pub_date": "2019-08-01",
+    "doi": "",
+    "journal": " arXiv:1908.00216v1 [econ.GN]",
+    "authors": [
+      "Olga Scrivner",
+      "Thuy Nguyen",
+      "Kosali Simon",
+      "Esme Middaugh",
+      "Bledi Taska",
+      "et al."
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2019-scrivner-HiringInTheSubstance.pdf"
+  },
+  {
+    "slug": "pub-381",
+    "title": "Multi-level tree based approach for interactive graph visualization with semantic zoom",
+    "pub_date": "2019-06-14",
+    "doi": "",
+    "journal": "arXiv:1906.05996v1 [cs.CG]",
+    "authors": [
+      "Felice Deluca",
+      "Iqbal Hossain",
+      "Stephen Kobourov",
+      "Katy Borner"
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2019-DeLuca-Multi-levelTreeBasedApproach.pdf"
+  },
+  {
+    "slug": "pub-378",
+    "title": "Learning-accelerated discovery of immune-tumour interactions",
+    "pub_date": "2019-06-07",
+    "doi": "10.1039/c9me00036d",
+    "journal": "Molecular Systems Design & Engineering",
+    "authors": [
+      "Jonathan Ozik",
+      "Nicholson Collier",
+      "Randy Heiland",
+      "Gary An",
+      "Paul Macklin"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1039/c9me00036d"
+  },
+  {
+    "slug": "pub-376",
+    "title": "Visualizing learner engagement, performance, and trajectories to evaluate and optimize online course design",
+    "pub_date": "2019-05-06",
+    "doi": "10.1371/journal.pone.0215964",
+    "journal": "PLOS One",
+    "authors": [
+      "Michael Ginda",
+      "Michael C Richey",
+      "Mark Cousino",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1371/journal.pone.0215964"
+  },
+  {
+    "slug": "pub-377",
+    "title": "The 2019 Mathematical Oncology Roadmap",
+    "pub_date": "2019-04-16",
+    "doi": "10.1088/1478-3975/ab1a09",
+    "journal": "Physical Biology",
+    "authors": [
+      "Russell C Rockne",
+      "Andrea Hawkins Daarud",
+      "Kristin R Swanson",
+      "James P Sluka",
+      "James A Glazier",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1088/1478-3975/ab1a09"
+  },
+  {
+    "slug": "pub-375",
+    "title": "Network Visualization in the Humanities (Dagstuhl Seminar 18482)",
+    "pub_date": "2019-04-10",
+    "doi": "10.4230/DagRep.8.11.139",
+    "journal": "Dagstuhl Reports",
+    "authors": [],
+    "type": "article-journal",
+    "url": "https://doi.org/10.4230/DagRep.8.11.139"
+  },
+  {
+    "slug": "pub-380",
+    "title": "Mapping the Human Body at Cellular Resolution -- The NIH Common Fund Human BioMolecular Atlas Program",
+    "pub_date": "2019-03-18",
+    "doi": "",
+    "journal": "arXiv:1903.07231",
+    "authors": [
+      "Michael P Snyder",
+      "Shin Lin",
+      "Amanda Posgai",
+      "Mark Atkinson",
+      "Aviv Regev",
+      "et al."
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2019-Snyder-MappingTheHumanBody.pdf"
+  },
+  {
+    "slug": "pub-374",
+    "title": "Data visualization literacy: Definitions, conceptual frameworks, exercises, and assessments",
+    "pub_date": "2019-02-05",
+    "doi": "10.1073/pnas.1807180116",
+    "journal": "PNAS",
+    "authors": [
+      "Katy Borner",
+      "Andreas Bueckle",
+      "Michael Ginda"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1073/pnas.1807180116"
+  },
+  {
+    "slug": "pub-456",
+    "title": "Science Forecasts: Modeling and Communicating Developments in Science, Technology, and Innovation",
+    "pub_date": "2019-01-01",
+    "doi": "10.1007/978-3-030-02511-3_6",
+    "journal": " In W. Glanzel, H. F. Moed, U. Schmoch, & M. Thelwall (Eds.), Springer Handbook Of Science And Technology Indicators",
+    "authors": [
+      "Katy Borner",
+      "S Milojevic"
+    ],
+    "type": "chapter",
+    "url": "https://doi.org/10.1007/978-3-030-02511-3_6"
+  },
+  {
+    "slug": "pub-371",
+    "title": "Forecasting Innovations in Science, Technology, and Education",
+    "pub_date": "2018-12-11",
+    "doi": "10.1073/pnas.1818750115",
+    "journal": "PNAS",
+    "authors": [
+      "Katy Borner",
+      "William Rouse",
+      "Paul Trunfio",
+      "H Eugene Stanley"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1073/pnas.1818750115"
+  },
+  {
+    "slug": "pub-372",
+    "title": "Skill Discrepancies Between Research, Education, and Jobs Reveal the Critical Need to Supply Soft Skills for the Data Economy",
+    "pub_date": "2018-12-11",
+    "doi": "10.1073/pnas.1804247115",
+    "journal": "PNAS",
+    "authors": [
+      "Katy Borner",
+      "Olga Scrivner",
+      "Mike Gallant",
+      "Shutian Ma",
+      "Xiaozhong Liu",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1073/pnas.1804247115"
+  },
+  {
+    "slug": "pub-373",
+    "title": "Begin at the Beginning: A Constructionist Model for Interpreting Data Visualizations",
+    "pub_date": "2018-10-01",
+    "doi": "",
+    "journal": "Curator: The Museum Journal",
+    "authors": [
+      "Mary Ann Wojton",
+      "Donnelley Hayde",
+      "Joe E Heimlich",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/19-Wojton-Curator.pdf"
+  },
+  {
+    "slug": "pub-369",
+    "title": "Toward a More Scientific Science",
+    "pub_date": "2018-09-21",
+    "doi": "",
+    "journal": "Science",
+    "authors": [
+      "Pierre Azoulay",
+      "Joshua Graff Zivin",
+      "Brian Uzzi",
+      "Dashun Wang",
+      "Heidi Williams",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2018-Scientific-Science.pdf"
+  },
+  {
+    "slug": "pub-368",
+    "title": "High-impact and transformative science (HITS) metrics: Definition, exemplification, and comparison",
+    "pub_date": "2018-07-19",
+    "doi": "",
+    "journal": "PLoS ONE",
+    "authors": [
+      "Joseph Staudt",
+      "Huifeng Yu",
+      "Robert Light",
+      "Gerald Marschke",
+      "Katy Borner",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2018-staudt-impact.pdf"
+  },
+  {
+    "slug": "pub-363",
+    "title": "Network Visualization Literacy: Task, Context, and Layout",
+    "pub_date": "2018-03-27",
+    "doi": "",
+    "journal": "Thesis, Doctor of Philosophy: Katy Börner, Johan Bollen, Hamid R. Ekbia, Staša Milojević. Indiana University, Bloomington, IN",
+    "authors": [
+      "Angela Zoss"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2018-Zoss-NetworkVisualizationLiteracy.pdf"
+  },
+  {
+    "slug": "pub-351",
+    "title": "Scientific Progress Despite Irreproducibility: A Seeming Paradox",
+    "pub_date": "2018-03-12",
+    "doi": "10.1073/pnas.1711786114",
+    "journal": "PNAS",
+    "authors": [
+      "Richard M Shiffrin",
+      "Katy Borner",
+      "Steven M Stigler"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1073/pnas.1711786114"
+  },
+  {
+    "slug": "pub-355",
+    "title": "Science of Science",
+    "pub_date": "2018-03-02",
+    "doi": "10.20913/1815-3186-2021-1-25-42",
+    "journal": "Science",
+    "authors": [
+      "Santo Fortunato",
+      "Carl T Bergstrom",
+      "Katy Borner",
+      "James Evans",
+      "Dirk Helbing",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.20913/1815-3186-2021-1-25-42"
+  },
+  {
+    "slug": "pub-361",
+    "title": "XD Metrics on Demand Value analytics: Visualizing the impact of internal information Technology investments on external Funding, Publications, and collaboration networks",
+    "pub_date": "2018-01-29",
+    "doi": "10.3389/frma.2017.00010",
+    "journal": "Frontiers Research Metrics and Analytics",
+    "authors": [
+      "Olga Scrivner",
+      "Gagandeep Singh",
+      "Sara Bouchard",
+      "Scott Hutcheson",
+      "Ben Fulton",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.3389/frma.2017.00010"
+  },
+  {
+    "slug": "pub-359",
+    "title": "Network visualization literacy: Novel approaches to measurement and instruction",
+    "pub_date": "2018-01-23",
+    "doi": "",
+    "journal": "Network Science in Education",
+    "authors": [
+      "Angela Zoss",
+      "Adam V Maltese",
+      "Stephen Miles Uzzo",
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2018-NetSci-Zoss.pdf"
+  },
+  {
+    "slug": "pub-457",
+    "title": " Plug-and-Play Macroscopes: Network Workbench (NWB), Science of Science Tool (Sci2), and Epidemiology Tool (EpiC)",
+    "pub_date": "2018-01-18",
+    "doi": "10.1007/978-1-4939-7131-2_306",
+    "journal": "Encyclopedia of Social Network Analysis and Mining",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://doi.org/10.1007/978-1-4939-7131-2_306"
+  },
+  {
+    "slug": "pub-358",
+    "title": "Science Map Metaphors: A Comparison of Network Versus Hexmap-Based Visualizations",
+    "pub_date": "2018-01-15",
+    "doi": "",
+    "journal": "Scientometrics",
+    "authors": [
+      "Katy Borner",
+      "Adam Simpson",
+      "Robert Goldstone"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2018-borner-scientometrics.pdf"
+  },
+  {
+    "slug": "pub-283",
+    "title": "Plug-and-Play Macroscopes: Network Workbench (NWB), Science of Science Tool (Sci2), and Epidemiology Tool (Epic)",
+    "pub_date": "2018-01-01",
+    "doi": "",
+    "journal": "Encyclopedia of Social Network Analysis and Mining",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": ""
+  },
+  {
+    "slug": "pub-362",
+    "title": "Mapping Longitudinal Scientific Progress, Collaboration and Impact of the Alzheimer’s Disease Neuroimaging Initiative",
+    "pub_date": "2017-11-02",
+    "doi": "10.1371/journal.pone.0186095",
+    "journal": "PLoS ONE",
+    "authors": [
+      "Xiaohui Yao",
+      "Jingwen Yan",
+      "Michael Ginda",
+      "Katy Borner",
+      "Andrew Saykin",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1371/journal.pone.0186095"
+  },
+  {
+    "slug": "pub-333",
+    "title": "Macroscopes for Exploring, Navigating, and Managing Science and Technology",
+    "pub_date": "2017-11-01",
+    "doi": "",
+    "journal": "#Nodos",
+    "authors": [
+      "Lisel Record",
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": ""
+  },
+  {
+    "slug": "pub-346",
+    "title": "Jetstream: Network Workbench and Custom VMs for Network Scientists on the Science Cloud",
+    "pub_date": "2017-11-01",
+    "doi": "",
+    "journal": "NetSci 2017, Indianapolis, IN",
+    "authors": [
+      "Katy Borner",
+      "Craig Alan Stewart",
+      "Valentin Pentchev",
+      "David Hancock",
+      "Jeremy Fischer"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2017-Fischer-NetSci-Jetstream.pdf"
+  },
+  {
+    "slug": "pub-354",
+    "title": "Engineering Research Center Observatory",
+    "pub_date": "2017-10-31",
+    "doi": "",
+    "journal": "ERC Biennial Conference",
+    "authors": [
+      "Steve Snyder",
+      "Katy Borner",
+      "Gagandeep Singh",
+      "Sara Bouchard",
+      "Adam Simpson",
+      "et al."
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2017-hutcheson-erc.pdf"
+  },
+  {
+    "slug": "pub-352",
+    "title": "Lifting the Veil",
+    "pub_date": "2017-10-29",
+    "doi": "",
+    "journal": "Future Technologies Conference (FTC) | Vancouver, Canada",
+    "authors": [
+      "Katy Borner",
+      "Philip Beesley",
+      "Matthew Spremulli"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2017-Lifting-the-Veil.pdf"
+  },
+  {
+    "slug": "pub-353",
+    "title": "Web of Science™ as a Research Dataset",
+    "pub_date": "2017-10-17",
+    "doi": "",
+    "journal": "16th International Conference on Scientometrics and Informetrics, Wuhan, China",
+    "authors": [
+      "Katy Borner",
+      "Valentin Pentchev",
+      "Matthew Hutchinson",
+      "James Pringle",
+      "Jason Rollins",
+      "et al."
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2017-borner-issi.pdf"
+  },
+  {
+    "slug": "pub-364",
+    "title": "MOOC Visual Analytics: Empowering Students, Teachers, Researchers, and Platform Developers of Massively Open Online Courses",
+    "pub_date": "2017-10-01",
+    "doi": "",
+    "journal": "Journal of the Association for Information Science and Technology (JASIST)",
+    "authors": [
+      "Scott Emmons",
+      "Robert Light",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2017-emmons-mooc.pdf"
+  },
+  {
+    "slug": "pub-344",
+    "title": "Multi-Level Computational Methods for Interdisciplinary Research In the HathiTrust Digital Library",
+    "pub_date": "2017-09-18",
+    "doi": "10.1371/journal.pone.0184188",
+    "journal": "PLoS ONE",
+    "authors": [
+      "Jaimie Murdock",
+      "Colin Allen",
+      "Katy Borner",
+      "Robert Light",
+      "Simon Mccalister",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1371/journal.pone.0184188"
+  },
+  {
+    "slug": "pub-455",
+    "title": "Macroscopes for Making Sense of Science",
+    "pub_date": "2017-07-09",
+    "doi": "10.1145/3093338.3106387",
+    "journal": "In Practice and Experience in Advanced Research Computing 2017: Sustainability, Success and Impact ",
+    "authors": [
+      "Katy Borner",
+      "Elizabeth Record"
+    ],
+    "type": "paper-conference",
+    "url": "https://doi.org/10.1145/3093338.3106387"
+  },
+  {
+    "slug": "pub-356",
+    "title": "Genetic Findings Using ADNI Multimodal Quantitative Phenotypes: A 2016 Update",
+    "pub_date": "2017-07-01",
+    "doi": "",
+    "journal": "Alzheimer's & Dementia",
+    "authors": [
+      "Xiaohui Yao",
+      "Jingwen Yan",
+      "Kwangsik Nho",
+      "Shannon Risacher",
+      "Katy Borner",
+      "et al."
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2017-ADNI-Poster-Yao_AAIC2017.pdf"
+  },
+  {
+    "slug": "pub-379",
+    "title": "Crossing borders along an endless frontier",
+    "pub_date": "2017-05-19",
+    "doi": "10.1126/science.356.6339.694-a",
+    "journal": "Science",
+    "authors": [
+      "Brad Wible"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1126/science.356.6339.694-a"
+  },
+  {
+    "slug": "pub-330",
+    "title": "Topical, Geospatial, and Temporal Diffusion of the 2015 North American Menopause Society Position Statement on Non-hormonal Management of Vasomotor Symptoms",
+    "pub_date": "2017-05-15",
+    "doi": "",
+    "journal": "Menopause: Journal of the North American Menopause Society",
+    "authors": [
+      "Janet S Carpenter",
+      "Tei Laine",
+      "Blake Harrison",
+      "Meghan Lepage",
+      "Nathan Hoteling",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2017-carpenter-topical-geospatial-temporal-diffusion.pdf"
+  },
+  {
+    "slug": "pub-357",
+    "title": "Shifting Modalities of Use in the XSEDE Project",
+    "pub_date": "2017-05-01",
+    "doi": "",
+    "journal": "Thesis, Doctor of Philosophy in Informatics: Nathan Ensmenger (Chair), Christena Nippert-Eng, Katy Börner, Kosali Simon. Indiana University, Bloomington, IN",
+    "authors": [
+      "Richard Knepper"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2017-knepper-xsede.pdf"
+  },
+  {
+    "slug": "pub-348",
+    "title": "Value Analytics: A Financial Module for the Open XDMoD Project",
+    "pub_date": "2017-04-20",
+    "doi": "",
+    "journal": "PEARC17, New Orleans, LA",
+    "authors": [
+      "Katy Borner",
+      "Craig Alan Stewart",
+      "Ben Fulton",
+      "Steven Gallo",
+      "Matt Link",
+      "et al."
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2017-fulton-xdmodva.pdf"
+  },
+  {
+    "slug": "pub-341",
+    "title": "Philanthro-Metrics: Mining Multi-Million-Dollar Gifts",
+    "pub_date": "2017-04-18",
+    "doi": "10.1371/journal.pone.0176738",
+    "journal": "PLoS ONE",
+    "authors": [
+      "Katy Borner",
+      "Chin Hua Kong",
+      "Una O Osili",
+      "Robert Light",
+      "Jacqueline Ackerman"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1371/journal.pone.0176738"
+  },
+  {
+    "slug": "pub-343",
+    "title": "Enter a Job, Get Course Recommendations",
+    "pub_date": "2017-03-24",
+    "doi": "",
+    "journal": "iConference, Wuhan, China",
+    "authors": [
+      "Katy Borner",
+      "Naren Suri",
+      "Nan Li",
+      "Zhen Gao",
+      "Tian Xia",
+      "et al."
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2017-li-enter-a-job.pdf"
+  },
+  {
+    "slug": "pub-458",
+    "title": "Broad & High: Janae Smith, Carrie Longley, and The Detroit Vision Ensemble",
+    "pub_date": "2017-01-12",
+    "doi": "",
+    "journal": "WOSU Columbus",
+    "authors": [
+      "Carrie Longley",
+      "Katy Borner"
+    ],
+    "type": "broadcast",
+    "url": "https://www.pbs.org/video/broad-and-high-janae-smith-carrie-longley-detroit-vision-ensemble/"
+  },
+  {
+    "slug": "pub-347",
+    "title": "Visualizing Living Architecture: Augmented Reality Visualizations of Sensors, Actuators, and Signal Flows ",
+    "pub_date": "2016-12-31",
+    "doi": "",
+    "journal": "White Papers",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2016-borner-LAS.pdf"
+  },
+  {
+    "slug": "pub-334",
+    "title": "Modelling Science, Technology, and Innovation",
+    "pub_date": "2016-12-01",
+    "doi": "",
+    "journal": "OECD Blue Sky III, Ghent, Belgium",
+    "authors": [
+      "Katy Borner",
+      "Stasa Milojevic"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2016-borner-milojevic-bluesky.pdf"
+  },
+  {
+    "slug": "pub-345",
+    "title": "High-Impact and Transformative Science (HITS) Metrics",
+    "pub_date": "2016-12-01",
+    "doi": "",
+    "journal": "OECD Blue Sky III, Ghent, Belgium",
+    "authors": [
+      "Joseph Staudt",
+      "Huifeng Yu",
+      "Robert Light",
+      "Gerald Marschke",
+      "Katy Borner",
+      "et al."
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2016-weinberg-bluesky.pdf"
+  },
+  {
+    "slug": "pub-332",
+    "title": "Simulating the Processes of Science, Technology, and Innovation",
+    "pub_date": "2016-09-09",
+    "doi": "",
+    "journal": "Scientometrics",
+    "authors": [],
+    "type": "periodical",
+    "url": "https://cns.iu.edu/docs/publications/2016-borner-editorial-scientometrics.pdf"
+  },
+  {
+    "slug": "pub-331",
+    "title": "An Efficient System to Fund Science: From Proposal Review to Peer-to-Peer Distributions",
+    "pub_date": "2016-09-03",
+    "doi": "",
+    "journal": "Scientometrics",
+    "authors": [
+      "Johan Bollen",
+      "David Crandall",
+      "Damion Junk",
+      "Ying Ding",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2016-bollen-efficient-system-to-fund.pdf"
+  },
+  {
+    "slug": "pub-337",
+    "title": "Editorial",
+    "pub_date": "2016-08-27",
+    "doi": "",
+    "journal": "Scientometrics",
+    "authors": [
+      "Katy Borner",
+      "Bruce Edmonds",
+      "Stasa Milojevic",
+      "Andrea Scharnhorst"
+    ],
+    "type": "article-journal",
+    "url": "https://link.springer.com/article/10.1007/s11192-016-2104-1"
+  },
+  {
+    "slug": "pub-453",
+    "title": " Data Visualization Literacy",
+    "pub_date": "2016-07-10",
+    "doi": "",
+    "journal": "In proceedings of The 27th ACM Conference On Hypertext And Social Media",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://dl.acm.org/doi/10.1145/2914586.2914604"
+  },
+  {
+    "slug": "pub-340",
+    "title": "Analysis of Network Clustering Algorithms and Cluster Quality Metrics at Scale",
+    "pub_date": "2016-07-08",
+    "doi": "10.1371/journal.pone.0159161",
+    "journal": "PLoS ONE",
+    "authors": [
+      "Scott Emmons",
+      "Stephen Kobourov",
+      "Mike Gallant",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1371/journal.pone.0159161"
+  },
+  {
+    "slug": "pub-471",
+    "title": "The Growth and Impact of ADNI Genetics Publications as Measured by Science Mapping",
+    "pub_date": "2016-07-01",
+    "doi": "10.1016/j.jalz.2016.06.1427",
+    "journal": "Alzheimer's & Dementia",
+    "authors": [
+      "Xiaohui Yao",
+      "Jingwen Yan",
+      "Michael Ginda",
+      "Katy Borner",
+      "Sungeun Kim",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1016/j.jalz.2016.06.1427"
+  },
+  {
+    "slug": "pub-329",
+    "title": "Open Risk Assessment: Data",
+    "pub_date": "2016-06-30",
+    "doi": "",
+    "journal": "EFSA Journal",
+    "authors": [
+      "Mary B Gilsenan",
+      "Fabrizio Abbinante",
+      "Odea Eileen",
+      "Ana Canals",
+      "Angelika Tritscher"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2016-gilsenan-efsa.pdf"
+  },
+  {
+    "slug": "pub-317",
+    "title": "Investigating Aspects of Data Visualization Literacy Using 20 Information Visualizations and 273 Science Museum Visitors",
+    "pub_date": "2016-06-29",
+    "doi": "",
+    "journal": "Information Visualization",
+    "authors": [
+      "Katy Borner",
+      "Joe E Heimlich",
+      "Russell Balliet",
+      "Adam V Maltese"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2015-borner-investigating.pdf"
+  },
+  {
+    "slug": "pub-326",
+    "title": "Comparing the Consumption of CPU Hours with Scientific Output for the Extreme Science and Engineering Discovery Environment (XSEDE)",
+    "pub_date": "2016-06-16",
+    "doi": "10.1371/journal.pone.0157628",
+    "journal": "PLoS ONE",
+    "authors": [
+      "Richard Knepper",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1371/journal.pone.0157628"
+  },
+  {
+    "slug": "pub-315",
+    "title": "How Collaborating in International Science Helps America",
+    "pub_date": "2016-06-10",
+    "doi": "",
+    "journal": "Science & Diplomacy",
+    "authors": [
+      "Elizabeth Lyons",
+      "E William Colglazier",
+      "Caroline Wagner",
+      "Katy Borner",
+      "David Dooley",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2016-borner-aaas.pdf"
+  },
+  {
+    "slug": "pub-316",
+    "title": "Modelling the Structure and Dynamics of Science Using Books",
+    "pub_date": "2016-05-24",
+    "doi": "",
+    "journal": "Theories of Informetrics: A Festschrift in Honor of Blaise Cronin",
+    "authors": [
+      "Michael Ginda",
+      "Andrea Scharnhorst",
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2016-ginda-modeling-the-structure.pdf"
+  },
+  {
+    "slug": "pub-325",
+    "title": "Data-Driven Science Policy",
+    "pub_date": "2016-04-09",
+    "doi": "",
+    "journal": "Issues in Science and Technology",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2016-borner-datadriven-sp.pdf"
+  },
+  {
+    "slug": "pub-321",
+    "title": "Self-Portraits of the Brain: Cognitive Science, Data Visualization, and Communicating Brain Structure and Function",
+    "pub_date": "2015-08-01",
+    "doi": "",
+    "journal": "Trends in Cognitive Sciences",
+    "authors": [
+      "Robert Goldstone",
+      "Franco Pestilli",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2015-goldstone-self-portraits.pdf"
+  },
+  {
+    "slug": "pub-448",
+    "title": "Genetic findings using ADNI multimodal quantitative phenotypes: A 2014 update",
+    "pub_date": "2015-07-01",
+    "doi": "10.1016/j.jalz.2015.06.401",
+    "journal": "Alzheimer's & Dementia",
+    "authors": [
+      "Xiaohui Yao",
+      "Jingwen Yan",
+      "Sungeun Kim",
+      "Kwangsik Nho",
+      "Shannon L Risacher",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1016/j.jalz.2015.06.401"
+  },
+  {
+    "slug": "pub-322",
+    "title": "Knowledge Flows and Delays in the Pharmaceutical Innovation System",
+    "pub_date": "2015-06-30",
+    "doi": "",
+    "journal": "15th International Conference on Scientometrics and Informetrics, Istanbul, Turkey",
+    "authors": [
+      "Mari Jibu",
+      "Gregory Ohare",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2015-jibu-OECD-poster.pdf"
+  },
+  {
+    "slug": "pub-323",
+    "title": "ProQuest Dissertation Analysis",
+    "pub_date": "2015-06-30",
+    "doi": "",
+    "journal": "15th International Conference on Scientometrics and Informetrics, Istanbul, Turkey",
+    "authors": [
+      "Kishor Patel",
+      "Sergio Govoni",
+      "Ashwini Athavale",
+      "Robert Light",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2015-patel-ProQuest-poster.pdf"
+  },
+  {
+    "slug": "pub-319",
+    "title": "Map-Based Visualizations Increase Recall Accuracy of Data",
+    "pub_date": "2015-05-27",
+    "doi": "",
+    "journal": "EUROGRAPHICS 2015, Zürich, Switzerland",
+    "authors": [
+      "Bahador Saket",
+      "Carlos Scheidegger",
+      "Stephen Kobourov",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2015-saket-recall.pdf"
+  },
+  {
+    "slug": "pub-301",
+    "title": "Data Visualization Literacy of Youth and Adult Science Museum Visitors",
+    "pub_date": "2015-04-16",
+    "doi": "",
+    "journal": "AERA 2015 Annual Meeting, Chicago, IL",
+    "authors": [
+      "Katy Borner",
+      "Russell Balliet",
+      "Adam V Maltese",
+      "Stephen Miles Uzzo",
+      "Joe E Heimlich"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2015-borner-AERA-poster.pdf"
+  },
+  {
+    "slug": "pub-318",
+    "title": "Long-Distance Interdisciplinarity Leads to Higher Scientific Impact",
+    "pub_date": "2015-03-30",
+    "doi": "10.1371/journal.pone.0122565",
+    "journal": "PLoS ONE",
+    "authors": [
+      "Vincent Lariviere",
+      "Stefanie Haustein",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1371/journal.pone.0122565"
+  },
+  {
+    "slug": "pub-312",
+    "title": "Atlas of Knowledge: Anyone Can Map",
+    "pub_date": "2015-01-01",
+    "doi": "",
+    "journal": "Cambridge, MA: The MIT Press",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "book",
+    "url": "http://scimaps.org/atlas2"
+  },
+  {
+    "slug": "pub-281",
+    "title": "Mapping the Intersection of Science & Philosophy",
+    "pub_date": "2014-12-22",
+    "doi": "",
+    "journal": "Proceedings of 13th ACM/IEEE-CS Joint Conference on Digital Libraries, Indianapolis, IN",
+    "authors": [
+      "Jaimie Murdock",
+      "Robert Light",
+      "Colin Allen",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2013-murdock-digging-jcdl.pdf"
+  },
+  {
+    "slug": "pub-311",
+    "title": "Mapping Science: Past, Present and Future",
+    "pub_date": "2014-12-06",
+    "doi": "",
+    "journal": "BULLETIN of the Association for Information Science and Technology",
+    "authors": [
+      "Katy Borner",
+      "Todd Theriault",
+      "Kevin W Boyack"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2014-boyack-asist.pdf"
+  },
+  {
+    "slug": "pub-302",
+    "title": "Node, Node-Link, and Node-Link-Group Diagrams: An Evaluation",
+    "pub_date": "2014-11-09",
+    "doi": "",
+    "journal": "IEEE Visual Analytics Science and Technology, IEEE Information Visualization, and IEEE Scientific Visualization, Paris, France",
+    "authors": [
+      "Bahador Saket",
+      "Paolo Simonetto",
+      "Stephen Kobourov",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2014-saket-ieee.pdf"
+  },
+  {
+    "slug": "pub-300",
+    "title": "Mapping the Impact of Transdisciplinary Research: A Visual Comparison of Investigator Initiated and Team Based Tobacco Use Research Publications",
+    "pub_date": "2014-09-25",
+    "doi": "",
+    "journal": "The Journal of Translational Medicine and Epidemiology",
+    "authors": [
+      "Brooke Stipelman",
+      "Kara L Hall",
+      "Angela Zoss",
+      "Janet Okamoto",
+      "Daniel Stokols",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2014-stipelman-mappingimpact.pdf"
+  },
+  {
+    "slug": "pub-304",
+    "title": "Challenges and Opportunities of the UCSD Map of Science‐Library of Congress Crosswalk",
+    "pub_date": "2014-08-06",
+    "doi": "",
+    "journal": "Proceedings of the VIVO/Science of Team Science (SciTS) 2014 Conference, Austin, TX",
+    "authors": [
+      "Robert Light",
+      "Jaimie Murdock",
+      "Colin Allen",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2014-light-scits.pdf"
+  },
+  {
+    "slug": "pub-299",
+    "title": "Neurological Disorders and Publication Abstracts Follow Social Network-Type Node Patterns When Indexed Using Ontology Tree-Based Key Term Search",
+    "pub_date": "2014-07-22",
+    "doi": "",
+    "journal": "Universal Access in Human-Computer Interaction: Aging and Assistive Environments",
+    "authors": [
+      "Anand Kulanthaivel",
+      "Josette F Jones",
+      "Robert Light",
+      "Katy Borner",
+      "Chin Hua Kong"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2014-kulanthaivel-hcii.pdf"
+  },
+  {
+    "slug": "pub-297",
+    "title": "From Funding Agencies to Scientific Agency: Collective Allocation of Science Funding as an Alternative to Peer Review",
+    "pub_date": "2014-07-01",
+    "doi": "",
+    "journal": "EMBO Reports",
+    "authors": [
+      "Johan Bollen",
+      "David Crandall",
+      "Damion Junk",
+      "Ying Ding",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2014-bollen-collective-EMBO.pdf"
+  },
+  {
+    "slug": "pub-307",
+    "title": "The Structure and Evolution of the Academic Discipline of Law in the United States: Generation and Validation of Course-Subject Cooccurrence (CSCO) Maps",
+    "pub_date": "2014-07-01",
+    "doi": "",
+    "journal": "Thesis, Doctor of Philosophy in Library and Information Science: Katy Börner (Chair), Staša Milojevic, Cassidy Sugimoto, Jonathan Plucker, William Henderson. Indiana University, Bloomington, IN",
+    "authors": [
+      "Peter A Hook"
+    ],
+    "type": "thesis",
+    "url": "https://cns.iu.edu/docs/publications/2014-hook-phd-thesis.pdf"
+  },
+  {
+    "slug": "pub-294",
+    "title": "Open Data and Open Code for Big Science of Science Studies",
+    "pub_date": "2014-02-19",
+    "doi": "",
+    "journal": "Scientometrics",
+    "authors": [
+      "Robert Light",
+      "David E Polley",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2014-light-open-data-scientometrics.pdf"
+  },
+  {
+    "slug": "pub-290",
+    "title": "Replicable Science of Science Studies",
+    "pub_date": "2014-01-31",
+    "doi": "",
+    "journal": "Measuring Scholarly Impact: Methods and Practice",
+    "authors": [
+      "Katy Borner",
+      "David E Polley"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2014-borner-replicable-springer.pdf"
+  },
+  {
+    "slug": "pub-289",
+    "title": "Visual Insights: A Practical Guide to Making Sense of Data",
+    "pub_date": "2014-01-23",
+    "doi": "",
+    "journal": "Cambridge, MA: The MIT Press",
+    "authors": [
+      "Katy Borner",
+      "David E Polley"
+    ],
+    "type": "book",
+    "url": "http://cns.iu.edu/ivmoocbook14.html"
+  },
+  {
+    "slug": "pub-293",
+    "title": "‘Seed+Expand’: A General Methodology for Detecting Publication Oeuvres of Individual Researchers",
+    "pub_date": "2014-01-02",
+    "doi": "",
+    "journal": "Scientometrics",
+    "authors": [
+      "Linda Reijnhoudt",
+      "Rodrigo Costas",
+      "Ed Noyons",
+      "Katy Borner",
+      "Andrea Scharnhorst"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2013-reijnhoudt-seed-expand-scientometrics.pdf"
+  },
+  {
+    "slug": "pub-292",
+    "title": "Heterogeneous Networks on Multiple Levels",
+    "pub_date": "2014-01-01",
+    "doi": "",
+    "journal": "Multivariate Network Visualization",
+    "authors": [
+      "Falk Schreiber",
+      "Katy Borner",
+      "Hans Hagen",
+      "Dirk Zeckzer"
+    ],
+    "type": "chapter",
+    "url": "http://drops.dagstuhl.de/opus/volltexte/2013/4177/pdf/dagrep_v003_i005_p019_s13201.pdf"
+  },
+  {
+    "slug": "pub-285",
+    "title": "Analyses of Topics Maps Derived from Neuroanatomical Publications",
+    "pub_date": "2013-08-27",
+    "doi": "",
+    "journal": "Neuroinformatics 2013, Stockholm, Sweden",
+    "authors": [
+      "Marcelo Tallis",
+      "Chin Hua Kong",
+      "Katy Borner",
+      "Gully Apc Burns"
+    ],
+    "type": "paper-conference",
+    "url": "http://www.frontiersin.org/community/AbstractDetails.aspx?ABS_DOI=10.3389/conf.fninf.2013.09.00056&eid=1904&sname=Neuroinformatics_2013"
+  },
+  {
+    "slug": "pub-282",
+    "title": "An Automated System for Tracking the Growth of Expert Profiling Systems",
+    "pub_date": "2013-08-21",
+    "doi": "",
+    "journal": "Joint Conference on Digital Libraries (JCDL), Indianapolis, IN",
+    "authors": [
+      "Robert Light",
+      "Chin Hua Kong",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2013-light-nrn-jcdl.pdf"
+  },
+  {
+    "slug": "pub-280",
+    "title": "‘Seed+Expand’: A Validated Methodology for Creating High Quality Publication Oeuvres of Individual Researchers",
+    "pub_date": "2013-07-16",
+    "doi": "",
+    "journal": "Proceedings of International Society for Scientometrics and Informetrics Conference 2013, Vienna, Austria",
+    "authors": [
+      "Linda Reijnhoudt",
+      "Rodrigo Costas",
+      "Ed Noyons",
+      "Katy Borner",
+      "Andrea Scharnhorst"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2013-reijnhoudt-seed-expand-issi.pdf"
+  },
+  {
+    "slug": "pub-284",
+    "title": "Open Data and Open Code for Big Science of Science Studies",
+    "pub_date": "2013-07-16",
+    "doi": "",
+    "journal": "Proceedings of International Society for Scientometrics and Informetrics Conference 2013, Vienna, Austria",
+    "authors": [
+      "Robert Light",
+      "David E Polley",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2013-light-sdb-sci2-issi.pdf"
+  },
+  {
+    "slug": "pub-265",
+    "title": "Visualizing the Topical Structure of the Medical Sciences: A Self-Organizing Map Approach",
+    "pub_date": "2013-05-15",
+    "doi": "10.1371/journal.pone.0058779",
+    "journal": "PLoS ONE",
+    "authors": [
+      "Andre Skupin",
+      "Joseph R Biberstine",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1371/journal.pone.0058779"
+  },
+  {
+    "slug": "pub-275",
+    "title": "Evolving Collaboration Networks in Scientometrics in 1978-2010: A Micro-Macro Analysis",
+    "pub_date": "2013-05-11",
+    "doi": "",
+    "journal": "Scientometrics",
+    "authors": [
+      "Yunwei Chen",
+      "Katy Borner",
+      "Shu Fang"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2012-chen-evolving-scientometrics.pdf"
+  },
+  {
+    "slug": "pub-320",
+    "title": " Collective Allocation of Science Funding: From Funding Agencies to Scientific Agency",
+    "pub_date": "2013-04-13",
+    "doi": "",
+    "journal": "arXiv:1304.1067",
+    "authors": [
+      "Johan Bollen",
+      "David Crandall",
+      "Damion Junk",
+      "Ying Ding",
+      "Katy Borner"
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2015-bollen-collective-funding.pdf"
+  },
+  {
+    "slug": "pub-287",
+    "title": "Digital Democracy The Structure and Dynamics of Political Communication in a Large Scale Social Media Stream",
+    "pub_date": "2013-02-04",
+    "doi": "",
+    "journal": "Thesis, Doctor of Philosophy (Ph.D.), Informatics (Complex Systems Analysis). Indiana University, Bloomington, IN",
+    "authors": [
+      "Michael Conover"
+    ],
+    "type": "thesis",
+    "url": "https://cns.iu.edu/docs/publications/2013-conover-phd-thesis.pdf"
+  },
+  {
+    "slug": "pub-279",
+    "title": "Global Multi-Level Analysis of the 'Scientific Food Web'",
+    "pub_date": "2013-01-28",
+    "doi": "",
+    "journal": "Scientific Reports",
+    "authors": [
+      "Amin Mazloumian",
+      "Dirk Helbing",
+      "Sergi Lozano",
+      "Robert Light",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2013-mazloumian-food-web.pdf"
+  },
+  {
+    "slug": "pub-278",
+    "title": "Design and Implementation of a Stream-Based Visualization Language",
+    "pub_date": "2012-12-17",
+    "doi": "",
+    "journal": "Thesis, Doctor of Philosophy in Computer Science: Andrew Lumsdaine (Chair), Amr Sabry, Katy Börner, Indiana University, Bloomington and Chris Weaver, University of Oklahoma. Indiana University, Bloomington, IN",
+    "authors": [
+      "Joseph Cottam"
+    ],
+    "type": "thesis",
+    "url": "https://cns.iu.edu/docs/publications/2012-cottam-phd-thesis.pdf"
+  },
+  {
+    "slug": "pub-261",
+    "title": "Research Discovery through Linked Open Data",
+    "pub_date": "2012-12-01",
+    "doi": "",
+    "journal": "Proceedings of the 12th ACM/IEEE-CS Joint Conference on Digital Libraries, Washington, D.C.",
+    "authors": [
+      "Paul Albert",
+      "Kristi Holmes",
+      "Katy Borner",
+      "Mike Conlon"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2012-albert-jcdl.pdf"
+  },
+  {
+    "slug": "pub-274",
+    "title": "Theoretical And Technological Building Blocks For An Innovation Accelerator",
+    "pub_date": "2012-10-28",
+    "doi": "",
+    "journal": "European Physical Journal: Special Topics",
+    "authors": [
+      "Frank Van Harmelen",
+      "George Kampis",
+      "Katy Borner",
+      "Peter Van Den Besselaar",
+      "Erik Schultes",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2012-vanharmelen-innovacc-epj.pdf"
+  },
+  {
+    "slug": "pub-273",
+    "title": "A Semantic Map of the last.fm Music Folksonomy",
+    "pub_date": "2012-09-11",
+    "doi": "",
+    "journal": "Seventh International Conference on Geographic Information Science (GIScience 2012), Columbus, OH",
+    "authors": [
+      "Joseph R Biberstine",
+      "Katy Borner",
+      "Russell Jackson Duhon",
+      "Elisha F Allgood",
+      "Andre Skupin"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2012-biberstine-lastfm-giscience.pdf"
+  },
+  {
+    "slug": "pub-296",
+    "title": "Building a Data Discovery Network for Sustainability Science",
+    "pub_date": "2012-08-01",
+    "doi": "",
+    "journal": "VIVO Conference, Miami, FL",
+    "authors": [
+      "Robert H Mcdonald",
+      "Jim Myers",
+      "Katy Borner",
+      "Beth Plale",
+      "Margaret Hedstrom",
+      "et al."
+    ],
+    "type": "paper-conference",
+    "url": ""
+  },
+  {
+    "slug": "pub-270",
+    "title": "Picturing Science",
+    "pub_date": "2012-07-26",
+    "doi": "10.1038/487430a",
+    "journal": "Nature",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1038/487430a"
+  },
+  {
+    "slug": "pub-263",
+    "title": "Design and Update of a Classification System: The UCSD Map of Science",
+    "pub_date": "2012-07-13",
+    "doi": "10.1371/journal.pone.0039464",
+    "journal": "PLoS One",
+    "authors": [
+      "Katy Borner",
+      "Richard Klavans",
+      "Michael Patek",
+      "Angela Zoss",
+      "Joseph R Biberstine",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1371/journal.pone.0039464"
+  },
+  {
+    "slug": "pub-266",
+    "title": "VIVO: A Semantic Approach to Scholarly Networking and Discovery",
+    "pub_date": "2012-06-19",
+    "doi": "",
+    "journal": "Williston, VT:  Morgan & Claypool Publishers",
+    "authors": [
+      "Katy Borner",
+      "Mike Conlon",
+      "Jon Corson Rikert",
+      "Ying Ding"
+    ],
+    "type": "book",
+    "url": "https://cns.iu.edu/docs/publications/2012-borner-vivobook.pdf"
+  },
+  {
+    "slug": "pub-268",
+    "title": "Analyzing and Visualizing VIVO",
+    "pub_date": "2012-06-19",
+    "doi": "",
+    "journal": "VIVO: A Semantic Approach to Scholarly Networking and Discovery",
+    "authors": [
+      "Chintan Tank",
+      "Micah Linnemeier",
+      "Chin Hua Kong",
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2012-borner-vivobook.pdf"
+  },
+  {
+    "slug": "pub-276",
+    "title": "Mapping Interactions Within the Evolving Science of Science and Innovation Policy Community",
+    "pub_date": "2012-05-01",
+    "doi": "",
+    "journal": "Scientometrics",
+    "authors": [
+      "Angela Zoss",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2012-zoss-mapping-scientometrics.pdf"
+  },
+  {
+    "slug": "pub-454",
+    "title": "Visual analytics in support of education",
+    "pub_date": "2012-04-29",
+    "doi": "",
+    "journal": "Proceedings of the 2nd International Conference on Learning Analytics and Knowledge",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://dl.acm.org/doi/10.1145/2330601.2330604"
+  },
+  {
+    "slug": "pub-262",
+    "title": "Time-Aware Visualization of Document Collections",
+    "pub_date": "2012-03-26",
+    "doi": "",
+    "journal": "ACM Symposium on Applied Computing, Trento, Italy",
+    "authors": [
+      "Aretha Barbosa Alencar",
+      "Fernando Viera Paulovich",
+      "Katy Borner",
+      "Maria Christina Ferreira De Oliveira"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2011-alencar-timeaware-sac.pdf"
+  },
+  {
+    "slug": "pub-258",
+    "title": "An Introduction to Modeling Science: Basic Model Types, Key Definitions, and a General Framework for the Comparison of Process Models",
+    "pub_date": "2012-01-25",
+    "doi": "",
+    "journal": "Models of Science Dynamics: Encounters Between Complexity Theory and Information Sciences",
+    "authors": [
+      "Katy Borner",
+      "Kevin W Boyack",
+      "Stasa Milojevic",
+      "Steven Morris"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2012-borner-modsci-springer.pdf"
+  },
+  {
+    "slug": "pub-259",
+    "title": "Foreword",
+    "pub_date": "2012-01-25",
+    "doi": "",
+    "journal": "Models of Science Dynamics: Encounters Between Complexity Theory and Information Science",
+    "authors": [
+      "Andrea Scharnhorst",
+      "Katy Borner",
+      "Peter Van Den Besselaar"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2012-scharnhorst-modsci-preface-springer.pdf"
+  },
+  {
+    "slug": "pub-260",
+    "title": "Models of Science Dynamics: Encounters Between Complexity Theory and Information Science",
+    "pub_date": "2012-01-25",
+    "doi": "",
+    "journal": "Berlin:  Springer-Verlag",
+    "authors": [],
+    "type": "book",
+    "url": "https://cns.iu.edu/docs/publications/2012-scharnhorst-modsci-springer.pdf"
+  },
+  {
+    "slug": "pub-475",
+    "title": "The Future of VIVO: Growing the Community",
+    "pub_date": "2012-01-01",
+    "doi": "10.1007/978-3-031-79435-3_8",
+    "journal": " Synthesis Lectures on Data, Semantics, and Knowledge",
+    "authors": [
+      "Dean B Krafft",
+      "Katy Borner",
+      "Jon Corson Rikert",
+      "Kristi L Holmes"
+    ],
+    "type": "chapter",
+    "url": "https://doi.org/10.1007/978-3-031-79435-3_8"
+  },
+  {
+    "slug": "pub-243",
+    "title": "Network Science: Theory, Tools and Practice",
+    "pub_date": "2011-12-31",
+    "doi": "",
+    "journal": "Leadership in Science and Technology: A Reference Handbook",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2010-borner-networking-sage.pdf"
+  },
+  {
+    "slug": "pub-257",
+    "title": "e-Science Data Environments: A View from the Lab Floor",
+    "pub_date": "2011-12-01",
+    "doi": "",
+    "journal": "Thesis, Doctor of Philosophy in Library and Information Science: Katy Börner (Chair), Debora Shaw, Alan Dennis, Stasa Milojevic, Beth Plale. Indiana University, Bloomington, IN",
+    "authors": [
+      "Stacy Kowalczyk"
+    ],
+    "type": "thesis",
+    "url": "https://cns.iu.edu/docs/publications/2011-kowalczyk-phd-thesis.pdf"
+  },
+  {
+    "slug": "pub-250",
+    "title": "Mapping the Development of Scientometrics: 2002 to 2008",
+    "pub_date": "2011-11-08",
+    "doi": "",
+    "journal": "Journal of Library Science in China",
+    "authors": [
+      "Yunwei Chen",
+      "Shu Fang",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2011-chen-fang-borner-scienceometrics-china.pdf"
+  },
+  {
+    "slug": "pub-252",
+    "title": "Mapping Interactions Within the Evolving Science of Science and Innovation Policy Community",
+    "pub_date": "2011-07-06",
+    "doi": "",
+    "journal": "Proceedings of the 13th International Conference of the International Society for Scientometrics and Informetrics, Durban, South Africa",
+    "authors": [
+      "Angela Zoss",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2011-zoss-borner-scisip-issi.pdf"
+  },
+  {
+    "slug": "pub-255",
+    "title": "Mixed-Indicators Model for Identifying Emerging Research Areas",
+    "pub_date": "2011-06-02",
+    "doi": "",
+    "journal": "Scientometrics",
+    "authors": [
+      "Hanning Guo",
+      "Scott B Weingart",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2011-guo-mixed-indicators.pdf"
+  },
+  {
+    "slug": "pub-367",
+    "title": "Modeling Science: Studying the Structure and Dynamics of science",
+    "pub_date": "2011-06-01",
+    "doi": "",
+    "journal": "Scientometrics",
+    "authors": [],
+    "type": "periodical",
+    "url": "https://cns.iu.edu/docs/publications/2011-borner-issue-scientometrics.pdf"
+  },
+  {
+    "slug": "pub-247",
+    "title": "Clustering More Than Two Million Biomedical Publications: Comparing the Accuracies of Nine Text-Based Similarity Approaches",
+    "pub_date": "2011-03-17",
+    "doi": "10.1371/journal.pone.0018029",
+    "journal": "PLoS ONE",
+    "authors": [
+      "Kevin W Boyack",
+      "David Newman",
+      "Russell Jackson Duhon",
+      "Richard Klavans",
+      "Michael Patek",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://doi.org/10.1371/journal.pone.0018029"
+  },
+  {
+    "slug": "pub-271",
+    "title": " MAPSustain: Visualising biomass and biofuel research ",
+    "pub_date": "2011-03-10",
+    "doi": "",
+    "journal": "Proceedings of Making Visible the Invisible: Art, Design and Science in Data Visualization, Huddersfield, UK",
+    "authors": [
+      "Michael Stamper",
+      "Chin Hua Kong",
+      "Nianli Ma",
+      "Angela Zoss",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2011-stamper-mapsustain-adsvis.pdf"
+  },
+  {
+    "slug": "pub-222",
+    "title": "Plug-and-Play Macroscopes",
+    "pub_date": "2011-03-01",
+    "doi": "",
+    "journal": "Communications of the ACM",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2011-borner-macroscopes-acm.pdf"
+  },
+  {
+    "slug": "pub-474",
+    "title": "Proceedings of SPIE - The International Society for Optical Engineering: Introduction",
+    "pub_date": "2011-01-24",
+    "doi": "10.1117/12.888995",
+    "journal": "Proceedings of SPIE - The International Society for Optical Engineering",
+    "authors": [],
+    "type": "paper-conference",
+    "url": "https://doi.org/10.1117/12.888995"
+  },
+  {
+    "slug": "pub-246",
+    "title": "Approaches to Understanding and Measuring Interdisciplinary Scientific Research (IDR): A Review of the Literature",
+    "pub_date": "2011-01-01",
+    "doi": "",
+    "journal": "Journal of Informetrics",
+    "authors": [
+      "Caroline Wagner",
+      "J David Roessner",
+      "Kamau Bobb",
+      "Julie Thompson Klein",
+      "Kevin W Boyack",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2011-wagner-interdisciplinarity.pdf"
+  },
+  {
+    "slug": "pub-242",
+    "title": "The Science of Team Science (SciTS): A Beacon for 21st Century Scientific Collaboration",
+    "pub_date": "2010-12-12",
+    "doi": "",
+    "journal": "SBE 2020: Future Research in the Social, Behavioral & Economic Sciences",
+    "authors": [
+      "Katy Borner",
+      "Noshir S Contractor",
+      "Holly J Falk Krzesinski",
+      "Stephen M Fiore",
+      "Kara L Hall",
+      "et al."
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2010-borner-et-al-sbe-scits.pdf"
+  },
+  {
+    "slug": "pub-239",
+    "title": "Introducing the Science of Science (Sci2) Tool to the Reporting Branch, Office of Extramural Research/Office of the Director, National Institutes of Health",
+    "pub_date": "2010-12-02",
+    "doi": "",
+    "journal": "Workshop on the Science of Science Measurement, December 2-3, Washington D.C",
+    "authors": [
+      "Katy Borner",
+      "Robin M Wagner",
+      "Nianli Ma",
+      "Joseph R Biberstine",
+      "Rediet Berhane",
+      "et al."
+    ],
+    "type": "report",
+    "url": "https://cns.iu.edu/docs/publications/2010-borner-wagner-sosp.pdf"
+  },
+  {
+    "slug": "pub-244",
+    "title": "Evolving and Emerging Populations and Topics",
+    "pub_date": "2010-10-06",
+    "doi": "",
+    "journal": "CISE/SBE Advisory Committee on Research Portfolio Analysis",
+    "authors": [
+      "Katy Borner",
+      "Angela Zoss"
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2010-borner-zoss-sbe-evolvepop.pdf"
+  },
+  {
+    "slug": "pub-238",
+    "title": "Advancing the Science of Team Science",
+    "pub_date": "2010-10-01",
+    "doi": "",
+    "journal": "Clinical and Translational Science",
+    "authors": [
+      "Holly J Falk Krzesinski",
+      "Katy Borner",
+      "Noshir S Contractor",
+      "Jonathon Cummings",
+      "Stephen M Fiore",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2010-falk-krezinski-teamsci.pdf"
+  },
+  {
+    "slug": "pub-240",
+    "title": "A Multi-Level Systems Perspective for the Science of Team Science",
+    "pub_date": "2010-09-15",
+    "doi": "",
+    "journal": "Science Translational Medicine",
+    "authors": [
+      "Katy Borner",
+      "Noshir S Contractor",
+      "Holly J Falk Krzesinski",
+      "Stephen M Fiore",
+      "Kara L Hall",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2010-borner-et-al-multi-level-teamsci.pdf"
+  },
+  {
+    "slug": "pub-230",
+    "title": "Semantic Web Portal: A Platform for Better Browsing and Visualizing Semantic Data",
+    "pub_date": "2010-09-01",
+    "doi": "",
+    "journal": "Lecture Notes in Computer Science",
+    "authors": [
+      "Ying Ding",
+      "Yuyin Sun",
+      "Bin Chen",
+      "Katy Borner",
+      "Li Ding",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2010-ding-et-al-swp.pdf"
+  },
+  {
+    "slug": "pub-237",
+    "title": "Mapping Interdisciplinary Research (sidebar, Systems Science Section)",
+    "pub_date": "2010-09-01",
+    "doi": "",
+    "journal": "Oxford Handbook of Interdisciplinarity",
+    "authors": [
+      "Katy Borner",
+      "Kevin W Boyack"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2010-borner-boyack-map-inter.pdf"
+  },
+  {
+    "slug": "pub-229",
+    "title": "Where Are the Academic Jobs? Interactive Exploration of Job Advertisements in Geospatial and Topical Space",
+    "pub_date": "2010-05-01",
+    "doi": "",
+    "journal": "Advances in Social Computing: Third International Conference on Social Computing, Behavioral Modeling and Prediction, Bethesda, MD",
+    "authors": [
+      "Angela Zoss",
+      "Michael Conover",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2010-zoss-et-al-jobmaps.pdf"
+  },
+  {
+    "slug": "pub-234",
+    "title": "Structural Mining of Large-Scale Behavioral Data from the Internet",
+    "pub_date": "2010-04-30",
+    "doi": "",
+    "journal": "Thesis, Doctor of Philosophy in Computer Science: Filippo Menczer (Chair), Alessandro Vespignani, Katy Börner, Minaxi Gupta, Kay Connelly. Indiana University, Bloomington, IN",
+    "authors": [
+      "Mark Meiss"
+    ],
+    "type": "thesis",
+    "url": "https://cns.iu.edu/docs/publications/2010-meiss-phd-thesis.pdf"
+  },
+  {
+    "slug": "pub-245",
+    "title": "Briefing Document for \"Changing the Conduct of Science in the Information Age\" NSF Workshop",
+    "pub_date": "2010-04-26",
+    "doi": "",
+    "journal": "",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2010-borner-nsfbriefingdoc.pdf"
+  },
+  {
+    "slug": "pub-204",
+    "title": "Atlas of Science: Visualizing What We Know",
+    "pub_date": "2010-01-10",
+    "doi": "",
+    "journal": "Cambridge, MA: The MIT Press",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "book",
+    "url": "http://scimaps.org/atlas/"
+  },
+  {
+    "slug": "pub-228",
+    "title": "Rete-Netzwerk-Red: Analyzing and Visualizing Scholarly Networks Using the Network Workbench Tool",
+    "pub_date": "2010-01-09",
+    "doi": "",
+    "journal": "Scientometrics",
+    "authors": [
+      "Katy Borner",
+      "Weixia Bonnie Huang",
+      "Micah Linnemeier",
+      "Russell Jackson Duhon",
+      "Patrick Phillips",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2010-borner-et-al-nwb.pdf"
+  },
+  {
+    "slug": "pub-288",
+    "title": "Knowledge Management and Visualization Tools in Support of Discovery",
+    "pub_date": "2009-12-01",
+    "doi": "",
+    "journal": "NSF Workshop Report, Indiana University, Los Alamos National Laboratory, Yale University, and New York Hall of Science",
+    "authors": [
+      "Katy Borner",
+      "Luis M A Bettencourt",
+      "Mark Gerstein",
+      "Stephen Miles Uzzo"
+    ],
+    "type": "report",
+    "url": "http://vw.slis.indiana.edu/cdi2008/NSF-Report.pdf"
+  },
+  {
+    "slug": "pub-225",
+    "title": "Data on Federal Research and Development Investments: A Pathway to Modernization",
+    "pub_date": "2009-09-30",
+    "doi": "",
+    "journal": "Panel on Modernizing the Infrastructure of the National Science Foundation Federal Funds Survey",
+    "authors": [
+      "Christopher Hill",
+      "William B Bonvillian",
+      "Katy Borner",
+      "Mary K Feeney",
+      "David Goldston",
+      "et al."
+    ],
+    "type": "book",
+    "url": "http://www.nap.edu/catalog.php?record_id=12772"
+  },
+  {
+    "slug": "pub-224",
+    "title": "Mapping the Domain of \"Intelligent Perception Technology\" Research",
+    "pub_date": "2009-09-13",
+    "doi": "",
+    "journal": "Proceedings of the Fifth International Conference on Webometrics, Informetrics and Scientometrics (WIS) and the Tenth COLLNET Meeting, Seoul, South Korea",
+    "authors": [
+      "Hanning Guo",
+      "Katy Borner",
+      "Zeyuan Liu"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2009-guo-intelligent-perception.pdf"
+  },
+  {
+    "slug": "pub-226",
+    "title": "Graph Theory in Animal Behavior and the Social Role of Gatekeepers on Group Learning in Zebrafish Shoals, Danio Rerio",
+    "pub_date": "2009-09-01",
+    "doi": "",
+    "journal": "Thesis, Doctor of Philosophy in Biology: Emilia P. Martins (Chair), Katy Börner, Elizabeth Housworth, Michael J. Wade. Indiana University, Bloomington, IN",
+    "authors": [
+      "Cuauhcihuatl Vital"
+    ],
+    "type": "thesis",
+    "url": "https://cns.iu.edu/docs/publications/2009-cuauhcihuatl-thesis.pdf"
+  },
+  {
+    "slug": "pub-219",
+    "title": "The NIH Visual Browser: An Interactive Visualization of Biomedical Research",
+    "pub_date": "2009-07-17",
+    "doi": "",
+    "journal": "Proceedings of the 13th International Conference on Information Visualization (IV09), Barcelona, Spain",
+    "authors": [
+      "Bruce W Herr Ii",
+      "Edmund M Talley",
+      "Gully Apc Burns",
+      "David Newman",
+      "Gavin Larowe"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2009-herr-iv-visual-browser.pdf"
+  },
+  {
+    "slug": "pub-214",
+    "title": "Rete-Netzwerk-Red: Analyzing and Visualizing Scholarly Networks Using the Scholarly Database and the Network Workbench Tool",
+    "pub_date": "2009-07-14",
+    "doi": "",
+    "journal": "Proceedings of 12th International Conference on Scientometrics and Informetrics, Rio de Janeiro, Brazil",
+    "authors": [
+      "Katy Borner",
+      "Weixia Bonnie Huang",
+      "Micah Linnemeier",
+      "Russell Jackson Duhon",
+      "Patrick Phillips",
+      "et al."
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2009-borner-issi.pdf"
+  },
+  {
+    "slug": "pub-220",
+    "title": "Science & Technology Assessment Using Open Data and Open Code",
+    "pub_date": "2009-07-01",
+    "doi": "",
+    "journal": "IEEE Intelligent Systems",
+    "authors": [
+      "Katy Borner",
+      "Nianli Ma",
+      "Russell Jackson Duhon",
+      "Angela Zoss"
+    ],
+    "type": "",
+    "url": "https://cns.iu.edu/docs/publications/2009-borner-ieee.pdf"
+  },
+  {
+    "slug": "pub-236",
+    "title": "ID2 - A Scalable and Flexible Mixed-Media Information Visualization System for Public Learning Exhibits ",
+    "pub_date": "2009-06-22",
+    "doi": "",
+    "journal": "Proceedings of the World Conference on Educational Multimedia, Hypermedia and Telecommunications, Honolulu, HI",
+    "authors": [
+      "Eric Wernert",
+      "Jagannathan Lakshmipathy",
+      "Michael Boyles",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2009-wernert-et-al-id2.pdf"
+  },
+  {
+    "slug": "pub-223",
+    "title": "Socially Induced Semantic Networks and Applications",
+    "pub_date": "2009-05-05",
+    "doi": "",
+    "journal": "Thesis, Doctor of Philosophy in Computer Science: Filippo Menczer (Chair), Katy Börner, Randall Bramley, Dr. Dennis Groth. Indiana University, Bloomington, IN",
+    "authors": [
+      "Ben Markines"
+    ],
+    "type": "thesis",
+    "url": "https://cns.iu.edu/docs/publications/2009-markines-phd-thesis.pdf"
+  },
+  {
+    "slug": "pub-221",
+    "title": "The Scholarly Database and Its Utility for Scientometrics Research",
+    "pub_date": "2009-04-01",
+    "doi": "",
+    "journal": "Scientometrics",
+    "authors": [
+      "Gavin Larowe",
+      "Sumeet Adinath Ambre",
+      "John W Burgoon",
+      "Weimao Ke",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2009-larowe-sdb.pdf"
+  },
+  {
+    "slug": "pub-211",
+    "title": "Teaching Children the Structure of Science",
+    "pub_date": "2009-01-20",
+    "doi": "",
+    "journal": "SPIE Conference on Visualization and Data Analysis, San Jose, CA",
+    "authors": [
+      "Katy Borner",
+      "Fileve Palmer",
+      "Julie M Davis",
+      "Elisha F Allgood",
+      "Stephen Miles Uzzo",
+      "et al."
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2009-borner-kids.pdf"
+  },
+  {
+    "slug": "pub-212",
+    "title": "Visualization and Data Analysis 2009",
+    "pub_date": "2009-01-20",
+    "doi": "",
+    "journal": "Proceedings of SPIE",
+    "authors": [],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2009-borner-park-vda.pdf"
+  },
+  {
+    "slug": "pub-215",
+    "title": "Understanding Outside Collaborations of the Chinese Academy of Sciences Using Jensen-Shannon Divergence",
+    "pub_date": "2009-01-19",
+    "doi": "",
+    "journal": "Proceedings of SPIE-IS&T Visualization and Data Analysis Conference, San Jose, CA",
+    "authors": [
+      "Russell Jackson Duhon"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2009-duhon-cas.pdf"
+  },
+  {
+    "slug": "pub-201",
+    "title": "Science of Science: Conceptualizations and Models of Science",
+    "pub_date": "2009-01-01",
+    "doi": "",
+    "journal": "Journal of Informetrics",
+    "authors": [],
+    "type": "periodical",
+    "url": "https://cns.iu.edu/docs/publications/2009-borner-joi-sos-intro.pdf"
+  },
+  {
+    "slug": "pub-209",
+    "title": "Mapping the Structure and Evolution of Chemistry Research",
+    "pub_date": "2009-01-01",
+    "doi": "",
+    "journal": "Scientometrics",
+    "authors": [
+      "Kevin W Boyack",
+      "Katy Borner",
+      "Richard Klavans"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2009-boyack-mapchem.pdf"
+  },
+  {
+    "slug": "pub-216",
+    "title": "Visual Conceptualizations and Models of Science",
+    "pub_date": "2009-01-01",
+    "doi": "",
+    "journal": "Special Issue on the Science of Science: Conceptualizations and Models of Science,  Journal of Informetrics",
+    "authors": [
+      "Katy Borner",
+      "Andrea Scharnhorst"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2009-borner-joi-sos-intro.pdf"
+  },
+  {
+    "slug": "pub-218",
+    "title": "The Scholarly Database and its Utility for Scientometrics Research",
+    "pub_date": "2008-11-13",
+    "doi": "",
+    "journal": "Scientometrics: Online First",
+    "authors": [
+      "Gavin Larowe",
+      "Sumeet Adinath Ambre",
+      "John W Burgoon",
+      "Weimao Ke",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2008-larowe-sdb-scientometrics.pdf"
+  },
+  {
+    "slug": "pub-207",
+    "title": "Candidate Mapping: Finding Your Place Amongst the Candidates",
+    "pub_date": "2008-07-09",
+    "doi": "",
+    "journal": "12th International Conference on Information Visualization, London, UK",
+    "authors": [
+      "Justin Donaldson",
+      "William Richard Hazlewood"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2008-donaldson-candidate.pdf"
+  },
+  {
+    "slug": "pub-199",
+    "title": "Rete-Netzwerk-Red: Network Workbench - Analyzing and Visualizing Scholarly Networks Extracted from Online Bibliographic Resources",
+    "pub_date": "2008-06-23",
+    "doi": "",
+    "journal": "International Workshop and Conference on Network Science, Norwich, UK",
+    "authors": [
+      "Micah Linnemeier",
+      "Timothy Kelley",
+      "Weixia Bonnie Huang",
+      "Bruce W Herr Ii",
+      "Russell Jackson Duhon"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2008-Linnemeier-nwb.pdf"
+  },
+  {
+    "slug": "pub-198",
+    "title": "Calling on a Million Minds for Community Annotation in WikiProteins",
+    "pub_date": "2008-05-28",
+    "doi": "",
+    "journal": "Genome Biology",
+    "authors": [
+      "Barend Mons",
+      "Michael Ashburner",
+      "Christine Chicester",
+      "Erik Van Mulligen",
+      "Marc Weeber",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2008-mons-wikiproteins.pdf"
+  },
+  {
+    "slug": "pub-197",
+    "title": "113 Years of Physical Review: Using Flow Maps to Show Temporal and Topical Citation Patterns",
+    "pub_date": "2008-01-01",
+    "doi": "",
+    "journal": "Proceedings of the 12th Information Visualization Conference (IV 2008), London, UK",
+    "authors": [
+      "Bruce W Herr Ii",
+      "Russell Jackson Duhon",
+      "Katy Borner",
+      "Elisha F Allgood",
+      "Shashikant Penumarthy"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2008-herr-phys-rev.pdf"
+  },
+  {
+    "slug": "pub-206",
+    "title": "Networks and Complex Systems Talks",
+    "pub_date": "2008-01-01",
+    "doi": "",
+    "journal": "Indiana University",
+    "authors": [
+      "Katy Borner",
+      "Elisha F Allgood"
+    ],
+    "type": "broadcast",
+    "url": "http://vw.indiana.edu/talks-spring08/"
+  },
+  {
+    "slug": "pub-256",
+    "title": "Using the Network Workbench",
+    "pub_date": "2008-01-01",
+    "doi": "",
+    "journal": "Indiana University Bloomington",
+    "authors": [
+      "Bruce W Herr Ii"
+    ],
+    "type": "broadcast",
+    "url": "https://cns.iu.edu/docs/publications/2008-herr-nwb-iub.mpg"
+  },
+  {
+    "slug": "pub-208",
+    "title": "Digital Preservation by Design",
+    "pub_date": "2007-12-01",
+    "doi": "",
+    "journal": "Handbook of Research on Global Information Technology",
+    "authors": [
+      "Stacy Kowalczyk"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2008-kowalczyk-digpres.pdf"
+  },
+  {
+    "slug": "pub-194",
+    "title": "A Snapshot of Neuroscience: Unsupervised Natural Language Processing of Abstracts from the Society for Neuroscience 2006 Annual Meeting",
+    "pub_date": "2007-11-06",
+    "doi": "",
+    "journal": "Society for Neuroscience 2007 Annual Meeting, San Diego, CA",
+    "authors": [
+      "Gully Apc Burns",
+      "Bruce W Herr Ii",
+      "David Newman",
+      "Tommy Ingulfsen",
+      "Patric Pantel",
+      "et al."
+    ],
+    "type": "paper-conference",
+    "url": ""
+  },
+  {
+    "slug": "pub-185",
+    "title": "Visualization Summit 2007: Ten Research Goals for 2010",
+    "pub_date": "2007-09-10",
+    "doi": "",
+    "journal": "Information Visualisation",
+    "authors": [
+      "Remo Aslak Burkhard",
+      "Gennady Andrienko",
+      "Natalia Andrienko",
+      "Alan Blackwell",
+      "Katy Borner",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2007-burkhard-vizsumm-infovis.pdf"
+  },
+  {
+    "slug": "pub-179",
+    "title": "Making Sense of Mankind's Scholarly Knowledge and Expertise: Collecting, Interlinking, and Organizing What We Know and Different Approaches to Mapping (Network) Science",
+    "pub_date": "2007-07-03",
+    "doi": "",
+    "journal": "Environment and Planning B: Planning and Design",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2007-borner-making-epb.pdf"
+  },
+  {
+    "slug": "pub-180",
+    "title": "Guest Editorial",
+    "pub_date": "2007-07-03",
+    "doi": "",
+    "journal": "Environment and Planning B: Planning and Design",
+    "authors": [
+      "Andre Skupin",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2007-skupin-intro-epb.pdf"
+  },
+  {
+    "slug": "pub-217",
+    "title": "The Scholarly Database and its Utility for Scientometrics Research",
+    "pub_date": "2007-06-27",
+    "doi": "",
+    "journal": "Proceedings of the 11th International Conference on Scientometrics and Informetrics, Madrid, Spain",
+    "authors": [
+      "Gavin Larowe",
+      "Sumeet Adinath Ambre",
+      "John W Burgoon",
+      "Weimao Ke",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2007-larowe-sdb-csi.pdf"
+  },
+  {
+    "slug": "pub-162",
+    "title": "Mapping the Structure and Evolution of Chemistry Research",
+    "pub_date": "2007-06-25",
+    "doi": "",
+    "journal": "Proceedings of the 11th International Conference on Scientometrics and Informetrics, Madrid, Spain",
+    "authors": [
+      "Kevin W Boyack",
+      "Katy Borner",
+      "Richard Klavans"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2007-boyack-mapchem.pdf"
+  },
+  {
+    "slug": "pub-166",
+    "title": "Visualizing the Topic Space of the United States Supreme Court",
+    "pub_date": "2007-06-25",
+    "doi": "",
+    "journal": "Proceedings of the 11th International Conference on Scientometrics and Informetrics, Madrid, Spain",
+    "authors": [
+      "Peter A Hook"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2007-hook-vistopspc-issi.pdf"
+  },
+  {
+    "slug": "pub-174",
+    "title": "The Scholarly Database and Its Utility for Scientometrics Research",
+    "pub_date": "2007-06-25",
+    "doi": "",
+    "journal": "Proceedings of the 11th International Conference on Scientometrics and Informetrics, Madrid, Spain",
+    "authors": [
+      "Gavin Larowe",
+      "Sumeet Adinath Ambre",
+      "John W Burgoon",
+      "Weimao Ke",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2007-larowe-sdb-issi-1.pdf"
+  },
+  {
+    "slug": "pub-169",
+    "title": "Network Derived Domain Maps of the Work of the United States Supreme Court: 50 Years of Co-Voting Data and a Case Study on Abortion",
+    "pub_date": "2007-05-20",
+    "doi": "",
+    "journal": "International Workshop and Conference on Network Science, New York, NY",
+    "authors": [
+      "Peter A Hook"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2007-hook-court.pdf"
+  },
+  {
+    "slug": "pub-161",
+    "title": "Taxonomy Visualization in Support of the Semi-Automatic Validation and Optimization of Organizational Schemas",
+    "pub_date": "2007-05-07",
+    "doi": "",
+    "journal": "Journal of Infometrics",
+    "authors": [
+      "Katy Borner",
+      "Elisha F Allgood",
+      "Bruce W Herr Ii",
+      "Todd Holloway",
+      "W Bradford Paley"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2007-borner-taxo.pdf"
+  },
+  {
+    "slug": "pub-173",
+    "title": "Mapping, Illuminating, and Interacting with Science",
+    "pub_date": "2007-05-01",
+    "doi": "",
+    "journal": "International Conference on Computer Graphics and Interactive Techniques ACM Siggraph 2007 Sketches, San Diego, CA",
+    "authors": [
+      "Kevin W Boyack",
+      "Richard Klavans",
+      "W Bradford Paley",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2007-boyack-siggraph.pdf"
+  },
+  {
+    "slug": "pub-106",
+    "title": "Network Science",
+    "pub_date": "2007-01-01",
+    "doi": "",
+    "journal": "Annual Review of Information Science & Technology",
+    "authors": [
+      "Katy Borner",
+      "Soma Sanyal",
+      "Alessandro Vespignani"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2007-borner-arist.pdf"
+  },
+  {
+    "slug": "pub-159",
+    "title": "Movies and Actors: Mapping the Internet Movie Database",
+    "pub_date": "2007-01-01",
+    "doi": "",
+    "journal": "Proceedings of the 11th Annual Information Visualization International Conference, Zurich, Switzerland",
+    "authors": [
+      "Bruce W Herr Ii",
+      "Weimao Ke",
+      "Elisha F Allgood",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2007-herr-movieact.pdf"
+  },
+  {
+    "slug": "pub-160",
+    "title": "Visualizing Japanese Co-Authorship Data",
+    "pub_date": "2007-01-01",
+    "doi": "",
+    "journal": "Proceedings of the 11th Annual Information Visualization International Conference, Zurich, Switzerland",
+    "authors": [
+      "Gavin Larowe",
+      "Ryutaro Ichise",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2007-larowe-vizjapan.pdf"
+  },
+  {
+    "slug": "pub-163",
+    "title": "Representing, Analyzing, and Visualizing Scholarly Data in Support of Research Management",
+    "pub_date": "2007-01-01",
+    "doi": "",
+    "journal": "Proceedings of the 11th Annual Information Visualization International Conference, Zurich, Switzerland",
+    "authors": [
+      "Thomas Neirynck",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2007-neirynck-ivl.pdf"
+  },
+  {
+    "slug": "pub-164",
+    "title": "The Aggregate Harmony Metric and a Statistical and Visual Contextualization of the Rehnquist Court: 50 Years of Data",
+    "pub_date": "2007-01-01",
+    "doi": "",
+    "journal": "Constitutional Commentary",
+    "authors": [
+      "Peter A Hook"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2007-hook-aggharm.pdf"
+  },
+  {
+    "slug": "pub-165",
+    "title": "Computational Diagnostics: A Novel Approach to Viewing Medical Data",
+    "pub_date": "2007-01-01",
+    "doi": "",
+    "journal": "Proceedings of the Fifth International Conference on Coordinated and Multiple Views in Exploratory Visualization, Zurich, Switzerland",
+    "authors": [
+      "Ketan K Mane",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2007-mane-compdiag.pdf"
+  },
+  {
+    "slug": "pub-167",
+    "title": "Domain Maps: Purposes, History, Parallels with Cartography, and Applications",
+    "pub_date": "2007-01-01",
+    "doi": "",
+    "journal": "Conference Proceedings of 11th Annual Information Visualization International Conference, Zurich, Switzerland",
+    "authors": [
+      "Peter A Hook"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2007-hook-dommaps.pdf"
+  },
+  {
+    "slug": "pub-182",
+    "title": "Designing Highly Flexible and Usable Cyberinfrastructures for Convergence",
+    "pub_date": "2007-01-01",
+    "doi": "",
+    "journal": "Progress in Convergence - Technologies for Human Wellbeing",
+    "authors": [
+      "Bruce W Herr Ii",
+      "Weixia Bonnie Huang",
+      "Shashikant Penumarthy",
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2007-herr-converge-pic.pdf"
+  },
+  {
+    "slug": "pub-202",
+    "title": "Special Issue on Mapping Humanity's Knowledge and Expertise in the Digital Domain",
+    "pub_date": "2007-01-01",
+    "doi": "",
+    "journal": "Environment and Planning B: Planning and Design",
+    "authors": [],
+    "type": "periodical",
+    "url": ""
+  },
+  {
+    "slug": "pub-76",
+    "title": "Analyzing and Visualizing the Semantic Coverage of Wikipedia and Its Authors",
+    "pub_date": "2007-01-01",
+    "doi": "",
+    "journal": "Complexity, Special Issue on Understanding Complex Systems",
+    "authors": [
+      "Todd Holloway",
+      "Miran Boicevic",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2007-holloway-vizwiki.pdf"
+  },
+  {
+    "slug": "pub-168",
+    "title": "Effect of Citation Patterns on Network Structure",
+    "pub_date": "2006-11-15",
+    "doi": "",
+    "journal": "arXiv.org",
+    "authors": [
+      "Soma Sanyal"
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2006-sanyal-effctcit.pdf"
+  },
+  {
+    "slug": "pub-171",
+    "title": "Advanced Cyberinfrastructure Facility",
+    "pub_date": "2006-11-01",
+    "doi": "",
+    "journal": "Indiana University",
+    "authors": [
+      "Michael Mcrobbie"
+    ],
+    "type": "broadcast",
+    "url": "https://cns.iu.edu/docs/publications/2006-jasiakx-uits.zip"
+  },
+  {
+    "slug": "pub-172",
+    "title": "Global Research Network Operations Center",
+    "pub_date": "2006-11-01",
+    "doi": "",
+    "journal": "Indiana University",
+    "authors": [
+      "Michael Mcrobbie"
+    ],
+    "type": "broadcast",
+    "url": "https://cns.iu.edu/docs/publications/2006-jasiak-uits.zip"
+  },
+  {
+    "slug": "pub-183",
+    "title": "Envisioning Knowledge: Tightly Coupling Knowledge Analysis and Visualization",
+    "pub_date": "2006-10-01",
+    "doi": "",
+    "journal": "Thesis, Doctor of Philosophy in Library and Information Science: Katy Börner (Chair), Javed Mostafa, Luis Rocha, Sun Kim. Indiana University, Bloomington, IN",
+    "authors": [
+      "Ketan K Mane"
+    ],
+    "type": "thesis",
+    "url": "https://cns.iu.edu/docs/publications/2006-mane-thesis.pdf"
+  },
+  {
+    "slug": "pub-170",
+    "title": "Science of Science Policy Position Paper",
+    "pub_date": "2006-07-12",
+    "doi": "",
+    "journal": "Workshop on Science of Science Policy: Developing our Understanding of Public Investments in Science, Helsinki, Finland",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2006-borner-scipolicy-helsinki.pdf"
+  },
+  {
+    "slug": "pub-473",
+    "title": "Proceedings of SPIE - The International Society for Optical Engineering: Introduction",
+    "pub_date": "2006-01-15",
+    "doi": "",
+    "journal": "Proceedings of SPIE - The International Society for Optical Engineering",
+    "authors": [],
+    "type": "paper-conference",
+    "url": "https://www.spiedigitallibrary.org/conference-proceedings-of-SPIE/6060.toc"
+  },
+  {
+    "slug": "pub-105",
+    "title": "Mapping the Diffusion of Information among Major U.S. Research Institutions",
+    "pub_date": "2006-01-01",
+    "doi": "",
+    "journal": "Scientometrics",
+    "authors": [
+      "Katy Borner",
+      "Shashikant Penumarthy",
+      "Mark Meiss",
+      "Weimao Ke"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2006-borner-mapdiff.pdf"
+  },
+  {
+    "slug": "pub-111",
+    "title": "Mapping Scientific Disciplines and Author Expertise Based on Personal Bibliography Files",
+    "pub_date": "2006-01-01",
+    "doi": "",
+    "journal": "Tenth International Conference on Information Visualisation, London, UK",
+    "authors": [
+      "Colin Murray",
+      "Weimao Ke",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2006-murray-mapsci.pdf"
+  },
+  {
+    "slug": "pub-113",
+    "title": "SRS Browser: A Visual Interface to the Sequence Retrieval System",
+    "pub_date": "2006-01-01",
+    "doi": "",
+    "journal": "SPIE Conference on Visualization and Data Analysis, San Jose, CA",
+    "authors": [
+      "Ketan K Mane",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2006-mane-srs.pdf"
+  },
+  {
+    "slug": "pub-122",
+    "title": "Analysis of Cowbird Social Networks with Graph Theory Metrics",
+    "pub_date": "2006-01-01",
+    "doi": "",
+    "journal": "International Conference and Workshop on Network Science, Bloomington, IN",
+    "authors": [
+      "Cuauhcihuatl Vital",
+      "Emilia P Martins",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2006-vital-cowbird.pdf"
+  },
+  {
+    "slug": "pub-123",
+    "title": "CIShell - A Plug-in Based Software Architecture and Its Usage to Design an Easy to Use, Easy to Extend Cyberinfrastructure for Network Scientists",
+    "pub_date": "2006-01-01",
+    "doi": "",
+    "journal": "International Conference and Workshop on Network Science, Bloomington, IN",
+    "authors": [
+      "Weixia Bonnie Huang",
+      "Bruce W Herr Ii",
+      "Shashikant Penumarthy",
+      "Ben Markines",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2006-huang-cishell.pdf"
+  },
+  {
+    "slug": "pub-124",
+    "title": "Mapping Science",
+    "pub_date": "2006-01-01",
+    "doi": "",
+    "journal": "International Conference and Workshop on Network Science, May 16 - 25, Bloomington, Indiana",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2006-borner-mapsci.pdf"
+  },
+  {
+    "slug": "pub-20",
+    "title": "Semantic Association Networks: Using Semantic Web Technology to Improve Scholarly Knowledge and Expertise Management",
+    "pub_date": "2006-01-01",
+    "doi": "",
+    "journal": "Visualizing the Semantic Web, 2nd Edition",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2006-borner-san.pdf"
+  },
+  {
+    "slug": "pub-21",
+    "title": "Analysis and Visualization of Social Diffusion Patterns in Three-Dimensional Virtual Worlds",
+    "pub_date": "2006-01-01",
+    "doi": "",
+    "journal": "Avatars at Work and Play: Collaboration and Interaction in Shared Virtual Environments (Computer Supported Cooperative Work)",
+    "authors": [
+      "Shashikant Penumarthy",
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2006-penumarthy-socdif.pdf"
+  },
+  {
+    "slug": "pub-6",
+    "title": "Scholarly Networks on Resilience, Vulnerability and Adaptation within the Human Dimensions of Global Environmental Change",
+    "pub_date": "2006-01-01",
+    "doi": "",
+    "journal": "Global Environmental Change, Special Issue on Resilience, Vulnerability and Adaptation",
+    "authors": [
+      "Marco A Janssen",
+      "Michael Schoon",
+      "Weimao Ke",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2006-janssen-resilien.pdf"
+  },
+  {
+    "slug": "pub-86",
+    "title": "ScienceSifter: Facilitating Activity Awareness in Collaborative Research Groups through Focused Information Feeds",
+    "pub_date": "2005-12-05",
+    "doi": "",
+    "journal": "First International Conference on e-Science and Grid Computing, Melbourne, Australia",
+    "authors": [
+      "Linn Marks Collins",
+      "Ketan K Mane",
+      "Mark L B Martinez",
+      "Jeremy At Hussel",
+      "Richard E Luce"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2005-collins-scisift.pdf"
+  },
+  {
+    "slug": "pub-103",
+    "title": "GiveALink: Mining a Semantic Network of Bookmarks for Web Search and Recommendation",
+    "pub_date": "2005-08-21",
+    "doi": "",
+    "journal": "Proceedings of the 3rd International Workshop on Link Discovery LinkKDD2005, Chicago, IL",
+    "authors": [
+      "Todd Holloway",
+      "Ana G Maguitman",
+      "Ben Markines",
+      "Fillipo Menczer",
+      "Lubomira Stoilova"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2005-stoilova-givelink.pdf"
+  },
+  {
+    "slug": "pub-181",
+    "title": "Special Issue on Collaborative Information Visualization Environments",
+    "pub_date": "2005-02-01",
+    "doi": "",
+    "journal": "PRESENCE: Teleoperators and Virtual Environments, Special Issue on Collaborative Information Visualization Environments",
+    "authors": [],
+    "type": "periodical",
+    "url": "https://cns.iu.edu/docs/publications/2005-chen-borner-spatial-presence2.pdf"
+  },
+  {
+    "slug": "pub-94",
+    "title": "Conversations in the Blogosphere: An Analysis",
+    "pub_date": "2005-01-03",
+    "doi": "",
+    "journal": "Proceedings of the Thirty-Eighth Hawaii International Conference on System Sciences, Big Island, HI",
+    "authors": [
+      "Susan C Herring",
+      "Inna Kouper",
+      "John Paolillo",
+      "Lois Ann Scheidt",
+      "Michael Tyworth",
+      "et al."
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2005-herring-blogosph.pdf"
+  },
+  {
+    "slug": "pub-10",
+    "title": "Studying the Emerging Global Brain: Analyzing and Visualizing the Impact of Co-Authorship Teams",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "Complexity: Special Issue on Understanding Complex Systems",
+    "authors": [
+      "Katy Borner",
+      "Luca Dallasta",
+      "Weimao Ke",
+      "Alessandro Vespignani"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2005-borner-studglob.pdf"
+  },
+  {
+    "slug": "pub-100",
+    "title": "Digital Preservation Cross Discipline Survey",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "L709: Introduction to Research and Statistics, School of Library and Information Science, Indiana University",
+    "authors": [
+      "Stacy Kowalczyk"
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2005-kowalczyk-crossdis.pdf"
+  },
+  {
+    "slug": "pub-101",
+    "title": "Electronic Journal Archiving and Preservation Annotated Bibliography",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "L702: Research Practicum, School of Library and Information Science, Indiana University",
+    "authors": [
+      "Stacy Kowalczyk"
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2005-kowalczyk-elecjour.pdf"
+  },
+  {
+    "slug": "pub-11",
+    "title": "From Spatial Proximity to Semantic Coherence: A Quantitative Approach to the Study of Group Dynamics in Collaborative Virtual Environments",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "PRESENCE: Teleoperators and Virtual Environments, Special Issue on Collaborative Information Visualization Environments",
+    "authors": [
+      "Chaomei Chen",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2005-chen-borner-spatial-presence2.pdf"
+  },
+  {
+    "slug": "pub-114",
+    "title": "Geographical Visualization of Technology Data in the US",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "IEEE InfoVis 2005 Contest Entry, Minneapolis, MN",
+    "authors": [
+      "Colin Murray",
+      "Weimao Ke",
+      "Hana Milanaov",
+      "Mark Meiss",
+      "Shravan Rajagopal",
+      "et al."
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2005-murray-techdata.pdf"
+  },
+  {
+    "slug": "pub-158",
+    "title": "Data Visualization of Multiparameter Information in Acute Lymphoblastic Leukemia Expands the Ability to Explore Prognostic Factors",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "Blood",
+    "authors": [
+      "Susanne Ragg",
+      "M B Rosenman",
+      "E M Doucette",
+      "Zhong Yan",
+      "Julie C Haydon",
+      "et al."
+    ],
+    "type": "article-journal",
+    "url": ""
+  },
+  {
+    "slug": "pub-176",
+    "title": "Mapping the Social Network and Expertise of \"Network Science\" Researchers",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "Report to the U.S. National Research Council study on Network Science",
+    "authors": [
+      "Weimao Ke",
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2005-borner-nrcreprt.pdf"
+  },
+  {
+    "slug": "pub-18",
+    "title": "Semantic Correspondence in Federated Life Science Data Integration Systems",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "Data Integration in the Life Sciences, Lecture Notes in Computer Science",
+    "authors": [
+      "Malika Mahoui",
+      "Harshad Kulkarni",
+      "Nianhua Li",
+      "Zina Ben Miled",
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2005-mahoui-semcor.pdf"
+  },
+  {
+    "slug": "pub-19",
+    "title": "Educational Knowledge Domain Visualizations: Tools to Navigate, Understand, and Internalize the Structure of Scholarly Knowledge and Expertise",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "New Directions in Cognitive Information Retrieval",
+    "authors": [
+      "Peter A Hook",
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2005-hook-educknow.pdf"
+  },
+  {
+    "slug": "pub-193",
+    "title": "Special Issue on Information Visualization Interfaces for Retrieval and Analysis",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "Springer-Verlag",
+    "authors": [],
+    "type": "periodical",
+    "url": ""
+  },
+  {
+    "slug": "pub-205",
+    "title": "Places & Spaces Exhibit Movie",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "Indiana University",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "broadcast",
+    "url": ""
+  },
+  {
+    "slug": "pub-23",
+    "title": "Several Entries",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "Encyclopedia on Human Computer Interaction in Popular Culture",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": ""
+  },
+  {
+    "slug": "pub-24",
+    "title": "Visualizing Social Patterns in Virtual Environments on a Local and Global Scale",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "Digital Cities III. Information Technologies for Social Capital: Cross-cultural Perspectives, Lecture Notes in Computer Science",
+    "authors": [
+      "Katy Borner",
+      "Shashikant Penumarthy",
+      "Bonnie Jean Devarco",
+      "Carol Kerney"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2005-borner-vissoc.pdf"
+  },
+  {
+    "slug": "pub-47",
+    "title": "Unstructured Peer-to-Peer Networks: Topological Properties and Search Performance",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "Agents and Peer-to-Peer Computing: Third International Workshop, AP2PC 2004. New York, NY",
+    "authors": [
+      "George Fletcher",
+      "Hardik Sheth",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2004-fletcher-p2p.pdf"
+  },
+  {
+    "slug": "pub-77",
+    "title": "Database Integration and Data Visualization for Biomarker Detection in Pediatric Cancer",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "37th Congress of the International Society of Pediatric Oncology, Vancouver, Canada",
+    "authors": [
+      "Susanne Ragg",
+      "Terry Vik",
+      "N D Lee",
+      "Nianhua Li",
+      "Zina Ben Miled",
+      "et al."
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2005-ragg-dbint-ispo.pdf"
+  },
+  {
+    "slug": "pub-8",
+    "title": "Mapping the Backbone of Science",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "Scientometrics",
+    "authors": [
+      "Kevin W Boyack",
+      "Richard Klavans",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2005-boyack-mapbckbn.pdf"
+  },
+  {
+    "slug": "pub-84",
+    "title": "Exploring the Impact of Information Visualization on Medical Information Seeking Using the Web",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "HCI International, Las Vegas, NV",
+    "authors": [
+      "Ketan K Mane",
+      "Javed Mostafa"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2005-mane-infovis.pdf"
+  },
+  {
+    "slug": "pub-9",
+    "title": "Trends in Animal Behaviour Research (1968-2002): Ethoinformatics and Mining Library Databases",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "Animal Behaviour",
+    "authors": [
+      "Terry J Ord",
+      "Emilia P Martins",
+      "Sidharth Thakur",
+      "Ketan K Mane",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2004-ord-trends.pdf"
+  },
+  {
+    "slug": "pub-90",
+    "title": "Advanced Information Retrieval Web Services for Digital Libraries",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "Library Collections, Acquisitions, and Technology Services",
+    "authors": [
+      "Yueyu Fu",
+      "Weimao Ke",
+      "Javed Mostafa"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2005-ke-adinfo.pdf"
+  },
+  {
+    "slug": "pub-91",
+    "title": "Automated Text Classification Using a Multi-Agent Framework",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "Proceedings of the 5th ACM/IEEE-CS Joint Conference on Digital Libraries. Tools & Techniques Track: Supporting Classification, Denver, CO",
+    "authors": [
+      "Yueyu Fu",
+      "Weimao Ke",
+      "Javed Mostafa"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2005-fu-automtxt.pdf"
+  },
+  {
+    "slug": "pub-98",
+    "title": "Spatio-Temporal Information Production and Consumption of Major U.S. Research Institutions",
+    "pub_date": "2005-01-01",
+    "doi": "",
+    "journal": "Proceedings of International Society of Scientometrics and Informetrics Conference 2005, Stockholm, Sweden",
+    "authors": [
+      "Katy Borner",
+      "Shashikant Penumarthy"
+    ],
+    "type": "paper-conference",
+    "url": ""
+  },
+  {
+    "slug": "pub-79",
+    "title": "Integration of Biomedical Text and Sequence OAI Repositories",
+    "pub_date": "2004-07-11",
+    "doi": "",
+    "journal": "Proceedings of the 4th ACM/IEEE-CS Joint Conference on Digital Libraries, Tucson, AZ",
+    "authors": [
+      "Yueyu Fu",
+      "Javed Mostafa"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2004-fu-biomed.pdf"
+  },
+  {
+    "slug": "pub-102",
+    "title": "Digital Preservation Annotated Bibliography",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "L701 class paper",
+    "authors": [
+      "Stacy Kowalczyk"
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2004-kowalczyk-annotbib.pdf"
+  },
+  {
+    "slug": "pub-115",
+    "title": "Java Engagement for Teacher Training: An Experience Report",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "Proceedings of the Frontiers in Education Conference, Savannah, GA",
+    "authors": [
+      "Raja Sooriamurthi",
+      "Arijit Sengupta",
+      "Suzanne Menzel",
+      "Katie Moor",
+      "Sid Stamm",
+      "et al."
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2004-sooriamurthi-jett.pdf"
+  },
+  {
+    "slug": "pub-12",
+    "title": "Introduction: Mapping Knowledge Domains",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "authors": [
+      "Richard M Shiffrin",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2004-shiffrin-mapknow.pdf"
+  },
+  {
+    "slug": "pub-125",
+    "title": "Information Processing Talks 2003-2004",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "Indiana University",
+    "authors": [
+      "Katy Borner",
+      "Elijah Wright",
+      "Caroline Courtney"
+    ],
+    "type": "broadcast",
+    "url": "http://vw.indiana.edu/talks04/"
+  },
+  {
+    "slug": "pub-13",
+    "title": "Mapping Topics and Topic Bursts in PNAS",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "authors": [
+      "Ketan K Mane",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2004-mane-burstpnas.pdf"
+  },
+  {
+    "slug": "pub-132",
+    "title": "Designing Social Digital Libraries",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "Indiana Libraries: Recruiting and Retaining Librarians in Indiana",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "manuscript",
+    "url": ""
+  },
+  {
+    "slug": "pub-14",
+    "title": "The Simultaneous Evolution of Author and Paper Networks",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "authors": [
+      "Katy Borner",
+      "Jeegar Maru",
+      "Robert Goldstone"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2004-borner-tarl.pdf"
+  },
+  {
+    "slug": "pub-187",
+    "title": "Proceedings of the Eighth International Conference on Information Visualization",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "IV2004 Conference, London, UK",
+    "authors": [],
+    "type": "paper-conference",
+    "url": ""
+  },
+  {
+    "slug": "pub-189",
+    "title": "Visualization and Data Analysis 2004",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "Proceedings of SPIE",
+    "authors": [],
+    "type": "paper-conference",
+    "url": ""
+  },
+  {
+    "slug": "pub-192",
+    "title": "Mapping Knowledge Domains",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "Proceedings of the National Academy of Sciences of the United States of America",
+    "authors": [
+      "Richard M Shiffrin",
+      "Katy Borner"
+    ],
+    "type": "periodical",
+    "url": "http://ella.slis.indiana.edu/~katy/paper/04pnas-intro.pdf"
+  },
+  {
+    "slug": "pub-3",
+    "title": "Examining the Evolution and Distribution of Patent Classifications",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "IV2004 Conference, London, UK",
+    "authors": [
+      "Daniel Kutz"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2004-kutz-exam.pdf"
+  },
+  {
+    "slug": "pub-40",
+    "title": "Mapping Medline Papers, Genes, and Proteins Related to Melanoma Research",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "IV2004 Conference, London, UK",
+    "authors": [
+      "Kevin W Boyack",
+      "Ketan K Mane",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2004-boyack-mapmedln.pdf"
+  },
+  {
+    "slug": "pub-42",
+    "title": "Visualizing the VLearn3D 2002 Conference in Space and Time",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "Visualization and Data Analysis, San Jose, CA",
+    "authors": [
+      "Katy Borner",
+      "Ryan Johnathan Jones",
+      "Gyeongja Jun Lee",
+      "Shashikant Penumarthy"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2004-borner-vlearn3d.pdf"
+  },
+  {
+    "slug": "pub-48",
+    "title": "Major Information Visualization Authors, Papers and Topics in the ACM Library. Analysis and Visualization of the IV 2004 Contest Dataset",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "Proceedings of the IEEE Symposium on Information Visualization, IEEE Computer Society Washington, DC",
+    "authors": [
+      "Weimao Ke",
+      "Katy Borner",
+      "Lalitha Viswanath"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2004-ke-infovis.pdf"
+  },
+  {
+    "slug": "pub-78",
+    "title": "Toward Information Retrieval Web Services for Digital Libraries",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "IEEE/ACM Joint Conference on Digital Libraries 2004, Tucson, AZ",
+    "authors": [
+      "Yueyu Fu",
+      "Javed Mostafa"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2004-fu-inforet.pdf"
+  },
+  {
+    "slug": "pub-88",
+    "title": "Content Coverage of Animal Behavior Data",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "Visualization and Data Analysis, San Jose, CA",
+    "authors": [
+      "Sidharth Thakur",
+      "Ketan K Mane",
+      "Katy Borner",
+      "Emilia P Martins",
+      "Terry J Ord"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2004-thakur-animal.pdf"
+  },
+  {
+    "slug": "pub-92",
+    "title": "The Best of Both Worlds: A Hybrid Approach to the Construction of Faceted Vocabularies",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "Asia Information Retrieval Symposium. Beijing, China",
+    "authors": [
+      "Kiduk Yang",
+      "Elin Jacob",
+      "Aaron Loehrlein",
+      "Seungmin Lee",
+      "Ning Yu"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2004-yang-bobw.pdf"
+  },
+  {
+    "slug": "pub-93",
+    "title": "Organizing the Web: Semi Automatic Construction of a Faceted Scheme",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "Proceedings of IADIS International Conference WWW/Internet, Madrid, Spain",
+    "authors": [
+      "Elin Jacob",
+      "Seungmin Lee",
+      "Aaron Loehrlein",
+      "Kiduk Yang",
+      "Ning Yu"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2004-yang-orgweb.pdf"
+  },
+  {
+    "slug": "pub-95",
+    "title": "A Toolkit for Large Scale Network Analysis",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "Technical Report SLISWP-04-02, SLIS, Indiana University",
+    "authors": [
+      "Shashikant Penumarthy",
+      "Ketan K Mane",
+      "Katy Borner"
+    ],
+    "type": "report",
+    "url": "https://cns.iu.edu/docs/publications/2004-penumarthy-toolkit.pdf"
+  },
+  {
+    "slug": "pub-97",
+    "title": "The ActiveWorld Toolkit: Analyzing and Visualizing Social Diffusion Patterns in 3D Virtual Worlds",
+    "pub_date": "2004-01-01",
+    "doi": "",
+    "journal": "Workshop on Virtual Worlds at the First International Conference on Design Computing and Cognition, MIT, Boston, MA",
+    "authors": [
+      "Shashikant Penumarthy",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2004-penumarthy-actwrldtkt-descompcog.pdf"
+  },
+  {
+    "slug": "pub-1",
+    "title": "The Development, Maintenance, and Use of Course Web Sites",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "ACM SIGCSE 34th Technical Symposium on Computer Science Education, Reno, NV",
+    "authors": [
+      "Jesse M Heines",
+      "Melody Ivory",
+      "Katy Borner",
+      "Ed Gehringer"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2003-heines-panel.pdf"
+  },
+  {
+    "slug": "pub-109",
+    "title": "Proceedings of the Seventh International Conference on Information Visualization",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "Seventh International Conference on Information Visualization - IV 2003, July 16-18",
+    "authors": [],
+    "type": "paper-conference",
+    "url": ""
+  },
+  {
+    "slug": "pub-110",
+    "title": "Proceedings of SPIE 2003: Visualization and Data Analysis",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "SPIE 2003: Visualization and Data Analysis, Santa Clara, CA, Jan. 21",
+    "authors": [],
+    "type": "book",
+    "url": "http://spiedigitallibrary.aip.org/dbt/dbt.jsp?KEY=PSISDG&Volume=5009&Issue=1"
+  },
+  {
+    "slug": "pub-116",
+    "title": "International Workshop on Information Visualization Interfaces for Retrieval and Analysis (IVIRA) at the Joint Conference on Digital Libraries 2003",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "Third ACM+IEEE Joint Conference on Digital Libraries, Houston, TX",
+    "authors": [
+      "Javed Mostafa",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2003-mostafa-ivira.pdf"
+  },
+  {
+    "slug": "pub-126",
+    "title": "Information Processing Talks 2002-2003",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "Indiana University",
+    "authors": [
+      "Katy Borner",
+      "Debora Shaw",
+      "Elijah Wright"
+    ],
+    "type": "broadcast",
+    "url": "http://vw.indiana.edu/talks03/"
+  },
+  {
+    "slug": "pub-133",
+    "title": "Visual User Interfaces: Challenges and Opportunities",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "IEEE-CS Technical Committee on Digital Libraries' Bulletin",
+    "authors": [
+      "Katy Borner",
+      "Chaomei Chen"
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2003-borner-vui-ieeecs.pdf"
+  },
+  {
+    "slug": "pub-134",
+    "title": "Information Visualization Interfaces for Retrieval and Analysis (IVIRA) Workshop Summary",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "D-Lib Magazine",
+    "authors": [
+      "Javed Mostafa",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "http://www.dlib.org/dlib/july03/07inbrief.html#MOSTAFA"
+  },
+  {
+    "slug": "pub-136",
+    "title": "Content Coverage of PNAS in 1982-2001",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "Technical Report SLISWP-03-02 Presentation at the SLIS Student Conference at Indiana University won the 1st prize",
+    "authors": [
+      "Ketan K Mane",
+      "Katy Borner"
+    ],
+    "type": "report",
+    "url": ""
+  },
+  {
+    "slug": "pub-15",
+    "title": "Social Diffusion Patterns in Three-Dimensional Virtual Worlds",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "Information Visualization",
+    "authors": [
+      "Katy Borner",
+      "Shashikant Penumarthy"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2003-borner-socdif.pdf"
+  },
+  {
+    "slug": "pub-25",
+    "title": "Maps of Virtual Worlds",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "Information Design Source Book",
+    "authors": [
+      "Katy Borner",
+      "Shashikant Penumarthy"
+    ],
+    "type": "chapter",
+    "url": ""
+  },
+  {
+    "slug": "pub-26",
+    "title": "Visualizing Knowledge Domains",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "Annual Review of Information Science & Technology",
+    "authors": [
+      "Katy Borner",
+      "Chaomei Chen",
+      "Kevin W Boyack"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2003-borner-arist.pdf"
+  },
+  {
+    "slug": "pub-27",
+    "title": "Computers and Knowledge Sharing",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "Encyclopedia of Community: From the Village to the Virtual World",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2003-borner-encyclop.pdf"
+  },
+  {
+    "slug": "pub-38",
+    "title": "Indicator-Assisted Evaluation and Funding of Research: Visualizing the Influence of Grants on the Number and Citation Counts of Research Papers",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "Journal of the American Society of Information Science and Technology, Special Topic Issue on Visualizing Scientific Paradigms",
+    "authors": [
+      "Kevin W Boyack",
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2003-boyack-indasst.pdf"
+  },
+  {
+    "slug": "pub-44",
+    "title": "An XML Toolkit for an Information Visualization Software Repository",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "Poster Compendium. IEEE Information Visualization Conference, Seattle, WA",
+    "authors": [
+      "Jason Baumgartner",
+      "Katy Borner",
+      "Nathan James Deckard",
+      "Nihar Sheth"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2003-baumgartner-xmltool.pdf"
+  },
+  {
+    "slug": "pub-49",
+    "title": "Treemap, Radial Tree and 3D Tree Visualizations",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "Poster Compendium. IEEE Information Visualization Conference, Seattle, WA",
+    "authors": [
+      "Nihar Sheth",
+      "Katy Borner",
+      "Jason Baumgartner",
+      "Ketan K Mane",
+      "Eric Wernert"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2003-sheth-treemap.pdf"
+  },
+  {
+    "slug": "pub-63",
+    "title": "Building Social Digital Libraries",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "Indiana Libraries: Recruiting and Retaining Librarians in Indiana",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2003-borner-socdl.pdf"
+  },
+  {
+    "slug": "pub-7",
+    "title": "When Rich Media are Opaque: Spatial Reference in a 3-D Virtual World. Submitted to Computer Supported Cooperative Work",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "The Journal of Collaborative Computing",
+    "authors": [
+      "Susan C Herring",
+      "Katy Borner",
+      "Maggie B Swan"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2003-herring-whenrich.pdf"
+  },
+  {
+    "slug": "pub-81",
+    "title": "Open Archives Data Service Prototype and Automated Subject Indexing Using D-Lib+ Archive Content as a Testbed",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "D-Lib Magazine",
+    "authors": [
+      "Yueyu Fu",
+      "Larry Mongin",
+      "Javed Mostafa"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2003-mongin-openarch.pdf"
+  },
+  {
+    "slug": "pub-87",
+    "title": "Oncosifter: A Customized Approach to Cancer Information",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "Information Visualization Interfaces for Retrieval and Analysis Conference at Joint Conference on Digital Libraries, Houston, TX",
+    "authors": [
+      "Ketan K Mane",
+      "Sidharth Thakur"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2003-mane-oncosift.pdf"
+  },
+  {
+    "slug": "pub-96",
+    "title": "VLearn 3D Conference (Poster)",
+    "pub_date": "2003-01-01",
+    "doi": "",
+    "journal": "VLearn 3D Conference. Semifinalist for the Science and Engineering Visualization Challenge by National Science Foundation and the Journal Science, St. Malo, France",
+    "authors": [
+      "Katy Borner",
+      "William Richard Hazlewood",
+      "Ryan Johnathan Jones",
+      "Gyeongja Jun Lee",
+      "Shashikant Penumarthy"
+    ],
+    "type": "paper-conference",
+    "url": "http://ella.slis.indiana.edu/~katy/outgoing/vlearn-poster.jpg"
+  },
+  {
+    "slug": "pub-190",
+    "title": "Workshop Report: Visual Interfaces to Digital Libraries at JCDL '02",
+    "pub_date": "2002-09-01",
+    "doi": "",
+    "journal": "ACM/SIGIR Forum",
+    "authors": [
+      "Katy Borner",
+      "Chaomei Chen"
+    ],
+    "type": "manuscript",
+    "url": "http://www.sigir.org/forum/F2002/borner.pdf"
+  },
+  {
+    "slug": "pub-188",
+    "title": "Lecture Notes in Computer Science: Visual Interfaces to Digital Libraries",
+    "pub_date": "2002-01-01",
+    "doi": "",
+    "journal": "Springer-Verlag",
+    "authors": [],
+    "type": "book",
+    "url": "https://cns.iu.edu/docs/publications/2002-borner-vidl.pdf"
+  },
+  {
+    "slug": "pub-2",
+    "title": "Visualizing Knowledge Domains",
+    "pub_date": "2002-01-01",
+    "doi": "",
+    "journal": "Proceedings of the ASIST Annual Meeting, Philadelphia, PA",
+    "authors": [
+      "E Rasmussen",
+      "H B Atkins",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2002-rasmussen-visknow.pdf"
+  },
+  {
+    "slug": "pub-28",
+    "title": "Top Ten Problems in Visual Interfaces of Digital Libraries",
+    "pub_date": "2002-01-01",
+    "doi": "",
+    "journal": "Lecture Notes in Computer Science: Visual Interfaces to Digital Libraries",
+    "authors": [
+      "Chaomei Chen",
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2002-chen-topten.pdf"
+  },
+  {
+    "slug": "pub-29",
+    "title": "Visual Interfaces for Semantic Information Retrieval and Browsing",
+    "pub_date": "2002-01-01",
+    "doi": "",
+    "journal": "Visualizing the Semantic Web: XML-based Internet and Information Visualization",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2002-borner-visir.pdf"
+  },
+  {
+    "slug": "pub-30",
+    "title": "Twin Worlds: Augmenting, Evaluating, and Studying Three-Dimensional Digital Cities and Their Evolving Communities",
+    "pub_date": "2002-01-01",
+    "doi": "",
+    "journal": "Digital Cities II: Computational and Sociological Approaches, Lecture Notes in Computer Science 2362",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2002-borner-twnwrlds.pdf"
+  },
+  {
+    "slug": "pub-41",
+    "title": "Visualizing the Spatial and Temporal Distribution of User Interaction Data Collected in Three-Dimensional Virtual Worlds",
+    "pub_date": "2002-01-01",
+    "doi": "",
+    "journal": "Sixth International Conference on Information Visualization, London, UK",
+    "authors": [
+      "Katy Borner",
+      "William Richard Hazlewood",
+      "Sy Miaw Lin"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2002-borner-uservis.pdf"
+  },
+  {
+    "slug": "pub-43",
+    "title": "Building Blocks for Virtual Worlds",
+    "pub_date": "2002-01-01",
+    "doi": "",
+    "journal": "CILT Seed Grant Interim Report",
+    "authors": [
+      "Katy Borner",
+      "Margaret Corbit",
+      "Bonnie Jean Devarco"
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2002-borner-bldblck.pdf"
+  },
+  {
+    "slug": "pub-45",
+    "title": "Towards an XML Toolkit for a Software Repository Supporting Information Visualization Education. Interactive Poster",
+    "pub_date": "2002-01-01",
+    "doi": "",
+    "journal": "IEEE Information Visualization Conference, Boston, MA",
+    "authors": [
+      "Jason Baumgartner",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2002-baumgartner-xmltool.pdf"
+  },
+  {
+    "slug": "pub-50",
+    "title": "Information Retrieval by Semantic Analysis and Visualization of the Concept Space of D-Lib Magazine",
+    "pub_date": "2002-01-01",
+    "doi": "",
+    "journal": "D-Lib Magazine",
+    "authors": [
+      "Junliang Zhang",
+      "Javed Mostafa",
+      "Himansu Tripathy"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2002-zhang-inforet.pdf"
+  },
+  {
+    "slug": "pub-51",
+    "title": "Roget2000: A 2D Hyperbolic Tree Visualization of Roget's Thesaurus",
+    "pub_date": "2002-01-01",
+    "doi": "",
+    "journal": "SPIE Conference on Visualization and Data Analysis, San Jose, CA",
+    "authors": [
+      "Jason Baumgartner",
+      "Tim Waugh"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2002-baumgartner-roget.pdf"
+  },
+  {
+    "slug": "pub-53",
+    "title": "Democratic Participation in the Discursive Management of Usenet",
+    "pub_date": "2002-01-01",
+    "doi": "",
+    "journal": "35th Hawaii International Conference on System Sciences, Big Island, HI",
+    "authors": [
+      "John Paolillo",
+      "David Heald"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2002-paolillo-dempart.pdf"
+  },
+  {
+    "slug": "pub-54",
+    "title": "Using Semantic Treemaps to Categorize and Visualize Bookmark Files",
+    "pub_date": "2002-01-01",
+    "doi": "",
+    "journal": "SPIE Conference on Visualization and Data Analysis, San Jose, CA",
+    "authors": [
+      "Ying Feng",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2002-feng-semtree.pdf"
+  },
+  {
+    "slug": "pub-57",
+    "title": "Collaborative Visual Interfaces to Digital Libraries",
+    "pub_date": "2002-01-01",
+    "doi": "",
+    "journal": "Second ACM+IEEE Joint Conference on Digital Libraries, Portland, OR",
+    "authors": [
+      "Katy Borner",
+      "Ying Feng",
+      "Tamara Misenor Mcmahon"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2002-borner-collab-vi.pdf"
+  },
+  {
+    "slug": "pub-64",
+    "title": "Visual Interfaces to Digital Libraries",
+    "pub_date": "2002-01-01",
+    "doi": "",
+    "journal": "JCDL Workshop: Visual Interfaces to Digital Libraries. In Second ACM+IEEE Joint Conference on Digital Libraries, Portland, OR",
+    "authors": [
+      "Katy Borner",
+      "Chaomei Chen"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2002-borner-vislib.pdf"
+  },
+  {
+    "slug": "pub-66",
+    "title": "Workshop Report: Visual Interfaces to Digital Libraries at JCDL '02",
+    "pub_date": "2002-01-01",
+    "doi": "",
+    "journal": "D-Lib Magazine, July/August",
+    "authors": [
+      "Katy Borner",
+      "Chaomei Chen"
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2002-borner-jcdl.pdf"
+  },
+  {
+    "slug": "pub-69",
+    "title": "Visual Interfaces to Digital Libraries: Motivation, Utilization and Socio-Technical Challenges",
+    "pub_date": "2002-01-01",
+    "doi": "",
+    "journal": "Lecture Notes in Computer Science: Visual Interfaces to Digital Libraries",
+    "authors": [
+      "Katy Borner",
+      "Chaomei Chen"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/2002-borner-visinter.pdf"
+  },
+  {
+    "slug": "pub-89",
+    "title": "Creating an Online Tutorial and Pathfinder",
+    "pub_date": "2002-01-01",
+    "doi": "",
+    "journal": "Law Library Journal",
+    "authors": [
+      "Peter A Hook"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2002-hook-pathfinder.pdf"
+  },
+  {
+    "slug": "pub-178",
+    "title": "Visual Interfaces to Digital Libraries - The First International Workshop at the First ACM+IEEE Joint Conference on Digital Libraries",
+    "pub_date": "2001-07-01",
+    "doi": "",
+    "journal": "D-Lib Magazine (In-Brief)",
+    "authors": [
+      "Katy Borner",
+      "Chaomei Chen"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2001-borner-jcdl-dlib.pdf"
+  },
+  {
+    "slug": "pub-117",
+    "title": "Twin Worlds: Visualization of User Interaction Data to Study Adaptive, 3-Dimensional, Collaborative Spaces and Their Communities",
+    "pub_date": "2001-01-01",
+    "doi": "",
+    "journal": "Workshop on Empirical Evaluations of Adaptive Systems, 8th International Conference on User Modeling. Sonthofen, Germany",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2001-borner-twnwrlds-usrmod.pdf"
+  },
+  {
+    "slug": "pub-17",
+    "title": "Efficient Case-Based Structure Generation for Design Support",
+    "pub_date": "2001-01-01",
+    "doi": "",
+    "journal": "Artificial Intelligence Review",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2001-borner-phdwork.pdf"
+  },
+  {
+    "slug": "pub-46",
+    "title": "A Software Repository for Education and Research in Information Visualization",
+    "pub_date": "2001-01-01",
+    "doi": "",
+    "journal": "Information Visualisation Conference, London, UK",
+    "authors": [
+      "Katy Borner",
+      "Yuezheng Zhou"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2001-borner-zhou-software-repos.pdf"
+  },
+  {
+    "slug": "pub-52",
+    "title": "Using a Spring Embedding Algorithm to Display Term Relationships from a Medical Concept Discovery System",
+    "pub_date": "2001-01-01",
+    "doi": "",
+    "journal": "Poster at the Annual Conference of the American Medical Informatics Association, Washington, D.C.",
+    "authors": [
+      "Larry Mongin",
+      "Javed Mostafa",
+      "John Fieber"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2001-mongin-spring.pdf"
+  },
+  {
+    "slug": "pub-59",
+    "title": "Visualizing Chat Log Data Collected in 3-D Virtual Worlds",
+    "pub_date": "2001-01-01",
+    "doi": "",
+    "journal": "Information Visualisation Conference, London, UK",
+    "authors": [
+      "Katy Borner",
+      "Yu Chen Alan Lin"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2001-borner-lin-visual-chat-data.pdf"
+  },
+  {
+    "slug": "pub-60",
+    "title": "Adaptation and Evaluation of 3-Dimensional Collaborative Information Visualizations",
+    "pub_date": "2001-01-01",
+    "doi": "",
+    "journal": "8th International Conference on User Modeling, Bavaria, Germany",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2001-borner-adapt-eval.pdf"
+  },
+  {
+    "slug": "pub-61",
+    "title": "iScape: A Collaborative Memory Palace for Digital Library Search Results",
+    "pub_date": "2001-01-01",
+    "doi": "",
+    "journal": "Proceedings of the International Conference on Human-Computer Interaction, New Orleans, LA",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2001-borner-iscape2.pdf"
+  },
+  {
+    "slug": "pub-62",
+    "title": "Using Active Worlds Technology to Build an iUniverse of 3-D Collaborative Learning Environments",
+    "pub_date": "2001-01-01",
+    "doi": "",
+    "journal": "Learning Technology Newsletter",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2001-borner-iuniverse.pdf"
+  },
+  {
+    "slug": "pub-70",
+    "title": "Visual Interfaces to Digital Libraries - The First International Workshop at the First ACM+IEEE Joint Conference on Digital Libraries",
+    "pub_date": "2001-01-01",
+    "doi": "",
+    "journal": "SIGIR Forum",
+    "authors": [
+      "Katy Borner",
+      "Chaomei Chen"
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/2001-borner-vidlacm.pdf"
+  },
+  {
+    "slug": "pub-71",
+    "title": "JCDL Workshop: Visual Interfaces to Digital Libraries - Its Past, Present, and Future",
+    "pub_date": "2001-01-01",
+    "doi": "",
+    "journal": "Proceedings of the First ACM-IEEE Joint Conference on Digital Libraries, Roanoke, VA",
+    "authors": [
+      "Katy Borner",
+      "Chaomei Chen"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2001-borner-vidlws.pdf"
+  },
+  {
+    "slug": "pub-128",
+    "title": "VegoWelt: The Video",
+    "pub_date": "2000-01-01",
+    "doi": "",
+    "journal": "Unpublished",
+    "authors": [
+      "Katy Borner",
+      "Sven Bertel",
+      "Mitja Hmeljak",
+      "Matt Jadud",
+      "Bob Najlis"
+    ],
+    "type": "broadcast",
+    "url": ""
+  },
+  {
+    "slug": "pub-16",
+    "title": "VegoWelt: A Smart Virtual Playroom",
+    "pub_date": "2000-01-01",
+    "doi": "",
+    "journal": "International Journal of Design Computing",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "article-journal",
+    "url": "https://cns.iu.edu/docs/publications/2000-borner-vegowelt.pdf"
+  },
+  {
+    "slug": "pub-72",
+    "title": "LVis - Digital Library Visualizer",
+    "pub_date": "2000-01-01",
+    "doi": "",
+    "journal": "Information Visualization 2000, Symposium on Digital Libraries, London, UK",
+    "authors": [
+      "Katy Borner",
+      "Andrew Dillon",
+      "Margaret Dolinsky"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2000-borner-lvis.pdf"
+  },
+  {
+    "slug": "pub-73",
+    "title": "Searching for the Perfect Match: A Comparison of Free Sorting Results for Images by Human Subjects and by Latent Semantic Analysis Techniques",
+    "pub_date": "2000-01-01",
+    "doi": "",
+    "journal": "Information Visualisation 2000, Symposium on Digital Libraries, London, UK",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2000-borner-perfmatch.pdf"
+  },
+  {
+    "slug": "pub-74",
+    "title": "Extracting and Visualizing Semantic Structures in Retrieval Results for Browsing",
+    "pub_date": "2000-01-01",
+    "doi": "",
+    "journal": "ACM Digital Library Conference, San Antonio, TX",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2000-borner-browsing.pdf"
+  },
+  {
+    "slug": "pub-75",
+    "title": "Visible Threads: A Smart VR Interface to Digital Libraries",
+    "pub_date": "2000-01-01",
+    "doi": "",
+    "journal": "Proceedings of SPIE 2000: Visual Data Exploration and Analysis, San Jose, CA",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/2000-borner-vrdl.pdf"
+  },
+  {
+    "slug": "pub-135",
+    "title": "Welcome to VegoWelt",
+    "pub_date": "1999-01-01",
+    "doi": "",
+    "journal": "Ylem Newsletter: Facing Reality",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "manuscript",
+    "url": "https://cns.iu.edu/docs/publications/1999-borner-vegowelt-ylem.pdf"
+  },
+  {
+    "slug": "pub-118",
+    "title": "Generative, Adaptive Human-Computer Interaction by Conceptual Analogy",
+    "pub_date": "1998-01-01",
+    "doi": "",
+    "journal": "Combining AI and Graphics for the Interface of the Future, held in conjunction with the 13th Conference on Artificial Intelligence, Brighton, UK",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/1998-borner-ca.pdf"
+  },
+  {
+    "slug": "pub-119",
+    "title": "Concept-Based, Adaptive Human-Computer Interaction",
+    "pub_date": "1998-01-01",
+    "doi": "",
+    "journal": "Proceedings of the 9th Irish Conference on Artificial Intelligence and Cognitive Science, Dublin, Ireland",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/1998-borner-hci.pdf"
+  },
+  {
+    "slug": "pub-120",
+    "title": "Applying VR Technology to the Study of Spatial Perception and Cognition",
+    "pub_date": "1998-01-01",
+    "doi": "",
+    "journal": "Mind III: The Annual Conference of the Cognitive Science Society of Ireland, Theme: Spatial Cognition, University College, Dublin, Ireland",
+    "authors": [
+      "Katy Borner",
+      "Constanze Vorwerg"
+    ],
+    "type": "paper-conference",
+    "url": ""
+  },
+  {
+    "slug": "pub-121",
+    "title": "Audio-Visual Interaction with Noise Pollution Data",
+    "pub_date": "1998-01-01",
+    "doi": "",
+    "journal": "Virtual Environments Conference, Stuttgart, Germany",
+    "authors": [
+      "Katy Borner",
+      "Rainer Fehr",
+      "Ipke Wachsmuth"
+    ],
+    "type": "paper-conference",
+    "url": ""
+  },
+  {
+    "slug": "pub-127",
+    "title": "AkuVis: Exploring Visual Noise",
+    "pub_date": "1998-01-01",
+    "doi": "",
+    "journal": "7th International Conference on Human Computer Interaction",
+    "authors": [
+      "Katy Borner",
+      "Ipke Wachsmuth"
+    ],
+    "type": "broadcast",
+    "url": ""
+  },
+  {
+    "slug": "pub-31",
+    "title": "AkuVis: Interactive Visualization of Acoustic Data. Computer Science for Environmental Protection'98: Networked Structures",
+    "pub_date": "1998-01-01",
+    "doi": "",
+    "journal": "Information Technology, the Environment and Business",
+    "authors": [
+      "Katy Borner",
+      "Rainer Fehr",
+      "Ipke Wachsmuth"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/1998-borner-akuvis.pdf"
+  },
+  {
+    "slug": "pub-32",
+    "title": "CBR for Design",
+    "pub_date": "1998-01-01",
+    "doi": "",
+    "journal": "Case Based Reasoning Technology: From Foundations to Applications, Lecture Notes in Computer Science",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/1998-borner-cbr.pdf"
+  },
+  {
+    "slug": "pub-33",
+    "title": "Konzeptbildende Analogie: Integration von Conceptual Clustering und Analogem Schliessen zur Effizienten Unterstuetzung von Entwurfsaufgaben",
+    "pub_date": "1997-01-01",
+    "doi": "",
+    "journal": "Dissertation",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "http://www.infix.com/html/boek-1209316483.html"
+  },
+  {
+    "slug": "pub-142",
+    "title": "Conceptual Analogy: Conceptual Clustering for Informed and Efficient Analogical Reasoning",
+    "pub_date": "1996-01-01",
+    "doi": "",
+    "journal": "4th German Workshop on Case-Based Reasoning (System Development and Evaluation)",
+    "authors": [
+      "Katy Borner",
+      "Roland Fassauer",
+      "Heiko Wode"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/1996-borner-concepclust.pdf"
+  },
+  {
+    "slug": "pub-143",
+    "title": "Konzeptbildende Analogie: Conceptual Clustering fr effizientes analoges Schlieen im Entwurf",
+    "pub_date": "1996-01-01",
+    "doi": "",
+    "journal": "Leipziger Informatik-Tage 1996",
+    "authors": [
+      "Katy Borner",
+      "Eberhard Pippig"
+    ],
+    "type": "paper-conference",
+    "url": ""
+  },
+  {
+    "slug": "pub-34",
+    "title": "Structural Similarity and Adaptation",
+    "pub_date": "1996-01-01",
+    "doi": "",
+    "journal": "Advances in Case-Based Reasoning. Proceedings of the Third European Workshop on Case-Based Reasoning (EWCBR-93)",
+    "authors": [
+      "Katy Borner",
+      "Eberhard Pippig",
+      "Carl Helmut Coulon",
+      "Elisabeth Ch Tammer"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/1996-borner-strucsim.pdf"
+  },
+  {
+    "slug": "pub-137",
+    "title": "Modules for Design Support",
+    "pub_date": "1995-01-01",
+    "doi": "",
+    "journal": "FABEL-Report 35",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "report",
+    "url": ""
+  },
+  {
+    "slug": "pub-144",
+    "title": "Conceptual Analogy",
+    "pub_date": "1995-01-01",
+    "doi": "",
+    "journal": "AAAI 1995 Fall Symposium Series: Adaptation of Knowledge for Reuse, Boston, MA, November 10-12",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/1995-borner-cncptanlgy-aaai.pdf"
+  },
+  {
+    "slug": "pub-145",
+    "title": "Interactive, Adaptive, Computer-Aided Design",
+    "pub_date": "1995-01-01",
+    "doi": "",
+    "journal": "International Conference CAAD Futures, Singapore, September 24-26",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/1995-borner-cad-caad.pdf"
+  },
+  {
+    "slug": "pub-146",
+    "title": "System Architecture for Computer-Aided Building Engineering",
+    "pub_date": "1995-01-01",
+    "doi": "",
+    "journal": "Proceedings of the 6th International Conference on Computing in Civil and Building Engineering",
+    "authors": [
+      "Katy Borner",
+      "Dietmar Janetzko"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/1995-borner-cadbuild.pdf"
+  },
+  {
+    "slug": "pub-147",
+    "title": "Task-Oriented Knowledge Acquisition and Reasoning for Design Support Systems",
+    "pub_date": "1994-01-01",
+    "doi": "",
+    "journal": "Proceedings of the European Conference on Cognitive Science in Industry,  Luxembourg",
+    "authors": [
+      "Dietmar Janetzko",
+      "Katy Borner",
+      "Oliver Jschke",
+      "Gerhard Strube"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/1994-borner-kacq-cogsci.pdf"
+  },
+  {
+    "slug": "pub-148",
+    "title": "Learning and Applying Conditions for Testing Realizations of Design-Tasks",
+    "pub_date": "1994-01-01",
+    "doi": "",
+    "journal": "Proceedings of the 7th Annual Meeting of the German Group for Machine Learning",
+    "authors": [
+      "Oliver Jschke",
+      "Dietmar Janetzko",
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": ""
+  },
+  {
+    "slug": "pub-149",
+    "title": "Case-Based Learning for Knowledge-Based Design Support",
+    "pub_date": "1994-01-01",
+    "doi": "",
+    "journal": "ECAI Workshop Integration of Machine Learning and Knowledge Acquisition, Amsterdam, The Netherlands",
+    "authors": [
+      "Katy Borner",
+      "Dietmar Janetzko"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/1994-borner-cbr-ecai.pdf"
+  },
+  {
+    "slug": "pub-150",
+    "title": "Applying Machine Learning to Improve Innovative Design Support Systems",
+    "pub_date": "1994-01-01",
+    "doi": "",
+    "journal": "AID Workshop Machine Learning in Design, Lausanne, Switzerland",
+    "authors": [
+      "Katy Borner",
+      "Angi Voss"
+    ],
+    "type": "paper-conference",
+    "url": ""
+  },
+  {
+    "slug": "pub-151",
+    "title": "Towards Formalizations in Case-Based Reasoning for Synthesis",
+    "pub_date": "1994-01-01",
+    "doi": "",
+    "journal": "Papers from the AAAI Workshop,Seattle, Washington, Technical Report WS-94-01",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/1994-borner-cbrsynth-aaai.pdf"
+  },
+  {
+    "slug": "pub-177",
+    "title": "Case-Based Learning for Design",
+    "pub_date": "1994-01-01",
+    "doi": "",
+    "journal": "Proceedings of the 2nd European Workshop on Case-Based Reasoning, Chantilly, France",
+    "authors": [
+      "Katy Borner",
+      "Dietmar Janetzko"
+    ],
+    "type": "paper-conference",
+    "url": "https://cns.iu.edu/docs/publications/1994-borner-learndes-cbr.pdf"
+  },
+  {
+    "slug": "pub-35",
+    "title": "Structural Similarity as Guidance in Case-Based Design",
+    "pub_date": "1994-01-01",
+    "doi": "",
+    "journal": "Topics in Case-Based Reasoning - Selected Papers from the First European Workshop on Topics in Case-Based Reasoning, Lecture Notes in Artificial Intelligence",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "chapter",
+    "url": "https://cns.iu.edu/docs/publications/1993-borner-strucsim.pdf"
+  },
+  {
+    "slug": "pub-36",
+    "title": "Retrieval of Similar Layouts - About a Very Hybrid Approach in FABEL",
+    "pub_date": "1994-01-01",
+    "doi": "",
+    "journal": "AI in Design 1994",
+    "authors": [
+      "Angi Voss",
+      "Carl Helmut Coulon",
+      "Wolfgang Gunther",
+      "Bernd Linowski",
+      "Jrg Schaaf",
+      "et al."
+    ],
+    "type": "paper-conference",
+    "url": ""
+  },
+  {
+    "slug": "pub-138",
+    "title": "Lernszenarien im fallbasierten Schlißen",
+    "pub_date": "1993-01-01",
+    "doi": "",
+    "journal": "FABEL-Report 14",
+    "authors": [
+      "Katy Borner",
+      "Klaus P Jantke",
+      "Siegfried Schonherr",
+      "Elisabeth Ch Tammer"
+    ],
+    "type": "report",
+    "url": ""
+  },
+  {
+    "slug": "pub-139",
+    "title": "Term-Based Approach to Structural Similarity as Guidance for Adaptation",
+    "pub_date": "1993-01-01",
+    "doi": "",
+    "journal": "Similarity Concepts and Retrieval Methods, FABEL-Report 13",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "report",
+    "url": ""
+  },
+  {
+    "slug": "pub-140",
+    "title": "Tasks-Methods-Knowledge Interdependencies in CBR-Systems",
+    "pub_date": "1993-01-01",
+    "doi": "",
+    "journal": "FABEL-Report 9",
+    "authors": [
+      "Dietmar Janetzko",
+      "Katy Borner"
+    ],
+    "type": "report",
+    "url": ""
+  },
+  {
+    "slug": "pub-152",
+    "title": "Towards a Task-Oriented Methodology in Knowledge Acquisition and System Design in CBR",
+    "pub_date": "1993-01-01",
+    "doi": "",
+    "journal": "Proceedings of the First European Workshop on Case-Based Reasoning",
+    "authors": [
+      "Dietmar Janetzko",
+      "Katy Borner",
+      "Carl Helmut Coulon",
+      "Ludger Hovestadt"
+    ],
+    "type": "paper-conference",
+    "url": ""
+  },
+  {
+    "slug": "pub-153",
+    "title": "Structural Similarity in Case-Based Design",
+    "pub_date": "1993-01-01",
+    "doi": "",
+    "journal": "Flle in hybriden Systemen. Beiträge zum 2. Workshop des Arbeitskreises fallbasiertes Schließen",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": ""
+  },
+  {
+    "slug": "pub-129",
+    "title": "Verfahren zur punktualen Ermittlung der spektralen Remissionsfunktion mittels eines optoelektronischen Farbmeßkopfes. DE 4120749 A1",
+    "pub_date": "1992-01-01",
+    "doi": "",
+    "journal": "Date of filing: 24.06.1991. Date of publication of application: 20.02.1992",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "patent",
+    "url": ""
+  },
+  {
+    "slug": "pub-130",
+    "title": "Verfahren zur meßtechnischen Erfassung des punktualen Anstieges von Remissions-, Reflexions- und Transmissionsspektren mittels nur einer LED. DE 4126678 A1",
+    "pub_date": "1992-01-01",
+    "doi": "",
+    "journal": "Date of filing: 13.08.1991. Date of publication of application: 13.03.1992",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "patent",
+    "url": ""
+  },
+  {
+    "slug": "pub-154",
+    "title": "Komplexitätsreduktion von Konstruktionsaufgaben",
+    "pub_date": "1992-01-01",
+    "doi": "",
+    "journal": "Workshop Kontrolle von Problemlöseverfahren, German Workshop on Artificial Intelligence",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": ""
+  },
+  {
+    "slug": "pub-155",
+    "title": "Ein allgemeines Modell zur Speicherung episodischen Wissens und separat lernbare Ähnlichkeitsmaße",
+    "pub_date": "1992-01-01",
+    "doi": "",
+    "journal": "Workshop Ähnlichkeit von Fällen beim fallbasierten Schließen. SEKI-Report, Universität Kaiserslautern",
+    "authors": [
+      "Katy Borner"
+    ],
+    "type": "paper-conference",
+    "url": ""
+  }
+]

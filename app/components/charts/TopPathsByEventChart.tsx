@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import ThemedEChart from "../ThemedEChart";
+import { tooltipStyle } from "../../lib/chartTheme";
 import { escapeHtml, toFriendlyError } from "../../lib/errorSemantics";
 
 interface PathRow {
@@ -85,9 +86,7 @@ export default function TopPathsByEventChart({ data, eventTotals }: Props) {
     tooltip: {
       trigger: "axis",
       axisPointer: { type: "shadow" },
-      backgroundColor: "#18181b",
-      borderColor: "#3f3f46",
-      borderWidth: 1,
+      ...tooltipStyle,
       textStyle: { color: "#fafafa", fontSize: 12 },
       formatter: (params: Array<{ dataIndex: number; value: number }>) => {
         const row = rows[params[0]?.dataIndex ?? 0];

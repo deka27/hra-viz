@@ -1,20 +1,27 @@
 "use client";
 
 import ThemedEChart from "../ThemedEChart";
-import sessionData from "../../../public/data/session_depth.json";
+import { tooltipStyle } from "../../lib/chartTheme";
+import { useMemo } from "react";
 
+interface SessionDepthRow {
+  depth: string;
+  sessions: number;
+}
+
+interface SessionDepthProps {
+  data: SessionDepthRow[];
+  compact?: boolean;
+}
 
 const TOOLTIP = {
-  backgroundColor: "#18181b",
-  borderColor: "#3f3f46",
-  borderWidth: 1,
+  ...tooltipStyle,
   textStyle: { color: "#fafafa", fontSize: 12 },
   extraCssText: "box-shadow:0 4px 20px rgba(0,0,0,0.5);border-radius:8px;padding:8px 12px;",
 };
 
-const total = sessionData.reduce((s, d) => s + d.sessions, 0);
-
-export default function SessionDepthChart({ compact }: { compact?: boolean }) {
+export default function SessionDepthChart({ data: sessionData, compact }: SessionDepthProps) {
+  const total = useMemo(() => sessionData.reduce((s, d) => s + d.sessions, 0), [sessionData]);
   const option = {
     backgroundColor: "transparent",
     grid: { top: 8, left: 4, right: 72, bottom: 8, containLabel: true },
