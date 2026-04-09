@@ -119,7 +119,12 @@ const funderCounts = funding.reduce<Record<string, number>>((acc, d) => {
   return acc;
 }, {});
 const topFunder = Object.entries(funderCounts).sort((a, b) => b[1] - a[1])[0]?.[0] ?? "N/A";
-const topFunderShort = topFunder.length > 20 ? topFunder.replace(/National /g, "").replace(/ of Health| Foundation/g, "") : topFunder;
+const FUNDER_SHORT: Record<string, string> = {
+  "National Science Foundation": "NSF",
+  "National Institutes of Health": "NIH",
+  "National Academy of Sciences": "NAS",
+};
+const topFunderShort = FUNDER_SHORT[topFunder] ?? (topFunder.length > 20 ? topFunder.slice(0, 18) + "…" : topFunder);
 
 function fmtDollars(value: number): string {
   if (value >= 1_000_000) return `$${(value / 1_000_000).toFixed(1)}M`;
