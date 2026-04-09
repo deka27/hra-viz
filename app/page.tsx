@@ -64,7 +64,7 @@ export default function LandingPage() {
           <div className="flex flex-wrap gap-2 mt-auto">
             <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-amber-500/10 text-amber-500 border border-amber-500/20">18 Years</span>
             <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-orange-500/10 text-orange-500 border border-orange-500/20">6 Pages</span>
-            <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-red-500/10 text-red-500 border border-red-500/20">$42.9M Funding</span>
+            <span className="text-[10px] font-medium px-2 py-0.5 rounded-full bg-red-500/10 text-red-500 border border-red-500/20">405+ Publications</span>
           </div>
         </Link>
       </div>
