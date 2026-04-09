@@ -179,10 +179,10 @@ export default function CNSOverviewTrendChart({ data, publications, events = [] 
         html += `<div style="padding-top:5px;border-top:1px solid #3f3f46;margin-top:3px">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:20px;margin:3px 0">
             <span style="display:flex;align-items:center;gap:7px;color:#a1a1aa">
-              <span style="width:8px;height:8px;border-radius:2px;background:#f59e0b;flex-shrink:0;display:inline-block"></span>
+              <span style="width:8px;height:8px;border-radius:2px;background:#ec4899;flex-shrink:0;display:inline-block"></span>
               Events
             </span>
-            <span style="font-weight:600;color:#f59e0b">${eventTotal}</span>
+            <span style="font-weight:600;color:#ec4899">${eventTotal}</span>
           </div>
         </div>`;
       }
@@ -338,8 +338,8 @@ export default function CNSOverviewTrendChart({ data, publications, events = [] 
             data: eventBar,
             barWidth: 14,
             barGap: "-100%",
-            itemStyle: { color: "rgba(245,158,11,0.40)", borderRadius: [2, 2, 0, 0] },
-            emphasis: { itemStyle: { color: "rgba(245,158,11,0.65)" } },
+            itemStyle: { color: "rgba(236,72,153,0.40)", borderRadius: [2, 2, 0, 0] },
+            emphasis: { itemStyle: { color: "rgba(236,72,153,0.65)" } },
             z: 10,
           },
         ] : []),
@@ -388,7 +388,7 @@ export default function CNSOverviewTrendChart({ data, publications, events = [] 
           )}
           {hasEvents && (
             <div className="flex items-center gap-1.5">
-              <div className="w-2 h-2 rounded-sm flex-shrink-0" style={{ backgroundColor: "#f59e0b" }} />
+              <div className="w-2 h-2 rounded-sm flex-shrink-0" style={{ backgroundColor: "#ec4899" }} />
               <span className="text-[11px] text-zinc-500">Events (right axis)</span>
             </div>
           )}
@@ -439,7 +439,7 @@ export default function CNSOverviewTrendChart({ data, publications, events = [] 
                 <>
                   {activePubs && activePubs.pubs.length > 0 && (
                     <div className="px-4 py-1.5 bg-amber-500/5 border-t border-b border-zinc-200 dark:border-zinc-800">
-                      <span className="text-[10px] font-semibold text-amber-600 dark:text-amber-400 uppercase tracking-wider">Events</span>
+                      <span className="text-[10px] font-semibold text-pink-600 dark:text-pink-400 uppercase tracking-wider">Events</span>
                     </div>
                   )}
                   <div className="divide-y divide-zinc-200/60 dark:divide-zinc-800/60">
