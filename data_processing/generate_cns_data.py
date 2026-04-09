@@ -421,6 +421,96 @@ def run(parquet: str, out: str) -> None:
         GROUP BY result_type ORDER BY count DESC
     """))
 
+    # ─── 24. Error categories (actionable buckets) ─────────────────────────
+    write_json(f"{out}/cns_error_categories.json", q(f"""
+        SELECT
+            CASE
+                WHEN sc_status = 404 AND (cs_uri_stem LIKE '%wp-login%' OR cs_uri_stem LIKE '%wp-admin%'
+                    OR cs_uri_stem LIKE '%xmlrpc%' OR cs_uri_stem LIKE '%.env%'
+                    OR cs_uri_stem LIKE '%/admin%' OR cs_uri_stem LIKE '%/manager%'
+                    OR cs_uri_stem LIKE '%/console%' OR cs_uri_stem LIKE '%config%'
+                    OR cs_uri_stem LIKE '%/debug%') THEN 'Scanner/Attack Probes (404)'
+                WHEN sc_status = 404 AND cs_uri_stem LIKE '%.pdf' THEN 'Missing PDFs (404)'
+                WHEN sc_status = 404 AND (cs_uri_stem LIKE '/workshops/%' OR cs_uri_stem LIKE '/events%') THEN 'Moved Workshop/Event Pages (404)'
+                WHEN sc_status = 404 AND cs_uri_stem LIKE '/images/%' THEN 'Missing Images (404)'
+                WHEN sc_status = 404 AND cs_uri_stem LIKE '/docs/%' THEN 'Missing Documents (404)'
+                WHEN sc_status = 404 THEN 'Other Broken Links (404)'
+                WHEN sc_status >= 500 AND (cs_uri_stem LIKE '%wp-%' OR cs_uri_stem LIKE '%.php'
+                    OR cs_uri_stem LIKE '%/cgi-bin/%' OR cs_uri_stem LIKE '%/scripts/%') THEN 'Scanner-Triggered Server Errors (500)'
+                WHEN sc_status >= 500 AND cs_uri_stem = '/' THEN 'Homepage Server Errors (500)'
+                WHEN sc_status >= 500 THEN 'Other Server Errors (500)'
+                WHEN sc_status = 403 THEN 'Access Denied (403)'
+                ELSE 'Other HTTP Errors'
+            END AS category,
+            sc_status AS status,
+            count(*)::BIGINT AS count
+        FROM {P}
+        WHERE sc_status >= 400
+        GROUP BY category, status
+        ORDER BY count DESC
+    """))
+
+    # ─── 25. Monthly error rate ──────────────────────────────────────────────
+    write_json(f"{out}/cns_monthly_error_rate.json", q(f"""
+        SELECT
+            strftime(date_trunc('month', date)::DATE, '%Y-%m') AS month_year,
+            count(*)::BIGINT AS total,
+            SUM(CASE WHEN sc_status >= 400 THEN 1 ELSE 0 END)::BIGINT AS errors,
+            round(100.0 * SUM(CASE WHEN sc_status >= 400 THEN 1 ELSE 0 END) / count(*), 2) AS error_rate
+        FROM {P}
+        WHERE date >= '2018-01-01'
+        GROUP BY month_year ORDER BY month_year
+    """))
+
+    # ─── 26. Top error paths by month (for drilldown panel) ──────────────────
+    error_rows = q(f"""
+        SELECT
+            year || '-' || lpad(month, 2, '0') AS mo,
+            cs_uri_stem AS path,
+            sc_status::INTEGER AS status,
+            CASE
+                WHEN sc_status = 404 AND (cs_uri_stem LIKE '%wp-login%' OR cs_uri_stem LIKE '%wp-admin%'
+                    OR cs_uri_stem LIKE '%xmlrpc%' OR cs_uri_stem LIKE '%.env%'
+                    OR cs_uri_stem LIKE '%/admin%' OR cs_uri_stem LIKE '%/manager%'
+                    OR cs_uri_stem LIKE '%/console%' OR cs_uri_stem LIKE '%config%'
+                    OR cs_uri_stem LIKE '%/debug%') THEN 'Scanner Probe'
+                WHEN sc_status = 404 AND cs_uri_stem LIKE '%.pdf' THEN 'Missing PDF'
+                WHEN sc_status = 404 AND (cs_uri_stem LIKE '/workshops/%' OR cs_uri_stem LIKE '/events%') THEN 'Moved Page'
+                WHEN sc_status = 404 AND cs_uri_stem LIKE '/images/%' THEN 'Missing Image'
+                WHEN sc_status = 404 AND cs_uri_stem LIKE '/docs/%' THEN 'Missing Doc'
+                WHEN sc_status = 404 THEN 'Broken Link'
+                WHEN sc_status >= 500 AND (cs_uri_stem LIKE '%wp-%' OR cs_uri_stem LIKE '%.php'
+                    OR cs_uri_stem LIKE '%/cgi-bin/%' OR cs_uri_stem LIKE '%/scripts/%') THEN 'Scanner Probe'
+                WHEN sc_status >= 500 AND cs_uri_stem = '/' THEN 'Homepage Error'
+                WHEN sc_status >= 500 THEN 'Server Error'
+                WHEN sc_status = 403 THEN 'Access Denied'
+                ELSE 'Other'
+            END AS category,
+            count(*)::BIGINT AS count
+        FROM {P}
+        WHERE sc_status >= 400
+        GROUP BY mo, path, status, category
+        ORDER BY mo, count DESC
+    """)
+    # Build per-month top 10 and all-time top 15 in Python
+    from collections import defaultdict
+    by_month_map = defaultdict(list)
+    all_time_map = defaultdict(lambda: {"path": "", "status": 0, "count": 0, "category": ""})
+    for r in error_rows:
+        mo = r["mo"]
+        key = (r["path"], r["status"])
+        by_month_map[mo].append({"path": r["path"], "status": r["status"], "count": r["count"], "category": r["category"]})
+        existing = all_time_map[key]
+        if existing["count"] == 0:
+            all_time_map[key] = {"path": r["path"], "status": r["status"], "count": r["count"], "category": r["category"]}
+        else:
+            existing["count"] += r["count"]
+    by_month_out = {}
+    for mo, rows in sorted(by_month_map.items()):
+        by_month_out[mo] = sorted(rows, key=lambda x: -x["count"])[:10]
+    all_time_list = sorted(all_time_map.values(), key=lambda x: -x["count"])[:15]
+    write_json(f"{out}/cns_top_errors_by_month.json", {"all_time": all_time_list, "by_month": by_month_out})
+
     total = len([f for f in os.listdir(out) if f.endswith(".json")])
     print(f"\nAll done \u2014 {total} files in {out}/")
 
