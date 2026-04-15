@@ -207,30 +207,87 @@ def run(parquet: str, out: str) -> None:
 
     # ─── 8. Top pages (no static assets, no probes/scanners) ──────────────────
     write_json(f"{out}/cns_top_pages.json", q(f"""
-        SELECT cs_uri_stem AS page, count(*)::BIGINT AS visits
-        FROM {P}
-        WHERE traffic_type='Likely Human'
-          {ASSET_FILTER}
-          AND cs_uri_stem != '/deadlink.html'
-          AND NOT cs_uri_stem LIKE '/+CSCOT+/%'
-          AND cs_uri_stem != '/wp-login.php'
-          AND NOT cs_uri_stem LIKE '/wp-admin%'
-          AND NOT cs_uri_stem LIKE '/cgi-bin/%'
-          AND NOT cs_uri_stem LIKE '/scripts/%'
-          AND NOT cs_uri_stem LIKE '%@%'
-        GROUP BY cs_uri_stem ORDER BY visits DESC LIMIT 30
+        SELECT page, sum(visits)::BIGINT AS visits FROM (
+            SELECT regexp_replace(cs_uri_stem, '^/+', '/') AS page, count(*)::BIGINT AS visits
+            FROM {P}
+            WHERE traffic_type='Likely Human'
+              {ASSET_FILTER}
+              AND cs_uri_stem != '/deadlink.html'
+              AND NOT cs_uri_stem LIKE '/+CSCOT+/%'
+              AND cs_uri_stem != '/wp-login.php'
+              AND NOT cs_uri_stem LIKE '/wp-admin%'
+              AND NOT cs_uri_stem LIKE '/cgi-bin/%'
+              AND NOT cs_uri_stem LIKE '/scripts/%'
+              AND NOT cs_uri_stem LIKE '%@%'
+            GROUP BY cs_uri_stem
+        )
+        GROUP BY page ORDER BY visits DESC LIMIT 30
     """))
 
     # ─── 9. Top PDF downloads ─────────────────────────────────────────────────
-    write_json(f"{out}/cns_top_pdfs.json", q(f"""
+    top_pdfs_raw = q(f"""
+        WITH normalized AS (
+            SELECT regexp_replace(cs_uri_stem, '^/+', '/') AS pdf, count(*)::BIGINT AS downloads
+            FROM {P}
+            WHERE traffic_type='Likely Human' AND cs_uri_stem LIKE '%.pdf'
+            GROUP BY pdf
+        )
         SELECT
-            cs_uri_stem AS pdf,
-            {CONTENT_CASE} AS category,
-            count(*)::BIGINT AS downloads
-        FROM {P}
-        WHERE traffic_type='Likely Human' AND cs_uri_stem LIKE '%.pdf'
+            pdf,
+            CASE
+                WHEN pdf LIKE '/docs/publications/%' OR pdf LIKE '/images/pub/%' THEN 'Publications'
+                WHEN pdf LIKE '/docs/presentations/%' THEN 'Presentations'
+                WHEN pdf LIKE '/docs/news/%' THEN 'News'
+                WHEN pdf LIKE '/docs/handouts/%' OR pdf LIKE '/docs/netscitalks/%' THEN 'Handouts'
+                ELSE 'Other PDFs'
+            END AS category,
+            sum(downloads)::BIGINT AS downloads
+        FROM normalized
         GROUP BY pdf, category ORDER BY downloads DESC LIMIT 30
-    """))
+    """)
+
+    # Post-process: match each PDF to a publication title from cns_publications.json (if available)
+    pubs_path = Path(out) / "cns_publications.json"
+    if pubs_path.exists():
+        from urllib.parse import unquote
+        with open(pubs_path, encoding="utf-8") as f:
+            publications = json.load(f)
+
+        def norm_filename(name: str) -> str:
+            """Normalize filename for fuzzy matching: lowercase, remove %-encoding, strip extension."""
+            name = unquote(name).lower()
+            name = name.rsplit("/", 1)[-1]
+            name = name.replace(".pdf", "").replace("%20", "").replace(" ", "").replace("_", "-")
+            return name
+
+        # Build lookup by normalized filename
+        pdf_to_pub: dict[str, dict] = {}
+        for p in publications:
+            url = p.get("url", "") or ""
+            if "cns.iu.edu" in url and ".pdf" in url:
+                path = unquote(url).split("cns.iu.edu", 1)[1]
+                key = norm_filename(path)
+                pdf_to_pub[key] = {
+                    "title": p.get("title", ""),
+                    "doi": p.get("doi", ""),
+                    "authors": p.get("authors", [])[:3],
+                    "pub_date": p.get("pub_date", ""),
+                }
+
+        # Enrich top PDFs with titles
+        matched_count = 0
+        for row in top_pdfs_raw:
+            key = norm_filename(row["pdf"])
+            match = pdf_to_pub.get(key)
+            if match:
+                row["title"] = match["title"]
+                row["doi"] = match["doi"]
+                row["authors"] = match["authors"]
+                row["pub_date"] = match["pub_date"]
+                matched_count += 1
+        print(f"  Matched {matched_count}/{len(top_pdfs_raw)} PDFs to publication titles")
+
+    write_json(f"{out}/cns_top_pdfs.json", top_pdfs_raw)
 
     # ─── 10. PDF downloads monthly trend ──────────────────────────────────────
     write_json(f"{out}/cns_pdf_monthly.json", q(f"""
@@ -286,27 +343,69 @@ def run(parquet: str, out: str) -> None:
                    OR cs_uri_stem = '/events_calendar.html')
               AND NOT regexp_matches(cs_uri_stem, '\\.(png|jpg|gif|css|js|php)$')
               AND NOT cs_uri_stem LIKE '%@%'
+              AND NOT cs_uri_stem LIKE '%www.%'
+              AND NOT cs_uri_stem LIKE '%http%'
+              AND cs_uri_stem NOT IN ('/workshops/event', '/workshops/event/')
+              AND cs_uri_stem NOT LIKE '%/event/dev/%'
             GROUP BY cs_uri_stem
         )
         GROUP BY label ORDER BY visits DESC LIMIT 20
     """))
 
     # ─── 13. Team page views ──────────────────────────────────────────────────
-    write_json(f"{out}/cns_team_pages.json", q(f"""
+    import re as _re
+    raw_team = q(f"""
         SELECT
             CASE
                 WHEN cs_uri_stem = '/current_team.html' THEN 'Current Team (index)'
                 WHEN cs_uri_stem LIKE '/images/people/%.png' OR cs_uri_stem LIKE '/images/people/%.jpg'
                     THEN regexp_replace(split_part(cs_uri_stem, '/', 4), '\\.(png|jpg)', '')
+                WHEN cs_uri_stem LIKE '/current_team/bio/%.html'
+                    THEN replace(split_part(cs_uri_stem, '/', 4), '.html', '')
                 ELSE cs_uri_stem
             END AS member,
             count(*)::BIGINT AS visits
         FROM {P}
         WHERE traffic_type='Likely Human'
           AND (cs_uri_stem LIKE '%team%' OR cs_uri_stem LIKE '/images/people/%'
-               OR cs_uri_stem = '/current_team.html')
-        GROUP BY member ORDER BY visits DESC LIMIT 25
-    """))
+               OR cs_uri_stem = '/current_team.html' OR cs_uri_stem LIKE '/current_team/bio/%')
+        GROUP BY member ORDER BY visits DESC
+    """)
+
+    # Normalize team member names and merge duplicates
+    def _normalize_member(name: str) -> str:
+        # Skip non-person entries
+        if name in ("Current Team (index)", "AdvisoryBoard", "Advisory Board"):
+            return name
+        # Skip placeholders
+        if "placeholder" in name.lower():
+            return ""
+        # Remove _weblrg suffix
+        name = _re.sub(r'_weblrg$', '', name)
+        # Remove file extensions
+        name = _re.sub(r'\.(png|jpg|html)$', '', name)
+        # Extract from paths like /current_team/bio/katy_borner.html
+        if '/' in name:
+            name = name.rstrip('/').split('/')[-1]
+        # Normalize separators: CamelCase → parts, underscores → dashes
+        # Split CamelCase: KatyBorner → Katy Borner
+        name = _re.sub(r'([a-z])([A-Z])', r'\1-\2', name)
+        # Replace underscores with dashes
+        name = name.replace('_', '-').lower().strip('-')
+        return name
+
+    merged: dict[str, int] = {}
+    for row in raw_team:
+        normalized = _normalize_member(row["member"])
+        if not normalized:
+            continue
+        merged[normalized] = merged.get(normalized, 0) + row["visits"]
+
+    team_result = sorted(
+        [{"member": k, "visits": v} for k, v in merged.items()],
+        key=lambda x: x["visits"], reverse=True
+    )[:25]
+    write_json(f"{out}/cns_team_pages.json", team_result)
 
     # ─── 14. Referrer domains ─────────────────────────────────────────────────
     write_json(f"{out}/cns_referrers.json", q(f"""
@@ -354,20 +453,26 @@ def run(parquet: str, out: str) -> None:
 
     # ─── 18. Top 404 paths ───────────────────────────────────────────────────
     write_json(f"{out}/cns_top_404s.json", q(f"""
-        SELECT cs_uri_stem AS path, count(*)::BIGINT AS count
-        FROM {P}
-        WHERE sc_status = 404
-          AND NOT regexp_matches(cs_uri_stem, '\\.(png|jpg|gif|css|js|ico|svg|woff2?|ttf)$')
-        GROUP BY cs_uri_stem ORDER BY count DESC LIMIT 20
+        SELECT path, sum(count)::BIGINT AS count FROM (
+            SELECT regexp_replace(rtrim(cs_uri_stem, '/'), '^/+', '/') AS path, count(*)::BIGINT AS count
+            FROM {P}
+            WHERE sc_status = 404
+              AND NOT regexp_matches(cs_uri_stem, '\\.(png|jpg|gif|css|js|ico|svg|woff2?|ttf)$')
+            GROUP BY cs_uri_stem
+        )
+        WHERE path != '' GROUP BY path ORDER BY count DESC LIMIT 20
     """))
 
     # ─── 19. Top 500 error paths ──────────────────────────────────────────────
     write_json(f"{out}/cns_top_500s.json", q(f"""
-        SELECT cs_uri_stem AS path, count(*)::BIGINT AS count
-        FROM {P}
-        WHERE sc_status >= 500
-          AND NOT regexp_matches(cs_uri_stem, '\\.(png|jpg|gif|css|js|ico|svg|woff2?|ttf)$')
-        GROUP BY cs_uri_stem ORDER BY count DESC LIMIT 20
+        SELECT path, sum(count)::BIGINT AS count FROM (
+            SELECT regexp_replace(rtrim(cs_uri_stem, '/'), '^/+', '/') AS path, count(*)::BIGINT AS count
+            FROM {P}
+            WHERE sc_status >= 500
+              AND NOT regexp_matches(cs_uri_stem, '\\.(png|jpg|gif|css|js|ico|svg|woff2?|ttf)$')
+            GROUP BY cs_uri_stem
+        )
+        WHERE path != '' GROUP BY path ORDER BY count DESC LIMIT 20
     """))
 
     # ─── 20. Dead link targets ────────────────────────────────────────────────

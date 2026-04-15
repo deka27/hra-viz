@@ -40,6 +40,10 @@ const highBotRate = [...geoBotData]
   .sort((a, b) => b.bot_pct - a.bot_pct)
   .slice(0, 3);
 
+// Clean-traffic examples for the "Clean Traffic" callout
+const inBot = geoBotData.find((d) => d.c_country === "IN");
+const nlBot = geoBotData.find((d) => d.c_country === "NL");
+
 // US vs International donut
 const usIntlDonut = [
   { name: "United States", value: usVisits, color: "#3b82f6" },
@@ -143,8 +147,8 @@ export default function CNSGeoPage() {
           <div className="flex flex-col gap-1">
             <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Clean Traffic</span>
             <p className="text-sm text-zinc-700 dark:text-zinc-300">
-              Countries like <span className="text-emerald-400 font-semibold">India ({geoBotData.find((d) => d.c_country === "IN")?.bot_pct ?? 0}%)</span> and{" "}
-              <span className="text-emerald-400 font-semibold">Netherlands ({geoBotData.find((d) => d.c_country === "NL")?.bot_pct ?? 0}%)</span>{" "}
+              <span className="text-emerald-400 font-semibold">India ({inBot?.bot_pct ?? 0}%)</span> and{" "}
+              <span className="text-emerald-400 font-semibold">Netherlands ({nlBot?.bot_pct ?? 0}%)</span>{" "}
               have very low bot rates, indicating predominantly genuine academic traffic.
             </p>
           </div>

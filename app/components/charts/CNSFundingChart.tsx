@@ -89,9 +89,9 @@ export default function CNSFundingChart({ data }: Props) {
             const startDate = new Date(v[1]).toLocaleDateString("en-US", { year: "numeric", month: "short" });
             const endDate = new Date(v[2]).toLocaleDateString("en-US", { year: "numeric", month: "short" });
             const grant = top[v[0]] ?? null;
-            return `<div style="padding:4px 2px;max-width:340px">
-              <div style="font-weight:600;color:#fafafa;margin-bottom:4px;font-size:12px">${grant?.name ?? params.name}</div>
-              <div style="color:#a1a1aa;font-size:11px;margin-bottom:6px;line-height:1.4">${grant?.title ?? ""}</div>
+            return `<div style="padding:4px 2px;max-width:340px;white-space:normal;word-wrap:break-word">
+              <div style="font-weight:600;color:#fafafa;margin-bottom:4px;font-size:12px;white-space:normal;word-wrap:break-word">${grant?.name ?? params.name}</div>
+              <div style="color:#a1a1aa;font-size:11px;margin-bottom:6px;line-height:1.4;white-space:normal;word-wrap:break-word">${grant?.title ?? ""}</div>
               <div style="display:flex;justify-content:space-between;gap:16px;margin:3px 0">
                 <span style="color:#a1a1aa">Funder</span>
                 <span style="font-weight:600;color:#fafafa">${grant?.funder ?? ""}</span>

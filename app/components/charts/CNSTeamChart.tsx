@@ -8,6 +8,7 @@ interface TeamItem {
   visits: number;
 }
 
+
 function formatMember(raw: string): string {
   // Handle paths like "/current_team/bio/katy_borner.html"
   if (raw.startsWith("/")) {

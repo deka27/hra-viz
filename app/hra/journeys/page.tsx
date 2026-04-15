@@ -29,10 +29,21 @@ const cdeDropoffs = cdeUploads - cdeVisualizations;
 const opacityPanelOpens = opacityData.find((d) => d.path === "rui.left-sidebar.opacity-settings.toggle")?.count ?? 0;
 const pct = (value: number, total: number, digits = 2) => (total > 0 ? ((value / total) * 100).toFixed(digits) : "0.00");
 const pctRounded = (value: number, total: number) => (total > 0 ? Math.round((value / total) * 100) : 0);
+type RawCrossToolRow = { combo_label?: string; count: number; tools: string[] };
 type CrossToolRow = { combo_label: string; count: number; tools: string[] };
-const ctArr = crossToolSessions as CrossToolRow[];
+const deriveComboLabel = (row: RawCrossToolRow): string => {
+  if (row.combo_label && row.combo_label.trim()) return row.combo_label;
+  if (Array.isArray(row.tools) && row.tools.length > 0) return row.tools.join(" + ");
+  return "—";
+};
+const ctArr: CrossToolRow[] = (crossToolSessions as RawCrossToolRow[]).map((d) => ({
+  combo_label: deriveComboLabel(d),
+  count: d.count,
+  tools: d.tools,
+}));
 const topCombo = ctArr[0];
 const multiToolTotal = ctArr.reduce((s, d) => s + d.count, 0);
+const topComboLabel = topCombo?.combo_label ?? "—";
 
 const recs = (crossToolRecommendations as {
   recommendations?: Array<{ source_tool: string; recommended_tool: string; co_sessions: number; lift: number }>;
@@ -323,7 +334,7 @@ export default function OpportunitiesPage() {
       {/* Actual cross-tool usage combos */}
       <ChartCard
         title="Who Actually Uses Multiple Tools?"
-        subtitle={`${multiToolTotal.toLocaleString()} users visited 2+ tools across their full history · top combo: ${topCombo?.combo_label ?? "—"} (${topCombo?.count ?? 0} users)`}
+        subtitle={`${multiToolTotal.toLocaleString()} users visited 2+ tools across their full history · top combo: ${topComboLabel} (${topCombo?.count ?? 0} users)`}
         badge="Real Cross-Tool Usage"
         badgeColor="bg-sky-500/10 text-sky-400 border-sky-500/20"
       >
@@ -332,7 +343,7 @@ export default function OpportunitiesPage() {
           <div className="flex flex-col gap-1">
             <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">The Full Atlas Workflow</span>
             <p className="text-sm text-zinc-700 dark:text-zinc-300">
-              The top combo — <span className="text-sky-400 font-semibold">{topCombo?.combo_label}</span> — is the &ldquo;full atlas&rdquo; power user workflow: data upload, 3D exploration, and registration in one session. These {topCombo?.count ?? 0} users are your highest-value audience.
+              The top combo — <span className="text-sky-400 font-semibold">{topComboLabel}</span> — is the &ldquo;full atlas&rdquo; power user workflow: data upload, 3D exploration, and registration in one session. These {topCombo?.count ?? 0} users are your highest-value audience.
             </p>
           </div>
           <div className="flex flex-col gap-1">

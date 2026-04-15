@@ -167,6 +167,7 @@ const nonKgH1 = nonKgMonthly.filter(d => d.month_year >= "2025-01" && d.month_ye
 const nonKgH2 = nonKgMonthly.filter(d => d.month_year >= "2025-07" && d.month_year <= "2025-12");
 const nonKgH1Avg = nonKgH1.length ? Math.round(nonKgH1.reduce((s, d) => s + d.visits, 0) / nonKgH1.length) : 0;
 const nonKgH2Avg = nonKgH2.length ? Math.round(nonKgH2.reduce((s, d) => s + d.visits, 0) / nonKgH2.length) : 0;
+const nonKgDropPct = nonKgH1Avg > 0 ? Math.round(((nonKgH1Avg - nonKgH2Avg) / nonKgH1Avg) * 100) : 0;
 
 // ID 14: Bar graph interactions (derived from top_ui_paths.json)
 type UiPathRow = { path: string; count: number };
@@ -321,8 +322,8 @@ const insights = [
     color: "border-l-zinc-400",
     dot: "bg-zinc-400",
     tag: "Concerning Trend",
-    title: "Non-KG tools are flat-to-declining in H2 2025",
-    metric: "535–787 visits/mo (ex-KG), down from 744–1,491 in H1",
+    title: `Non-KG tools declined ${nonKgDropPct}% from H1 to H2 2025`,
+    metric: `~${nonKgH2Avg.toLocaleString()} visits/mo in H2 (ex-KG), down from ~${nonKgH1Avg.toLocaleString()} in H1 (-${nonKgDropPct}%)`,
     implication:
       "Cross-linking between tools could keep users in the HRA ecosystem rather than leaving after one tool. KG Explorer's success may be cannibalizing EUI and FTU traffic.",
     data: [

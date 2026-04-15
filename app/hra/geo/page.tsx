@@ -59,10 +59,12 @@ const highBotRateA = highBotRateCountries[0];
 const highBotRateB = highBotRateCountries[1];
 const toolBreakdownRows = geoToolBreakdown as GeoToolBreakdownRow[];
 
-// HK: 99.2% human traffic (computed from geoBotData)
+// HK human traffic rate (computed from geoBotData)
 const hkBot = geoBotData.find((d) => d.c_country === "HK");
-const hkBotPct = hkBot?.bot_pct ?? 0.8;
-const hkHumanPct = (100 - hkBotPct).toFixed(1);
+const ieBot = geoBotData.find((d) => d.c_country === "IE");
+const hkBotPctStr = hkBot ? hkBot.bot_pct.toFixed(1) : "N/A";
+const ieBotPctStr = ieBot ? ieBot.bot_pct.toFixed(1) : "N/A";
+const hkHumanPct = hkBot ? (100 - hkBot.bot_pct).toFixed(1) : "N/A";
 
 // CDE Asia-Pacific share (tool breakdown by country)
 const asiaCdeCodes = ["HK","SG","JP","CN","KR","AU","IN","VN","TW","PH","ID","MY","TH","BD","NZ","PK"];
@@ -192,7 +194,7 @@ export default function GeoPage() {
           <div className="flex flex-col gap-1">
             <span className="text-xs text-zinc-500 uppercase tracking-wider font-medium">Clean Traffic</span>
             <p className="text-sm text-zinc-700 dark:text-zinc-300">
-              Hong Kong (1.1%) and Ireland (1.9%) have very low bot rates despite high human visit volumes —
+              Hong Kong ({hkBotPctStr}%) and Ireland ({ieBotPctStr}%) have very low bot rates despite high human visit volumes —
               predominantly genuine research traffic.
             </p>
           </div>
@@ -221,12 +223,12 @@ export default function GeoPage() {
         <div className="bg-white dark:bg-zinc-900 border border-emerald-500/20 rounded-xl p-5 flex flex-col gap-3">
           <div className="flex items-center justify-between">
             <span className="text-xs font-medium px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">Signal · Hong Kong</span>
-            <span className="text-2xl font-bold text-emerald-400">{hkHumanPct}%</span>
+            <span className="text-2xl font-bold text-emerald-400">{hkBot ? `${hkHumanPct}%` : "N/A"}</span>
           </div>
           <div className="flex flex-col gap-1">
             <p className="text-sm font-semibold text-zinc-800 dark:text-zinc-100">Hong Kong: Cleanest Human Traffic in the Dataset</p>
             <p className="text-xs text-zinc-600 dark:text-zinc-400 leading-relaxed">
-              HK has a <span className="text-emerald-400 font-semibold">{hkHumanPct}% human traffic rate</span> — among the highest in the dataset. Traffic spikes in Jan 2026 (129K requests), Mar and Jun 2025, and Oct 2025 correlate with specific academic events rather than crawlers, confirming this as a genuine biomedical research community.
+              HK has a <span className="text-emerald-400 font-semibold">{hkBot ? `${hkHumanPct}% human traffic rate` : "human traffic rate unavailable"}</span> — among the highest in the dataset. Traffic spikes in Jan 2026 (129K requests), Mar and Jun 2025, and Oct 2025 correlate with specific academic events rather than crawlers, confirming this as a genuine biomedical research community.
             </p>
           </div>
         </div>

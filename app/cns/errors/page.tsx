@@ -17,6 +17,7 @@ import securitySignals from "../../../public/data/cns/cns_security_signals.json"
 import errorCategories from "../../../public/data/cns/cns_error_categories.json";
 import monthlyErrorRate from "../../../public/data/cns/cns_monthly_error_rate.json";
 import topErrorsByMonth from "../../../public/data/cns/cns_top_errors_by_month.json";
+import metadata from "../../../public/data/cns/cns_data_metadata.json";
 
 // Derive stats from data
 const total404 = httpStatus.find((d) => d.status === 404)?.count ?? 0;
@@ -65,6 +66,33 @@ const deadLinkDisplay = deadLinks.map((d) => ({
 const firstMonth = monthlyErrors[0]?.month_year ?? "";
 const lastMonth = monthlyErrors[monthlyErrors.length - 1]?.month_year ?? "";
 const monthCount = monthlyErrors.length;
+
+// Exclude partial months (current month from metadata last_date) so "peak" calcs
+// are not distorted by in-flight data. Also safety threshold on total_errors.
+const currentPartialMonth = metadata.last_date.slice(0, 7); // e.g., "2026-04"
+const completeMonthlyErrors = monthlyErrors.filter(
+  (d) => d.month_year !== currentPartialMonth && d.total_errors > 20000
+);
+
+// Peak 500-error month (dynamically derived from complete months)
+const maxErrorMonth = completeMonthlyErrors.reduce(
+  (mx, d) => (d.s500 > mx.s500 ? d : mx),
+  completeMonthlyErrors[0]
+);
+
+function fmtMonthLabel(ym: string): string {
+  const [y, mo] = ym.split("-");
+  const names = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
+  return `${names[parseInt(mo) - 1]} ${y}`;
+}
+
+function fmtKCompact(value: number): string {
+  if (value >= 1000) return `${Math.round(value / 1000)}K`;
+  return value.toLocaleString();
+}
+
+const peakErrorMonthLabel = fmtMonthLabel(maxErrorMonth.month_year);
+const peakErrorMonthValue = fmtKCompact(maxErrorMonth.s500);
 
 // Category chart data: aggregate by category
 const categoryChartData = [...catMap.entries()]
@@ -141,7 +169,7 @@ export default function CNSErrorsPage() {
       {/* 4. Error rate over time (NEW) */}
       <ChartCard
         title="Error Rate Over Time"
-        subtitle="Monthly total requests vs errors with error rate percentage. Rate spiked above 40% during 2021 traffic surges and the Apr 2025 500-error peak."
+        subtitle={`Monthly total requests vs errors with error rate percentage. Rate spiked above 40% during 2021 traffic surges and the ${peakErrorMonthLabel} 500-error peak.`}
         badge={`${monthCount} months`}
         badgeColor="bg-blue-500/10 text-blue-500 border-blue-500/20"
       >
@@ -233,7 +261,7 @@ export default function CNSErrorsPage() {
       {/* 6. Monthly error trend (existing) */}
       <ChartCard
         title="Monthly Error Trend"
-        subtitle="Stacked area of 404, 500, and 403 errors over time. 500 errors surged starting late 2023."
+        subtitle={`Stacked area of 404, 500, and 403 errors over time. 500 errors surged starting late 2023. Note: ${fmtMonthLabel(currentPartialMonth)} is a partial month (data through ${metadata.last_date}) and is excluded from peak calculations.`}
         badge={`${monthCount} months`}
         badgeColor="bg-rose-500/10 text-rose-500 border-rose-500/20"
       >
@@ -290,7 +318,7 @@ export default function CNSErrorsPage() {
           </div>
           <p className="text-sm text-zinc-700 dark:text-zinc-300 leading-relaxed">
             500 errors became the dominant error type starting Nov 2023, likely from backend infrastructure changes.
-            Monthly 500s peaked at <span className="font-semibold text-rose-400">118K in Apr 2025</span>.
+            Monthly 500s peaked at <span className="font-semibold text-rose-400">{peakErrorMonthValue} in {peakErrorMonthLabel}</span>.
           </p>
         </div>
         <div className="bg-white dark:bg-zinc-900 border border-zinc-200 dark:border-zinc-800 rounded-xl p-5">

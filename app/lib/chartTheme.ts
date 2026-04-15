@@ -19,7 +19,7 @@ export const tooltipStyle = {
   borderColor: "#3f3f46",
   borderWidth: 1,
   textStyle: { color: "#fafafa", fontSize: 13 },
-  extraCssText: "box-shadow:0 4px 20px rgba(0,0,0,0.5);border-radius:8px;",
+  extraCssText: "box-shadow:0 4px 20px rgba(0,0,0,0.5);border-radius:8px;max-width:400px;white-space:normal;word-wrap:break-word;",
 };
 
 export const axisStyle = {

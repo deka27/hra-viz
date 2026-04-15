@@ -37,6 +37,12 @@ const avgMonthly = Math.round(
   fullMonths.reduce((s, d) => s + d.human, 0) / fullMonths.length
 );
 
+// Recent (trailing 12 full months) average for the "Sustained Growth" callout
+const last12Months = fullMonths.slice(-12);
+const avgRecent = Math.round(
+  last12Months.reduce((s, d) => s + d.human, 0) / last12Months.length
+);
+
 // Traffic type percentages
 const totalRequests = trafficTypes.reduce((s, d) => s + d.count, 0);
 const botCount = trafficTypes.find((d) => d.type === "Bot")?.count ?? 0;
@@ -209,7 +215,9 @@ export default function CNSTrafficPage() {
             Monthly human traffic has grown from{" "}
             <span className="text-zinc-800 dark:text-zinc-200 font-medium">~44K in Aug 2018</span> to a peak of{" "}
             <span className="text-zinc-800 dark:text-zinc-200 font-medium">{fmtCompact(peakMonth.human)} in {peakLabel}</span>.
-            The site consistently attracts 150K+ human requests per month in recent years.
+            The site averages{" "}
+            <span className="text-zinc-800 dark:text-zinc-200 font-medium">{fmtCompact(avgRecent)} human requests/month</span>{" "}
+            over the last {last12Months.length} months.
           </p>
         </div>
       </div>

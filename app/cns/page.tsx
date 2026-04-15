@@ -111,7 +111,8 @@ const latestNewsLabel = latestNewsDate
 
 // Funding stats
 const totalFunding = funding.reduce((s, d) => s + d.amount, 0);
-const activeGrants = funding.filter((d) => d.date_end >= "2025-01-01").length;
+const todayIso = new Date().toISOString().slice(0, 10);
+const activeGrants = funding.filter((d) => d.date_end >= todayIso).length;
 const grantCount = funding.length;
 const funderCounts = funding.reduce<Record<string, number>>((acc, d) => {
   const f = d.funder.trim();
@@ -266,7 +267,7 @@ export default function CNSOverviewPage() {
         <StatCard
           label="Active Grants"
           value={activeGrants.toString()}
-          sub="End date >= Jan 2025"
+          sub="Active as of today"
           accent="text-blue-400"
         />
         <StatCard

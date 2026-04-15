@@ -15,10 +15,11 @@ import teamPages from "../../../public/data/cns/cns_team_pages.json";
 import cnsNews from "../../../public/data/cns/cns_news.json";
 
 // --- Derived stats ---
+type TopPdf = typeof topPdfs[number] & { title?: string };
 const totalPdfDownloads = topPdfs.reduce((s, d) => s + d.downloads, 0);
-const topPdf = [...topPdfs].sort((a, b) => b.downloads - a.downloads)[0];
+const topPdf = [...topPdfs].sort((a, b) => b.downloads - a.downloads)[0] as TopPdf | undefined;
 const topPdfName = topPdf
-  ? decodeURIComponent(
+  ? topPdf.title ?? decodeURIComponent(
       topPdf.pdf
         .replace(/^\/+/, "")
         .split("/")
@@ -139,7 +140,7 @@ export default function CNSContentPage() {
         />
         <StatCard
           label="Top PDF"
-          value={topPdfName.length > 20 ? topPdfName.slice(0, 18) + "..." : topPdfName}
+          value={topPdfName.length > 40 ? topPdfName.slice(0, 38) + "…" : topPdfName}
           sub={`${topPdf?.downloads.toLocaleString() ?? 0} downloads`}
           accent="text-blue-400"
         />
